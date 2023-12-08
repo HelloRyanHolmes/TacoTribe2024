@@ -3,7 +3,7 @@
 import React from 'react'
 
 //Context
-import { GlobalContextProvider } from '@/context/MainContext';
+import { GlobalContextProvider } from '../context/MainContext';
 
 //Web3
 import RainbowProvider from './rainbow/rainbowKit';

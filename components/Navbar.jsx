@@ -3,27 +3,27 @@
 import { usePathname } from 'next/navigation'
 
 //Images
-import homeBtnUp from '@/assets/buttons/homeUpLg.png'
-import homeBtnDown from '@/assets/buttons/homeDownLg.png'
+import homeBtnUp from '../assets/buttons/homeUpLg.png'
+import homeBtnDown from '../assets/buttons/homeDownLg.png'
 
-import pixelTacoBtnUp from '@/assets/buttons/pixelTacoUp.png'
-import pixelTacoBtnDown from '@/assets/buttons/pixelTacoDown.png'
+import pixelTacoBtnUp from '../assets/buttons/pixelTacoUp.png'
+import pixelTacoBtnDown from '../assets/buttons/pixelTacoDown.png'
 
-import doodledBtnUp from '@/assets/buttons/doodledUp.png'
-import doodledBtnDown from '@/assets/buttons/doodledDown.png'
+import doodledBtnUp from '../assets/buttons/doodledUp.png'
+import doodledBtnDown from '../assets/buttons/doodledDown.png'
 
 
-import pixelDoodBtnUp from '@/assets/buttons/pixelDoodUp.png'
-import pixelDoodBtnDown from '@/assets/buttons/pixelDoodDown.png'
+import pixelDoodBtnUp from '../assets/buttons/pixelDoodUp.png'
+import pixelDoodBtnDown from '../assets/buttons/pixelDoodDown.png'
 
-import stakeBtnUp from '@/assets/buttons/stakeUp.png'
-import stakeBtnDown from '@/assets/buttons/stakeDown.png'
+import stakeBtnUp from '../assets/buttons/stakeUp.png'
+import stakeBtnDown from '../assets/buttons/stakeDown.png'
 
-import raffleBtnUp from '@/assets/buttons/raffleUp.png'
-import raffleBtnDown from '@/assets/buttons/raffleDown.png'
+import raffleBtnUp from '../assets/buttons/raffleUp.png'
+import raffleBtnDown from '../assets/buttons/raffleDown.png'
 
-import minimartBtnUp from '@/assets/buttons/marketUp.png'
-import minimartBtnDown from '@/assets/buttons/marketDown.png'
+import minimartBtnUp from '../assets/buttons/marketUp.png'
+import minimartBtnDown from '../assets/buttons/marketDown.png'
 
 //Button Layout
 import NavButton from './UI/Buttons/navButton'

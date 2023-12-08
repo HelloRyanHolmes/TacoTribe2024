@@ -1,5 +1,5 @@
 import Image from "next/image";
-import banner from "@/assets/projectImages/staking/banner.png";
+import banner from "../../assets/projectImages/staking/banner.png";
 
 export default function Stake() {
   return (

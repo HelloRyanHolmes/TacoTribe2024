@@ -1,5 +1,5 @@
 import Image from "next/image";
-import bg from "@/assets/projectImages/pixel_doodle/taco-truck-night.jpeg";
+import bg from "../../assets/projectImages/pixel_doodle/taco-truck-night.jpeg";
 
 export default function pixelDood() {
   return (

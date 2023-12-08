@@ -1,5 +1,5 @@
 import Image from "next/image";
-import bg from "@/assets/projectImages/doodle_collection/doodle-night.png";
+import bg from "../../assets/projectImages/doodle_collection/doodle-night.png";
 
 export default function Doodled() {
   return (

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import bg from "@/assets/projectImages/taco-raffles/raffleBg.png";
+import bg from "../../assets/projectImages/taco-raffles/raffleBg.png";
 
 export default function Raffle() {
   return (
