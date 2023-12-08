@@ -27,6 +27,7 @@ import minimartBtnDown from '@/assets/buttons/marketDown.png'
 
 //Button Layout
 import NavButton from './UI/Buttons/navButton'
+import { WalletConnectButton } from './UI/Buttons/walletConnectButton'
 
 export default function Navbar(){
 
@@ -35,6 +36,7 @@ export default function Navbar(){
 
     return(
         <div className="w-full flex items-center justify-center absolute z-50 top-0 left-0 py-4">
+            <WalletConnectButton/>
             <div className="w-fit flex flex-row items-center justify-center gap-5 mx-auto">
                 <NavButton upImage={homeBtnUp} downImage={homeBtnDown} link={"https://www.nft.tacotribe.shop/"}/>
                 <NavButton upImage={pixelTacoBtnUp} downImage={pixelTacoBtnDown} selected={params=="/pixelTaco"? true :false } link={"/pixelTaco"}/>
