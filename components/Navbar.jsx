@@ -23,7 +23,7 @@ const stakeBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050
 const raffleBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050853/TacoTribe/xrf4d5iv1ri0stwutfkh.png'
 const raffleBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050852/TacoTribe/pfslpaznnvutmlwhc7dh.png'
 
-const minimartBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050851/TacoTribe/hhsk3ayu9q9fzetqrgtb.png'
+const minimartBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702053540/marketUp_ctb5he.png'
 const minimartBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702053540/marketDown_oekxkm.png'
 
 const backBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050851/TacoTribe/xb7jr5fdaq4qyujiffez.png'
