@@ -1,8 +1,7 @@
 import Image from "next/image";
+import bg from "@/assets/projectImages/pixel_doodle/taco-truck-night.jpeg";
 
-import bg from "@/assets/projectImages/taco_collection/taco-truck-night.png";
-
-export default function Home() {
+export default function pixelDood() {
   return (
     <>
 
@@ -14,9 +13,9 @@ export default function Home() {
       </div>
 
       <main className=" w-screen h-screen relative">
-        
+        {/* pixelTaco */}
       </main>
-
+      
     </>
   );
 }
