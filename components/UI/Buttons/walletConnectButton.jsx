@@ -4,7 +4,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export const WalletConnectButton = () => {
   return (
-    <div className='absolute top-3 right-5 z-50'>
+    <div className='block'>
     <ConnectButton.Custom>
       {({
         account,
