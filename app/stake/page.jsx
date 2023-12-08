@@ -1,5 +1,5 @@
 import Image from "next/image";
-import banner from "../../assets/projectImages/staking/banner.png";
+const banner = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051062/TacoTribe/xusuezyqrvrftezerwxl.png";
 
 export default function Stake() {
   return (
@@ -8,7 +8,7 @@ export default function Stake() {
       {/* Background */}
       <div className="absolute top-0 left-0 w-screen h-screen z-0 bg-white">
         <div className="relative w-full px-20 mt-20">
-          <Image src={banner} className="object-cover h-full" />
+          <Image width={1920} height={1080} src={banner} className="object-cover h-full" />
         </div>
       </div>
 

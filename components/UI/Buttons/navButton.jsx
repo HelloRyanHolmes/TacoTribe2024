@@ -13,8 +13,8 @@ const NavButton = ({upImage, downImage, selected , link}) =>{
     return(
         <a href={link}>
             <button className='group cursor-pointer'>
-                <Image src={upImage} alt="home" className={"w-20 group-hover:hidden"}/>
-                <Image src={downImage} alt="home" className={"w-20 hidden group-hover:block"}/>
+                <Image width={200} height={80} src={upImage} alt="home" className={"w-20 group-hover:hidden"}/>
+                <Image width={200} height={80} src={downImage} alt="home" className={"w-20 hidden group-hover:block"}/>
             </button>
         </a>
     )
@@ -22,7 +22,7 @@ const NavButton = ({upImage, downImage, selected , link}) =>{
     else 
     return (
         <button onClick={()=>{router.push("/")}} className='cursor-pointer'>
-            <Image src={downImage} alt="home" className={"w-20"}/>
+            <Image width={200} height={80} src={downImage} alt="home" className={"w-20"}/>
         </button>
     )
 }

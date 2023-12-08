@@ -4,30 +4,30 @@ import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 
 //Images
-import homeBtnUp from '../assets/buttons/homeUpLg.png'
-import homeBtnDown from '../assets/buttons/homeDownLg.png'
+const homeBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050853/TacoTribe/fh2fm6gyp2hzckkpuxlu.png'
+const homeBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050853/TacoTribe/qcawocdhhe72mhzaalfb.png'
 
-import pixelTacoBtnUp from '../assets/buttons/pixelTacoUp.png'
-import pixelTacoBtnDown from '../assets/buttons/pixelTacoDown.png'
+const pixelTacoBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050852/TacoTribe/m2eu2xbfcyxam1naiflo.png'
+const pixelTacoBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050852/TacoTribe/bedyedyatxzubivndoji.png'
 
-import doodledBtnUp from '../assets/buttons/doodledUp.png'
-import doodledBtnDown from '../assets/buttons/doodledDown.png'
+const doodledBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050852/TacoTribe/y8uj1phwtlcsrqrhownt.png'
+const doodledBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050851/TacoTribe/ymjutxrxq47n7slv0hgx.png'
 
 //comedy
-import pixelDoodBtnUp from '../assets/buttons/pixelDoodUp.png'
-import pixelDoodBtnDown from '../assets/buttons/pixelDoodDown.png'
+const pixelDoodBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050851/TacoTribe/ba5gilyoucwjuhbpn4y4.png'
+const pixelDoodBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050851/TacoTribe/lttbazw3z1df2g5ompxp.png'
 
-import stakeBtnUp from '../assets/buttons/stakeUp.png'
-import stakeBtnDown from '../assets/buttons/stakeDown.png'
+const stakeBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050854/TacoTribe/psur4kyo3g4pxeq2hrit.png'
+const stakeBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050854/TacoTribe/zbz8nzrqpmjbnauqrvaw.png'
 
-import raffleBtnUp from '../assets/buttons/raffleUp.png'
-import raffleBtnDown from '../assets/buttons/raffleDown.png'
+const raffleBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050853/TacoTribe/xrf4d5iv1ri0stwutfkh.png'
+const raffleBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050852/TacoTribe/pfslpaznnvutmlwhc7dh.png'
 
-import minimartBtnUp from '../assets/buttons/marketUp.png'
-import minimartBtnDown from '../assets/buttons/marketDown.png'
+const minimartBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050851/TacoTribe/hhsk3ayu9q9fzetqrgtb.png'
+const minimartBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702053540/marketDown_oekxkm.png'
 
-import backBtnUp from '../assets/buttons/backSmallUp.png'
-import backBtnDown from '../assets/buttons/backSmallDown.png'
+const backBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050851/TacoTribe/xb7jr5fdaq4qyujiffez.png'
+const backBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050851/TacoTribe/rrg20wm0tq3xm1a6onzs.png'
 
 //Button Layout
 import NavButton from './UI/Buttons/navButton'
@@ -55,8 +55,8 @@ export default function Navbar(){
 
             <div className='md:hidden'>
                 <button onClick={()=>{setOpenNav(prev=>!prev)}} className='group cursor-pointer'>
-                    <Image src={backBtnUp} alt="home" className={"w-10 group-hover:hidden"}/>
-                    <Image src={backBtnDown} alt="home" className={"w-10 hidden group-hover:block"}/>
+                    <Image width={80} height={80} src={backBtnUp} alt="home" className={"w-10 group-hover:hidden"}/>
+                    <Image width={80} height={80} src={backBtnDown} alt="home" className={"w-10 hidden group-hover:block"}/>
                 </button>
             </div>
             
