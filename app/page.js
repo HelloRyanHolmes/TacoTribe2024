@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import bg from "@/assets/projectImages/taco_collection/taco-truck-night.png";
+import bg from "../assets/projectImages/taco_collection/taco-truck-night.png";
 
 export default function Home() {
   return (

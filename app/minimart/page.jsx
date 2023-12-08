@@ -1,5 +1,5 @@
 import Image from "next/image";
-import bg from "@/assets/projectImages/taco-raffles/marketBg.gif";
+import bg from "../assets/projectImages/taco-raffles/marketBg.gif";
 
 export default function Minimart() {
   return (
