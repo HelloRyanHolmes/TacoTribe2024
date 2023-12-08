@@ -48,6 +48,7 @@ export default function Navbar(){
                 <NavButton upImage={pixelDoodBtnUp} downImage={pixelDoodBtnDown} selected={params=="/pixelDood"? true :false } link={"/pixelDood"}/>
                 <NavButton upImage={stakeBtnUp} downImage={stakeBtnDown} selected={params=="/stake"? true :false } link={"/stake"}/>
                 <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params=="/raffle"? true :false } link={"/raffle"}/>
+                <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params=="/minimart"? true :false } link={"/minimart"}/>
             </div>}
         
         <div className="w-full flex items-center justify-between px-10 max-lg:px-2 absolute z-50 top-0 left-0 py-4">
