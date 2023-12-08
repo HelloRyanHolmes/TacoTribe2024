@@ -13,7 +13,7 @@ export default function Stake() {
       </div>
 
       <main className=" w-screen h-screen relative">
-        {/* pixelTaco */}
+        {/* Code Here */}
       </main>
       
     </>

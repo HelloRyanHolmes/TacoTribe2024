@@ -9,17 +9,13 @@ import {
   ReactNode
 } from "react";
 
-const GlobalContext = createContext({
-  accessToken: null,
-  setAccessToken: () => { }
-});
+const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
 
   return (
-    <GlobalContext.Provider
-      value={{ accessToken, setAccessToken}}>
+    <GlobalContext.Provider value={{ accessToken, setAccessToken}}>
       {children}
     </GlobalContext.Provider>
   );

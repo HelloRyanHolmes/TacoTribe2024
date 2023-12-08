@@ -13,7 +13,7 @@ export default function Raffle() {
       </div>
 
       <main className=" w-screen h-screen relative">
-        {/* pixelTaco */}
+        {/* Code Here */}
       </main>
       
     </>
