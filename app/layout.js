@@ -14,7 +14,7 @@ import Providers from '../utils/Providers'
 // const Navbar = dynamic(() => import("../components/Navbar"), { ssr: false });
 import Navbar from "../components/Navbar"
 
-import ogImage from './opengraph-image.png'
+// import ogImage from './opengraph-image.png'
 
 export const metadata = {
   title: 'Taco Tribe Shop',
@@ -22,18 +22,18 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: ogImage.src,
-        width: ogImage.width,
-        height: ogImage.height
+        url: './opengraph-image.png',
+        width: 1920,
+        height: 1080
       },
     ],
   },
   twitter: {
     images: [
       {
-        url: Image.src,
-        width: ogImage.width,
-        height: ogImage.height
+        url: './opengraph-image.png',
+        width: 1920,
+        height: 1080
       },
     ]
   },
