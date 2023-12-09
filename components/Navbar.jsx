@@ -31,7 +31,8 @@ const backBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v17020508
 
 //Button Layout
 import NavButton from './UI/Buttons/navButton'
-import { WalletConnectButton } from './UI/Buttons/walletConnectButton'
+import {WalletConnectButton} from "./UI/Buttons/walletConnectButton";
+import WholeConnectButton from "./UI/Buttons/wholeConnectButton"
 import { useState } from 'react'
 
 export default function Navbar(){
@@ -70,6 +71,7 @@ export default function Navbar(){
                 <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params=="/raffle"? true :false } link={"/raffle"}/>
                 <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params=="/minimart"? true :false } link={"/minimart"}/>
             </div>
+            <WholeConnectButton/>
             <WalletConnectButton/>
         </div>
         </>
