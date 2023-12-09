@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const bg = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051080/TacoTribe/gptbcjarlz8by5xdw8xl.png";
+const bg = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/taco_collection/taco-truck-night.png";
 
 export default function Home() {
   return (

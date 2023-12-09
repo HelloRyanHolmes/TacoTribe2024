@@ -1,6 +1,6 @@
 import Image from "next/image";
 import DoodlePixelMint from "../../components/UI/Buttons/Minting/doodlepixelTacos";
-const bg = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051048/TacoTribe/dcvwopevh8ha1bdgmdo3.jpg";
+const bg = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/pixel_doodle/taco-truck-night.jpeg";
 
 export default function pixelDood() {
   return (

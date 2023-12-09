@@ -1,5 +1,5 @@
 import Image from "next/image";
-const bg = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051094/TacoTribe/l4tfbfwo4paip6k8i5ta.png";
+const bg = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/taco-raffles/raffleBg.png";
 
 export default function Raffle() {
   return (

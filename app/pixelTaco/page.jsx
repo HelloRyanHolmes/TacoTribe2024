@@ -1,6 +1,6 @@
 import Image from "next/image";
 import PixelMint from "../../components/UI/Buttons/Minting/pixelTacos"
-const bg = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051025/TacoTribe/epooxajr7qpqopedgs5b.jpg";
+const bg = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/pixel_collection/taco-truck-night.jpeg";
 
 export default function PixelTaco() {
   return (

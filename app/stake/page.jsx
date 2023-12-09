@@ -1,16 +1,16 @@
 import Image from "next/image";
-const banner = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051062/TacoTribe/xusuezyqrvrftezerwxl.png";
+const banner = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/banner.png";
 
-const taco1 = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051066/TacoTribe/bkcomjy8l6b92mygglqo.png"
+const taco1 = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/StakingDappArt.png"
 
-const stakeUp = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051062/TacoTribe/stzn7qeshhr5acwu2ljs.png"
-const stakeDown = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051062/TacoTribe/jqpzflfwcv0j3lplttnx.png"
+const stakeUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/Blue+Button+Up.png"
+const stakeDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/Blue+Button+DOWN.png"
 
-const claimUp = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051066/TacoTribe/bgd94ikwkuoilezku2hm.png"
-const claimDown = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051066/TacoTribe/icfnbmswou4mn8yunvsp.png"
+const claimUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/Tan+Button+UP.png"
+const claimDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/Tan+Button+DOWN.png"
 
-const switchUp = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051063/TacoTribe/ckkhpwif2zp86excgdh6.png"
-const switchDown = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051063/TacoTribe/jmhyz2f3nsb7vehco4a5.png"
+const switchUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/gREEN_bUTTON.png"
+const switchDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/gREEN_Button_DOWN.png"
 
 export default function Stake() {
   return (

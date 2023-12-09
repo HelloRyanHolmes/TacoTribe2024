@@ -7,30 +7,30 @@ import Image from 'next/image'
 import { useAccount } from 'wagmi'
 
 //Images
-const homeBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050853/TacoTribe/fh2fm6gyp2hzckkpuxlu.png'
-const homeBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050853/TacoTribe/qcawocdhhe72mhzaalfb.png'
+const homeBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/homeUpLg.png'
+const homeBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/homeDownLg.png'
 
-const pixelTacoBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050852/TacoTribe/m2eu2xbfcyxam1naiflo.png'
-const pixelTacoBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050852/TacoTribe/bedyedyatxzubivndoji.png'
+const pixelTacoBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/pixelTacoUp.png'
+const pixelTacoBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/pixelTacoDown.png'
 
-const doodledBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050852/TacoTribe/y8uj1phwtlcsrqrhownt.png'
-const doodledBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050851/TacoTribe/ymjutxrxq47n7slv0hgx.png'
+const doodledBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/doodledUp.png'
+const doodledBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/doodledDown.png'
 
 //comedy
-const pixelDoodBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050851/TacoTribe/ba5gilyoucwjuhbpn4y4.png'
-const pixelDoodBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050851/TacoTribe/lttbazw3z1df2g5ompxp.png'
+const pixelDoodBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/pixelDoodUp.png'
+const pixelDoodBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/pixelDoodDown.png'
 
-const stakeBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050854/TacoTribe/psur4kyo3g4pxeq2hrit.png'
-const stakeBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050854/TacoTribe/zbz8nzrqpmjbnauqrvaw.png'
+const stakeBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/stakeUp.png'
+const stakeBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/stakeDown.png'
 
-const raffleBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050853/TacoTribe/xrf4d5iv1ri0stwutfkh.png'
-const raffleBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050852/TacoTribe/pfslpaznnvutmlwhc7dh.png'
+const raffleBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/raffleUp.png'
+const raffleBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/raffleDown.png'
 
-const minimartBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702053540/marketUp_ctb5he.png'
-const minimartBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702053540/marketDown_oekxkm.png'
+const minimartBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/marketUp.png'
+const minimartBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/marketDown.png'
 
-const backBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050851/TacoTribe/xb7jr5fdaq4qyujiffez.png'
-const backBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050851/TacoTribe/rrg20wm0tq3xm1a6onzs.png'
+const backBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/backSmallUp.png'
+const backBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/backSmallDown.png'
 
 //Button Layout
 import NavButton from './UI/Buttons/navButton'

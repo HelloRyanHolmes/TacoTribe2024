@@ -1,11 +1,10 @@
 import Image from "next/image";
 import DoodleMint from "../../components/UI/Buttons/Minting/doodleTacos"
-const bg = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051002/TacoTribe/irc5fyvj9n8kzvhkofhb.png";
+const bg = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/doodle_collection/doodle-night.png";
 
 export default function Doodled() {
   return (
     <>
-
       {/* Background */}
       <div className="absolute top-0 left-0 w-screen h-screen z-0">
         <div className="relative h-full">
@@ -16,7 +15,6 @@ export default function Doodled() {
       <main className=" w-screen h-screen relative">
         <DoodleMint/>
       </main>
-      
     </>
   );
 }
