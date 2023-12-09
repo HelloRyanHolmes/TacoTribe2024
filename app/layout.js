@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={font.className}>
       <Providers>
-        <Navbar />
+        <Navbar/>
         {children}
       </Providers>
       </body>

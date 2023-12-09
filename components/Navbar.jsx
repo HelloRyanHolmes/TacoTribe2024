@@ -35,7 +35,7 @@ const backBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v17020508
 //Button Layout
 import NavButton from './UI/Buttons/navButton'
 import {WalletConnectButton} from "./UI/Buttons/walletConnectButton";
-import WholeConnectButton from "./UI/Buttons/wholeConnectButton"
+import GuacBalance from "./UI/Labels/guacBalance"
 import { useState } from 'react'
 
 export default function Navbar(){
@@ -57,7 +57,7 @@ export default function Navbar(){
                 <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params=="/minimart"? true :false } link={"/minimart"}/>
             </div>}
         
-        <div className="w-full flex items-center justify-between px-10 max-lg:px-2 absolute z-50 top-0 left-0 py-4">
+        <div suppressHydrationWarning={true} className="w-full flex items-center justify-between px-10 max-lg:px-2 absolute z-50 top-0 left-0 py-4">
             
 
             <div className='md:hidden'>
@@ -76,8 +76,10 @@ export default function Navbar(){
                 <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params=="/raffle"? true :false } link={"/raffle"}/>
                 <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params=="/minimart"? true :false } link={"/minimart"}/>
             </div>
-            {isConnected && <WholeConnectButton/>}
-            <WalletConnectButton/>
+            <div suppressHydrationWarning={true} className='flex flex-row gap-2'>
+                <WalletConnectButton/>
+                <GuacBalance/>
+            </div>
         </div>
         </>
     )
