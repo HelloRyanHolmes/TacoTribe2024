@@ -1,4 +1,5 @@
 import Image from "next/image";
+import DoodleMint from "../../components/UI/Buttons/Minting/doodleTacos"
 const bg = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051002/TacoTribe/irc5fyvj9n8kzvhkofhb.png";
 
 export default function Doodled() {
@@ -13,7 +14,7 @@ export default function Doodled() {
       </div>
 
       <main className=" w-screen h-screen relative">
-        {/* pixelTaco */}
+        <DoodleMint/>
       </main>
       
     </>

@@ -52,9 +52,11 @@ export default function GuacBalance(){
         }
     },[isConnected])
 
+
+
     // if(isConnected) 
     return(
-        <div className='block'>
+        <div className={`block`}>
             <div className={`h-full bg-lime-300 px-3 py-1 rounded-full border-2 shadow-xl shadow-black/20 border-lime-800 flex items-center justify-center `}>
                 <div  className=" text-lime-900 ">{`${guac} GUAC`}</div>
             </div>

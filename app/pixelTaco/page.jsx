@@ -1,4 +1,5 @@
 import Image from "next/image";
+import PixelMint from "../../components/UI/Buttons/Minting/pixelTacos"
 const bg = "https://res.cloudinary.com/dolkj0kiu/image/upload/v1702051025/TacoTribe/epooxajr7qpqopedgs5b.jpg";
 
 export default function PixelTaco() {
@@ -13,7 +14,7 @@ export default function PixelTaco() {
       </div>
 
       <main className=" w-screen h-screen relative">
-        {/* Code Here */}
+        <PixelMint/>
       </main>
       
     </>

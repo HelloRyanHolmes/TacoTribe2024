@@ -1,3 +1,5 @@
+"use client"
+
 export const contractAdds = {
     tacoTribe : "0x47faE0155F418F7355b1ca8e46589811C272a7a8",
 
