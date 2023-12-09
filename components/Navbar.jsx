@@ -3,6 +3,9 @@
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 
+//Wagmi
+import { useAccount } from 'wagmi'
+
 //Images
 const homeBtnUp = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050853/TacoTribe/fh2fm6gyp2hzckkpuxlu.png'
 const homeBtnDown = 'https://res.cloudinary.com/dolkj0kiu/image/upload/v1702050853/TacoTribe/qcawocdhhe72mhzaalfb.png'
@@ -41,6 +44,8 @@ export default function Navbar(){
 
     const [openNav, setOpenNav] = useState(false);
 
+    const { address, isConnected, isDisconnected } = useAccount()
+
     return(<>
             {openNav && <div className='absolute top-0 left-0 z-10 w-screen h-screen bg-yellow-400 flex flex-col gap-1 items-center justify-center'>
                 <NavButton upImage={homeBtnUp} downImage={homeBtnDown} link={"https://www.nft.tacotribe.shop/"}/>
@@ -71,7 +76,7 @@ export default function Navbar(){
                 <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params=="/raffle"? true :false } link={"/raffle"}/>
                 <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params=="/minimart"? true :false } link={"/minimart"}/>
             </div>
-            <WholeConnectButton/>
+            {isConnected && <WholeConnectButton/>}
             <WalletConnectButton/>
         </div>
         </>
