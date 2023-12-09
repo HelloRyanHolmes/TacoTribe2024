@@ -4,7 +4,7 @@ const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/mar
 export default function Minimart() {
   return (
     <>
-
+      
       {/* Background */}
       <div className="absolute top-0 left-0 w-screen h-screen z-0">
         <div className="relative w-screen h-screen">
