@@ -14,11 +14,29 @@ import Providers from '../utils/Providers'
 // const Navbar = dynamic(() => import("../components/Navbar"), { ssr: false });
 import Navbar from "../components/Navbar"
 
-const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/pixel_doodle/taco-truck-night.jpeg";
+import ogImage from './opengraph-image.png'
 
 export const metadata = {
   title: 'Taco Tribe Shop',
   description: 'Taco taco moreee tacooo',
+  openGraph: {
+    images: [
+      {
+        url: ogImage.src,
+        width: ogImage.width,
+        height: ogImage.height
+      },
+    ],
+  },
+  twitter: {
+    images: [
+      {
+        url: Image.src,
+        width: ogImage.width,
+        height: ogImage.height
+      },
+    ]
+  },
 }
 
 export default function RootLayout({ children }) {
