@@ -6,11 +6,13 @@ import candybeans from "next/font/local"
 const inter = Inter({ subsets: ['latin'] })
 const font = candybeans({src:"../assets/fonts/candy-beans.otf"})
 
+
 //Utils
 import Providers from '../utils/Providers'
 
 //Components
-import Navbar from "../components/Navbar";
+// const Navbar = dynamic(() => import("../components/Navbar"), { ssr: false });
+import Navbar from "../components/Navbar"
 
 export const metadata = {
   title: 'Taco-Tribe',

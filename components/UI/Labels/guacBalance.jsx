@@ -28,7 +28,7 @@ async function guacSetup(){
 
 export default function GuacBalance(){
 
-    const { address , isDisconnected, isConnected, isConnecting } = useAccount()
+    const { address, isConnected,} = useAccount()
     const [guac, setGuac] = useState(0);
 
     const fetchBalance = async () => {
@@ -58,7 +58,7 @@ export default function GuacBalance(){
     return(
         <div className={`block`}>
             <div className={`h-full bg-lime-300 px-3 py-1 rounded-full border-2 shadow-xl shadow-black/20 border-lime-800 flex items-center justify-center `}>
-                <div  className=" text-lime-900 ">{`${guac} GUAC`}</div>
+                {address && <div  className=" text-lime-900 ">{`${guac} GUAC`}</div>}
             </div>
         </div>
     )
