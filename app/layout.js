@@ -14,28 +14,30 @@ import Providers from '../utils/Providers'
 // const Navbar = dynamic(() => import("../components/Navbar"), { ssr: false });
 import Navbar from "../components/Navbar"
 
-import ogImage from './opengraph-image.png'
 
 export const metadata = {
   title: 'Taco Tribe Shop',
   description: 'Taco taco moreee tacooo',
   openGraph: {
+    title: 'Taco Tribe Dapp',
+    description: 'Taco taco moreee tacooo',
+    url: 'https://tacotribe.vercel.app',
+    siteName: 'Taco Tribe Shop',
     images: [
       {
-        url: ogImage.src,
-        width: ogImage.width,
-        height: ogImage.height
+        url: 'https://d19rxn9gjbwl25.cloudfront.net/projectImages/home/background-image.png',
+        width: 800,
+        height: 600,
+      },
+      {
+        url: 'https://d19rxn9gjbwl25.cloudfront.net/projectImages/home/background-image.png',
+        width: 1800,
+        height: 1600,
+        alt: 'Taco Tribe Shop',
       },
     ],
-  },
-  twitter: {
-    images: [
-      {
-        url: Image.src,
-        width: ogImage.width,
-        height: ogImage.height
-      },
-    ]
+    locale: 'en_US',
+    type: 'website',
   },
 }
 
