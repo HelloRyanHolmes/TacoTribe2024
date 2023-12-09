@@ -20,21 +20,21 @@ export const metadata = {
   title: 'Taco Tribe Shop',
   description: 'Taco taco moreee tacooo',
   openGraph: {
-    title: 'Next.js',
-    description: 'The React Framework for the Web',
-    url: 'https://nextjs.org',
-    siteName: 'Next.js',
+    title: 'Taco Tribe Dapp',
+    description: 'Taco taco moreee tacooo',
+    url: 'https://tacotribe.vercel.app',
+    siteName: 'Taco Tribe Shop',
     images: [
       {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/2/24/Polygon_blockchain_logo.png',
+        url: 'https://d19rxn9gjbwl25.cloudfront.net/projectImages/home/background-image.png',
         width: 800,
         height: 600,
       },
       {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/2/24/Polygon_blockchain_logo.png',
+        url: 'https://d19rxn9gjbwl25.cloudfront.net/projectImages/home/background-image.png',
         width: 1800,
         height: 1600,
-        alt: 'My custom alt',
+        alt: 'Taco Tribe Shop',
       },
     ],
     locale: 'en_US',
