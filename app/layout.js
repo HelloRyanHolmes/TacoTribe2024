@@ -15,7 +15,7 @@ import Providers from '../utils/Providers'
 import Navbar from "../components/Navbar"
 
 export const metadata = {
-  title: 'Taco-Tribe',
+  title: 'Taco Tribe Shop',
   description: 'Taco taco moreee tacooo',
 }
 
