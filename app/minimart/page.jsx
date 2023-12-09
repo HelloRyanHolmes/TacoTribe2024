@@ -1,5 +1,5 @@
 import Image from "next/image";
-const bg = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/taco-raffles/marketBg.gif";
+const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/marketBg.gif";
 
 export default function Minimart() {
   return (

@@ -1,16 +1,16 @@
 import Image from "next/image";
-const banner = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/banner.png";
+const banner = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/banner.png";
 
-const taco1 = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/StakingDappArt.png"
+const taco1 = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/StakingDappArt.png"
 
-const stakeUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/Blue+Button+Up.png"
-const stakeDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/Blue+Button+DOWN.png"
+const stakeUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Blue+Button+Up.png"
+const stakeDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Blue+Button+DOWN.png"
 
-const claimUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/Tan+Button+UP.png"
-const claimDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/Tan+Button+DOWN.png"
+const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+UP.png"
+const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+DOWN.png"
 
-const switchUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/gREEN_bUTTON.png"
-const switchDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/staking/gREEN_Button_DOWN.png"
+const switchUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/gREEN_bUTTON.png"
+const switchDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/gREEN_Button_DOWN.png"
 
 export default function Stake() {
   return (

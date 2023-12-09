@@ -1,6 +1,6 @@
 import Image from "next/image";
-import DoodleMint from "../../components/UI/Buttons/Minting/doodleTacos"
-const bg = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/projectImages/doodle_collection/doodle-night.png";
+import DoodleMint from "../../components/UI/Buttons/Minting/doodleTacos";
+const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/doodle_collection/doodle-night.png";
 
 export default function Doodled() {
   return (

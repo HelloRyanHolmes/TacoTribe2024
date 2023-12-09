@@ -1,42 +1,42 @@
 "use client"
 
-import { usePathname } from 'next/navigation'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 //Wagmi
 import { useAccount } from 'wagmi'
 
 //Images
-const homeBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/homeUpLg.png'
-const homeBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/homeDownLg.png'
+const homeBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/homeUpLg.png'
+const homeBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/homeDownLg.png'
 
-const pixelTacoBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/pixelTacoUp.png'
-const pixelTacoBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/pixelTacoDown.png'
+const pixelTacoBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/pixelTacoUp.png'
+const pixelTacoBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/pixelTacoDown.png'
 
-const doodledBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/doodledUp.png'
-const doodledBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/doodledDown.png'
+const doodledBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/doodledUp.png'
+const doodledBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/doodledDown.png'
 
 //comedy
-const pixelDoodBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/pixelDoodUp.png'
-const pixelDoodBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/pixelDoodDown.png'
+const pixelDoodBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/pixelDoodUp.png'
+const pixelDoodBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/pixelDoodDown.png'
 
-const stakeBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/stakeUp.png'
-const stakeBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/stakeDown.png'
+const stakeBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/stakeUp.png'
+const stakeBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/stakeDown.png'
 
-const raffleBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/raffleUp.png'
-const raffleBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/raffleDown.png'
+const raffleBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/raffleUp.png'
+const raffleBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/raffleDown.png'
 
-const minimartBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/marketUp.png'
-const minimartBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/marketDown.png'
+const minimartBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/marketUp.png'
+const minimartBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/marketDown.png'
 
-const backBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/backSmallUp.png'
-const backBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/backSmallDown.png'
+const backBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/backSmallUp.png'
+const backBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/backSmallDown.png'
 
 //Button Layout
-import NavButton from './UI/Buttons/navButton'
-import {WalletConnectButton} from "./UI/Buttons/walletConnectButton";
-import GuacBalance from "./UI/Labels/guacBalance"
 import { useState } from 'react'
+import NavButton from './UI/Buttons/navButton'
+import { WalletConnectButton } from "./UI/Buttons/walletConnectButton"
+import GuacBalance from "./UI/Labels/guacBalance"
 
 export default function Navbar(){
 
