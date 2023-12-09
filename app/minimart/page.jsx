@@ -8,7 +8,7 @@ export default function Minimart() {
       {/* Background */}
       <div className="absolute top-0 left-0 w-screen h-screen z-0">
         <div className="relative w-screen h-screen">
-          <Image width={1920} height={1080} src={bg} priority={true} className="object-cover w-full h-full" />
+          <Image width={1920} height={1080} src={bg} className="object-cover w-full h-full" />
         </div>
       </div>
 
