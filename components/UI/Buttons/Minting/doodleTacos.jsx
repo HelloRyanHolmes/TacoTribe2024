@@ -32,7 +32,7 @@ export default function DoodleMint(){
     async function mint(){
         const contract = await mintSetup();
         console.log("inside mint",contract);
-        await contract.mint(amount, {gasLimit:30000, value: ethers.utils.parseEther(String(2*amount))}).then((res)=>{console.log(res);}).catch((err)=>{console.log(err)});
+        await contract.mint(amount, {gasLimit:30000, value: ethers.utils.parseEther(String(15*amount))}).then((res)=>{console.log(res);}).catch((err)=>{console.log(err)});
     }
 
 
