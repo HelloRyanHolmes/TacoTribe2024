@@ -11,7 +11,6 @@ const font = candybeans({src:"../assets/fonts/candy-beans.otf"})
 import Providers from '../utils/Providers'
 
 //Components
-// const Navbar = dynamic(() => import("../components/Navbar"), { ssr: false });
 import Navbar from "../components/Navbar"
 
 
