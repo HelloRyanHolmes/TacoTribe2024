@@ -9,6 +9,10 @@ import { useAccount } from 'wagmi'
 
 const guacos = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/guacos.png"
 const doodle = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/doodle.png"
+const gvsc = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/gvsc.png"
+const pixelDoodledTaco = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Pixel Doodled Taco.png"
+const pixelTaco = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Pixel Taco.png"
+const tacoTribe = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Taco Tribe.png"
 
 
 export default function StakeTemplate({ name }) {
@@ -21,23 +25,22 @@ export default function StakeTemplate({ name }) {
   const getContractDetails = async () => {
     switch (name) {
       case "Taco Tribe":
-        setImg("")
+        setImg(tacoTribe)
         return "Taco Tribe"
       case "Pixel Taco":
-        setImg("")
+        setImg(pixelTaco)
         return await pixelMintSetup()
       case "Doodled Taco":
         setImg(doodle)
         return await doodledTacoMintSetup()
-        break
       case "Guaco Tribe":
         setImg(guacos)
         return "Guaco Tribe"
       case "Guac VS Sour Cream":
-        setImg("")
+        setImg(gvsc)
         return "Guac VS Sour Cream"
       case "Pixel Doodled Taco":
-        setImg("")
+        setImg(pixelDoodledTaco)
         return await doodledPixelTacoMintSetup()
       case "":
         setImg("")
@@ -63,7 +66,7 @@ export default function StakeTemplate({ name }) {
   }, [name])
 
   return (
-    <div className="w-[60%] bg-yellow-400 grid grid-cols-2 gap-5 p-5 py-10 rounded-[32px]">
+    <div className="w-[60%] max-md:w-[95%] bg-yellow-400 grid grid-cols-2 max-md:grid-cols-1 gap-5 p-5 py-10 rounded-[32px]">
       <Image width={500} height={500} src={img} className=" w-full pl-10" />
       <div className="flex flex-col gap-2 h-fit w-[80%] mx-auto my-auto">
         <div className="bg-white rounded-full w-full px-4 py-2 shadow shadow-black/20 text-black text-xl"><h2 >{name?.length === 0 ? 'Select A Taco' : name}</h2></div>
