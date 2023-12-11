@@ -36,7 +36,7 @@ export default function Stake() {
         </div>
       </div> */}
 
-      <div className="relative w-full pt-20">
+      <div className="relative lg:w-[70%] mx-auto pt-20">
         <Image width={1920} height={1080} src={banner} className="object-cover h-full" />
       </div>
 

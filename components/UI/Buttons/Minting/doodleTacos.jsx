@@ -35,11 +35,10 @@ export default function DoodleMint(){
 
 
     async function mint(){
-        const contract = await mintSetup();
+        const contract = await doodledTacoMintSetup();
         console.log("inside mint",contract);
         await contract.mint(amount, {gasLimit:30000, value: ethers.utils.parseEther(String(15*amount))}).then((res)=>{console.log(res);}).catch((err)=>{console.log(err)});
     }
-
 
     const handleamountChange = async (e) => {
         
@@ -61,7 +60,7 @@ export default function DoodleMint(){
             </button>
 
             {amountBoxShow &&
-            <div className="bg-yellow-400 z-50 border-2 border-black rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
+            <div className="bg-yellow-400 z-10 border-2 border-black rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
                 <div className="relative flex flex-col items-center justify-center w-full h-full p-5 pt-10">
                     <h2 onClick={()=>{setAmountBoxShow(false)}} className="absolute top-0 right-0 cursor-pointer m-2 mx-4 text-black hover:text-red-600 transform hover:scale-125 transition-all duration-200 ease-in-out">x</h2>
                     <input placeholder="0" type="number" onKeyDown={(e)=>{e.preventDefault()}} step={1} min={0} onChange={handleamountChange} value={amount} className="text-black border-2 border-black p-5 py-4 text-center text-3xl block h-fit w-full rounded-xl">
