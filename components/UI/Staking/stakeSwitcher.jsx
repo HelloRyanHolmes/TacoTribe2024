@@ -26,7 +26,7 @@ export default function StakeSwitcher({ changeButton, button }) {
 
     return (
         <>
-            <div className='top-0 left-0 z-10 w-screen flex flex-row xl:gap-10 lg:gap-5  justify-center xl:my-0 xl:mb-4 my-8'>
+            <div className=' left-0 z-10 w-screen flex flex-row xl:gap-10 lg:gap-5 fixed justify-center xl:my-0 xl:mb-4 my-8'>
                 <StakingButton upImage={tacoTribeButtonUp} downImage={tacoTribeButtonDown} selected={button === 'Taco Tribe' ? true : false} changeButton={changeButton} type={"Taco Tribe"} />
                 <StakingButton upImage={pixelTacoButtonUp} downImage={pixelTacoButtonDown} selected={button === 'Pixel Taco' ? true : false} changeButton={changeButton} type={"Pixel Taco"} />
                 {/* <StakingButton upImage={babyTacoButtonUp} downImage={babyTacoButtonDown} selected={button === 'Baby Taco' ? true : false} changeButton={changeButton} type={"Baby Taco"} /> */}
