@@ -3,8 +3,8 @@ import Image from "next/image"
 import { doodledPixelTacoMintSetup } from "../Buttons/Minting/doodlepixelTacos"
 import { doodledTacoMintSetup } from "../Buttons/Minting/doodleTacos"
 import { pixelMintSetup } from "../Buttons/Minting/pixelTacos"
+import {tacoMintSetup} from '../Buttons/Minting/tacos'
 import { useEffect, useState } from "react"
-
 import { useAccount } from 'wagmi'
 
 const guacos = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/guacos.png"
@@ -17,16 +17,16 @@ const tacoTribe = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/T
 
 export default function StakeTemplate({ name }) {
   const [img, setImg] = useState("")
-  // const [contract, setContract] = useState()
   const [balance, setBalance] = useState(0)
-
+  const [tokenIdArray, setTokenIdArray] = useState([])
+  const [tokenURIArray, setTokenURIArray] = useState([])
   const { address } = useAccount()
 
   const getContractDetails = async () => {
     switch (name) {
       case "Taco Tribe":
         setImg(tacoTribe)
-        return "Taco Tribe"
+        return await tacoMintSetup()
       case "Pixel Taco":
         setImg(pixelTaco)
         return await pixelMintSetup()
@@ -42,27 +42,34 @@ export default function StakeTemplate({ name }) {
       case "Pixel Doodled Taco":
         setImg(pixelDoodledTaco)
         return await doodledPixelTacoMintSetup()
-      case "":
-        setImg("")
-        return "No Taco Selected"
       default:
         return "Taco Tribe"
     }
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getContractDetails()
+  const handleContract = async () => {
+    const data = await getContractDetails()
       console.log(data)
       // setContract(data)
-      if(data === "No Taco Selected"){
-        setBalance("N/A")
-      }
-      else{
-        typeof(data) !== 'string' ? setBalance(await data?.balanceOf(address)) : setBalance(10)
-      }
-    }
-    fetchData()
+
+      
+      typeof(data) !== 'string' ? setBalance(await data?.balanceOf(address)) : setBalance(11)
+      
+      // const tokenIdArr = typeof(data) !== 'string' ? (await data?.tokenOfOwner(address)) : null;
+
+      // console.log("tokenIdArr: ", tokenIdArray);
+      // typeof(data) !== 'string' ? setTokenIdArray() : null
+
+      // tokenIdArr?.map((id, index)=>{
+      //   console.log(index, "): ", id);
+      //   const meta = `https://ipfs.io/ipfs/${id.tokenURI.substr(7)}`;
+      //       const metadata = await fetch(meta);
+      //       const json = await metadata.json();
+      // })    
+  }
+
+  useEffect(() => {
+    handleContract();
   }, [name])
 
   return (
