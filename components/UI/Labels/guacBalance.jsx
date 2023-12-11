@@ -37,7 +37,7 @@ export default function GuacBalance(){
             const contract = await guacSetup();
             const balance = ethers.utils.formatEther(await contract.balanceOf(address));
         //    console.log(balance)
-            setGuac(balance);
+            setGuac(Number(balance));
         }
         catch {
             console.log("Error fetching balance")
@@ -50,15 +50,15 @@ export default function GuacBalance(){
         if(isConnected){
             fetchBalance();
         }
+        console.log("hiiii", typeof(guac))
     },[isConnected])
-
 
 
     // if(isConnected) 
     return(
         <div className={`block`}>
             <div className={`h-full bg-lime-300 px-3 py-1 rounded-full border-2 shadow-xl shadow-black/20 border-lime-800 flex items-center justify-center `}>
-                {address && <div  className=" text-lime-900 ">{`${guac} GUAC`}</div>}
+                {address && <div  className=" text-lime-900 ">{`${guac.toFixed(2)} GUAC`}</div>}
             </div>
         </div>
     )
