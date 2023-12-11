@@ -9,21 +9,14 @@ export default function PixelTaco() {
     <>
 
       {/* Background */}
-      <div className="absolute top-0 left-0 w-screen h-screen z-0 md:block">
+      <div className="absolute top-0 left-0 w-screen h-screen z-0 ">
         <div className="relative h-full">
-          <Image width={1920} height={1080} src={bg} className="object-cover h-full" />
+          <Image width={1920} height={1080} src={bg} className=" object-cover max-sm:hidden w-screen h-full" />
+          <Image width={1920} height={1080} src={bgMobile} className="object-cover sm:hidden h-full" />
         </div>
       </div>
 
-      <div className="absolute top-0 left-0 w-screen h-screen z-0 sm:hidden">
-        <div className="relative h-full">
-          <Image width={1920} height={1080} src={bgMobile} className="object-cover h-full" />
-        </div>
-      </div>
-
-      <main className=" w-screen h-screen relative">
-        <PixelMint/>
-      </main>
+      <PixelMint />
       
     </>
   );
