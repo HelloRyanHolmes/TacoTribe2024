@@ -35,17 +35,17 @@ export default function Raffle() {
         </div>
       </div>
 
-      <main className="flex flex-col items-center gap-20 w-screen h-screen relative">
-        <div className="relative lg:w-full mx-auto pt-20 mt-10">
-          <Image width={1920} height={1080} src={banner} className="object-cover w-[110vw]" />
+      <main className="flex flex-col items-center gap-10 w-screen h-screen relative">
+        <div className="relative lg:w-full pt-10 mt-10 ">
+          <Image width={1920} height={1080} src={banner} className="" />
         </div>
-        <div className=" text-black">
+        <div className="text-black text-center">
           <h1 className="text-3xl">Purchase Tickets Using<span className=" inline-block ml-2 -mb-1"><Image width={25} height={25} src={guacLogo}></Image></span> $Guac!</h1>
         </div>
-        <div className=" text-black translate-y-5">
+        <div className=" text-black translate-y-5 text-center">
           <h1 className="text-5xl">PREVIOUS WINNERS:</h1>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-10 overflow-y-scroll pt-5">
+        <div className="w-[85%] shadow-inner shadow-black/50 h-[80vh] p-6 flex flex-wrap items-center justify-center gap-10 overflow-y-scroll border-4 rounded-[32px] border-black bg-lime-300 mb-10">
           <RaffleCard />
           <RaffleCard />
           <RaffleCard />

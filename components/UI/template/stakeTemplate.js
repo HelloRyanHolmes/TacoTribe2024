@@ -236,17 +236,22 @@ export default function StakeTemplate({ name }) {
       </div>
 
       <div className="border-2 border-white bg-white mx-auto w-screen py-5 flex gap-5 px-5 overflow-scroll items-center justify-center text-center">
-        <div className="flex flex-row gap-4 max-lg:pl-20 max-sm:pl-80 items-start justify-start">
+        <div className="flex flex-row gap-4 items-start justify-start">
           {userNFTs?.map((item) => (<>
             <div className="border-2 bg-yellow-400 border-black rounded-xl overflow-hidden p-2 w-[240px]">
-              <h1 className="text-black">{item.name}</h1>
+              <h1 className="text-black text-[1.5rem]">{item.name}</h1>
               <Image src={item.img} className="mx-auto rounded-lg border-2 border-black" width={200} height={200} alt={"HEjhdsvcw"} />
-              <h1 className="text-black">$GUAC: {item.unclaimedAmount}</h1>
+              <h1 className="text-black text-[1.2rem]">$GUAC: {item.unclaimedAmount}</h1>
 
               <button onClick={() => { claim(item.tokenId, item.collection) }} className="group relative mt-4">
+                <Image width={200} height={80} src={claimNFTUp} alt="home" className={"w-40 group-hover:hidden"} />
+                <Image width={200} height={80} src={claimNFTDown} alt="home" className={"w-40 hidden group-hover:block"} />
+              </button>
+
+              {/* <button onClick={() => { claim(item.tokenId, item.collection) }} className="group min-[641px]:hidden relative mt-4">
                 <Image width={200} height={80} src={claimNFTUp} alt="home" className={"w-20 group-hover:hidden"} />
                 <Image width={200} height={80} src={claimNFTDown} alt="home" className={"w-20 hidden group-hover:block"} />
-              </button>
+              </button> */}
 
             </div>
           </>
