@@ -235,7 +235,7 @@ export default function StakeTemplate({ name }) {
         </button>
       </div>
 
-      <div className="border-2 border-white bg-white mx-auto w-screen py-5 flex gap-5 px-5 overflow-scroll items-center justify-center text-center">
+      <div className="border-2 border-white bg-white max-[640px]:pl-20 max-[400px]:pl-40 mx-auto w-screen py-5 flex gap-5 px-5 overflow-scroll items-center justify-center text-center">
         <div className="flex flex-row gap-4 items-start justify-start">
           {userNFTs?.map((item) => (<>
             <div className="border-2 bg-yellow-400 border-black rounded-xl overflow-hidden p-2 w-[240px]">
