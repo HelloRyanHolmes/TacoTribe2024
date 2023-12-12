@@ -15,5 +15,7 @@ export const contractAdds = {
 
     babyTacos: "0xE0620C9F85a8e13F50cDA8d8306209B25D027D51",
 
-    guacSour : "0x4c4b675bFc5e9C5AfD3aF683366E627CB527626c"
+    guacSour : "0x4c4b675bFc5e9C5AfD3aF683366E627CB527626c",
+
+    staking : "0x16f01F2B43293882bE0d359c2f56E0484049Fb14"
 }
