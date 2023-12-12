@@ -45,7 +45,7 @@ export default function Raffle() {
         <div className=" text-black translate-y-5 text-center">
           <h1 className="text-5xl">PREVIOUS WINNERS:</h1>
         </div>
-        <div className="w-[85%] shadow-inner shadow-black/50 h-[80vh] p-6 flex flex-wrap items-center justify-center gap-10 overflow-y-scroll border-4 rounded-[32px] border-black bg-lime-300 mb-10">
+        <div className="w-[85%] shadow-inner shadow-black/50 h-[80vh] px-6 py-3 flex flex-wrap items-center justify-center gap-10 overflow-y-scroll border-4 rounded-[32px] border-black bg-lime-300 mb-10">
           <RaffleCard />
           <RaffleCard />
           <RaffleCard />
