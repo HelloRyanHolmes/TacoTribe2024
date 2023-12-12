@@ -3,10 +3,10 @@ import Image from "next/image"
 import { doodledPixelTacoMintSetup } from "../Buttons/Minting/doodlepixelTacos"
 import { doodledTacoMintSetup } from "../Buttons/Minting/doodleTacos"
 import { pixelMintSetup } from "../Buttons/Minting/pixelTacos"
-import {tacoMintSetup} from '../Buttons/Minting/tacos'
+import { tacoMintSetup } from '../Buttons/Minting/tacos'
 import { useEffect, useState } from "react"
 import { useAccount } from 'wagmi'
-import {ethers} from "ethers";
+import { ethers } from "ethers";
 import abi from "../../../utils/newAbis/stakingabi"
 import { contractAdds } from "../../../utils/contractAdds"
 
@@ -20,6 +20,9 @@ const tacoTribe = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/T
 const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+UP.png"
 const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+DOWN.png"
 
+const claimNFTUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Red Button UP.png"
+const claimNFTDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Red Button dOWN.png"
+
 
 export default function StakeTemplate({ name }) {
   const [img, setImg] = useState("")
@@ -29,7 +32,7 @@ export default function StakeTemplate({ name }) {
   const [currentContractId, setCurrentContractId] = useState(0);
 
   const { address } = useAccount();
-  
+
 
   //check which collection is to be displayed and call the handleContract function accordingly
   const getContractDetails = async () => {
@@ -67,7 +70,7 @@ export default function StakeTemplate({ name }) {
       default:
         return 0;
 
-        //BABY TACOS MISSING...
+      //BABY TACOS MISSING...
     }
   }
 
@@ -76,109 +79,109 @@ export default function StakeTemplate({ name }) {
 
 
     var displayArr = [];
-    
-    if(name.toUpperCase() == "PIXEL TACO"){
-        try{
+
+    if (name.toUpperCase() == "PIXEL TACO") {
+      try {
 
 
-            setUserNFTs([]);
-            setBalance(0);
-         
-            var bal;
-            
-            typeof(data) !== 'string' ? bal = setBalance(await data?.balanceOf(address)) : setBalance(11);
-          
-              const tokenIDs = typeof(data) !== 'string' ? ((await data?.tokensOfOwner(address))) : null;
-        
-        
-                for(let i = 0; i<tokenIDs.length; i++){
-    
-                    // console.log(Number(i));
-                    const tokenId = Number(tokenIDs[i]);
-                    const uri = await data?.tokenURI(tokenId);
-        
-                    const meta = `https://ipfs.io/ipfs/${uri.substr(7)}`;
-                    const metadata = await fetch(meta);
-                    const json = await metadata.json();
-        
-                    const name = json["name"];
-                    const fetchedImg = json["image"];
-        
-                    const img = `https://ipfs.io/ipfs/${fetchedImg.substr(7)}`
-                    const unclaimedAmount = await unclaimed(tokenId, collection);
+        setUserNFTs([]);
+        setBalance(0);
 
-                    displayArr.push({name, img, tokenId, collection, unclaimedAmount});
-                }
-    
-            console.log(displayArr);
-            setUserNFTs(displayArr);
+        var bal;
 
+        typeof (data) !== 'string' ? bal = setBalance(await data?.balanceOf(address)) : setBalance(11);
+
+        const tokenIDs = typeof (data) !== 'string' ? ((await data?.tokensOfOwner(address))) : null;
+
+
+        for (let i = 0; i < tokenIDs.length; i++) {
+
+          // console.log(Number(i));
+          const tokenId = Number(tokenIDs[i]);
+          const uri = await data?.tokenURI(tokenId);
+
+          const meta = `https://ipfs.io/ipfs/${uri.substr(7)}`;
+          const metadata = await fetch(meta);
+          const json = await metadata.json();
+
+          const name = json["name"];
+          const fetchedImg = json["image"];
+
+          const img = `https://ipfs.io/ipfs/${fetchedImg.substr(7)}`
+          const unclaimedAmount = await unclaimed(tokenId, collection);
+
+          displayArr.push({ name, img, tokenId, collection, unclaimedAmount });
         }
-        catch(err){
-            console.log(err);
-        }
+
+        console.log(displayArr);
+        setUserNFTs(displayArr);
 
       }
-
-
-      else{
-        try{
-    
-            setBalance(0);
-            setUserNFTs([]);
-            
-    
-            var bal;
-            
-            typeof(data) !== 'string' ? bal = await data?.balanceOf(address) : setBalance(11);
-            setBalance(Number(bal));
-            for(let i=0; i<Number(bal); i++){
-    
-                const BtokenId = typeof(data) !== 'string' ? (await data?.tokenOfOwnerByIndex(address, i)) : null;
-                const tokenId = Number(BtokenId);
-                const uri = await data?.tokenURI(tokenId);
-                const meta = `https://ipfs.io/ipfs/${uri.substr(7)}`;
-                const metadata = await fetch(meta);
-                const json = await metadata.json();
-    
-                const name = json["name"];
-                const fetchedImg = json["image"];
-    
-                const img = `https://ipfs.io/ipfs/${fetchedImg.substr(7)}`
-                const unclaimedAmount = await unclaimed(tokenId, collection)
-                displayArr.push({name, img, tokenId, collection, unclaimedAmount});
-            }
-            console.log(displayArr);
-            setUserNFTs(displayArr);
-        }
-        catch(err){
-            console.log(err);
-        }
-        
+      catch (err) {
+        console.log(err);
       }
+
+    }
+
+
+    else {
+      try {
+
+        setBalance(0);
+        setUserNFTs([]);
+
+
+        var bal;
+
+        typeof (data) !== 'string' ? bal = await data?.balanceOf(address) : setBalance(11);
+        setBalance(Number(bal));
+        for (let i = 0; i < Number(bal); i++) {
+
+          const BtokenId = typeof (data) !== 'string' ? (await data?.tokenOfOwnerByIndex(address, i)) : null;
+          const tokenId = Number(BtokenId);
+          const uri = await data?.tokenURI(tokenId);
+          const meta = `https://ipfs.io/ipfs/${uri.substr(7)}`;
+          const metadata = await fetch(meta);
+          const json = await metadata.json();
+
+          const name = json["name"];
+          const fetchedImg = json["image"];
+
+          const img = `https://ipfs.io/ipfs/${fetchedImg.substr(7)}`
+          const unclaimedAmount = await unclaimed(tokenId, collection)
+          displayArr.push({ name, img, tokenId, collection, unclaimedAmount });
+        }
+        console.log(displayArr);
+        setUserNFTs(displayArr);
+      }
+      catch (err) {
+        console.log(err);
+      }
+
+    }
 
   }
 
   //setup staking contract
-  async function stakingSetup(){
+  async function stakingSetup() {
     const add = contractAdds.staking;
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     await provider.send("eth_requestAccounts", []);
     const signer = provider.getSigner();
 
-    try{
-    const contract = new ethers.Contract( add , abi , signer );
+    try {
+      const contract = new ethers.Contract(add, abi, signer);
 
-    return contract;
-}
-    catch(err){
-        console.log("Error",err)
-    }    
+      return contract;
+    }
+    catch (err) {
+      console.log("Error", err)
+    }
   }
 
   //check unclaimed amount of $GUAC for each collection and tokenId. Has been called in handleContract()
-  async function unclaimed(tokenId, collection){
+  async function unclaimed(tokenId, collection) {
     const contract = await stakingSetup();
 
     var unclaimedAmount = await contract?.unclaimedRewards(tokenId, collection);
@@ -188,96 +191,68 @@ export default function StakeTemplate({ name }) {
   }
 
   //function to claim $GUAC of NFT user chosen to claim
-  async function claim(tokenID, collection){
+  async function claim(tokenID, collection) {
     const contract = await stakingSetup();
 
-      try{
-        await contract.claim(tokenID, collection)
-      }
-      catch(err){
-        console.log(err);
-      }
+    try {
+      await contract.claim(tokenID, collection)
+    }
+    catch (err) {
+      console.log(err);
+    }
   }
 
   const claimAll = async () => {
     const contract = await stakingSetup();
 
-    try{
+    try {
       await contract.claimAll(currentContractId)
     }
-    catch(err){
+    catch (err) {
       console.log(err);
     }
-  } 
+  }
 
   useEffect(() => {
-   getContractDetails();
+    getContractDetails();
   }, [name])
 
 
 
   return (
     <div>
-        <div className="w-[95%] md:w-[700px] mx-auto bg-yellow-400 mb-10 overflow-hidden items-center justify-center grid grid-cols-2 max-md:grid-flow-row max-md:grid-cols-1 gap-x-5 p-5 rounded-[32px]">
+      <div className="w-[95%] md:w-[700px] mx-auto bg-yellow-400 mb-10 overflow-hidden items-center justify-center grid grid-cols-2 max-md:grid-flow-row max-md:grid-cols-1 gap-x-5 p-5 rounded-[32px]">
         <div className="h-80 my-auto flex items-center justify-center"><Image width={500} height={500} src={img} className=" object-cover object-center w-full pl-10" /></div>
         <div className="flex flex-col max-md:text-center max-md:items-center gap-2 h-fit w-[80%] mx-auto my-auto">
-            <div className="bg-white rounded-full w-full px-4 py-2 shadow shadow-black/20 text-black text-xl"><h2 >{name?.length === 0 ? 'Select A Taco' : name}</h2></div>
-            <div className="bg-white rounded-full w-full px-4 py-2 shadow shadow-black/20 text-black text-xl"><h2 >Available Tacos: {Number(balance)}</h2></div>
-            <div className="w-fit py-1 text-[#73851C] text-3xl"><h2 >Stake your Tacos and earn $GUAC</h2></div>
-            <div className="bg-white rounded-full w-fit px-4 py-1 shadow shadow-black/20 text-black cursor-pointer hover:bg-white/80"><h2 >Learn More</h2></div>
+          <div className="bg-white rounded-full w-full px-4 py-2 shadow shadow-black/20 text-black text-xl"><h2 >{name?.length === 0 ? 'Select A Taco' : name}</h2></div>
+          <div className="bg-white rounded-full w-full px-4 py-2 shadow shadow-black/20 text-black text-xl"><h2 >Available Tacos: {Number(balance)}</h2></div>
+          <div className="w-fit py-1 text-[#73851C] text-3xl"><h2 >Stake your Tacos and earn $GUAC</h2></div>
+          <div className="bg-white rounded-full w-fit px-4 py-1 shadow shadow-black/20 text-black cursor-pointer hover:bg-white/80"><h2 >Learn More</h2></div>
         </div>
         <button onClick={claimAll} className='group cursor-pointer mx-auto max-md:mt-5 md:col-span-2'>
-            <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
-            <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
-          </button>
-        </div>
+          <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
+          <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
+        </button>
+      </div>
 
-        <div className="border-2 border-white bg-white mx-auto w-screen py-5 flex gap-5 px-5 overflow-scroll items-center justify-center text-center">
-            <div className="flex flex-row gap-4 max-lg:pl-20 max-sm:pl-80 items-start justify-start">
-            {userNFTs?.map((item)=>(<>
-                <div className="border-2 bg-yellow-400 border-black rounded-xl overflow-hidden p-2 w-[240px]">
-                    <h1 className="text-black">{item.name}</h1>
-                    <Image src={item.img} className="mx-auto rounded-lg border-2 border-black" width={200} height={200} alt={"HEjhdsvcw"}/>
-                    <h1 className="text-black">$GUAC: {item.unclaimedAmount}</h1>
+      <div className="border-2 border-white bg-white mx-auto w-screen py-5 flex gap-5 px-5 overflow-scroll items-center justify-center text-center">
+        <div className="flex flex-row gap-4 max-lg:pl-20 max-sm:pl-80 items-start justify-start">
+          {userNFTs?.map((item) => (<>
+            <div className="border-2 bg-yellow-400 border-black rounded-xl overflow-hidden p-2 w-[240px]">
+              <h1 className="text-black">{item.name}</h1>
+              <Image src={item.img} className="mx-auto rounded-lg border-2 border-black" width={200} height={200} alt={"HEjhdsvcw"} />
+              <h1 className="text-black">$GUAC: {item.unclaimedAmount}</h1>
 
-                    <button onClick={()=>{claim(item.tokenId, item.collection)}} className=" relative mt-4">
-                      <div  className="bg-[#fec74c] -translate-y-2 hover:-translate-y-1 border-2 absolute z-20 top-0 left-1/2 -translate-x-1/2 border-black rounded-full px-4 text-black py-0.5">Claim</div>
-                      <div className="bg-[#d65925] border-[1.5px] border-black translate-y-1 rounded-full px-4 text-black py-0.5 absolute top-0 left-1/2 -translate-x-1/2 z-0">Claim</div>
-                      <div className="bg-[#e78f07] border-[1.5px] border-black rounded-full px-4 text-black py-0.5 -translate-y-0">Claim</div>
-                    </button>
+              <button onClick={() => { claim(item.tokenId, item.collection) }} className="group relative mt-4">
+                <Image width={200} height={80} src={claimNFTUp} alt="home" className={"w-20 group-hover:hidden"} />
+                <Image width={200} height={80} src={claimNFTDown} alt="home" className={"w-20 hidden group-hover:block"} />
+              </button>
 
-                </div>
-                <div className="border-2 bg-yellow-400 border-black rounded-xl overflow-hidden p-2 w-[240px]">
-                    <h1 className="text-black">{item.name}</h1>
-                    <Image src={item.img} className="mx-auto rounded-lg border-2 border-black" width={200} height={200} alt={"HEjhdsvcw"}/>
-                    <h1 className="text-black">$GUAC: {item.unclaimedAmount}</h1>
-
-                    <button onClick={()=>{claim(item.tokenId, item.collection)}} className=" relative mt-4">
-                      <div  className="bg-[#fec74c] -translate-y-2 hover:-translate-y-1 border-2 absolute z-20 top-0 left-1/2 -translate-x-1/2 border-black rounded-full px-4 text-black py-0.5">Claim</div>
-                      <div className="bg-[#d65925] border-[1.5px] border-black translate-y-1 rounded-full px-4 text-black py-0.5 absolute top-0 left-1/2 -translate-x-1/2 z-0">Claim</div>
-                      <div className="bg-[#e78f07] border-[1.5px] border-black rounded-full px-4 text-black py-0.5 -translate-y-0">Claim</div>
-                    </button>
-
-                </div>
-                <div className="border-2 bg-yellow-400 border-black rounded-xl overflow-hidden p-2 w-[240px]">
-                    <h1 className="text-black">{item.name}</h1>
-                    <Image src={item.img} className="mx-auto rounded-lg border-2 border-black" width={200} height={200} alt={"HEjhdsvcw"}/>
-                    <h1 className="text-black">$GUAC: {item.unclaimedAmount}</h1>
-
-                    <button onClick={()=>{claim(item.tokenId, item.collection)}} className=" relative mt-4">
-                      <div  className="bg-[#fec74c] -translate-y-2 hover:-translate-y-1 border-2 absolute z-20 top-0 left-1/2 -translate-x-1/2 border-black rounded-full px-4 text-black py-0.5">Claim</div>
-                      <div className="bg-[#d65925] border-[1.5px] border-black translate-y-1 rounded-full px-4 text-black py-0.5 absolute top-0 left-1/2 -translate-x-1/2 z-0">Claim</div>
-                      <div className="bg-[#e78f07] border-[1.5px] border-black rounded-full px-4 text-black py-0.5 -translate-y-0">Claim</div>
-                    </button>
-
-                </div>
-                
-                
-                </>
-                
-            ))}
             </div>
+          </>
+          ))}
         </div>
+      </div>
     </div>
   )
 }

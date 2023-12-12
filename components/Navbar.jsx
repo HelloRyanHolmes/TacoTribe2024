@@ -57,7 +57,7 @@ export default function Navbar() {
 
     return (<>
         {openNav && <div className='absolute top-0 left-0 z-50 w-screen h-screen bg-yellow-400 flex flex-col gap-1 items-center justify-center'>
-            <NavButton upImage={homeBtnUp} downImage={homeBtnDown} link={"https://www.nft.tacotribe.shop/"} />
+            <NavButton upImage={homeBtnUp} downImage={homeBtnDown} link={'https://www.nft.tacotribe.shop'} />
             <NavButton upImage={pixelTacoBtnUp} downImage={pixelTacoBtnDown} selected={params == "/pixelTaco" ? true : false} link={"/pixelTaco"} />
             <NavButton upImage={doodledBtnUp} downImage={doodledBtnDown} selected={params == "/doodled" ? true : false} link={"/doodled"} />
             <NavButton upImage={pixelDoodBtnUp} downImage={pixelDoodBtnDown} selected={params == "/pixelDood" ? true : false} link={"/pixelDood"} />
@@ -77,7 +77,7 @@ export default function Navbar() {
             </div>
 
             <div className="w-fit max-md:hidden flex flex-row items-center justify-center gap-5 max-lg:gap-1">
-                <NavButton upImage={homeBtnUp} downImage={homeBtnDown} link={"https://www.nft.tacotribe.shop/"} />
+                <NavButton upImage={homeBtnUp} downImage={homeBtnDown} link={'https://www.nft.tacotribe.shop'} />
                 <NavButton upImage={pixelTacoBtnUp} downImage={pixelTacoBtnDown} selected={params == "/pixelTaco" ? true : false} link={"/pixelTaco"} />
                 <NavButton upImage={doodledBtnUp} downImage={doodledBtnDown} selected={params == "/doodled" ? true : false} link={"/doodled"} />
                 <NavButton upImage={pixelDoodBtnUp} downImage={pixelDoodBtnDown} selected={params == "/pixelDood" ? true : false} link={"/pixelDood"} />
