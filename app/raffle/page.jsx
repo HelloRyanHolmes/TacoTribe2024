@@ -53,6 +53,7 @@ export default function Raffle() {
           <RaffleCard />
           <RaffleCard />
           <RaffleCard />
+          <RaffleCard />
         </div>
       </main>
 
