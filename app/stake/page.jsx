@@ -21,6 +21,7 @@ const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/T
 // const switchDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/gREEN_Button_DOWN.png"
 
 export default function Stake() {
+  // const [stakeButton, setStakeButton] = useState("Taco Tribe")
   const [stakeButton, setStakeButton] = useState("Taco Tribe")
 
   const changeButton = (button) => {
@@ -42,20 +43,15 @@ export default function Stake() {
 
       <StakeSwitcher changeButton={changeButton} button={stakeButton}/>
 
-      <main className=" w-screen h-screen flex flex-col items-center justify-center -mt-48">
+      <main className=" w-screen flex flex-col items-center justify-center">
 
         <StakeTemplate name={stakeButton}/>
 
         <div className="flex flex-row gap-6 mt-8">
-          <button className='group cursor-pointer'>
+          {/* <button className='group cursor-pointer'>
             <Image width={80} height={80} src={stakeUp} alt="home" className={"w-40 group-hover:hidden"} />
             <Image width={80} height={80} src={stakeDown} alt="home" className={"w-40 hidden group-hover:block"} />
-          </button>
-
-          <button className='group cursor-pointer'>
-            <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
-            <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
-          </button>
+          </button> */}
 
           {/* <button className='group cursor-pointer'>
             <Image width={80} height={80} src={switchUp} alt="home" className={"w-40 group-hover:hidden"} />

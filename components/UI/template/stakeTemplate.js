@@ -17,11 +17,16 @@ const pixelDoodledTaco = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/st
 const pixelTaco = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Pixel Taco.png"
 const tacoTribe = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Taco Tribe.png"
 
+const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+UP.png"
+const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+DOWN.png"
+
 
 export default function StakeTemplate({ name }) {
   const [img, setImg] = useState("")
   const [balance, setBalance] = useState(0);
   const [userNFTs, setUserNFTs] = useState([]);
+
+  const [currentContractId, setCurrentContractId] = useState(0);
 
   const { address } = useAccount();
   
@@ -33,28 +38,36 @@ export default function StakeTemplate({ name }) {
         setImg(tacoTribe)
         //handleContract has a number parameter which denotes the collection for accesing the staking contract
         handleContract(await tacoMintSetup(), 0);
+        setCurrentContractId(0);
         //return statement not being used currently but better to keep at number than name
         return 0;
       case "Pixel Taco":
         setImg(pixelTaco)
         handleContract(await pixelMintSetup(), 3);
+        setCurrentContractId(3)
         return 3;
       case "Doodled Taco":
         setImg(doodle)
         handleContract(await doodledTacoMintSetup(), 1);
+        setCurrentContractId(1)
         return 1;
       case "Guaco Tribe":
         setImg(guacos)
+        setCurrentContractId(6)
         return 6;
       case "Guac VS Sour Cream":
         setImg(gvsc)
+        setCurrentContractId(7)
         return 7;
       case "Pixel Doodled Taco":
         setImg(pixelDoodledTaco)
         handleContract(await doodledPixelTacoMintSetup(), 4);
+        setCurrentContractId(4)
         return 4;
       default:
         return 0;
+
+        //BABY TACOS MISSING...
     }
   }
 
@@ -179,12 +192,23 @@ export default function StakeTemplate({ name }) {
     const contract = await stakingSetup();
 
       try{
-        await contract.claim(tokenID, collection, {gasLimit: 30000})
+        await contract.claim(tokenID, collection)
       }
       catch(err){
         console.log(err);
       }
   }
+
+  const claimAll = async () => {
+    const contract = await stakingSetup();
+
+    try{
+      await contract.claimAll(currentContractId)
+    }
+    catch(err){
+      console.log(err);
+    }
+  } 
 
   useEffect(() => {
    getContractDetails();
@@ -194,7 +218,7 @@ export default function StakeTemplate({ name }) {
 
   return (
     <div>
-        <div className="w-[95%] md:w-[700px] bg-yellow-400 overflow-hidden items-center justify-center grid grid-cols-2 max-md:grid-cols-1 gap-5 p-5 rounded-[32px]">
+        <div className="w-[95%] md:w-[700px] mx-auto bg-yellow-400 mb-10 overflow-hidden items-center justify-center grid grid-cols-2 max-md:grid-flow-row max-md:grid-cols-1 gap-x-5 p-5 rounded-[32px]">
         <div className="h-80 my-auto flex items-center justify-center"><Image width={500} height={500} src={img} className=" object-cover object-center w-full pl-10" /></div>
         <div className="flex flex-col max-md:text-center max-md:items-center gap-2 h-fit w-[80%] mx-auto my-auto">
             <div className="bg-white rounded-full w-full px-4 py-2 shadow shadow-black/20 text-black text-xl"><h2 >{name?.length === 0 ? 'Select A Taco' : name}</h2></div>
@@ -202,17 +226,57 @@ export default function StakeTemplate({ name }) {
             <div className="w-fit py-1 text-[#73851C] text-3xl"><h2 >Stake your Tacos and earn $GUAC</h2></div>
             <div className="bg-white rounded-full w-fit px-4 py-1 shadow shadow-black/20 text-black cursor-pointer hover:bg-white/80"><h2 >Learn More</h2></div>
         </div>
+        <button onClick={claimAll} className='group cursor-pointer mx-auto max-md:mt-5 md:col-span-2'>
+            <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
+            <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
+          </button>
         </div>
 
-        <div className="bg-green-400 flex gap-10 items-center justify-center text-center">
-            {userNFTs?.map((item)=>(
-                <div>
-                    <h1>{item.name}</h1>
-                    <Image src={item.img} className="mx-auto" width={200} height={200} alt={"HEjhdsvcw"}/>
-                    <h1 className="">$GUAC: {item.unclaimedAmount}</h1>
-                    <button onClick={()=>{claim(item.tokenId, item.collection)}} className="bg-yellow-400">Claim</button>
-                    </div>
+        <div className="border-2 border-white bg-white mx-auto w-screen py-5 flex gap-5 px-5 overflow-scroll items-center justify-center text-center">
+            <div className="flex flex-row gap-4 max-lg:pl-20 max-sm:pl-80 items-start justify-start">
+            {userNFTs?.map((item)=>(<>
+                <div className="border-2 bg-yellow-400 border-black rounded-xl overflow-hidden p-2 w-[240px]">
+                    <h1 className="text-black">{item.name}</h1>
+                    <Image src={item.img} className="mx-auto rounded-lg border-2 border-black" width={200} height={200} alt={"HEjhdsvcw"}/>
+                    <h1 className="text-black">$GUAC: {item.unclaimedAmount}</h1>
+
+                    <button onClick={()=>{claim(item.tokenId, item.collection)}} className=" relative mt-4">
+                      <div  className="bg-[#fec74c] -translate-y-2 hover:-translate-y-1 border-2 absolute z-20 top-0 left-1/2 -translate-x-1/2 border-black rounded-full px-4 text-black py-0.5">Claim</div>
+                      <div className="bg-[#d65925] border-[1.5px] border-black translate-y-1 rounded-full px-4 text-black py-0.5 absolute top-0 left-1/2 -translate-x-1/2 z-0">Claim</div>
+                      <div className="bg-[#e78f07] border-[1.5px] border-black rounded-full px-4 text-black py-0.5 -translate-y-0">Claim</div>
+                    </button>
+
+                </div>
+                <div className="border-2 bg-yellow-400 border-black rounded-xl overflow-hidden p-2 w-[240px]">
+                    <h1 className="text-black">{item.name}</h1>
+                    <Image src={item.img} className="mx-auto rounded-lg border-2 border-black" width={200} height={200} alt={"HEjhdsvcw"}/>
+                    <h1 className="text-black">$GUAC: {item.unclaimedAmount}</h1>
+
+                    <button onClick={()=>{claim(item.tokenId, item.collection)}} className=" relative mt-4">
+                      <div  className="bg-[#fec74c] -translate-y-2 hover:-translate-y-1 border-2 absolute z-20 top-0 left-1/2 -translate-x-1/2 border-black rounded-full px-4 text-black py-0.5">Claim</div>
+                      <div className="bg-[#d65925] border-[1.5px] border-black translate-y-1 rounded-full px-4 text-black py-0.5 absolute top-0 left-1/2 -translate-x-1/2 z-0">Claim</div>
+                      <div className="bg-[#e78f07] border-[1.5px] border-black rounded-full px-4 text-black py-0.5 -translate-y-0">Claim</div>
+                    </button>
+
+                </div>
+                <div className="border-2 bg-yellow-400 border-black rounded-xl overflow-hidden p-2 w-[240px]">
+                    <h1 className="text-black">{item.name}</h1>
+                    <Image src={item.img} className="mx-auto rounded-lg border-2 border-black" width={200} height={200} alt={"HEjhdsvcw"}/>
+                    <h1 className="text-black">$GUAC: {item.unclaimedAmount}</h1>
+
+                    <button onClick={()=>{claim(item.tokenId, item.collection)}} className=" relative mt-4">
+                      <div  className="bg-[#fec74c] -translate-y-2 hover:-translate-y-1 border-2 absolute z-20 top-0 left-1/2 -translate-x-1/2 border-black rounded-full px-4 text-black py-0.5">Claim</div>
+                      <div className="bg-[#d65925] border-[1.5px] border-black translate-y-1 rounded-full px-4 text-black py-0.5 absolute top-0 left-1/2 -translate-x-1/2 z-0">Claim</div>
+                      <div className="bg-[#e78f07] border-[1.5px] border-black rounded-full px-4 text-black py-0.5 -translate-y-0">Claim</div>
+                    </button>
+
+                </div>
+                
+                
+                </>
+                
             ))}
+            </div>
         </div>
     </div>
   )
