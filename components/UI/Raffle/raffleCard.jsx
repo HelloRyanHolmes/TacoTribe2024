@@ -7,7 +7,7 @@ const guacos = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/guac
 export default function RaffleCard({name, img, address}) {
     return (
         <>
-            <div className="flex flex-col items-center relative border-4 bg-gradient-to-b from-[#76a6ff] to-[#f8c561] border-black rounded-xl p-2 w-[300px] h-[200px]">
+            <div className="flex flex-col items-center relative shadow-xl border-4 bg-gradient-to-b from-[#76a6ff] to-[#f8c561] border-black rounded-xl p-2 w-[300px] h-[200px]">
                 <div className=" translate-y-[-70px] p-10 text-center">
                     <Image src={guacos} className="" width={200} height={200} alt={"HEjhdsvcw"} />
                     <h1 className="text-black mt-3">SQUIBLETS X FRENZ #456</h1>
