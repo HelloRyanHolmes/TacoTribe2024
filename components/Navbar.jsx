@@ -66,7 +66,7 @@ export default function Navbar() {
             <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} />
         </div>}
 
-        <div suppressHydrationWarning={true} className="w-full flex items-center justify-between px-10 max-lg:px-2 absolute z-50 top-0 left-0 py-4">
+        <div suppressHydrationWarning={true} className="w-full flex items-center justify-between px-10 max-lg:px-2 fixed z-50 top-0 left-0 py-4">
 
 
             <div className='md:hidden'>

@@ -17,5 +17,7 @@ export const contractAdds = {
 
     guacSour : "0x4c4b675bFc5e9C5AfD3aF683366E627CB527626c",
 
-    staking : "0x16f01F2B43293882bE0d359c2f56E0484049Fb14"
+    staking : "0x16f01F2B43293882bE0d359c2f56E0484049Fb14",
+
+    consolidation: "0x3E533a938C1B9D4E99197b046EC5169f65FA4FDF",
 }

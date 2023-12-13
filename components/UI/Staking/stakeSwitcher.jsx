@@ -30,7 +30,7 @@ export default function StakeSwitcher({ changeButton, button }) {
             <div className=' w-screen flex flex-row xl:gap-10 lg:gap-5 justify-center xl:my-0 xl:mb-4 my-8'>
                 <StakingButton upImage={tacoTribeButtonUp} downImage={tacoTribeButtonDown} selected={button === 'Taco Tribe' ? true : false} changeButton={changeButton} type={"Taco Tribe"} />
                 <StakingButton upImage={pixelTacoButtonUp} downImage={pixelTacoButtonDown} selected={button === 'Pixel Taco' ? true : false} changeButton={changeButton} type={"Pixel Taco"} />
-                {/* <StakingButton upImage={babyTacoButtonUp} downImage={babyTacoButtonDown} selected={button === 'Baby Taco' ? true : false} changeButton={changeButton} type={"Baby Taco"} /> */}
+                <StakingButton upImage={babyTacoButtonUp} downImage={babyTacoButtonDown} selected={button === 'Baby Taco' ? true : false} changeButton={changeButton} type={"Baby Taco"} />
                 <StakingButton upImage={doodledButtonUp} downImage={doodledButtonDown} selected={button === 'Doodled Taco' ? true : false} changeButton={changeButton} type={"Doodled Taco"} />
                 <StakingButton upImage={guacoUP} downImage={guacoDown} selected={button === 'Guaco Tribe' ? true : false} changeButton={changeButton} type={"Guaco Tribe"} />
                 <StakingButton upImage={GVSCUP} downImage={GVSCDown} selected={button === 'Guac VS Sour Cream' ? true : false} changeButton={changeButton} type={"Guac VS Sour Cream"} />

@@ -16,6 +16,7 @@ const gvsc = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/gvsc.p
 const pixelDoodledTaco = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Pixel Doodled Taco.png"
 const pixelTaco = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Pixel Taco.png"
 const tacoTribe = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Taco Tribe.png"
+const babyTaco = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/babies.png"
 
 const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+UP.png"
 const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+DOWN.png"
@@ -49,6 +50,10 @@ export default function StakeTemplate({ name }) {
         handleContract(await pixelMintSetup(), 3);
         setCurrentContractId(3)
         return 3;
+      case "Baby Taco":
+        setImg(babyTaco)
+        setCurrentContractId(5)
+        return 5;
       case "Doodled Taco":
         setImg(doodle)
         handleContract(await doodledTacoMintSetup(), 1);
@@ -222,7 +227,7 @@ export default function StakeTemplate({ name }) {
   return (
     <div>
       <div className="w-[95%] md:w-[700px] mx-auto bg-yellow-400 mb-10 overflow-hidden items-center justify-center grid grid-cols-2 max-md:grid-flow-row max-md:grid-cols-1 gap-x-5 p-5 rounded-[32px]">
-        <div className="h-80 my-auto flex items-center justify-center"><Image width={500} height={500} src={img} className=" object-cover object-center w-full pl-10" /></div>
+        <div className="h-80 my-auto flex items-center justify-center"><Image width={500} height={500} src={img} className=" object-cover object-center w-full sm:pl-10" /></div>
         <div className="flex flex-col max-md:text-center max-md:items-center gap-2 h-fit w-[80%] mx-auto my-auto">
           <div className="bg-white rounded-full w-full px-4 py-2 shadow shadow-black/20 text-black text-xl"><h2 >{name?.length === 0 ? 'Select A Taco' : name}</h2></div>
           <div className="bg-white rounded-full w-full px-4 py-2 shadow shadow-black/20 text-black text-xl"><h2 >Available Tacos: {Number(balance)}</h2></div>

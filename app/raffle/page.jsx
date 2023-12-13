@@ -10,7 +10,7 @@ const bgConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-ra
 const bgMobile = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleBgMobile.png";
 const bgMobileConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleLiveMobile.png";
 
-const banner = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleHeader.png";
+const banner = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleHeader-edited2.png";
 const guacLogo = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Guac logo small.png";
 
 import RaffleCard from "../../components/UI/Raffle/raffleCard"
@@ -26,7 +26,7 @@ export default function Raffle() {
   return (
     <>
       {/* Background */}
-      <div className="absolute top-0 left-0 w-screen h-fit z-0 bg-[#d1ffc3] md:block">
+      <div className="fixed top-0 left-0 w-screen h-fit z-0 bg-[#d1ffc3] md:block">
         <div className="relative h-full">
           {!isConnected && isClient && <Image width={1920} height={1080} src={bg} className="object-cover max-sm:hidden h-full" />}
           {isConnected && isClient && <Image width={1920} height={1080} src={bgConnected} className="object-cover max-sm:hidden h-full" />}
@@ -35,12 +35,12 @@ export default function Raffle() {
         </div>
       </div>
 
-      <main className="flex flex-col items-center gap-10 w-screen max-[1240px]:bg-[#d1ffc3] max-[1240px]:h-fit relative">
-        <div className="relative lg:w-full pt-10 mt-10 ">
+      {isConnected && isClient && <main className="flex flex-col items-center gap-20 w-screen max-[1240px]:bg-[#d1ffc3] max-[1240px]:h-fit relative">
+        <div className="relative w-[50%] max-md:w-[90%] pt-10 mt-10 ">
           <Image width={1920} height={1080} src={banner} className="h-full" />
         </div>
         <div className="text-black text-center">
-          <h1 className="text-3xl">Purchase Tickets Using<span className=" inline-block ml-2 -mb-1"><Image width={25} height={25} src={guacLogo}></Image></span> $Guac!</h1>
+          <h1 className="text-4xl">Purchase Tickets Using<span className=" inline-block ml-2 -mb-1"><Image className="w-10" width={100} height={100} src={guacLogo}></Image></span> $Guac!</h1>
         </div>
         <div className=" text-black translate-y-5 text-center">
           <h1 className="text-5xl">PREVIOUS WINNERS:</h1>
@@ -52,8 +52,10 @@ export default function Raffle() {
           <RaffleCard />
           <RaffleCard />
           <RaffleCard />
+          <RaffleCard />
+          <RaffleCard />
         </div>
-      </main>
+      </main>}
 
     </>
   );
