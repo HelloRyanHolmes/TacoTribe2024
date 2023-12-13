@@ -4,12 +4,16 @@ import { doodledPixelTacoMintSetup } from "../Buttons/Minting/doodlepixelTacos"
 import { doodledTacoMintSetup } from "../Buttons/Minting/doodleTacos"
 import { pixelMintSetup } from "../Buttons/Minting/pixelTacos"
 import { tacoMintSetup } from '../Buttons/Minting/tacos'
+import { babyTacosSetup } from "../Buttons/Minting/babyTacos"
+import { guacSourSetup } from "../Buttons/Minting/guacvSour"
+import { guacTribeSetup } from "../Buttons/Minting/guacTribe"
+
+
 import { useEffect, useState } from "react"
 import { useAccount } from 'wagmi'
 import { ethers } from "ethers";
 
 import abi from "../../../utils/newAbis/stakingabi"
-import consolidationABI from "../../../utils/newAbis/consolidationabi"
 
 import { contractAdds } from "../../../utils/contractAdds"
 
@@ -55,6 +59,7 @@ export default function StakeTemplate({ name }) {
         return 3;
       case "Baby Taco":
         setImg(babyTaco)
+        handleContract(await babyTacosSetup(), 5);
         setCurrentContractId(5)
         return 5;
       case "Doodled Taco":
@@ -63,11 +68,13 @@ export default function StakeTemplate({ name }) {
         setCurrentContractId(1)
         return 1;
       case "Guaco Tribe":
-        setImg(guacos)
+        setImg(guacos);
+        handleContract(await guacTribeSetup(), 6);
         setCurrentContractId(6)
         return 6;
       case "Guac VS Sour Cream":
         setImg(gvsc)
+        handleContract(await guacSourSetup(), 7);
         setCurrentContractId(7)
         return 7;
       case "Pixel Doodled Taco":
@@ -129,8 +136,7 @@ export default function StakeTemplate({ name }) {
 
     }
 
-
-    else {
+    else if(name.toUpperCase() == "TACO TRIBE" || name.toUpperCase() == "DOODLED TACO") {
       try {
 
         setBalance(0);
@@ -166,6 +172,49 @@ export default function StakeTemplate({ name }) {
 
     }
 
+    else {
+      try {
+
+        setBalance(0);
+        setUserNFTs([]);
+
+
+        var bal;
+
+        typeof (data) !== 'string' ? bal = await data?.balanceOf(address) : setBalance(11);
+        setBalance(Number(bal));
+
+        const total = data?.totalSupply();
+
+        for (let i = 0; i < Number(total); i++) {
+
+          // const BtokenId = typeof (data) !== 'string' ? (await data?.tokenOfOwnerByIndex(address, i)) : null;
+
+          const owner = await data?.ownerOf(i);
+
+          if(owner.toUpperCase() === address.toUpperCase()){
+            const uri = await data?.tokenURI(i);
+            const meta = `https://ipfs.io/ipfs/${uri.substr(7)}`;
+            const metadata = await fetch(meta);
+            const json = await metadata.json();
+  
+            const name = json["name"];
+            const fetchedImg = json["image"];
+  
+            const img = `https://ipfs.io/ipfs/${fetchedImg.substr(7)}`
+            const unclaimedAmount = await unclaimed(tokenId, collection)
+            displayArr.push({ name, img, tokenId, collection, unclaimedAmount });
+          }
+          
+        }
+        console.log(displayArr);
+        setUserNFTs(displayArr);
+      }
+      catch (err) {
+        console.log(err);
+      }
+    }    
+
   }
 
   //setup staking contract
@@ -186,22 +235,6 @@ export default function StakeTemplate({ name }) {
     }
   }
 
-  async function consolidationSetup() {
-    const add = contractAdds.consolidation;
-
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
-
-    try {
-      const contract = new ethers.Contract(add, consolidationABI, signer);
-
-      return contract;
-    }
-    catch (err) {
-      console.log("Error", err)
-    }
-  }
 
   //check unclaimed amount of $GUAC for each collection and tokenId. Has been called in handleContract()
   async function unclaimed(tokenId, collection) {
@@ -236,21 +269,8 @@ export default function StakeTemplate({ name }) {
     }
   }
 
-  const consolidation = async () => {
-    const contract = await consolidationSetup();
-
-    try {
-      console.log("WALLET UNCLAIMED", await contract.getWalletUnclaimed(address, 0))
-    }
-    catch (err) {
-      console.log(err);
-    }
-
-  }
-
   useEffect(() => {
     getContractDetails();
-    consolidation();
   }, [name])
 
 
@@ -258,7 +278,7 @@ export default function StakeTemplate({ name }) {
   return (
     <div>
       <div className="w-[95%] md:w-[700px] mx-auto bg-yellow-400 mb-10 overflow-hidden items-center justify-center grid grid-cols-2 max-md:grid-flow-row max-md:grid-cols-1 gap-x-5 p-5 rounded-[32px]">
-        <div className="h-80 my-auto flex items-center justify-center"><Image width={500} height={500} src={img} className=" object-cover object-center w-full sm:pl-10" /></div>
+        <div className="h-80 my-auto flex items-center justify-center"><Image width={500} height={500} src={img} className=" object-cover object-center w-[90%] sm:pl-10" /></div>
         <div className="flex flex-col max-md:text-center max-md:items-center gap-2 h-fit w-[80%] mx-auto my-auto">
           <div className="bg-white rounded-full w-full px-4 py-2 shadow shadow-black/20 text-black text-xl"><h2 >{name?.length === 0 ? 'Select A Taco' : name}</h2></div>
           <div className="bg-white rounded-full w-full px-4 py-2 shadow shadow-black/20 text-black text-xl"><h2 >Available Tacos: {Number(balance)}</h2></div>
