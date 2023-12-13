@@ -69,14 +69,14 @@ export default function Navbar() {
         <div suppressHydrationWarning={true} className="w-full flex items-center justify-between px-10 max-lg:px-2 fixed z-50 top-0 left-0 py-4">
 
 
-            <div className='md:hidden'>
+            <div className='min-[890px]:hidden'>
                 <button onClick={() => { setOpenNav(prev => !prev) }} className='group cursor-pointer'>
                     <Image width={80} height={80} src={backBtnUp} alt="home" className={"w-10 group-hover:hidden"} />
                     <Image width={80} height={80} src={backBtnDown} alt="home" className={"w-10 hidden group-hover:block"} />
                 </button>
             </div>
 
-            <div className="w-fit max-md:hidden flex flex-row items-center justify-center gap-5 max-lg:gap-1">
+            <div className="w-fit max-[890px]:hidden flex flex-row items-center justify-center gap-5 max-[1060px]:gap-2 max-lg:gap-1">
                 <NavButton upImage={homeBtnUp} downImage={homeBtnDown} link={'https://www.nft.tacotribe.shop'} />
                 <NavButton upImage={pixelTacoBtnUp} downImage={pixelTacoBtnDown} selected={params == "/pixelTaco" ? true : false} link={"/pixelTaco"} />
                 <NavButton upImage={doodledBtnUp} downImage={doodledBtnDown} selected={params == "/doodled" ? true : false} link={"/doodled"} />

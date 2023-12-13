@@ -5,6 +5,8 @@ import { contractAdds } from "../../../utils/contractAdds"
 import guacTokenabi from "../../../utils/newAbis/guacTokenabi";
 import { useAccount } from 'wagmi'
 
+import Swal from 'sweetalert2'
+
 import {ethers} from "ethers"
 
 async function guacSetup(){
@@ -22,6 +24,14 @@ async function guacSetup(){
 }
     catch(err){
         console.log("Error",err)
+
+        Swal.fire({
+            title: 'Error!',
+            text: 'Something went wrong!',
+            icon: 'error',
+            confirmButtonText: 'Cool!'
+        })
+        
     }    
     
 }
