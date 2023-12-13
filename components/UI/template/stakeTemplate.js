@@ -7,7 +7,10 @@ import { tacoMintSetup } from '../Buttons/Minting/tacos'
 import { useEffect, useState } from "react"
 import { useAccount } from 'wagmi'
 import { ethers } from "ethers";
+
 import abi from "../../../utils/newAbis/stakingabi"
+import consolidationABI from "../../../utils/newAbis/consolidationabi"
+
 import { contractAdds } from "../../../utils/contractAdds"
 
 const guacos = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/guacos.png"
@@ -87,8 +90,6 @@ export default function StakeTemplate({ name }) {
 
     if (name.toUpperCase() == "PIXEL TACO") {
       try {
-
-
         setUserNFTs([]);
         setBalance(0);
 
@@ -185,6 +186,23 @@ export default function StakeTemplate({ name }) {
     }
   }
 
+  async function consolidationSetup() {
+    const add = contractAdds.consolidation;
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
+    const signer = provider.getSigner();
+
+    try {
+      const contract = new ethers.Contract(add, consolidationABI, signer);
+
+      return contract;
+    }
+    catch (err) {
+      console.log("Error", err)
+    }
+  }
+
   //check unclaimed amount of $GUAC for each collection and tokenId. Has been called in handleContract()
   async function unclaimed(tokenId, collection) {
     const contract = await stakingSetup();
@@ -218,8 +236,21 @@ export default function StakeTemplate({ name }) {
     }
   }
 
+  const consolidation = async () => {
+    const contract = await consolidationSetup();
+
+    try {
+      console.log("WALLET UNCLAIMED", await contract.getWalletUnclaimed(address, 0))
+    }
+    catch (err) {
+      console.log(err);
+    }
+
+  }
+
   useEffect(() => {
     getContractDetails();
+    consolidation();
   }, [name])
 
 

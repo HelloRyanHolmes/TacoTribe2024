@@ -46,7 +46,7 @@ export default function DoodlePixelMint() {
 
     return (
         <>
-            <button onClick={mint} className="hidden xl:block absolute cursor-pointer rounded-3xl w-full h-full"></button>
+            <button onClick={mint} className="hidden md:block absolute cursor-pointer rounded-3xl w-full h-full"></button>
 
             <button onClick={mint} className='md:hidden group cursor-pointer absolute z-10 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2'>
                 <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
