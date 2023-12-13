@@ -12,7 +12,7 @@ export default function RaffleCard({name, img, address}) {
                     <Image src={guacos} className="" width={200} height={200} alt={"HEjhdsvcw"} />
                     <h1 className="text-black mt-3">SQUIBLETS X FRENZ #456</h1>
                     <button className="bg-[#fdcd35] w-[70%] h-[20%] rounded-full shadow-xl border-2 border-black cursor-default text-black">
-                        Heyo
+                        Hola!
                     </button>
                 </div>
 
