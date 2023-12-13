@@ -9,17 +9,19 @@ import Swal from 'sweetalert2'
 
 import {ethers} from "ethers"
 
-async function guacSetup(){
-
+async function guacSetup(address){
     const guacAdd = contractAdds.guacToken;
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
+    const provider = new ethers.providers.JsonRpcProvider("https://polygon.llamarpc.com/");
+
+    // await provider.send("eth_requestAccounts", []);
+
+    const signer = provider.getSigner(address);
+    console.log(signer)
 
     try{
     const contract = new ethers.Contract( guacAdd , guacTokenabi , signer );
-
+    console.log("Guac Setup", contract)
     return contract;
 }
     catch(err){
@@ -44,12 +46,13 @@ export default function GuacBalance(){
     const fetchBalance = async () => {
 
         try{
-            const contract = await guacSetup();
+            const contract = await guacSetup(address);
             const balance = ethers.utils.formatEther(await contract.balanceOf(address));
-        //    console.log(balance)
+            // console.log("Balance", balance)
             setGuac(Number(balance));
         }
-        catch {
+        catch(err) {
+            console.log(err)
             console.log("Error fetching balance")
             setGuac(0);
         }
