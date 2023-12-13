@@ -6,6 +6,8 @@ import candybeans from "next/font/local"
 const inter = Inter({ subsets: ['latin'] })
 const font = candybeans({src:"../assets/fonts/candy-beans.otf"})
 
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 
 //Utils
 import Providers from '../utils/Providers'
@@ -67,6 +69,7 @@ export default function RootLayout({ children }) {
       <Providers>
         <Navbar/>
         {children}
+        <SpeedInsights />
       </Providers>
       </body>
     </html>
