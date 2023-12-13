@@ -15,6 +15,6 @@ jobs:
                 upstream_repository: 3xBuilds/tacotribe
                 target_repository: 3xbuildz/tacotribe
                 upstream_branch: main
-                target_branch: main
+                target_branch: release
                 force: true
                 tags: true
