@@ -14,8 +14,8 @@ const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/T
 export async function pixelMintSetup(address) {
 
     const pixelAdd = contractAdds.pixelTacos;
-    console.log("Address", pixelAdd);
-    const provider = new ethers.providers.JsonRpcProvider("https://polygon.llamarpc.com/");
+    // console.log("Address", pixelAdd);
+    const provider = new ethers.providers.JsonRpcProvider("https://polygon-rpc.com");
 
     const signer = provider.getSigner(address);
 
@@ -35,8 +35,9 @@ export default function PixelMint() {
 
     async function mint() {
         if (isConnected) {
+
             const contract = await pixelMintSetup(address);
-            console.log("inside mint", contract);
+
             await contract.mint({ gasLimit: 30000 }).then((res) => { console.log(res); }).catch((err) => { console.log(err) });
         }
         else{

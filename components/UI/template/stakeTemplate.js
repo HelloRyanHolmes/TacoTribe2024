@@ -48,38 +48,38 @@ export default function StakeTemplate({ name }) {
       case "Taco Tribe":
         setImg(tacoTribe)
         //handleContract has a number parameter which denotes the collection for accesing the staking contract
-        handleContract(await tacoMintSetup(), 0);
+        handleContract(await tacoMintSetup(address), 0);
         setCurrentContractId(0);
         //return statement not being used currently but better to keep at number than name
         return 0;
       case "Pixel Taco":
         setImg(pixelTaco)
-        handleContract(await pixelMintSetup(), 3);
+        handleContract(await pixelMintSetup(address), 3);
         setCurrentContractId(3)
         return 3;
       case "Baby Taco":
         setImg(babyTaco)
-        handleContract(await babyTacosSetup(), 5);
+        handleContract(await babyTacosSetup(address), 5);
         setCurrentContractId(5)
         return 5;
       case "Doodled Taco":
         setImg(doodle)
-        handleContract(await doodledTacoMintSetup(), 1);
+        handleContract(await doodledTacoMintSetup(address), 1);
         setCurrentContractId(1)
         return 1;
       case "Guaco Tribe":
         setImg(guacos);
-        handleContract(await guacTribeSetup(), 6);
+        handleContract(await guacTribeSetup(address), 6);
         setCurrentContractId(6)
         return 6;
       case "Guac VS Sour Cream":
         setImg(gvsc)
-        handleContract(await guacSourSetup(), 7);
+        handleContract(await guacSourSetup(address), 7);
         setCurrentContractId(7)
         return 7;
       case "Pixel Doodled Taco":
         setImg(pixelDoodledTaco)
-        handleContract(await doodledPixelTacoMintSetup(), 4);
+        handleContract(await doodledPixelTacoMintSetup(address), 4);
         setCurrentContractId(4)
         return 4;
       default:
@@ -221,7 +221,7 @@ export default function StakeTemplate({ name }) {
   async function stakingSetup() {
     const add = contractAdds.staking;
 
-    const provider = new ethers.providers.JsonRpcProvider("https://polygon.llamarpc.com/");
+    const provider = new ethers.providers.JsonRpcProvider("https://polygon-rpc.com");
  
     const signer = provider.getSigner(address);
 
@@ -251,6 +251,7 @@ export default function StakeTemplate({ name }) {
     const contract = await stakingSetup(address);
 
     try {
+      console.log(contract);
       await contract.claim(tokenID, collection)
     }
     catch (err) {

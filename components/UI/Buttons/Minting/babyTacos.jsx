@@ -10,7 +10,7 @@ export async function babyTacosSetup() {
 
     const add = contractAdds.babyTacos;
 
-    const provider = new ethers.providers.JsonRpcProvider("https://polygon.llamarpc.com/");
+    const provider = new ethers.providers.JsonRpcProvider("https://polygon-rpc.com");
     const signer = provider.getSigner(address);
 
     try {

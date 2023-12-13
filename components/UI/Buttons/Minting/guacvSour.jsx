@@ -9,7 +9,7 @@ export async function guacSourSetup() {
 
     const add = contractAdds.guacSour;
 
-    const provider = new ethers.providers.JsonRpcProvider("https://polygon.llamarpc.com/");
+    const provider = new ethers.providers.JsonRpcProvider("https://polygon-rpc.com");
   
     const signer = provider.getSigner(address);
 
