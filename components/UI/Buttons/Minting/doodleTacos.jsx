@@ -1,23 +1,23 @@
 "use client"
 
-import abi from "../../../../utils/newAbis/doodletacosabi"
-import { contractAdds } from "../../../../utils/contractAdds"
 import { ethers } from "ethers"
-import { useState } from "react"
 import Image from 'next/image'
+import { useState } from "react"
+import { contractAdds } from "../../../../utils/contractAdds"
+import abi from "../../../../utils/newAbis/doodletacosabi"
 
 const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+UP.png"
 const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+DOWN.png"
 
 import { useAccount } from 'wagmi'
 
-export async function doodledTacoMintSetup() {
+export async function doodledTacoMintSetup(address) {
 
     const add = contractAdds.doodleTacos;
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
+    const provider = new ethers.providers.JsonRpcProvider("https://polygon.llamarpc.com/");
+
+    const signer = provider.getSigner(address);
 
     try {
         const contract = new ethers.Contract(add, abi, signer);
@@ -39,7 +39,7 @@ export default function DoodleMint() {
 
     async function mint() {
         if (isConnected) {
-            const contract = await doodledTacoMintSetup();
+            const contract = await doodledTacoMintSetup(address);
             console.log("inside mint", contract);
             await contract.mint(amount, { gasLimit: 30000, value: ethers.utils.parseEther(String(15 * amount)) }).then((res) => { console.log(res); }).catch((err) => { console.log(err) });
         }

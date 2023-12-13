@@ -2,22 +2,22 @@
 
 import Image from 'next/image'
 
-import pixelTacosabi from "../../../../utils/newAbis/pixelTacosabi"
-import { contractAdds } from "../../../../utils/contractAdds"
 import { ethers } from "ethers"
+import { contractAdds } from "../../../../utils/contractAdds"
+import pixelTacosabi from "../../../../utils/newAbis/pixelTacosabi"
 
 import { useAccount } from 'wagmi'
 
 const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+UP.png"
 const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+DOWN.png"
 
-export async function pixelMintSetup() {
+export async function pixelMintSetup(address) {
 
     const pixelAdd = contractAdds.pixelTacos;
     console.log("Address", pixelAdd);
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
+    const provider = new ethers.providers.JsonRpcProvider("https://polygon.llamarpc.com/");
+
+    const signer = provider.getSigner(address);
 
     try {
         const contract = new ethers.Contract(pixelAdd, pixelTacosabi, signer);
@@ -35,7 +35,7 @@ export default function PixelMint() {
 
     async function mint() {
         if (isConnected) {
-            const contract = await pixelMintSetup();
+            const contract = await pixelMintSetup(address);
             console.log("inside mint", contract);
             await contract.mint({ gasLimit: 30000 }).then((res) => { console.log(res); }).catch((err) => { console.log(err) });
         }

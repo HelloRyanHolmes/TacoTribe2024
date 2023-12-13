@@ -1,22 +1,21 @@
 "use client"
 
-import abi from "../../../../utils/newAbis/pixelDoodleabi"
-import { contractAdds } from "../../../../utils/contractAdds"
 import { ethers } from "ethers"
 import Image from 'next/image'
+import { contractAdds } from "../../../../utils/contractAdds"
+import abi from "../../../../utils/newAbis/pixelDoodleabi"
 
 const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+UP.png"
 const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+DOWN.png"
 
 import { useAccount } from 'wagmi'
 
-export async function doodledPixelTacoMintSetup() {
+export async function doodledPixelTacoMintSetup(address) {
 
     const add = contractAdds.pixelDoodle;
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
+    const provider = new ethers.providers.JsonRpcProvider("https://polygon.llamarpc.com/");
+    const signer = provider.getSigner(address);
 
     try {
         const contract = new ethers.Contract(add, abi, signer);
@@ -31,11 +30,11 @@ export async function doodledPixelTacoMintSetup() {
 
 export default function DoodlePixelMint() {
 
-    const { isConnected, address } = useAccount()
+    const { address, isConnected } = useAccount()
 
     async function mint() {
         if (isConnected) {
-            const contract = await doodledPixelTacoMintSetup();
+            const contract = await doodledPixelTacoMintSetup(address);
             console.log("inside mint", contract);
             await contract.mint({ gasLimit: 30000 }).then((res) => { console.log(res); }).catch((err) => { console.log(err) });
         }

@@ -1,15 +1,17 @@
-import abi from "../../../../utils/newAbis/guacSourabi"
-import { contractAdds } from "../../../../utils/contractAdds"
-import { ethers } from "ethers"
+import { ethers } from "ethers";
+import { contractAdds } from "../../../../utils/contractAdds";
+import abi from "../../../../utils/newAbis/guacSourabi";
 
+import { useAccount } from 'wagmi'
 
 export async function guacSourSetup() {
+    const { address } = useAccount()
 
     const add = contractAdds.guacSour;
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
+    const provider = new ethers.providers.JsonRpcProvider("https://polygon.llamarpc.com/");
+  
+    const signer = provider.getSigner(address);
 
     try {
         const contract = new ethers.Contract(add, abi, signer);

@@ -14,8 +14,6 @@ async function guacSetup(address){
 
     const provider = new ethers.providers.JsonRpcProvider("https://polygon.llamarpc.com/");
 
-    // await provider.send("eth_requestAccounts", []);
-
     const signer = provider.getSigner(address);
     console.log(signer)
 

@@ -1,17 +1,17 @@
 import Image from "next/image"
 
-import { doodledPixelTacoMintSetup } from "../Buttons/Minting/doodlepixelTacos"
+import { babyTacosSetup } from "../Buttons/Minting/babyTacos"
 import { doodledTacoMintSetup } from "../Buttons/Minting/doodleTacos"
+import { doodledPixelTacoMintSetup } from "../Buttons/Minting/doodlepixelTacos"
+import { guacTribeSetup } from "../Buttons/Minting/guacTribe"
+import { guacSourSetup } from "../Buttons/Minting/guacvSour"
 import { pixelMintSetup } from "../Buttons/Minting/pixelTacos"
 import { tacoMintSetup } from '../Buttons/Minting/tacos'
-import { babyTacosSetup } from "../Buttons/Minting/babyTacos"
-import { guacSourSetup } from "../Buttons/Minting/guacvSour"
-import { guacTribeSetup } from "../Buttons/Minting/guacTribe"
 
 
+import { ethers } from "ethers"
 import { useEffect, useState } from "react"
 import { useAccount } from 'wagmi'
-import { ethers } from "ethers";
 
 import abi from "../../../utils/newAbis/stakingabi"
 
@@ -221,9 +221,9 @@ export default function StakeTemplate({ name }) {
   async function stakingSetup() {
     const add = contractAdds.staking;
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
+    const provider = new ethers.providers.JsonRpcProvider("https://polygon.llamarpc.com/");
+ 
+    const signer = provider.getSigner(address);
 
     try {
       const contract = new ethers.Contract(add, abi, signer);
@@ -238,7 +238,7 @@ export default function StakeTemplate({ name }) {
 
   //check unclaimed amount of $GUAC for each collection and tokenId. Has been called in handleContract()
   async function unclaimed(tokenId, collection) {
-    const contract = await stakingSetup();
+    const contract = await stakingSetup(address);
 
     var unclaimedAmount = await contract?.unclaimedRewards(tokenId, collection);
     unclaimedAmount = ethers.utils.formatEther(unclaimedAmount)
@@ -248,7 +248,7 @@ export default function StakeTemplate({ name }) {
 
   //function to claim $GUAC of NFT user chosen to claim
   async function claim(tokenID, collection) {
-    const contract = await stakingSetup();
+    const contract = await stakingSetup(address);
 
     try {
       await contract.claim(tokenID, collection)
@@ -259,7 +259,7 @@ export default function StakeTemplate({ name }) {
   }
 
   const claimAll = async () => {
-    const contract = await stakingSetup();
+    const contract = await stakingSetup(address);
 
     try {
       await contract.claimAll(currentContractId)
