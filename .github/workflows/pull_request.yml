@@ -12,8 +12,8 @@ jobs:
           - uses: TobKed/github-forks-sync-action@master
             with:
                 github_token: ${{ secrets.PAT_TOKEN}}
-                upstream_repository: 3xBuilds/airflow
-                target_repository: 3xbuildz/airflow
+                upstream_repository: 3xBuilds/tacotribe
+                target_repository: 3xbuildz/tacotribe
                 upstream_branch: main
                 target_branch: main
                 force: true
