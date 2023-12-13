@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 const font = candybeans({src:"../assets/fonts/candy-beans.otf"})
 
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from '@vercel/analytics/react';
 
 
 //Utils
@@ -70,6 +71,7 @@ export default function RootLayout({ children }) {
         <Navbar/>
         {children}
         <SpeedInsights />
+        <Analytics />
       </Providers>
       </body>
     </html>
