@@ -1,0 +1,38 @@
+name: Create and Merge Pull Request
+
+on:
+  push:
+    branches:
+      main
+
+jobs:
+  create_and_merge_pull_request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config user.name "${{ github.ACTOR }}"
+          git config user.email "${{ github.EMAIL }}@gmail.com"
+
+      - name: Create Pull Request
+        id: create_pr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          commit-message: "Create Pull Request"
+          title: "Pull Request Title"
+          body: "Description of the pull request"
+          branch: main
+          base: main
+
+      - name: Merge Pull Request
+        if: steps.create_pr.outputs.pull-request-number != ''
+        run: |
+          PR_NUMBER=${{ steps.create_pr.outputs.pull-request-number }}
+          API_URL="https://api.github.com/repos/3xbuildz/tacotribe/pulls/$PR_NUMBER/merge"
+          curl -X PUT -H "Authorization: Bearer ${{ secrets.PAT_TOKEN }}" "$API_URL"
+
