@@ -34,6 +34,8 @@ const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/T
 const claimNFTUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Red Button UP.png"
 const claimNFTDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Red Button dOWN.png"
 
+const error = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/ui/error.png"
+
 
 export default function StakeTemplate({ name }) {
   const [img, setImg] = useState("")
@@ -137,15 +139,25 @@ export default function StakeTemplate({ name }) {
         console.log(err);
         Swal.fire({
           title: 'Error!',
-          text: 'Pixel Tacos Could Not Be Staked!',
-          icon: 'error',
-          confirmButtonText: 'Bruh 😭'
-      })
+          text: 'Pixel tacos Could Not Be Staked',
+          imageUrl: error,
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: "Taco OOPS!",
+          confirmButtonText: 'Bruh 😭',
+          confirmButtonColor: "#facc14",
+          customClass: {
+            container: "border-8 border-black",
+            popup: "bg-white rounded-2xl border-8 border-black",
+            image: "-mb-5",
+            confirmButton: "w-40 text-black"
+          }
+        })
       }
 
     }
 
-    else if(name.toUpperCase() == "TACO TRIBE" || name.toUpperCase() == "DOODLED TACO") {
+    else if (name.toUpperCase() == "TACO TRIBE" || name.toUpperCase() == "DOODLED TACO") {
       try {
 
         setBalance(0);
@@ -179,10 +191,20 @@ export default function StakeTemplate({ name }) {
         console.log(err);
         Swal.fire({
           title: 'Error!',
-          text: `${name} Could Not Be Staked!`,
-          icon: 'error',
-          confirmButtonText: 'Bruh 😭'
-      })
+          text: `${name} Could Not Be Staked`,
+          imageUrl: error,
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: "Taco OOPS!",
+          confirmButtonText: 'Bruh 😭',
+          confirmButtonColor: "#facc14",
+          customClass: {
+            container: "border-8 border-black",
+            popup: "bg-white rounded-2xl border-8 border-black",
+            image: "-mb-5",
+            confirmButton: "w-40 text-black"
+          }
+        })
       }
 
     }
@@ -207,20 +229,20 @@ export default function StakeTemplate({ name }) {
 
           const owner = await data?.ownerOf(i);
 
-          if(owner.toUpperCase() === address.toUpperCase()){
+          if (owner.toUpperCase() === address.toUpperCase()) {
             const uri = await data?.tokenURI(i);
             const meta = `https://ipfs.io/ipfs/${uri.substr(7)}`;
             const metadata = await fetch(meta);
             const json = await metadata.json();
-  
+
             const name = json["name"];
             const fetchedImg = json["image"];
-  
+
             const img = `https://ipfs.io/ipfs/${fetchedImg.substr(7)}`
             const unclaimedAmount = await unclaimed(tokenId, collection)
             displayArr.push({ name, img, tokenId, collection, unclaimedAmount });
           }
-          
+
         }
         console.log(displayArr);
         setUserNFTs(displayArr);
@@ -229,13 +251,23 @@ export default function StakeTemplate({ name }) {
         console.log(err);
         Swal.fire({
           title: 'Error!',
-          text: `${name} Could Not Be Staked!`,
-          icon: 'error',
-          confirmButtonText: 'Bruh 😭'
-      })
+          text: `${name} Could Not Be Staked`,
+          imageUrl: error,
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: "Taco OOPS!",
+          confirmButtonText: 'Bruh 😭',
+          confirmButtonColor: "#facc14",
+          customClass: {
+            container: "border-8 border-black",
+            popup: "bg-white rounded-2xl border-8 border-black",
+            image: "-mb-5",
+            confirmButton: "w-40 text-black"
+          }
+        })
       }
-    }   
-    
+    }
+
     setLoader(false);
   }
 
@@ -246,7 +278,7 @@ export default function StakeTemplate({ name }) {
     const add = contractAdds.staking;
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
- 
+
     const signer = provider.getSigner();
 
     try {
@@ -258,10 +290,20 @@ export default function StakeTemplate({ name }) {
       console.log("Error", err)
       Swal.fire({
         title: 'Error!',
-        text: 'Could not get Contract',
-        icon: 'error',
-        confirmButtonText: 'Bruh 😭'
-    })
+        text: 'Couldn\'t Get Contract',
+        imageUrl: error,
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: "Taco OOPS!",
+        confirmButtonText: 'Bruh 😭',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      })
     }
     setLoader(false);
   }
@@ -282,26 +324,37 @@ export default function StakeTemplate({ name }) {
   async function claim(tokenID, collection) {
     setLoader(true);
     const contract = await stakingSetup(address);
-
+    // console.log(contract);
     try {
-      console.log(contract);
-      await contract.claim(tokenID, collection)
+      const transaction = await contract.claim(tokenID, collection)
+      await transaction.wait();
       Swal.fire({
         title: 'Success!',
-        text: 'NFT Claimed',
+        text: '$GUAC Claimed',
         icon: 'success',
         confirmButtonText: 'LFG! 🌮'
-    })
+      })
     }
-    catch (err) {
+    catch {
       console.log(err);
       Swal.fire({
         title: 'Error!',
-        text: 'Could not claim NFT',
-        icon: 'error',
-        confirmButtonText: 'Bruh 😭'
-    })
+        text: 'Couldn\'t Claim NFT',
+        imageUrl: error,
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: "Taco OOPS!",
+        confirmButtonText: 'Bruh 😭',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      })
     }
+
     setLoader(false);
   }
 
@@ -316,10 +369,20 @@ export default function StakeTemplate({ name }) {
       console.log(err);
       Swal.fire({
         title: 'Error!',
-        text: 'Could not claim NFTs',
-        icon: 'error',
-        confirmButtonText: 'Bruh 😭'
-    })
+        text: 'Couldn\'t Claim All NFTs',
+        imageUrl: error,
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: "Taco OOPS!",
+        confirmButtonText: 'Bruh 😭',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      })
     }
 
     setLoader(false)
@@ -341,7 +404,7 @@ export default function StakeTemplate({ name }) {
           <div className="w-fit py-1 text-[#73851C] text-3xl"><h2 >Stake your Tacos and earn $GUAC</h2></div>
           <div className="bg-white rounded-full w-fit px-4 py-1 shadow shadow-black/20 text-black cursor-pointer hover:bg-white/80"><h2 >Learn More</h2></div>
         </div>
-        {balance>0 && <button onClick={claimAll} className='group cursor-pointer mx-auto max-md:mt-5 md:col-span-2'>
+        {balance > 0 && <button onClick={claimAll} className='group cursor-pointer mx-auto max-md:mt-5 md:col-span-2'>
           <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
           <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
         </button>}

@@ -12,6 +12,8 @@ import { useGlobalContext } from "../../../../context/MainContext"
 const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+UP.png"
 const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+DOWN.png"
 
+const error = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/ui/error.png"
+
 import { useAccount } from 'wagmi'
 
 export async function doodledTacoMintSetup(address) {
@@ -31,9 +33,19 @@ export async function doodledTacoMintSetup(address) {
         console.log("Error", err)
         Swal.fire({
             title: 'Error!',
-            text: 'Couldn\'t get Contract',
-            icon: 'error',
-            confirmButtonText: 'Cool!'
+            text: 'Couldn\'t Get Contract',
+            imageUrl: error,
+            imageWidth: 200,
+            imageHeight: 200,
+            imageAlt: "Taco OOPS!",
+            confirmButtonText: 'Bruh 😭',
+            confirmButtonColor: "#facc14", 
+            customClass: {
+                container: "border-8 border-black",
+                popup: "bg-white rounded-2xl border-8 border-black",
+                image: "-mb-5",
+                confirmButton: "w-40 text-black"
+            }
         })
     }
 
@@ -69,9 +81,19 @@ export default function DoodleMint() {
                         console.log(err)
                         Swal.fire({
                             title: 'Error!',
-                            text: 'Couldn\'t mint Doodled Tacos',
-                            icon: 'error',
-                            confirmButtonText: 'Bruh 😭!'
+                            text: 'Couldn\'t Mint Doodled Tacos',
+                            imageUrl: error,
+                            imageWidth: 200,
+                            imageHeight: 200,
+                            imageAlt: "Taco OOPS!",
+                            confirmButtonText: 'Bruh 😭',
+                            confirmButtonColor: "#facc14", 
+                            customClass: {
+                                container: "border-8 border-black",
+                                popup: "bg-white rounded-2xl border-8 border-black",
+                                image: "-mb-5",
+                                confirmButton: "w-40 text-black"
+                            }
                         })
                     });
 

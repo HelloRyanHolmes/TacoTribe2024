@@ -26,9 +26,19 @@ async function guacSetup(address){
 
         Swal.fire({
             title: 'Error!',
-            text: 'Something went wrong!',
-            icon: 'error',
-            confirmButtonText: 'Cool!'
+            text: 'Couldn\'t Get Contract',
+            imageUrl: error,
+            imageWidth: 200,
+            imageHeight: 200,
+            imageAlt: "Taco OOPS!",
+            confirmButtonText: 'Bruh 😭',
+            confirmButtonColor: "#facc14", 
+            customClass: {
+                container: "border-8 border-black",
+                popup: "bg-white rounded-2xl border-8 border-black",
+                image: "-mb-5",
+                confirmButton: "w-40 text-black"
+            }
         })
         
     }    
@@ -53,9 +63,19 @@ export default function GuacBalance(){
             console.log("Error fetching balance")
             Swal.fire({
                 title: 'Error!',
-                text: 'Something went wrong!',
-                icon: 'error',
-                confirmButtonText: 'Cool!'
+                text: 'Something Went Wrong!',
+                imageUrl: error,
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: "Taco OOPS!",
+                confirmButtonText: 'Bruh 😭',
+                confirmButtonColor: "#facc14", 
+                customClass: {
+                    container: "border-8 border-black",
+                    popup: "bg-white rounded-2xl border-8 border-black",
+                    image: "-mb-5",
+                    confirmButton: "w-40 text-black"
+                }
             })
             setGuac(0);
         }

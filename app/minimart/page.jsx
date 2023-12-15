@@ -14,8 +14,8 @@ const bgMobile = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffl
 const banner = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/marketHeader-edited2.png";
 const guacLogo = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Guac logo small.png";
 
-const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+UP.png"
-const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+DOWN.png"
+const buyUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/buyUp.png"
+const buyDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/buyDown.png"
 
 import MinimartCard from "../../components/UI/Minimart/minimartCard"
 
@@ -67,7 +67,7 @@ export default function Minimart() {
         <div className="text-black text-center mt-32 pb-32">
           <h1 className="text-5xl">TACO SELECTION:</h1>
         </div>
-        {showBuyDialog && 
+        {showBuyDialog &&
           <div className="fixed inset-0 bg-black opacity-50"></div>
         }
         {showBuyDialog &&
@@ -77,8 +77,8 @@ export default function Minimart() {
               <input placeholder="0" type="number" onKeyDown={(e) => { e.preventDefault() }} step={1} min={0} max={1} onChange={handleamountChange} value={amount} className="text-black border-2 border-black p-5 py-4 text-center text-3xl block h-fit w-full rounded-xl">
               </input>
               <button className='mt-5 group'>
-                <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
-                <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
+                <Image width={200} height={80} src={buyUp} alt="home" className={"w-32 group-hover:hidden"} />
+                <Image width={200} height={80} src={buyDown} alt="home" className={"w-32 hidden group-hover:block"} />
               </button>
             </div>
           </div>

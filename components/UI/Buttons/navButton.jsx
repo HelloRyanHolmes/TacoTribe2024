@@ -21,7 +21,9 @@ const NavButton = ({upImage, downImage, selected , link}) =>{
 
     else 
     return (
-        <button onClick={()=>{router.push("/")}} className='cursor-pointer'>
+        <button onClick={()=>{
+            router.push("/")
+            }} className='cursor-pointer'>
             <Image width={200} height={80} src={downImage} alt="home" className={"w-20"}/>
         </button>
     )

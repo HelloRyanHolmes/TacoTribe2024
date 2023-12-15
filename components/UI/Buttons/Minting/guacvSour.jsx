@@ -4,6 +4,8 @@ import abi from "../../../../utils/newAbis/guacSourabi";
 
 import Swal from 'sweetalert2'
 
+const error = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/ui/error.png"
+
 
 export async function guacSourSetup(address) {
 
@@ -22,9 +24,19 @@ export async function guacSourSetup(address) {
         console.log("Error", err);
         Swal.fire({
             title: 'Error!',
-            text: 'Couldn\'t get Contract',
-            icon: 'error',
-            confirmButtonText: 'Cool!'
+            text: 'Couldn\'t Get Contract',
+            imageUrl: error,
+            imageWidth: 200,
+            imageHeight: 200,
+            imageAlt: "Taco OOPS!",
+            confirmButtonText: 'Bruh 😭',
+            confirmButtonColor: "#facc14", 
+            customClass: {
+                container: "border-8 border-black",
+                popup: "bg-white rounded-2xl border-8 border-black",
+                image: "-mb-5",
+                confirmButton: "w-40 text-black"
+            }
         })
     }
 
