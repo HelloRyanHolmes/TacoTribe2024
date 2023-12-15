@@ -155,7 +155,7 @@ export default function StakeTemplate({ name }) {
             const timer = Swal.getPopup().querySelector("b");
             timerInterval = setInterval(() => {
               timer.textContent = `${Swal.getTimerLeft()}`;
-            }, 1000);
+            }, 100);
           },
           willClose: () => {
             clearInterval(timerInterval);
@@ -224,7 +224,7 @@ export default function StakeTemplate({ name }) {
             const timer = Swal.getPopup().querySelector("b");
             timerInterval = setInterval(() => {
               timer.textContent = `${Swal.getTimerLeft()}`;
-            }, 1000);
+            }, 100);
           },
           willClose: () => {
             clearInterval(timerInterval);
@@ -300,7 +300,7 @@ export default function StakeTemplate({ name }) {
             const timer = Swal.getPopup().querySelector("b");
             timerInterval = setInterval(() => {
               timer.textContent = `${Swal.getTimerLeft()}`;
-            }, 1000);
+            }, 100);
           },
           willClose: () => {
             clearInterval(timerInterval);
