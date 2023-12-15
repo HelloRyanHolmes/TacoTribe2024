@@ -106,11 +106,9 @@ export default function StakeTemplate({ name }) {
         setUserNFTs([]);
         setBalance(0);
 
-        var bal;
+        var bal = setBalance(await data?.balanceOf(address));
 
-        typeof (data) !== 'string' ? bal = setBalance(await data?.balanceOf(address)) : setBalance(11);
-
-        const tokenIDs = typeof (data) !== 'string' ? (await data?.tokensOfOwner(address)) : null;
+        const tokenIDs = await data?.tokensOfOwner(address);
 
 
         for (let i = 0; i < tokenIDs.length; i++) {
@@ -185,13 +183,11 @@ export default function StakeTemplate({ name }) {
         setUserNFTs([]);
 
 
-        var bal;
-
-        typeof (data) !== 'string' ? bal = await data?.balanceOf(address) : setBalance(11);
+        var bal = await data?.balanceOf(address) ;
         setBalance(Number(bal));
         for (let i = 0; i < Number(bal); i++) {
 
-          const BtokenId = typeof (data) !== 'string' ? (await data?.tokenOfOwnerByIndex(address, i)) : null;
+          const BtokenId = await data?.tokenOfOwnerByIndex(address, i);
           const tokenId = Number(BtokenId);
           const uri = await data?.tokenURI(tokenId);
           const meta = `https://ipfs.io/ipfs/${uri.substr(7)}`;
@@ -255,10 +251,7 @@ export default function StakeTemplate({ name }) {
         setBalance(0);
         setUserNFTs([]);
 
-
-        var bal;
-
-        typeof (data) !== 'string' ? bal = await data?.balanceOf(address) : setBalance(0);
+        var bal = await data?.balanceOf(address);
         setBalance(Number(bal));
 
         const total = data?.totalSupply();

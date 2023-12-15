@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { contractAdds } from "../../../utils/contractAdds"
 import guacTokenabi from "../../../utils/newAbis/guacTokenabi";
 import { useAccount } from 'wagmi'
-
+import { useGlobalContext } from "../../../context/MainContext";
 import Swal from 'sweetalert2'
 
 import {ethers} from "ethers"
@@ -56,8 +56,9 @@ async function guacSetup(address){
 export default function GuacBalance(){
 
     const { address, isConnected } = useAccount()
-    const [guac, setGuac] = useState(0);
+    const {guac, setGuac} = useGlobalContext();
 
+  
     const fetchBalance = async () => {
 
         try{
