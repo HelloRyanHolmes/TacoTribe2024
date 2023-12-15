@@ -17,7 +17,7 @@ export async function tacoMintSetup(address) {
     const add = contractAdds.tacoTribe;
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    
+
     const signer = provider.getSigner();
 
     try {
@@ -29,7 +29,7 @@ export async function tacoMintSetup(address) {
         console.log("Error", err)
         Swal.fire({
             title: 'Error!',
-            text: 'Couldn\'t fetch Taco Tribe',
+            text: 'Couldn\'t get Contract',
             icon: 'error',
             confirmButtonText: 'Cool!'
         })
@@ -47,17 +47,28 @@ export default function TacoMint() {
     async function mint() {
         const contract = await tacoMintSetup(address);
         console.log("inside mint", contract);
-        try{
-            await contract.mint(amount, { gasLimit: 30000, value: ethers.utils.parseEther(String(15 * amount)) }).then((res) => { console.log(res); }).catch((err) => { console.log(err) });
-        }
-        catch{
-            Swal.fire({
-                title: 'Error!',
-                text: 'Couldn\'t mint Taco Tribe',
-                icon: 'error',
-                confirmButtonText: 'Cool!'
-            })
-        }
+        t
+        await contract.mint(amount, { gasLimit: 30000, value: ethers.utils.parseEther(String(15 * amount)) }).then(
+            (res) => {
+                console.log(res);
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Taco Tribe Minted',
+                    icon: 'success',
+                    confirmButtonText: 'LFG 🌮'
+                }).catch(
+                    (err) => {
+                        console.log(err)
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Couldn\'t mint Taco Tribe',
+                            icon: 'error',
+                            confirmButtonText: 'Bruh 😭!'
+                        })
+                    });
+            }
+        )
+
     }
 
     const handleamountChange = async (e) => {

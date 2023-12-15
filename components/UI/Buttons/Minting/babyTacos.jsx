@@ -2,12 +2,10 @@ import { ethers } from "ethers";
 import { contractAdds } from "../../../../utils/contractAdds";
 import abi from "../../../../utils/newAbis/babyTacosabi";
 
-import { useAccount } from 'wagmi'
 import Swal from 'sweetalert2'
 
-export async function babyTacosSetup() {
-    const { address } = useAccount()
-
+export async function babyTacosSetup(address) {
+    
     const add = contractAdds.babyTacos;
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -22,7 +20,7 @@ export async function babyTacosSetup() {
         console.log("Error", err)
         Swal.fire({
             title: 'Error!',
-            text: 'Couldn\'t fetch Baby Tacos!',
+            text: 'Couldn\'t get Contract!',
             icon: 'error',
             confirmButtonText: 'Cool!'
         })

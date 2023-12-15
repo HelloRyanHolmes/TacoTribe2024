@@ -29,7 +29,7 @@ export async function doodledPixelTacoMintSetup(address) {
         console.log("Error", err)
         Swal.fire({
             title: 'Error!',
-            text: 'Couldn\'t fetch Doodle Pixel Tacos',
+            text: 'Couldn\'t get Contract',
             icon: 'error',
             confirmButtonText: 'Cool!'
         })
@@ -41,24 +41,33 @@ export async function doodledPixelTacoMintSetup(address) {
 export default function DoodlePixelMint() {
 
     const { address, isConnected } = useAccount()
-    const {setLoader} = useGlobalContext();
+    const { setLoader } = useGlobalContext();
 
     async function mint() {
         setLoader(true);
         if (isConnected) {
             const contract = await doodledPixelTacoMintSetup(address);
             console.log("inside mint", contract);
-            try{
-                await contract.mint({ gasLimit: 30000 }).then((res) => { console.log(res); }).catch((err) => { console.log(err) });
-            }
-            catch{
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Couldn\'t mint Doodle Pixel Tacos',
-                    icon: 'error',
-                    confirmButtonText: 'Cool!'
-                })
-            }
+
+            await contract.mint({ gasLimit: 30000 }).then(
+                (res) => {
+                    console.log(res);
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Doodled Pixel Tacos Minted',
+                        icon: 'success',
+                        confirmButtonText: 'LFG 🌮'
+                    })
+                }).catch((err) => {
+                    console.log(err)
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Couldn\'t mint Doodled Pixel Tacos',
+                        icon: 'error',
+                        confirmButtonText: 'Bruh 😭!'
+                    })
+                });
+
         }
         else {
             console.log("Not Connected")

@@ -2,14 +2,11 @@ import { ethers } from "ethers";
 import { contractAdds } from "../../../../utils/contractAdds";
 import abi from "../../../../utils/newAbis/guacotribeabi";
 
-import { useAccount } from 'wagmi'
-
 import Swal from 'sweetalert2'
 
 
 
-export async function guacTribeSetup() {
-    const { address } = useAccount()
+export async function guacTribeSetup(address) {
 
     const add = contractAdds.guacoTribe;
 
@@ -26,7 +23,7 @@ export async function guacTribeSetup() {
         console.log("Error", err);
         Swal.fire({
             title: 'Error!',
-            text: 'Couldn\'t fetch Guac Tribe',
+            text: 'Couldn\'t get Contract',
             icon: 'error',
             confirmButtonText: 'Cool!'
         })

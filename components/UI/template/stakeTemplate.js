@@ -1,5 +1,7 @@
 import Image from "next/image"
 
+import Swal from 'sweetalert2'
+
 import { babyTacosSetup } from "../Buttons/Minting/babyTacos"
 import { doodledTacoMintSetup } from "../Buttons/Minting/doodleTacos"
 import { doodledPixelTacoMintSetup } from "../Buttons/Minting/doodlepixelTacos"
@@ -133,6 +135,12 @@ export default function StakeTemplate({ name }) {
       }
       catch (err) {
         console.log(err);
+        Swal.fire({
+          title: 'Error!',
+          text: 'Pixel Tacos Could Not Be Staked!',
+          icon: 'error',
+          confirmButtonText: 'Bruh 😭'
+      })
       }
 
     }
@@ -169,6 +177,12 @@ export default function StakeTemplate({ name }) {
       }
       catch (err) {
         console.log(err);
+        Swal.fire({
+          title: 'Error!',
+          text: `${name} Could Not Be Staked!`,
+          icon: 'error',
+          confirmButtonText: 'Bruh 😭'
+      })
       }
 
     }
@@ -213,6 +227,12 @@ export default function StakeTemplate({ name }) {
       }
       catch (err) {
         console.log(err);
+        Swal.fire({
+          title: 'Error!',
+          text: `${name} Could Not Be Staked!`,
+          icon: 'error',
+          confirmButtonText: 'Bruh 😭'
+      })
       }
     }   
     
@@ -236,6 +256,12 @@ export default function StakeTemplate({ name }) {
     }
     catch (err) {
       console.log("Error", err)
+      Swal.fire({
+        title: 'Error!',
+        text: 'Could not get Contract',
+        icon: 'error',
+        confirmButtonText: 'Bruh 😭'
+    })
     }
     setLoader(false);
   }
@@ -260,9 +286,21 @@ export default function StakeTemplate({ name }) {
     try {
       console.log(contract);
       await contract.claim(tokenID, collection)
+      Swal.fire({
+        title: 'Success!',
+        text: 'NFT Claimed',
+        icon: 'success',
+        confirmButtonText: 'LFG! 🌮'
+    })
     }
     catch (err) {
       console.log(err);
+      Swal.fire({
+        title: 'Error!',
+        text: 'Could not claim NFT',
+        icon: 'error',
+        confirmButtonText: 'Bruh 😭'
+    })
     }
     setLoader(false);
   }
@@ -276,6 +314,12 @@ export default function StakeTemplate({ name }) {
     }
     catch (err) {
       console.log(err);
+      Swal.fire({
+        title: 'Error!',
+        text: 'Could not claim NFTs',
+        icon: 'error',
+        confirmButtonText: 'Bruh 😭'
+    })
     }
 
     setLoader(false)

@@ -31,7 +31,7 @@ export async function doodledTacoMintSetup(address) {
         console.log("Error", err)
         Swal.fire({
             title: 'Error!',
-            text: 'Couldn\'t fetch Doodled Tacos',
+            text: 'Couldn\'t get Contract',
             icon: 'error',
             confirmButtonText: 'Cool!'
         })
@@ -45,7 +45,7 @@ export default function DoodleMint() {
     const [amountBoxShow, setAmountBoxShow] = useState(false);
     const { isConnected, address } = useAccount()
 
-    const {setLoader} = useGlobalContext();
+    const { setLoader } = useGlobalContext();
 
 
     async function mint() {
@@ -53,17 +53,28 @@ export default function DoodleMint() {
         if (isConnected) {
             const contract = await doodledTacoMintSetup(address);
             console.log("inside mint", contract);
-            try{
-                await contract.mint(amount, { gasLimit: 30000, value: ethers.utils.parseEther(String(15 * amount)) }).then((res) => { console.log(res); }).catch((err) => { console.log(err) });
-            }
-            catch{
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Couldn\'t mint Doodled Tacos',
-                    icon: 'error',
-                    confirmButtonText: 'Cool!'
-                })
-            }
+
+            await contract.mint(amount, { gasLimit: 30000, value: ethers.utils.parseEther(String(15 * amount)) }).then(
+                (res) => {
+                    console.log(res);
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Doodled Tacos Minted',
+                        icon: 'success',
+                        confirmButtonText: 'LFG 🌮'
+                    })
+
+                }).catch(
+                    (err) => {
+                        console.log(err)
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Couldn\'t mint Doodled Tacos',
+                            icon: 'error',
+                            confirmButtonText: 'Bruh 😭!'
+                        })
+                    });
+
         }
         else {
             console.log("Not Connected")
@@ -89,7 +100,7 @@ export default function DoodleMint() {
                 <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
                 <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
             </button>
-            
+
             {amountBoxShow &&
                 <div className="bg-yellow-400 z-10 border-2 border-black rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
                     <div className="relative flex flex-col items-center justify-center w-full h-full p-5 pt-10">

@@ -19,7 +19,6 @@ async function guacSetup(address){
 
     try{
     const contract = new ethers.Contract( guacAdd , guacTokenabi , signer );
-    console.log("Guac Setup", contract)
     return contract;
 }
     catch(err){
@@ -52,6 +51,12 @@ export default function GuacBalance(){
         catch(err) {
             console.log(err)
             console.log("Error fetching balance")
+            Swal.fire({
+                title: 'Error!',
+                text: 'Something went wrong!',
+                icon: 'error',
+                confirmButtonText: 'Cool!'
+            })
             setGuac(0);
         }
     }
