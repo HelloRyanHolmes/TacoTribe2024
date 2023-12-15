@@ -41,7 +41,7 @@ export default function StakeTemplate({ name }) {
   const [img, setImg] = useState("")
   const [balance, setBalance] = useState(0);
   const [userNFTs, setUserNFTs] = useState([]);
-
+  const [feeData, setFeeData] = useState(null)
   const [currentContractId, setCurrentContractId] = useState(0);
 
   const { address } = useAccount();
@@ -109,7 +109,7 @@ export default function StakeTemplate({ name }) {
 
         typeof (data) !== 'string' ? bal = setBalance(await data?.balanceOf(address)) : setBalance(11);
 
-        const tokenIDs = typeof (data) !== 'string' ? ((await data?.tokensOfOwner(address))) : null;
+        const tokenIDs = typeof (data) !== 'string' ? (await data?.tokensOfOwner(address)) : null;
 
 
         for (let i = 0; i < tokenIDs.length; i++) {
@@ -278,7 +278,7 @@ export default function StakeTemplate({ name }) {
     const add = contractAdds.staking;
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-
+    setFeeData(await provider.getFeeData());
     const signer = provider.getSigner();
 
     try {
@@ -323,7 +323,7 @@ export default function StakeTemplate({ name }) {
   //function to claim $GUAC of NFT user chosen to claim
   async function claim(tokenID, collection) {
     setLoader(true);
-    const contract = await stakingSetup(address);
+    const contract = await stakingSetup();
     // console.log(contract);
     try {
       const transaction = await contract.claim(tokenID, collection)
@@ -360,16 +360,18 @@ export default function StakeTemplate({ name }) {
 
   const claimAll = async () => {
     setLoader(true)
-    const contract = await stakingSetup(address);
-
+    const contract = await stakingSetup();
+    // const estimation = await contract.estimateGas.transfer(address, 100);
     try {
+      console.log(currentContractId);
+      console.log(contract);
       await contract.claimAll(currentContractId)
     }
     catch (err) {
       console.log(err);
       Swal.fire({
         title: 'Error!',
-        text: 'Couldn\'t Claim All NFTs',
+        text: 'Couldn\'t Claim All',
         imageUrl: error,
         imageWidth: 200,
         imageHeight: 200,
