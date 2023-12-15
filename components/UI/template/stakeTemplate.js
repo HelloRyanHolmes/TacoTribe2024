@@ -335,7 +335,7 @@ export default function StakeTemplate({ name }) {
         confirmButtonText: 'LFG! 🌮'
       })
     }
-    catch {
+    catch(err) {
       console.log(err);
       Swal.fire({
         title: 'Error!',
