@@ -9,6 +9,9 @@ import Swal from 'sweetalert2'
 
 import {ethers} from "ethers"
 
+
+const error = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/ui/error.png"
+
 async function guacSetup(address){
     const guacAdd = contractAdds.guacToken;
 
@@ -26,20 +29,25 @@ async function guacSetup(address){
 
         Swal.fire({
             title: 'Error!',
-            text: 'Couldn\'t Get Contract',
+            text: "Couldn\'t get Contract!",
             imageUrl: error,
             imageWidth: 200,
             imageHeight: 200,
             imageAlt: "Taco OOPS!",
-            confirmButtonText: 'Bruh 😭',
-            confirmButtonColor: "#facc14", 
+            confirmButtonText: 'Retry ?',
+            confirmButtonColor: "#facc14",
             customClass: {
-                container: "border-8 border-black",
-                popup: "bg-white rounded-2xl border-8 border-black",
-                image: "-mb-5",
-                confirmButton: "w-40 text-black"
+              container: "border-8 border-black",
+              popup: "bg-white rounded-2xl border-8 border-black",
+              image: "-mb-5",
+              confirmButton: "w-40 text-black"
             }
-        })
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+              await guacSetup(address);
+            }
+            Swal.fire("Succesful!", "", "success");
+          })
         
     }    
     
@@ -47,7 +55,7 @@ async function guacSetup(address){
 
 export default function GuacBalance(){
 
-    const { address, isConnected,} = useAccount()
+    const { address, isConnected } = useAccount()
     const [guac, setGuac] = useState(0);
 
     const fetchBalance = async () => {
@@ -63,20 +71,25 @@ export default function GuacBalance(){
             console.log("Error fetching balance")
             Swal.fire({
                 title: 'Error!',
-                text: 'Something Went Wrong!',
+                text: "Something Went Wrong",
                 imageUrl: error,
                 imageWidth: 200,
                 imageHeight: 200,
                 imageAlt: "Taco OOPS!",
-                confirmButtonText: 'Bruh 😭',
-                confirmButtonColor: "#facc14", 
+                confirmButtonText: 'Retry ?',
+                confirmButtonColor: "#facc14",
                 customClass: {
-                    container: "border-8 border-black",
-                    popup: "bg-white rounded-2xl border-8 border-black",
-                    image: "-mb-5",
-                    confirmButton: "w-40 text-black"
+                  container: "border-8 border-black",
+                  popup: "bg-white rounded-2xl border-8 border-black",
+                  image: "-mb-5",
+                  confirmButton: "w-40 text-black"
                 }
-            })
+              }).then(async (result) => {
+                if (result.isConfirmed) {
+                  await fetchBalance();
+                }
+                Swal.fire("Succesful!", "", "success");
+              })
             setGuac(0);
         }
     }

@@ -19,6 +19,7 @@ import abi from "../../../utils/newAbis/stakingabi"
 
 import { contractAdds } from "../../../utils/contractAdds"
 import { useGlobalContext } from "../../../context/MainContext"
+import { get } from "https"
 
 const guacos = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/guacos.png"
 const doodle = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/doodle.png"
@@ -138,22 +139,41 @@ export default function StakeTemplate({ name }) {
       }
       catch (err) {
         console.log(err);
+        let timerInterval;
         Swal.fire({
           title: 'Error!',
-          text: 'Pixel tacos Could Not Be Staked',
+          text: "Pixel Tacos couldn't be Fetched",
+          html: "I will try again in <b></b> seconds.",
           imageUrl: error,
           imageWidth: 200,
           imageHeight: 200,
           imageAlt: "Taco OOPS!",
-          confirmButtonText: 'Bruh 😭',
-          confirmButtonColor: "#facc14",
+          // confirmButtonText: 'Retry ?',
+          // confirmButtonColor: "#facc14",
+          timer: 10000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+            const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {
+              timer.textContent = `${Swal.getTimerLeft()}`;
+            }, 1000);
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          },
           customClass: {
             container: "border-8 border-black",
             popup: "bg-white rounded-2xl border-8 border-black",
             image: "-mb-5",
-            confirmButton: "w-40 text-black"
+            // confirmButton: "w-40 text-black"
           }
-        })
+        }).then(async (result) => {
+          if (result.dismiss === Swal.DismissReason.timer) {
+            console.log("I was closed by the timer");
+            await getContractDetails();
+          }
+        });
       }
 
     }
@@ -190,22 +210,41 @@ export default function StakeTemplate({ name }) {
       }
       catch (err) {
         console.log(err);
+        let timerInterval;
         Swal.fire({
           title: 'Error!',
-          text: `${name} Could Not Be Staked`,
+          text: `${name} couldn't be Fetched`,
+          html: "I will try again in <b></b> seconds.",
           imageUrl: error,
           imageWidth: 200,
           imageHeight: 200,
           imageAlt: "Taco OOPS!",
-          confirmButtonText: 'Bruh 😭',
-          confirmButtonColor: "#facc14",
+          // confirmButtonText: 'Retry ?',
+          // confirmButtonColor: "#facc14",
+          timer: 10000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+            const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {
+              timer.textContent = `${Swal.getTimerLeft()}`;
+            }, 1000);
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          },
           customClass: {
             container: "border-8 border-black",
             popup: "bg-white rounded-2xl border-8 border-black",
             image: "-mb-5",
-            confirmButton: "w-40 text-black"
+            // confirmButton: "w-40 text-black"
           }
-        })
+        }).then(async (result) => {
+          if (result.dismiss === Swal.DismissReason.timer) {
+            console.log("I was closed by the timer");
+            await getContractDetails();
+          }
+        });
       }
 
     }
@@ -250,22 +289,41 @@ export default function StakeTemplate({ name }) {
       }
       catch (err) {
         console.log(err);
+        let timerInterval;
         Swal.fire({
           title: 'Error!',
-          text: `${name} Could Not Be Staked`,
+          text: `${name} couldn't be Fetched`,
+          html: "I will try again in <b></b> seconds.",
           imageUrl: error,
           imageWidth: 200,
           imageHeight: 200,
           imageAlt: "Taco OOPS!",
-          confirmButtonText: 'Bruh 😭',
-          confirmButtonColor: "#facc14",
+          // confirmButtonText: 'Retry ?',
+          // confirmButtonColor: "#facc14",
+          timer: 10000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+            const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {
+              timer.textContent = `${Swal.getTimerLeft()}`;
+            }, 1000);
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          },
           customClass: {
             container: "border-8 border-black",
             popup: "bg-white rounded-2xl border-8 border-black",
             image: "-mb-5",
-            confirmButton: "w-40 text-black"
+            // confirmButton: "w-40 text-black"
           }
-        })
+        }).then(async (result) => {
+          if (result.dismiss === Swal.DismissReason.timer) {
+            console.log("I was closed by the timer");
+            await getContractDetails();
+          }
+        });
       }
     }
 
