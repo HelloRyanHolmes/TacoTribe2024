@@ -18,9 +18,9 @@ export async function doodledTacoMintSetup(address) {
 
     const add = contractAdds.doodleTacos;
 
-    const provider = new ethers.providers.JsonRpcProvider("https://polygon-rpc.com");
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    const signer = provider.getSigner(address);
+    const signer = provider.getSigner();
 
     try {
         const contract = new ethers.Contract(add, abi, signer);

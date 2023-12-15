@@ -16,9 +16,9 @@ export async function tacoMintSetup(address) {
 
     const add = contractAdds.tacoTribe;
 
-    const provider = new ethers.providers.JsonRpcProvider("https://polygon-rpc.com");
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
     
-    const signer = provider.getSigner(address);
+    const signer = provider.getSigner();
 
     try {
         const contract = new ethers.Contract(add, abi, signer);

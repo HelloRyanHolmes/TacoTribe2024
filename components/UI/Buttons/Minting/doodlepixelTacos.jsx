@@ -17,8 +17,8 @@ export async function doodledPixelTacoMintSetup(address) {
 
     const add = contractAdds.pixelDoodle;
 
-    const provider = new ethers.providers.JsonRpcProvider("https://polygon-rpc.com");
-    const signer = provider.getSigner(address);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
 
     try {
         const contract = new ethers.Contract(add, abi, signer);

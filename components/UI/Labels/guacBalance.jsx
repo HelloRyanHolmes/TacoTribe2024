@@ -12,9 +12,9 @@ import {ethers} from "ethers"
 async function guacSetup(address){
     const guacAdd = contractAdds.guacToken;
 
-    const provider = new ethers.providers.JsonRpcProvider("https://polygon-rpc.com");
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    const signer = provider.getSigner(address);
+    const signer = provider.getSigner();
     console.log(signer)
 
     try{
