@@ -42,7 +42,7 @@ export default function StakeTemplate({ name }) {
   const [balance, setBalance] = useState(0);
   const [userNFTs, setUserNFTs] = useState([]);
   const [feeData, setFeeData] = useState(null)
-  const [currentContractId, setCurrentContractId] = useState(0);
+  const [currentContractId, setCurrentContractId] = useState(null);
 
   const { address } = useAccount();
   const { setLoader } = useGlobalContext();
@@ -126,6 +126,7 @@ export default function StakeTemplate({ name }) {
           const fetchedImg = json["image"];
 
           const img = `https://ipfs.io/ipfs/${fetchedImg.substr(7)}`
+
           const unclaimedAmount = await unclaimed(tokenId, collection);
 
           displayArr.push({ name, img, tokenId, collection, unclaimedAmount });
@@ -365,7 +366,8 @@ export default function StakeTemplate({ name }) {
     try {
       console.log(currentContractId);
       console.log(contract);
-      await contract.claimAll(currentContractId)
+      const trans = await contract.claimAll(currentContractId);
+      await trans.wait();
     }
     catch (err) {
       console.log(err);
