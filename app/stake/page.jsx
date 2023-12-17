@@ -34,7 +34,7 @@ export default function Stake() {
     setIsClient(true)
   }, [isConnected])
 
-  const [stakeButton, setStakeButton] = useState("Taco Tribe")
+  const [stakeButton, setStakeButton] = useState(0)
 
   const changeButton = (button) => {
     setStakeButton(button)
@@ -63,7 +63,7 @@ export default function Stake() {
 
         <main className=" w-screen flex flex-col items-center justify-center">
 
-          <StakeTemplate name={stakeButton} />
+          <StakeTemplate tacoType={stakeButton} />
 
           <div className="flex flex-row gap-6 mt-8">
             {/* <button className='group cursor-pointer'>

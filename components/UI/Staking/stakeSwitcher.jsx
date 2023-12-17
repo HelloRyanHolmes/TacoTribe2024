@@ -28,13 +28,13 @@ export default function StakeSwitcher({ changeButton, button }) {
         <>
             {/* <div className=' left-0 z-10 w-screen flex flex-row xl:gap-10 lg:gap-5 fixed justify-center xl:my-0 xl:mb-4 my-8'> */}
             <div className=' w-screen flex flex-row xl:gap-10 lg:gap-5 justify-center xl:my-0 xl:mb-4 my-8'>
-                <StakingButton upImage={tacoTribeButtonUp} downImage={tacoTribeButtonDown} selected={button === 'Taco Tribe' ? true : false} changeButton={changeButton} type={"Taco Tribe"} />
-                <StakingButton upImage={pixelTacoButtonUp} downImage={pixelTacoButtonDown} selected={button === 'Pixel Taco' ? true : false} changeButton={changeButton} type={"Pixel Taco"} />
-                <StakingButton upImage={doodledButtonUp} downImage={doodledButtonDown} selected={button === 'Doodled Taco' ? true : false} changeButton={changeButton} type={"Doodled Taco"} />
-                <StakingButton upImage={pixelDoodledButton} downImage={pixelDoodledButtonDown} selected={button === 'Pixel Doodled Taco' ? true : false} changeButton={changeButton} type={"Pixel Doodled Taco"} />
-                <StakingButton upImage={babyTacoButtonUp} downImage={babyTacoButtonDown} selected={button === 'Baby Taco' ? true : false} changeButton={changeButton} type={"Baby Taco"} />
-                <StakingButton upImage={guacoUP} downImage={guacoDown} selected={button === 'Guaco Tribe' ? true : false} changeButton={changeButton} type={"Guaco Tribe"} />
-                <StakingButton upImage={GVSCUP} downImage={GVSCDown} selected={button === 'Guac VS Sour Cream' ? true : false} changeButton={changeButton} type={"Guac VS Sour Cream"} />
+                <StakingButton upImage={tacoTribeButtonUp} downImage={tacoTribeButtonDown} selected={button === 0 ? true : false} changeButton={changeButton} type={0} />
+                <StakingButton upImage={pixelTacoButtonUp} downImage={pixelTacoButtonDown} selected={button === 3 ? true : false} changeButton={changeButton} type={3} />
+                <StakingButton upImage={doodledButtonUp} downImage={doodledButtonDown} selected={button === 1 ? true : false} changeButton={changeButton} type={1} />
+                <StakingButton upImage={pixelDoodledButton} downImage={pixelDoodledButtonDown} selected={button === 4 ? true : false} changeButton={changeButton} type={4} />
+                <StakingButton upImage={babyTacoButtonUp} downImage={babyTacoButtonDown} selected={button === 5 ? true : false} changeButton={changeButton} type={5} />
+                <StakingButton upImage={guacoUP} downImage={guacoDown} selected={button === 6 ? true : false} changeButton={changeButton} type={6} />
+                <StakingButton upImage={GVSCUP} downImage={GVSCDown} selected={button === 7 ? true : false} changeButton={changeButton} type={7} />
             </div>
         </>
     )

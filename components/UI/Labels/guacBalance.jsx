@@ -63,7 +63,7 @@ export default function GuacBalance(){
 
         try{
             const contract = await guacSetup(address);
-            const balance = ethers.utils.formatEther(await contract.balanceOf(address));
+            const balance = ethers.utils.formatEther(await contract?.balanceOf(address));
             // console.log("Balance", balance)
             setGuac(Number(balance));
         }
