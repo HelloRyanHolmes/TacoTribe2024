@@ -28,7 +28,6 @@ const error = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/ui/error.png
 export default function Stake() {
   const { isConnected, address } = useAccount()
   const [isClient, setIsClient] = useState(false)
-  const { setLoader } = useGlobalContext();
 
   useEffect(() => {
     setIsClient(true)

@@ -55,16 +55,17 @@ export default function StakeTemplate({ tacoType }) {
   //function to fetch details of each NFT (name, image, unclaimed $GUAC balance) of each collection. 
   const handleContract = async (tacoType) => {
     
-    if(tacoType !== null){
+    const data = await dataArr[tacoType];
+
+    if(data){
       setImg(imgArr[tacoType])
 
-      setLoader(true);
+
       var displayArr = [];
   
       if (tacoType == 3) {
         try {
-          
-          const data = await dataArr[tacoType];
+          setLoader(true);
           setUserNFTs([]);
           setBalance(0);
   
@@ -93,11 +94,14 @@ export default function StakeTemplate({ tacoType }) {
             displayArr.push({ name, img, tokenId, tacoType, unclaimedAmount });
           }
   
+          setLoader(false);
 
           setUserNFTs(displayArr);
   
         }
         catch (err) {
+          setLoader(false);
+
           console.log(err);
           let timerInterval;
           Swal.fire({
@@ -141,7 +145,7 @@ export default function StakeTemplate({ tacoType }) {
       else if (tacoType == 0 || tacoType == 1) {
         
         try {
-          const data = await dataArr[tacoType];
+          setLoader(true);
   
           setBalance(0);
           setUserNFTs([]);
@@ -166,10 +170,13 @@ export default function StakeTemplate({ tacoType }) {
             const unclaimedAmount = await unclaimed(tokenId, tacoType)
             displayArr.push({ name, img, tokenId, tacoType, unclaimedAmount });
           }
+          setLoader(false);
 
           setUserNFTs(displayArr);
         }
         catch (err) {
+          setLoader(false);
+
           console.log(err);
           let timerInterval;
           Swal.fire({
@@ -213,7 +220,7 @@ export default function StakeTemplate({ tacoType }) {
       else {
         
         try {
-          const data = await dataArr[tacoType];
+          setLoader(true);
   
           setBalance(0);
           setUserNFTs([]);
@@ -244,6 +251,8 @@ export default function StakeTemplate({ tacoType }) {
               }
             }
            else{
+          setLoader(false);
+
             break;
            }
   
@@ -251,13 +260,15 @@ export default function StakeTemplate({ tacoType }) {
   
         }
         catch (err) {
+          setLoader(false);
+
           console.log(err);
   
           await handleContract(tacoType);
         }
       }
   
-      setLoader(false);
+
     }
     
   }
@@ -274,10 +285,13 @@ export default function StakeTemplate({ tacoType }) {
 
     try {
       const contract = new ethers.Contract(add, abi, signer);
+      setLoader(false);
 
       return contract;
     }
     catch (err) {
+    setLoader(false);
+
       console.log("Error", err)
       Swal.fire({
         title: 'Error!',
@@ -296,24 +310,32 @@ export default function StakeTemplate({ tacoType }) {
         }
       })
     }
-    setLoader(false);
+
   }
 
   //check unclaimed amount of $GUAC for each collection and tokenId. Has been called in handleContract()
   async function unclaimed(tokenId, tacoType) {
-    setLoader(true);
+
     const contract = await stakingSetup(address);
 
-    var unclaimedAmount = await contract?.unclaimedRewards(tokenId, tacoType);
-    unclaimedAmount = ethers.utils.formatEther(unclaimedAmount)
+    try{
+      if(contract){
+        var unclaimedAmount = await contract?.unclaimedRewards(tokenId, tacoType);
+        unclaimedAmount = ethers.utils.formatEther(unclaimedAmount);
+        return unclaimedAmount;
+      }
+    }
+    catch(err){
+      unclaimed(tokenId, tacoType);
+    }
 
-    setLoader(false);
-    return unclaimedAmount;
+
+    
   }
 
   //function to claim $GUAC of NFT user chosen to claim
   async function claim(tokenID, tacoType) {
-    setLoader(true);
+
     const contract = await stakingSetup();
 
     try {
@@ -346,16 +368,16 @@ export default function StakeTemplate({ tacoType }) {
       })
     }
 
-    setLoader(false);
+
   }
 
   const claimAll = async () => {
-    setLoader(true)
+
     const contract = await stakingSetup();
     // const estimation = await contract.estimateGas.transfer(address, 100);
     try {
 
-      const trans = await contract.claimAll(currentContractId);
+      const trans = await contract.claimAll(tacoType);
       await trans.wait();
     }
     catch (err) {
@@ -378,7 +400,7 @@ export default function StakeTemplate({ tacoType }) {
       })
     }
 
-    setLoader(false)
+
   }
 
   useEffect(() => {
