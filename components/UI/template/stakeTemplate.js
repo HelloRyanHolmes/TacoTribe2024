@@ -243,7 +243,9 @@ export default function StakeTemplate({ tacoType }) {
                 setUserNFTs(displayArr);
               }
             }
-           
+           else{
+            break;
+           }
   
           }
   
