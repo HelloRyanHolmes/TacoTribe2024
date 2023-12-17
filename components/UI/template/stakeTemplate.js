@@ -19,7 +19,7 @@ import abi from "../../../utils/newAbis/stakingabi"
 
 import { contractAdds } from "../../../utils/contractAdds"
 import { useGlobalContext } from "../../../context/MainContext"
-import { get } from "https"
+
 
 const guacos = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/guacos.png"
 const doodle = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/doodle.png"
@@ -57,10 +57,10 @@ export default function StakeTemplate({ tacoType }) {
     
     const data = await dataArr[tacoType];
 
-    if(data){
+    if(data && address){
       setImg(imgArr[tacoType])
 
-
+console.log(tacoType);
       var displayArr = [];
   
       if (tacoType == 3) {
@@ -341,6 +341,7 @@ export default function StakeTemplate({ tacoType }) {
     try {
       const transaction = await contract.claim(tokenID, tacoType)
       await transaction.wait();
+
       Swal.fire({
         title: 'Success!',
         text: '$GUAC Claimed',
