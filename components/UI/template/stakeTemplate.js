@@ -75,7 +75,7 @@ export default function StakeTemplate({ tacoType }) {
   
           for (let i = 0; i < tokenIDs.length; i++) {
   
-            // console.log(Number(i));
+
             const tokenId = Number(tokenIDs[i]);
             const uri = await data?.tokenURI(tokenId);
   
@@ -93,7 +93,7 @@ export default function StakeTemplate({ tacoType }) {
             displayArr.push({ name, img, tokenId, tacoType, unclaimedAmount });
           }
   
-          console.log(displayArr);
+
           setUserNFTs(displayArr);
   
         }
@@ -103,7 +103,7 @@ export default function StakeTemplate({ tacoType }) {
           Swal.fire({
             title: 'Error!',
             text: "Pixel Tacos couldn't be Fetched",
-            html: "I will try again in <b></b> seconds.",
+            html: "I will try again in <b></b> ms.",
             imageUrl: error,
             imageWidth: 200,
             imageHeight: 200,
@@ -130,7 +130,7 @@ export default function StakeTemplate({ tacoType }) {
             }
           }).then(async (result) => {
             if (result.dismiss === Swal.DismissReason.timer) {
-              console.log("I was closed by the timer");
+
               await handleContract(tacoType);
             }
           });
@@ -166,7 +166,7 @@ export default function StakeTemplate({ tacoType }) {
             const unclaimedAmount = await unclaimed(tokenId, tacoType)
             displayArr.push({ name, img, tokenId, tacoType, unclaimedAmount });
           }
-          console.log(displayArr);
+
           setUserNFTs(displayArr);
         }
         catch (err) {
@@ -175,7 +175,7 @@ export default function StakeTemplate({ tacoType }) {
           Swal.fire({
             title: 'Error!',
             text: `Couldn't be Fetched`,
-            html: "I will try again in <b></b> seconds.",
+            html: "I will try again in <b></b> ms.",
             imageUrl: error,
             imageWidth: 200,
             imageHeight: 200,
@@ -202,7 +202,7 @@ export default function StakeTemplate({ tacoType }) {
             }
           }).then(async (result) => {
             if (result.dismiss === Swal.DismissReason.timer) {
-              console.log("I was closed by the timer");
+
               await handleContract(tacoType);
             }
           });
@@ -236,7 +236,7 @@ export default function StakeTemplate({ tacoType }) {
                 const tokenId = i;
                 const name = json["name"];
                 const fetchedImg = json["image"];
-                console.log(fetchedImg);
+
                 const img = `https://ipfs.io/ipfs/${fetchedImg.substr(7)}`
                 const unclaimedAmount = await unclaimed(i, tacoType)
                 displayArr.push({ name, img, tokenId, tacoType, unclaimedAmount });
@@ -354,8 +354,7 @@ export default function StakeTemplate({ tacoType }) {
     const contract = await stakingSetup();
     // const estimation = await contract.estimateGas.transfer(address, 100);
     try {
-      console.log(currentContractId);
-      console.log(contract);
+
       const trans = await contract.claimAll(currentContractId);
       await trans.wait();
     }
