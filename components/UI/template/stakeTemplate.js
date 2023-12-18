@@ -52,224 +52,35 @@ export default function StakeTemplate({ tacoType }) {
   const imgArr = [tacoTribe, doodle, "", pixelTaco, pixelDoodledTaco, babyTaco, guacos, gvsc];
   const nameArr = ["Taco Tribe", "Doodle Tacos", "", "Pixel Tacos", "Pixel Doodle Tacos", "Baby Tacos", "Guaco Tribe", "Guac vs Sour Cream"]
   
-  //function to fetch details of each NFT (name, image, unclaimed $GUAC balance) of each collection. 
+
   const handleContract = async (tacoType) => {
-    
+    var dispArr = [];
     const data = await dataArr[tacoType];
+    setImg(imgArr[tacoType]);
 
-    if(data && address){
-      setImg(imgArr[tacoType])
+   switch(tacoType){
+    case 0:
+      var owned = await data?.walletOfOwner(address);
+      console.log(owned);
+      setBalance(owned.length);
 
-console.log(tacoType);
-      var displayArr = [];
-  
-      if (tacoType == 3) {
-        try {
-          setLoader(true);
-          setUserNFTs([]);
-          setBalance(0);
-  
-          var bal = setBalance(await data?.balanceOf(address));
-  
-          const tokenIDs = await data?.tokensOfOwner(address);
-  
-  
-          for (let i = 0; i < tokenIDs.length; i++) {
-  
+          for(let i=0; i<owned.length; i++){
+            const tokenId = String(owned[i]);
+            const name = "Taco #"+tokenId;
+            const img = "https://ipfs.io/ipfs/bafybeifi336lirgb6x2aebf7ltvad2gtihe2tszp3urhk3x6j6lyktqma4/"+tokenId+".png"
 
-            const tokenId = Number(tokenIDs[i]);
-            const uri = await data?.tokenURI(tokenId);
-  
-            const meta = `https://ipfs.io/ipfs/${uri.substr(7)}`;
-            const metadata = await fetch(meta);
-            const json = await metadata.json();
-  
-            const name = json["name"];
-            const fetchedImg = json["image"];
-  
-            const img = `https://ipfs.io/ipfs/${fetchedImg.substr(7)}`
-  
-            const unclaimedAmount = await unclaimed(tokenId, tacoType);
-  
-            displayArr.push({ name, img, tokenId, tacoType, unclaimedAmount });
+            const unclaimedAmount = await unclaimed(tokenId, 0);
+
+            dispArr.push({name, img, tokenId, tacoType, unclaimedAmount})
           }
-  
-          setLoader(false);
 
-          setUserNFTs(displayArr);
-  
-        }
-        catch (err) {
-          setLoader(false);
 
-          console.log(err);
-          let timerInterval;
-          Swal.fire({
-            title: 'Error!',
-            text: "Pixel Tacos couldn't be Fetched",
-            html: "I will try again in <b></b> ms.",
-            imageUrl: error,
-            imageWidth: 200,
-            imageHeight: 200,
-            imageAlt: "Taco OOPS!",
-            // confirmButtonText: 'Retry ?',
-            // confirmButtonColor: "#facc14",
-            timer: 10000,
-            timerProgressBar: true,
-            didOpen: () => {
-              Swal.showLoading();
-              const timer = Swal.getPopup().querySelector("b");
-              timerInterval = setInterval(() => {
-                timer.textContent = `${Swal.getTimerLeft()}`;
-              }, 100);
-            },
-            willClose: () => {
-              clearInterval(timerInterval);
-            },
-            customClass: {
-              container: "border-8 border-black",
-              popup: "bg-white rounded-2xl border-8 border-black",
-              image: "-mb-5",
-              // confirmButton: "w-40 text-black"
-            }
-          }).then(async (result) => {
-            if (result.dismiss === Swal.DismissReason.timer) {
+    default:
+      console.log("IDK");
 
-              await handleContract(tacoType);
-            }
-          });
-        }
-  
-      }
-  
-      else if (tacoType == 0 || tacoType == 1) {
-        
-        try {
-          setLoader(true);
-  
-          setBalance(0);
-          setUserNFTs([]);
-  
-  
-          var bal = await data?.balanceOf(address) ;
-          setBalance(Number(bal));
-          for (let i = 0; i < Number(bal); i++) {
-  
-            const BtokenId = await data?.tokenOfOwnerByIndex(address, i);
-            const tokenId = Number(BtokenId);
-            const uri = await data?.tokenURI(tokenId);
-            const meta = `https://ipfs.io/ipfs/${uri.substr(7)}`;
-            const metadata = await fetch(meta);
-            const json = await metadata.json();
-  
-            const name = json["name"];
-  
-            const fetchedImg = json["image"];
-  
-            const img = `https://ipfs.io/ipfs/${fetchedImg.substr(7)}`
-            const unclaimedAmount = await unclaimed(tokenId, tacoType)
-            displayArr.push({ name, img, tokenId, tacoType, unclaimedAmount });
-          }
-          setLoader(false);
+   }
 
-          setUserNFTs(displayArr);
-        }
-        catch (err) {
-          setLoader(false);
-
-          console.log(err);
-          let timerInterval;
-          Swal.fire({
-            title: 'Error!',
-            text: `Couldn't be Fetched`,
-            html: "I will try again in <b></b> ms.",
-            imageUrl: error,
-            imageWidth: 200,
-            imageHeight: 200,
-            imageAlt: "Taco OOPS!",
-            // confirmButtonText: 'Retry ?',
-            // confirmButtonColor: "#facc14",
-            timer: 10000,
-            timerProgressBar: true,
-            didOpen: () => {
-              Swal.showLoading();
-              const timer = Swal.getPopup().querySelector("b");
-              timerInterval = setInterval(() => {
-                timer.textContent = `${Swal.getTimerLeft()}`;
-              }, 100);
-            },
-            willClose: () => {
-              clearInterval(timerInterval);
-            },
-            customClass: {
-              container: "border-8 border-black",
-              popup: "bg-white rounded-2xl border-8 border-black",
-              image: "-mb-5",
-              // confirmButton: "w-40 text-black"
-            }
-          }).then(async (result) => {
-            if (result.dismiss === Swal.DismissReason.timer) {
-
-              await handleContract(tacoType);
-            }
-          });
-        }
-  
-      }
-  
-      else {
-        
-        try {
-          setLoader(true);
-  
-          setBalance(0);
-          setUserNFTs([]);
-  
-          var bal = await data?.balanceOf(address);
-          setBalance(Number(bal));
-  
-          const total = await data?.totalSupply();
-  
-          for (let i = 1; i < Number(total); i++) {
-            if(bal > displayArr.length){
-
-              const owner = await data?.ownerOf(i);
-    
-              if (owner.toUpperCase() === address.toUpperCase()) {
-                const uri = await data?.tokenURI(i);
-                const meta = `https://ipfs.io/ipfs/${uri.substr(7)}`;
-                const metadata = await fetch(meta);
-                const json = await metadata.json();
-                const tokenId = i;
-                const name = json["name"];
-                const fetchedImg = json["image"];
-
-                const img = `https://ipfs.io/ipfs/${fetchedImg.substr(7)}`
-                const unclaimedAmount = await unclaimed(i, tacoType)
-                displayArr.push({ name, img, tokenId, tacoType, unclaimedAmount });
-                setUserNFTs(displayArr);
-              }
-            }
-           else{
-          setLoader(false);
-
-            break;
-           }
-  
-          }
-  
-        }
-        catch (err) {
-          setLoader(false);
-
-          console.log(err);
-  
-          await handleContract(tacoType);
-        }
-      }
-  
-
-    }
+   setUserNFTs(dispArr)
     
   }
 
