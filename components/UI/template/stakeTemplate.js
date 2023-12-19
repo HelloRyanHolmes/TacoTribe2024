@@ -341,14 +341,66 @@ export default function StakeTemplate({ tacoType }) {
   // const dataArr = [tacoMintSetup(address), doodledTacoMintSetup(address), "", pixelMintSetup(address), doodledPixelTacoMintSetup(address), babyTacosSetup(address), guacTribeSetup(address), guacSourSetup(address)];
   const imgArr = [tacoTribe, doodle, "", pixelTaco, pixelDoodledTaco, babyTaco, guacos, gvsc];
   const nameArr = ["Taco Tribe", "Doodle Tacos", "", "Pixel Tacos", "Pixel Doodle Tacos", "Baby Tacos", "Guaco Tribe", "Guac vs Sour Cream"]
+
+  async function contractSetup(){
+    setLoader(true);
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    const signer = provider.getSigner();
+
+    try {
+      const contract = new ethers.Contract(addnew, abinew, signer);
+      setLoader(false);
+
+      return contract;
+    }
+    catch (err) {
+    setLoader(false);
+
+      console.log("Error", err)
+      Swal.fire({
+        title: 'Error!',
+        text: 'Couldn\'t get fetching contract',
+        imageUrl: error,
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: "Taco OOPS!",
+        confirmButtonText: 'Bruh 😭',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      })
+    }
+  }
   
   const handleContract = async (tacoType) => {
     var dispArr = [];
 
     setImg(imgArr[tacoType]);
 
+    const contract = await contractSetup();
+
    switch(tacoType){
     case 0:
+      const data0 = await contract?.balanceTaco();
+      setBalance(data0.length);
+
+      data0?.map((item)=>{
+        const tokenId = Number(item[0]);
+        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+        const name = "Taco #"+tokenId;
+        const img = "https://ipfs.io/ipfs/bafybeifi336lirgb6x2aebf7ltvad2gtihe2tszp3urhk3x6j6lyktqma4/"+tokenId+".png";
+
+        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+      })
+
+      setUserNFTs(dispArr);
+      break;
       //Taco Tribe
       //use method balanceTaco()
       // balanceTaco returns an array of Tuples(2).
@@ -365,12 +417,19 @@ export default function StakeTemplate({ tacoType }) {
       //get the ipfs of image from image:"..."
 
     case 3:
-        // Pixel Taco
-      // use method balancePT()
-      //same process just verify name and image ipfs url from opensea
-      // click on any item of the collection, scroll down and click details>tokenID
-      //get the ipfs of image from image:"..."
-          
+      const data3 = await contract?.balancePT();
+      setBalance(data3.length);
+
+      data3?.map((item)=>{
+        const tokenId = Number(item[0]);
+        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+        const name = "Pixel Taco #"+tokenId;
+        const img = "https://ipfs.io/ipfs/bafybeib2rme47vsbkaroqwuqidhswujjztevjhrc3ac6tg5ywwshhmfiya/"+tokenId+".png";
+
+        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+      })
+
+      setUserNFTs(dispArr);
     case 4:
       //Pixel Doodle
       //use method balanceDP()
