@@ -380,7 +380,6 @@ export default function StakeTemplate({ tacoType }) {
   
   const handleContract = async (tacoType) => {
     var dispArr = [];
-
     setImg(imgArr[tacoType]);
 
     const contract = await contractSetup();
@@ -415,7 +414,7 @@ export default function StakeTemplate({ tacoType }) {
       //same process just verify name and image ipfs url from opensea
       // click on any item of the collection, scroll down and click details>tokenID
       //get the ipfs of image from image:"..."
-
+      break;
     case 3:
       const data3 = await contract?.balancePT();
       setBalance(data3.length);
@@ -430,6 +429,7 @@ export default function StakeTemplate({ tacoType }) {
       })
 
       setUserNFTs(dispArr);
+      break;
     case 4:
       //Pixel Doodle
       //use method balanceDP()
@@ -494,25 +494,6 @@ export default function StakeTemplate({ tacoType }) {
 
   }
 
-  //check unclaimed amount of $GUAC for each collection and tokenId. Has been called in handleContract()
-  async function unclaimed(tokenId, tacoType) {
-
-    const contract = await stakingSetup(address);
-
-    try{
-      if(contract){
-        var unclaimedAmount = await contract?.unclaimedRewards(tokenId, tacoType);
-        unclaimedAmount = ethers.utils.formatEther(unclaimedAmount);
-        return unclaimedAmount;
-      }
-    }
-    catch(err){
-      unclaimed(tokenId, tacoType);
-    }
-
-
-    
-  }
 
   //function to claim $GUAC of NFT user chosen to claim
   async function claim(tokenID, tacoType) {
