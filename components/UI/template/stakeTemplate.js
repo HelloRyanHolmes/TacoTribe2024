@@ -44,37 +44,348 @@ export default function StakeTemplate({ tacoType }) {
   const [userNFTs, setUserNFTs] = useState([]);
 
 
+
+  //address & abi of new contract
+  //switch case starts at 350
+  const addnew = "0x92d0ad1dEF8960080d0C05353845b3D1912C06b6";
+  const abinew = [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "balanceBT",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unclaimed",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TacoStaking.data[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "balanceDoodle",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unclaimed",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TacoStaking.data[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "balanceDP",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unclaimed",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TacoStaking.data[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "balanceGS",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unclaimed",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TacoStaking.data[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "balanceGT",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unclaimed",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TacoStaking.data[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "balancePT",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unclaimed",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TacoStaking.data[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "balanceTaco",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unclaimed",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TacoStaking.data[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "bt",
+      "outputs": [
+        {
+          "internalType": "contract IBabyTaco",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "doodle",
+      "outputs": [
+        {
+          "internalType": "contract IDoodle",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "dp",
+      "outputs": [
+        {
+          "internalType": "contract IDPTaco",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "gs",
+      "outputs": [
+        {
+          "internalType": "contract IGuacSour",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "gt",
+      "outputs": [
+        {
+          "internalType": "contract IGuaco",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "pt",
+      "outputs": [
+        {
+          "internalType": "contract IPixelTaco",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "staking",
+      "outputs": [
+        {
+          "internalType": "contract IStaking",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "taco",
+      "outputs": [
+        {
+          "internalType": "contract ITaco",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ];
+
   const { address } = useAccount();
   const { setLoader } = useGlobalContext();
 
-
-  const dataArr = [tacoMintSetup(address), doodledTacoMintSetup(address), "", pixelMintSetup(address), doodledPixelTacoMintSetup(address), babyTacosSetup(address), guacTribeSetup(address), guacSourSetup(address)];
+  // const dataArr = [tacoMintSetup(address), doodledTacoMintSetup(address), "", pixelMintSetup(address), doodledPixelTacoMintSetup(address), babyTacosSetup(address), guacTribeSetup(address), guacSourSetup(address)];
   const imgArr = [tacoTribe, doodle, "", pixelTaco, pixelDoodledTaco, babyTaco, guacos, gvsc];
   const nameArr = ["Taco Tribe", "Doodle Tacos", "", "Pixel Tacos", "Pixel Doodle Tacos", "Baby Tacos", "Guaco Tribe", "Guac vs Sour Cream"]
   
-
   const handleContract = async (tacoType) => {
     var dispArr = [];
-    const data = await dataArr[tacoType];
+
     setImg(imgArr[tacoType]);
 
    switch(tacoType){
     case 0:
-      var owned = await data?.walletOfOwner(address);
-      console.log(owned);
-      setBalance(owned.length);
+      //Taco Tribe
+      //use method balanceTaco()
+      // balanceTaco returns an array of Tuples(2).
+      // tuple[0] = tokenId
+      // tuple[1] = unclaimedAmount in wei (use ethers.utils.formatEther(String(unclaimedAmount)) to convert to ethers)
+      //name = "Taco #"+tokenId
+      //image = "ipfs://bafybeifi336lirgb6x2aebf7ltvad2gtihe2tszp3urhk3x6j6lyktqma4/"+tokenId+".png"
+      //push element {name, tokenId, image, tacoType, unclaimedAmount}
+    case 1:
+      // Doodle Taco
+      // use method balanceDoodle()
+      //same process just verify name and image ipfs url from opensea
+      // click on any item of the collection, scroll down and click details>tokenID
+      //get the ipfs of image from image:"..."
 
-          for(let i=0; i<owned.length; i++){
-            const tokenId = String(owned[i]);
-            const name = "Taco #"+tokenId;
-            const img = "https://ipfs.io/ipfs/bafybeifi336lirgb6x2aebf7ltvad2gtihe2tszp3urhk3x6j6lyktqma4/"+tokenId+".png"
+    case 3:
+        // Pixel Taco
+      // use method balancePT()
+      //same process just verify name and image ipfs url from opensea
+      // click on any item of the collection, scroll down and click details>tokenID
+      //get the ipfs of image from image:"..."
+          
+    case 4:
+      //Pixel Doodle
+      //use method balanceDP()
+            
+    case 5:
+      //Baby Taco
+      //use method balanceBT()
 
-            const unclaimedAmount = await unclaimed(tokenId, 0);
+    case 6:
+      //Guaco Tribe
+      //use method balanceGT()
 
-            dispArr.push({name, img, tokenId, tacoType, unclaimedAmount})
-          }
-
-
+    case 7:
+      //Guac vs Sour Cream
+      //use method balanceGS()
     default:
       console.log("IDK");
 
