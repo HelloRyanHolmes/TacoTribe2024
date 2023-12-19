@@ -52,10 +52,10 @@ export default function Stake() {
         <Image width={1920} height={1080} src={banner} className="object-cover h-full" />
       </div>
 
-      {!isConnected && isClient && <>
+      {!isConnected && isClient && <div className=" min-h-screen">
         <Image src={error} width={1920} height={1080} className="w-80 mx-auto my-8"/>
         <h1 className="text-3xl text-black text-center">Seems like you are not connected.<br className=" max-lg:hidden"/><br/><span className="text-[3rem]">Please Connect Your Wallet!!!</span></h1>
-      </>}
+      </div>}
 
       {isConnected && isClient && <>
         <StakeSwitcher changeButton={changeButton} button={stakeButton} />

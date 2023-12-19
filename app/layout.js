@@ -68,7 +68,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={font.className + " select-none "}>
+      <body className={font.className + " select-non bg-white"}>
       <Providers>
         <Loader/>
         <Navbar/>

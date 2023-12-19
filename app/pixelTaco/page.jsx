@@ -23,7 +23,7 @@ export default function PixelTaco() {
   return (
     <>
       {/* Background */}
-      <div className="absolute top-0 left-0 w-screen h-screen z-0 ">
+      <div className="absolute top-0 left-0 w-screen h-screen z-0 max-h-screen overflow-hidden">
         <div className="relative h-full">
           {!isConnected && isClient && <Image width={1920} height={1080} src={bg} className=" object-cover max-sm:hidden w-screen h-full" />}
           {isConnected && isClient && <Image width={1920} height={1080} src={bgConnected} className="object-cover max-sm:hidden h-full" />}

@@ -585,7 +585,6 @@ export default function StakeTemplate({ tacoType }) {
 
   }
 
-
   //function to claim $GUAC of NFT user chosen to claim
   async function claim(tokenID, tacoType) {
 
