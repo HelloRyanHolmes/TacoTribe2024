@@ -40,7 +40,7 @@ export default function Stake() {
   }
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white overflow-x-hidden">
 
       {/* <div className="absolute top-0 left-0 w-screen h-screen z-0 ">
         <div className="relative w-full px-20 mt-20">
@@ -60,7 +60,7 @@ export default function Stake() {
       {isConnected && isClient && <>
         <StakeSwitcher changeButton={changeButton} button={stakeButton} />
 
-        <main className=" w-screen flex flex-col items-center justify-center">
+        <main className=" w-screen  flex flex-col items-center justify-center">
 
           <StakeTemplate tacoType={stakeButton} />
 
