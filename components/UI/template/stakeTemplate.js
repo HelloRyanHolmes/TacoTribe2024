@@ -1,15 +1,6 @@
 import Image from "next/image"
 
-import Swal from 'sweetalert2'
-
-import { babyTacosSetup } from "../Buttons/Minting/babyTacos"
-import { doodledTacoMintSetup } from "../Buttons/Minting/doodleTacos"
-import { doodledPixelTacoMintSetup } from "../Buttons/Minting/doodlepixelTacos"
-import { guacTribeSetup } from "../Buttons/Minting/guacTribe"
-import { guacSourSetup } from "../Buttons/Minting/guacvSour"
-import { pixelMintSetup } from "../Buttons/Minting/pixelTacos"
-import { tacoMintSetup } from '../Buttons/Minting/tacos'
-
+import Swal from 'sweetalert2';
 
 import { ethers } from "ethers"
 import { useEffect, useState } from "react"
@@ -44,9 +35,6 @@ export default function StakeTemplate({ tacoType }) {
   const [userNFTs, setUserNFTs] = useState([]);
 
 
-
-  //address & abi of new contract
-  //switch case starts at 350
   const addnew = "0x92d0ad1dEF8960080d0C05353845b3D1912C06b6";
   const abinew = [
     {
@@ -338,12 +326,11 @@ export default function StakeTemplate({ tacoType }) {
   const { address } = useAccount();
   const { setLoader } = useGlobalContext();
 
-  // const dataArr = [tacoMintSetup(address), doodledTacoMintSetup(address), "", pixelMintSetup(address), doodledPixelTacoMintSetup(address), babyTacosSetup(address), guacTribeSetup(address), guacSourSetup(address)];
   const imgArr = [tacoTribe, doodle, "", pixelTaco, pixelDoodledTaco, babyTaco, guacos, gvsc];
   const nameArr = ["Taco Tribe", "Doodle Tacos", "", "Pixel Tacos", "Pixel Doodle Tacos", "Baby Tacos", "Guaco Tribe", "Guac vs Sour Cream"]
 
   async function contractSetup(){
-    setLoader(true);
+
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
@@ -356,7 +343,7 @@ export default function StakeTemplate({ tacoType }) {
       return contract;
     }
     catch (err) {
-    setLoader(false);
+
 
       console.log("Error", err)
       Swal.fire({
@@ -386,120 +373,168 @@ export default function StakeTemplate({ tacoType }) {
 
    switch(tacoType){
     case 0:
-      const data0 = await contract?.balanceTaco();
-      setBalance(data0.length);
-
-      data0?.map((item)=>{
-        const tokenId = Number(item[0]);
-        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
-        const name = "Taco #"+tokenId;
-        const img = "https://ipfs.io/ipfs/bafybeifi336lirgb6x2aebf7ltvad2gtihe2tszp3urhk3x6j6lyktqma4/"+tokenId+".png";
-
-        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
-      })
-
-      setUserNFTs(dispArr);
+      try{
+        setLoader(true);
+        const data0 = await contract?.balanceTaco();
+        setBalance(data0.length);
+  
+        data0?.map((item)=>{
+          const tokenId = Number(item[0]);
+          const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+          const name = "Taco #"+tokenId;
+          const img = "https://ipfs.io/ipfs/bafybeifi336lirgb6x2aebf7ltvad2gtihe2tszp3urhk3x6j6lyktqma4/"+tokenId+".png";
+  
+          dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+        })
+  
+        setUserNFTs(dispArr);
+        setLoader(false)
+      }
+      catch(err){
+        setLoader(false);
+        console.log(err);
+      }
       break;
-      //Taco Tribe
-      //use method balanceTaco()
-      // balanceTaco returns an array of Tuples(2).
-      // tuple[0] = tokenId
-      // tuple[1] = unclaimedAmount in wei (use ethers.utils.formatEther(String(unclaimedAmount)) to convert to ethers)
-      //name = "Taco #"+tokenId
-      //image = "ipfs://bafybeifi336lirgb6x2aebf7ltvad2gtihe2tszp3urhk3x6j6lyktqma4/"+tokenId+".png"
-      //push element {name, tokenId, image, tacoType, unclaimedAmount}
+
     case 1:
-      const data1 = await contract?.balanceDoodle();
-      setBalance(data1.length);
-
-      data1?.map((item)=>{
-        const tokenId = Number(item[0]);
-        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
-        const name ="Doodle Tacos #"+tokenId;
-        const img = "https://ipfs.io/ipfs/bafybeife2zu3n76ktqtn7myxpm2pfd3uhsxpxbg2gkaen2bssdh3rr47ly/"+tokenId+".png";
-
-        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
-      })
-
-      setUserNFTs(dispArr);
+      try{
+        setLoader(true);
+        const data1 = await contract?.balanceDoodle();
+        setBalance(data1.length);
+  
+        data1?.map((item)=>{
+          const tokenId = Number(item[0]);
+          const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+          const name ="Doodle Tacos #"+tokenId;
+          const img = "https://ipfs.io/ipfs/bafybeife2zu3n76ktqtn7myxpm2pfd3uhsxpxbg2gkaen2bssdh3rr47ly/"+tokenId+".png";
+  
+          dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+        })
+  
+        setUserNFTs(dispArr);
+        setLoader(false);
+      }
+      catch(err){
+        setLoader(false);
+        console.log(err);
+      }
       break;
 
     case 3:
-      const data3 = await contract?.balancePT();
-      setBalance(data3.length);
-
-      data3?.map((item)=>{
-        const tokenId = Number(item[0]);
-        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
-        const name = "Pixel Taco #"+tokenId;
-        const img = "https://ipfs.io/ipfs/bafybeib2rme47vsbkaroqwuqidhswujjztevjhrc3ac6tg5ywwshhmfiya/"+tokenId+".png";
-
-        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
-      })
-
-      setUserNFTs(dispArr);
+      try{
+        setLoader(true);
+        const data3 = await contract?.balancePT();
+        setBalance(data3.length);
+  
+        data3?.map((item)=>{
+          const tokenId = Number(item[0]);
+          const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+          const name = "Pixel Taco #"+tokenId;
+          const img = "https://ipfs.io/ipfs/bafybeib2rme47vsbkaroqwuqidhswujjztevjhrc3ac6tg5ywwshhmfiya/"+tokenId+".png";
+  
+          dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+        })
+  
+        setUserNFTs(dispArr);
+        setLoader(false);
+      }
+      catch(err){
+        setLoader(false);
+        console.log(err);
+      }
       break;
     case 4:
-      const data4 = await contract?.balanceDP();
-      setBalance(data4.length);
-
-      data4?.map((item)=>{
-        const tokenId = Number(item[0]);
-        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
-        const name = "Pixel Doodle Tacos #"+tokenId;
-        const img = "https://ipfs.io/ipfs/bafybeifgtr33q3k6t5b45gyp3hxloselihxqqj3qo4pamhyzpen54qizni/"+tokenId+".png";
-
-        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
-      })
-
-      setUserNFTs(dispArr);
+      try{
+        setLoader(true);
+        const data4 = await contract?.balanceDP();
+        setBalance(data4.length);
+  
+        data4?.map((item)=>{
+          const tokenId = Number(item[0]);
+          const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+          const name = "Pixel Doodle Tacos #"+tokenId;
+          const img = "https://ipfs.io/ipfs/bafybeifgtr33q3k6t5b45gyp3hxloselihxqqj3qo4pamhyzpen54qizni/"+tokenId+".png";
+  
+          dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+        })
+  
+        setUserNFTs(dispArr);
+        setLoader(false);
+      }
+      catch(err){
+        setLoader(false);
+      }
       break;      
     case 5:
-      const data5 = await contract?.balanceBT();
-      setBalance(data5.length);
-
-      data5?.map((item)=>{
-        const tokenId = Number(item[0]);
-        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
-        const name = "Baby Taco #"+tokenId;
-        const img = "https://ipfs.io/ipfs/bafybeiangojvxwyo7rcxtofmcetd2rj2jlchyscbyaqcciiwcazc5qrlwm/"+tokenId+".png";
-
-        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
-      })
-
-      setUserNFTs(dispArr);
+      try{
+        setLoader(true);
+        const data5 = await contract?.balanceBT();
+        setBalance(data5.length);
+  
+        data5?.map((item)=>{
+          const tokenId = Number(item[0]);
+          const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+          const name = "Baby Taco #"+tokenId;
+          const img = "https://ipfs.io/ipfs/bafybeiangojvxwyo7rcxtofmcetd2rj2jlchyscbyaqcciiwcazc5qrlwm/"+tokenId+".png";
+  
+          dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+        })
+  
+        setUserNFTs(dispArr);
+        setLoader(false);
+      }
+      catch(err){
+        setLoader(false);
+        console.log(err);
+      }
       break;
 
     case 6:
-      const data6 = await contract?.balanceGT();
-      setBalance(data6.length);
-
-      data6?.map((item)=>{
-        const tokenId = Number(item[0]);
-        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
-        const name = "Guaco Tribe #"+tokenId;
-        const img = "https://ipfs.io/ipfs/bafybeig5rzdjulqlq3j2ei2cg6edm5jrs36blz6hxyqr6ugfhz7x2yv4ve/"+tokenId+".png";
-
-        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
-      })
-
-      setUserNFTs(dispArr);
+      try{
+        setLoader(true);
+        const data6 = await contract?.balanceGT();
+        setBalance(data6.length);
+  
+        data6?.map((item)=>{
+          const tokenId = Number(item[0]);
+          const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+          const name = "Guaco Tribe #"+tokenId;
+          const img = "https://ipfs.io/ipfs/bafybeig5rzdjulqlq3j2ei2cg6edm5jrs36blz6hxyqr6ugfhz7x2yv4ve/"+tokenId+".png";
+  
+          dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+        })
+  
+        setUserNFTs(dispArr);
+        setLoader(false);
+      }
+      catch(err){
+        setLoader(false);
+        console.log(err);
+      }
       break;
 
     case 7:
-      const data7 = await contract?.balanceGS();
-      setBalance(data7.length);
-
-      data7?.map((item)=>{
-        const tokenId = Number(item[0]);
-        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
-        const name = "GUAC vs SOUR CREAM #"+tokenId;
-        const img = "https://ipfs.io/ipfs/bafybeiaglnj726cekyeqp3lf3rkj5pltcymo2irlcgvpa7p75lqg5zxhe4/"+tokenId+".png";
-
-        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
-      })
-
-      setUserNFTs(dispArr);
+      try{
+        setLoader(true);
+        const data7 = await contract?.balanceGS();
+        setBalance(data7.length);
+  
+        data7?.map((item)=>{
+          const tokenId = Number(item[0]);
+          const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+          const name = "GUAC vs SOUR CREAM #"+tokenId;
+          const img = "https://ipfs.io/ipfs/bafybeiaglnj726cekyeqp3lf3rkj5pltcymo2irlcgvpa7p75lqg5zxhe4/"+tokenId+".png";
+  
+          dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+        })
+  
+        setUserNFTs(dispArr);
+        setLoader(false);
+      }
+      catch(err){
+        setLoader(false);
+        console.log(err);
+      }
       break;
     default:
       console.log("IDK");
@@ -656,11 +691,6 @@ export default function StakeTemplate({ tacoType }) {
                 <Image width={200} height={80} src={claimNFTUp} alt="home" className={"w-40 group-hover:hidden"} />
                 <Image width={200} height={80} src={claimNFTDown} alt="home" className={"w-40 hidden group-hover:block"} />
               </button>
-
-              {/* <button onClick={() => { claim(item.tokenId, item.collection) }} className="group min-[641px]:hidden relative mt-4">
-                <Image width={200} height={80} src={claimNFTUp} alt="home" className={"w-20 group-hover:hidden"} />
-                <Image width={200} height={80} src={claimNFTDown} alt="home" className={"w-20 hidden group-hover:block"} />
-              </button> */}
 
             </div>
           </>
