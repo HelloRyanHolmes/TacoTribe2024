@@ -324,7 +324,7 @@ export default function StakeTemplate({ tacoType }) {
   ];
 
   const { address } = useAccount();
-  const { setLoader } = useGlobalContext();
+  const { setLoader, refreshGuac } = useGlobalContext();
 
   const imgArr = [tacoTribe, doodle, "", pixelTaco, pixelDoodledTaco, babyTaco, guacos, gvsc];
   const nameArr = ["Taco Tribe", "Doodle Tacos", "", "Pixel Tacos", "Pixel Doodle Tacos", "Baby Tacos", "Guaco Tribe", "Guac vs Sour Cream"]
@@ -600,6 +600,8 @@ export default function StakeTemplate({ tacoType }) {
         icon: 'success',
         confirmButtonText: 'LFG! 🌮'
       })
+
+      refreshGuac();
     }
     catch(err) {
       console.log(err);
@@ -632,6 +634,8 @@ export default function StakeTemplate({ tacoType }) {
 
       const trans = await contract.claimAll(tacoType);
       await trans.wait();
+
+      refreshGuac();
     }
     catch (err) {
       console.log(err);

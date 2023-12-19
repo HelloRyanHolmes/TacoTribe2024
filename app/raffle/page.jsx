@@ -26,7 +26,7 @@ export default function Raffle() {
   return (
     <>
       {/* Background */}
-      <div className="fixed top-0 left-0 w-screen h-full z-0 bg-[#d1ffc3] md:block">
+      <div className="fixed top-0 left-0 w-screen h-full z-0 bg-[#d1ffc3] md:block overflow-x-hidden">
         <div className="relative h-full">
           {!isConnected && isClient && <Image width={1920} height={1080} src={bg} className="object-cover max-sm:hidden h-full" />}
           {isConnected && isClient && <Image width={1920} height={1080} src={bgConnected} className="object-cover max-sm:hidden h-full" />}
@@ -35,7 +35,7 @@ export default function Raffle() {
         </div>
       </div>
 
-      {isConnected && isClient && <main className="flex flex-col items-center gap-20 w-screen max-[1240px]:bg-[#d1ffc3] max-[1240px]:h-fit relative">
+      {isConnected && isClient && <main className="flex flex-col items-center overflow-x-hidden gap-20 w-screen max-[1240px]:bg-[#d1ffc3] max-[1240px]:h-fit relative">
         <div className="relative w-[50%] max-md:w-[90%] pt-10 mt-10 ">
           <Image width={1920} height={1080} src={banner} className="h-full" />
         </div>

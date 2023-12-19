@@ -42,7 +42,7 @@ export default function Minimart() {
     <>
 
       {/* Background */}
-      <div className="fixed top-0 left-0 w-screen h-screen z-0 md:block max-sm:bg-[#bad533]">
+      <div className="fixed top-0 left-0 w-screen h-screen z-0 md:block max-sm:bg-[#bad533] overflow-x-hidden">
         <div className="relative h-full">
           {!isConnected && isClient && <Image width={1920} height={1080} src={bg} className="object-cover max-sm:hidden h-full" />}
           {isConnected && isClient && <Image width={1920} height={1080} src={bgConnected} className="object-cover max-sm:hidden h-full" />}
@@ -51,7 +51,7 @@ export default function Minimart() {
         </div>
       </div>
 
-      {isConnected && isClient && <main className=" flex flex-col items-center gap-10 w-screen h-screen relative">
+      {isConnected && isClient && <main className=" flex flex-col items-center overflow-x-hidden gap-10 w-screen h-screen relative">
         <div className="relative w-[50%] max-md:w-[90%] pt-10 mt-16">
           <Image width={1920} height={1080} src={banner} className="object-cover h-full" />
         </div>

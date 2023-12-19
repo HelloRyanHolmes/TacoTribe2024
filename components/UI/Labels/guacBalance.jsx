@@ -46,7 +46,7 @@ async function guacSetup(address){
             if (result.isConfirmed) {
               await guacSetup(address);
             }
-            Swal.fire("Succesful!", "", "success");
+            // Swal.fire("Succesful!", "", "success");
           })
         
     }    
@@ -56,7 +56,7 @@ async function guacSetup(address){
 export default function GuacBalance(){
 
     const { address, isConnected } = useAccount()
-    const {guac, setGuac} = useGlobalContext();
+    const { guac, setGuac, rfc } = useGlobalContext();
 
   
     const fetchBalance = async () => {
@@ -89,7 +89,7 @@ export default function GuacBalance(){
                 if (result.isConfirmed) {
                   await fetchBalance();
                 }
-                Swal.fire("Succesful!", "", "success");
+                // Swal.fire("Succesful!", "", "success");
               })
             setGuac(0);
         }
@@ -101,7 +101,7 @@ export default function GuacBalance(){
             fetchBalance();
         }
         console.log("hiiii", typeof(guac))
-    },[isConnected])
+    },[isConnected, rfc])
 
 
     // if(isConnected) 
