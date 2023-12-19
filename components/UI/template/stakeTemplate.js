@@ -44,232 +44,469 @@ export default function StakeTemplate({ tacoType }) {
   const [userNFTs, setUserNFTs] = useState([]);
 
 
+
+  //address & abi of new contract
+  //switch case starts at 350
+  const addnew = "0x92d0ad1dEF8960080d0C05353845b3D1912C06b6";
+  const abinew = [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "balanceBT",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unclaimed",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TacoStaking.data[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "balanceDoodle",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unclaimed",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TacoStaking.data[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "balanceDP",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unclaimed",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TacoStaking.data[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "balanceGS",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unclaimed",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TacoStaking.data[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "balanceGT",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unclaimed",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TacoStaking.data[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "balancePT",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unclaimed",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TacoStaking.data[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "balanceTaco",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "unclaimed",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct TacoStaking.data[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "bt",
+      "outputs": [
+        {
+          "internalType": "contract IBabyTaco",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "doodle",
+      "outputs": [
+        {
+          "internalType": "contract IDoodle",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "dp",
+      "outputs": [
+        {
+          "internalType": "contract IDPTaco",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "gs",
+      "outputs": [
+        {
+          "internalType": "contract IGuacSour",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "gt",
+      "outputs": [
+        {
+          "internalType": "contract IGuaco",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "pt",
+      "outputs": [
+        {
+          "internalType": "contract IPixelTaco",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "staking",
+      "outputs": [
+        {
+          "internalType": "contract IStaking",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "taco",
+      "outputs": [
+        {
+          "internalType": "contract ITaco",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ];
+
   const { address } = useAccount();
   const { setLoader } = useGlobalContext();
 
-
-  const dataArr = [tacoMintSetup(address), doodledTacoMintSetup(address), "", pixelMintSetup(address), doodledPixelTacoMintSetup(address), babyTacosSetup(address), guacTribeSetup(address), guacSourSetup(address)];
+  // const dataArr = [tacoMintSetup(address), doodledTacoMintSetup(address), "", pixelMintSetup(address), doodledPixelTacoMintSetup(address), babyTacosSetup(address), guacTribeSetup(address), guacSourSetup(address)];
   const imgArr = [tacoTribe, doodle, "", pixelTaco, pixelDoodledTaco, babyTaco, guacos, gvsc];
   const nameArr = ["Taco Tribe", "Doodle Tacos", "", "Pixel Tacos", "Pixel Doodle Tacos", "Baby Tacos", "Guaco Tribe", "Guac vs Sour Cream"]
-  
-  //function to fetch details of each NFT (name, image, unclaimed $GUAC balance) of each collection. 
-  const handleContract = async (tacoType) => {
-    
-    const data = await dataArr[tacoType];
 
-    if(data && address){
-      setImg(imgArr[tacoType])
+  async function contractSetup(){
+    setLoader(true);
 
-console.log(tacoType);
-      var displayArr = [];
-  
-      if (tacoType == 3) {
-        try {
-          setLoader(true);
-          setUserNFTs([]);
-          setBalance(0);
-  
-          var bal = setBalance(await data?.balanceOf(address));
-  
-          const tokenIDs = await data?.tokensOfOwner(address);
-  
-  
-          for (let i = 0; i < tokenIDs.length; i++) {
-  
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-            const tokenId = Number(tokenIDs[i]);
-            const uri = await data?.tokenURI(tokenId);
-  
-            const meta = `https://ipfs.io/ipfs/${uri.substr(7)}`;
-            const metadata = await fetch(meta);
-            const json = await metadata.json();
-  
-            const name = json["name"];
-            const fetchedImg = json["image"];
-  
-            const img = `https://ipfs.io/ipfs/${fetchedImg.substr(7)}`
-  
-            const unclaimedAmount = await unclaimed(tokenId, tacoType);
-  
-            displayArr.push({ name, img, tokenId, tacoType, unclaimedAmount });
-          }
-  
-          setLoader(false);
+    const signer = provider.getSigner();
 
-          setUserNFTs(displayArr);
-  
-        }
-        catch (err) {
-          setLoader(false);
+    try {
+      const contract = new ethers.Contract(addnew, abinew, signer);
+      setLoader(false);
 
-          console.log(err);
-          let timerInterval;
-          Swal.fire({
-            title: 'Error!',
-            text: "Pixel Tacos couldn't be Fetched",
-            html: "I will try again in <b></b> ms.",
-            imageUrl: error,
-            imageWidth: 200,
-            imageHeight: 200,
-            imageAlt: "Taco OOPS!",
-            // confirmButtonText: 'Retry ?',
-            // confirmButtonColor: "#facc14",
-            timer: 10000,
-            timerProgressBar: true,
-            didOpen: () => {
-              Swal.showLoading();
-              const timer = Swal.getPopup().querySelector("b");
-              timerInterval = setInterval(() => {
-                timer.textContent = `${Swal.getTimerLeft()}`;
-              }, 100);
-            },
-            willClose: () => {
-              clearInterval(timerInterval);
-            },
-            customClass: {
-              container: "border-8 border-black",
-              popup: "bg-white rounded-2xl border-8 border-black",
-              image: "-mb-5",
-              // confirmButton: "w-40 text-black"
-            }
-          }).then(async (result) => {
-            if (result.dismiss === Swal.DismissReason.timer) {
-
-              await handleContract(tacoType);
-            }
-          });
-        }
-  
-      }
-  
-      else if (tacoType == 0 || tacoType == 1) {
-        
-        try {
-          setLoader(true);
-  
-          setBalance(0);
-          setUserNFTs([]);
-  
-  
-          var bal = await data?.balanceOf(address) ;
-          setBalance(Number(bal));
-          for (let i = 0; i < Number(bal); i++) {
-  
-            const BtokenId = await data?.tokenOfOwnerByIndex(address, i);
-            const tokenId = Number(BtokenId);
-            const uri = await data?.tokenURI(tokenId);
-            const meta = `https://ipfs.io/ipfs/${uri.substr(7)}`;
-            const metadata = await fetch(meta);
-            const json = await metadata.json();
-  
-            const name = json["name"];
-  
-            const fetchedImg = json["image"];
-  
-            const img = `https://ipfs.io/ipfs/${fetchedImg.substr(7)}`
-            const unclaimedAmount = await unclaimed(tokenId, tacoType)
-            displayArr.push({ name, img, tokenId, tacoType, unclaimedAmount });
-          }
-          setLoader(false);
-
-          setUserNFTs(displayArr);
-        }
-        catch (err) {
-          setLoader(false);
-
-          console.log(err);
-          let timerInterval;
-          Swal.fire({
-            title: 'Error!',
-            text: `Couldn't be Fetched`,
-            html: "I will try again in <b></b> ms.",
-            imageUrl: error,
-            imageWidth: 200,
-            imageHeight: 200,
-            imageAlt: "Taco OOPS!",
-            // confirmButtonText: 'Retry ?',
-            // confirmButtonColor: "#facc14",
-            timer: 10000,
-            timerProgressBar: true,
-            didOpen: () => {
-              Swal.showLoading();
-              const timer = Swal.getPopup().querySelector("b");
-              timerInterval = setInterval(() => {
-                timer.textContent = `${Swal.getTimerLeft()}`;
-              }, 100);
-            },
-            willClose: () => {
-              clearInterval(timerInterval);
-            },
-            customClass: {
-              container: "border-8 border-black",
-              popup: "bg-white rounded-2xl border-8 border-black",
-              image: "-mb-5",
-              // confirmButton: "w-40 text-black"
-            }
-          }).then(async (result) => {
-            if (result.dismiss === Swal.DismissReason.timer) {
-
-              await handleContract(tacoType);
-            }
-          });
-        }
-  
-      }
-  
-      else {
-        
-        try {
-          setLoader(true);
-  
-          setBalance(0);
-          setUserNFTs([]);
-  
-          var bal = await data?.balanceOf(address);
-          setBalance(Number(bal));
-  
-          const total = await data?.totalSupply();
-  
-          for (let i = 1; i < Number(total); i++) {
-            if(bal > displayArr.length){
-
-              const owner = await data?.ownerOf(i);
-    
-              if (owner.toUpperCase() === address.toUpperCase()) {
-                const uri = await data?.tokenURI(i);
-                const meta = `https://ipfs.io/ipfs/${uri.substr(7)}`;
-                const metadata = await fetch(meta);
-                const json = await metadata.json();
-                const tokenId = i;
-                const name = json["name"];
-                const fetchedImg = json["image"];
-
-                const img = `https://ipfs.io/ipfs/${fetchedImg.substr(7)}`
-                const unclaimedAmount = await unclaimed(i, tacoType)
-                displayArr.push({ name, img, tokenId, tacoType, unclaimedAmount });
-                setUserNFTs(displayArr);
-              }
-            }
-           else{
-          setLoader(false);
-
-            break;
-           }
-  
-          }
-  
-        }
-        catch (err) {
-          setLoader(false);
-
-          console.log(err);
-  
-          await handleContract(tacoType);
-        }
-      }
-  
-
+      return contract;
     }
+    catch (err) {
+    setLoader(false);
+
+      console.log("Error", err)
+      Swal.fire({
+        title: 'Error!',
+        text: 'Couldn\'t get fetching contract',
+        imageUrl: error,
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: "Taco OOPS!",
+        confirmButtonText: 'Bruh 😭',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      })
+    }
+  }
+  
+  const handleContract = async (tacoType) => {
+    var dispArr = [];
+    setImg(imgArr[tacoType]);
+
+    const contract = await contractSetup();
+
+   switch(tacoType){
+    case 0:
+      const data0 = await contract?.balanceTaco();
+      setBalance(data0.length);
+
+      data0?.map((item)=>{
+        const tokenId = Number(item[0]);
+        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+        const name = "Taco #"+tokenId;
+        const img = "https://ipfs.io/ipfs/bafybeifi336lirgb6x2aebf7ltvad2gtihe2tszp3urhk3x6j6lyktqma4/"+tokenId+".png";
+
+        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+      })
+
+      setUserNFTs(dispArr);
+      break;
+      //Taco Tribe
+      //use method balanceTaco()
+      // balanceTaco returns an array of Tuples(2).
+      // tuple[0] = tokenId
+      // tuple[1] = unclaimedAmount in wei (use ethers.utils.formatEther(String(unclaimedAmount)) to convert to ethers)
+      //name = "Taco #"+tokenId
+      //image = "ipfs://bafybeifi336lirgb6x2aebf7ltvad2gtihe2tszp3urhk3x6j6lyktqma4/"+tokenId+".png"
+      //push element {name, tokenId, image, tacoType, unclaimedAmount}
+    case 1:
+      const data1 = await contract?.balanceDoodle();
+      setBalance(data1.length);
+
+      data1?.map((item)=>{
+        const tokenId = Number(item[0]);
+        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+        const name ="Doodle Tacos #"+tokenId;
+        const img = "https://ipfs.io/ipfs/bafybeife2zu3n76ktqtn7myxpm2pfd3uhsxpxbg2gkaen2bssdh3rr47ly/"+tokenId+".png";
+
+        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+      })
+
+      setUserNFTs(dispArr);
+      break;
+
+    case 3:
+      const data3 = await contract?.balancePT();
+      setBalance(data3.length);
+
+      data3?.map((item)=>{
+        const tokenId = Number(item[0]);
+        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+        const name = "Pixel Taco #"+tokenId;
+        const img = "https://ipfs.io/ipfs/bafybeib2rme47vsbkaroqwuqidhswujjztevjhrc3ac6tg5ywwshhmfiya/"+tokenId+".png";
+
+        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+      })
+
+      setUserNFTs(dispArr);
+      break;
+    case 4:
+      const data4 = await contract?.balanceDP();
+      setBalance(data4.length);
+
+      data4?.map((item)=>{
+        const tokenId = Number(item[0]);
+        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+        const name = "Pixel Doodle Tacos #"+tokenId;
+        const img = "https://ipfs.io/ipfs/bafybeifgtr33q3k6t5b45gyp3hxloselihxqqj3qo4pamhyzpen54qizni/"+tokenId+".png";
+
+        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+      })
+
+      setUserNFTs(dispArr);
+      break;      
+    case 5:
+      const data5 = await contract?.balanceBT();
+      setBalance(data5.length);
+
+      data5?.map((item)=>{
+        const tokenId = Number(item[0]);
+        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+        const name = "Baby Taco #"+tokenId;
+        const img = "https://ipfs.io/ipfs/bafybeiangojvxwyo7rcxtofmcetd2rj2jlchyscbyaqcciiwcazc5qrlwm/"+tokenId+".png";
+
+        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+      })
+
+      setUserNFTs(dispArr);
+      break;
+
+    case 6:
+      const data6 = await contract?.balanceGT();
+      setBalance(data6.length);
+
+      data6?.map((item)=>{
+        const tokenId = Number(item[0]);
+        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+        const name = "Guaco Tribe #"+tokenId;
+        const img = "https://ipfs.io/ipfs/bafybeig5rzdjulqlq3j2ei2cg6edm5jrs36blz6hxyqr6ugfhz7x2yv4ve/"+tokenId+".png";
+
+        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+      })
+
+      setUserNFTs(dispArr);
+      break;
+
+    case 7:
+      const data7 = await contract?.balanceGS();
+      setBalance(data7.length);
+
+      data7?.map((item)=>{
+        const tokenId = Number(item[0]);
+        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+        const name = "GUAC vs SOUR CREAM #"+tokenId;
+        const img = "https://ipfs.io/ipfs/bafybeiaglnj726cekyeqp3lf3rkj5pltcymo2irlcgvpa7p75lqg5zxhe4/"+tokenId+".png";
+
+        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+      })
+
+      setUserNFTs(dispArr);
+      break;
+    default:
+      console.log("IDK");
+
+   }
+
+   setUserNFTs(dispArr)
     
   }
 
@@ -313,25 +550,6 @@ console.log(tacoType);
 
   }
 
-  //check unclaimed amount of $GUAC for each collection and tokenId. Has been called in handleContract()
-  async function unclaimed(tokenId, tacoType) {
-
-    const contract = await stakingSetup(address);
-
-    try{
-      if(contract){
-        var unclaimedAmount = await contract?.unclaimedRewards(tokenId, tacoType);
-        unclaimedAmount = ethers.utils.formatEther(unclaimedAmount);
-        return unclaimedAmount;
-      }
-    }
-    catch(err){
-      unclaimed(tokenId, tacoType);
-    }
-
-
-    
-  }
 
   //function to claim $GUAC of NFT user chosen to claim
   async function claim(tokenID, tacoType) {
