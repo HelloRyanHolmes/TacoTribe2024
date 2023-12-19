@@ -409,12 +409,21 @@ export default function StakeTemplate({ tacoType }) {
       //image = "ipfs://bafybeifi336lirgb6x2aebf7ltvad2gtihe2tszp3urhk3x6j6lyktqma4/"+tokenId+".png"
       //push element {name, tokenId, image, tacoType, unclaimedAmount}
     case 1:
-      // Doodle Taco
-      // use method balanceDoodle()
-      //same process just verify name and image ipfs url from opensea
-      // click on any item of the collection, scroll down and click details>tokenID
-      //get the ipfs of image from image:"..."
+      const data1 = await contract?.balanceDoodle();
+      setBalance(data1.length);
+
+      data1?.map((item)=>{
+        const tokenId = Number(item[0]);
+        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+        const name ="Doodle Tacos #"+tokenId;
+        const img = "https://ipfs.io/ipfs/bafybeife2zu3n76ktqtn7myxpm2pfd3uhsxpxbg2gkaen2bssdh3rr47ly/"+tokenId+".png";
+
+        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+      })
+
+      setUserNFTs(dispArr);
       break;
+
     case 3:
       const data3 = await contract?.balancePT();
       setBalance(data3.length);
@@ -431,20 +440,67 @@ export default function StakeTemplate({ tacoType }) {
       setUserNFTs(dispArr);
       break;
     case 4:
-      //Pixel Doodle
-      //use method balanceDP()
-            
+      const data4 = await contract?.balanceDP();
+      setBalance(data4.length);
+
+      data4?.map((item)=>{
+        const tokenId = Number(item[0]);
+        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+        const name = "Pixel Doodle Tacos #"+tokenId;
+        const img = "https://ipfs.io/ipfs/bafybeifgtr33q3k6t5b45gyp3hxloselihxqqj3qo4pamhyzpen54qizni/"+tokenId+".png";
+
+        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+      })
+
+      setUserNFTs(dispArr);
+      break;      
     case 5:
-      //Baby Taco
-      //use method balanceBT()
+      const data5 = await contract?.balanceBT();
+      setBalance(data5.length);
+
+      data5?.map((item)=>{
+        const tokenId = Number(item[0]);
+        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+        const name = "Baby Taco #"+tokenId;
+        const img = "https://ipfs.io/ipfs/bafybeiangojvxwyo7rcxtofmcetd2rj2jlchyscbyaqcciiwcazc5qrlwm/"+tokenId+".png";
+
+        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+      })
+
+      setUserNFTs(dispArr);
+      break;
 
     case 6:
-      //Guaco Tribe
-      //use method balanceGT()
+      const data6 = await contract?.balanceGT();
+      setBalance(data6.length);
+
+      data6?.map((item)=>{
+        const tokenId = Number(item[0]);
+        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+        const name = "Guaco Tribe #"+tokenId;
+        const img = "https://ipfs.io/ipfs/bafybeig5rzdjulqlq3j2ei2cg6edm5jrs36blz6hxyqr6ugfhz7x2yv4ve/"+tokenId+".png";
+
+        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+      })
+
+      setUserNFTs(dispArr);
+      break;
 
     case 7:
-      //Guac vs Sour Cream
-      //use method balanceGS()
+      const data7 = await contract?.balanceGS();
+      setBalance(data7.length);
+
+      data7?.map((item)=>{
+        const tokenId = Number(item[0]);
+        const unclaimedAmount = ethers.utils.formatEther(String(item[1]));
+        const name = "GUAC vs SOUR CREAM #"+tokenId;
+        const img = "https://ipfs.io/ipfs/bafybeiaglnj726cekyeqp3lf3rkj5pltcymo2irlcgvpa7p75lqg5zxhe4/"+tokenId+".png";
+
+        dispArr.push({name, tokenId, img, unclaimedAmount, tacoType})
+      })
+
+      setUserNFTs(dispArr);
+      break;
     default:
       console.log("IDK");
 
