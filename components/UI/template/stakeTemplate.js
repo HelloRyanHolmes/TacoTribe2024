@@ -601,7 +601,8 @@ export default function StakeTemplate({ tacoType }) {
         confirmButtonText: 'LFG! 🌮'
       })
 
-      refreshGuac();
+      // refreshGuac();
+      window.location.reload();
     }
     catch(err) {
       console.log(err);
@@ -622,8 +623,6 @@ export default function StakeTemplate({ tacoType }) {
         }
       })
     }
-
-
   }
 
   const claimAll = async () => {
@@ -635,7 +634,8 @@ export default function StakeTemplate({ tacoType }) {
       const trans = await contract.claimAll(tacoType);
       await trans.wait();
 
-      refreshGuac();
+      // refreshGuac();
+      window.location.reload();
     }
     catch (err) {
       console.log(err);
