@@ -548,7 +548,6 @@ export default function StakeTemplate({ tacoType }) {
   //setup staking contract
   async function stakingSetup() {
 
-    setLoader(true);
     const add = contractAdds.staking;
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -557,12 +556,11 @@ export default function StakeTemplate({ tacoType }) {
 
     try {
       const contract = new ethers.Contract(add, abi, signer);
-      setLoader(false);
 
       return contract;
     }
     catch (err) {
-    setLoader(false);
+
 
       console.log("Error", err)
       Swal.fire({
@@ -588,23 +586,29 @@ export default function StakeTemplate({ tacoType }) {
   //function to claim $GUAC of NFT user chosen to claim
   async function claim(tokenID, tacoType) {
 
+    setLoader(true);
+
     const contract = await stakingSetup();
 
     try {
       const transaction = await contract.claim(tokenID, tacoType)
       await transaction.wait();
 
+      setLoader(false)
+
       Swal.fire({
         title: 'Success!',
         text: '$GUAC Claimed',
         icon: 'success',
         confirmButtonText: 'LFG! 🌮'
+      }).then((result) => {
+        window.location.reload();
       })
 
-      // refreshGuac();
-      window.location.reload();
+      
     }
     catch(err) {
+      setLoader(false)
       console.log(err);
       Swal.fire({
         title: 'Error!',
@@ -635,7 +639,15 @@ export default function StakeTemplate({ tacoType }) {
       await trans.wait();
 
       // refreshGuac();
-      window.location.reload();
+      Swal.fire({
+        title: 'Success!',
+        text: '$GUAC Claimed',
+        icon: 'success',
+        confirmButtonText: 'LFG! 🌮'
+      }).then((result) => {
+        window.location.reload();
+      })
+
     }
     catch (err) {
       console.log(err);
