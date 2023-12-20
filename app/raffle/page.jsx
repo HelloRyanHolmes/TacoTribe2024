@@ -15,6 +15,8 @@ const guacLogo = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Gu
 
 import RaffleCard from "../../components/UI/Raffle/raffleCard"
 
+import {raffleData} from "../../EDITABLES/raffleData"
+
 export default function Raffle() {
   const { isConnected, address } = useAccount()
   const [isClient, setIsClient] = useState(false)
@@ -46,14 +48,11 @@ export default function Raffle() {
           <h1 className="text-5xl">PREVIOUS WINNERS:</h1>
         </div>
         <div className="w-[85%] shadow-inner shadow-black/50 px-6 py-10 flex flex-wrap items-center justify-center gap-10 border-4 rounded-[32px] border-black bg-lime-300 mb-10">
-          <RaffleCard />
-          <RaffleCard />
-          <RaffleCard />
-          <RaffleCard />
-          <RaffleCard />
-          <RaffleCard />
-          <RaffleCard />
-          <RaffleCard />
+          {
+            raffleData.map((raffleCard)=>(
+              <RaffleCard id={raffleCard.id} name={raffleCard.name} img={raffleCard.img} link={raffleCard.link} buttonText={raffleCard.buttonText} />
+            ))
+          }
         </div>
       </main>}
 

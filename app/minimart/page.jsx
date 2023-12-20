@@ -19,6 +19,8 @@ const buyDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/bu
 
 import MinimartCard from "../../components/UI/Minimart/minimartCard"
 
+import {minimartData} from "../../EDITABLES/minimartData"
+
 export default function Minimart() {
   const { isConnected, address } = useAccount()
   const [isClient, setIsClient] = useState(false)
@@ -59,10 +61,11 @@ export default function Minimart() {
           <h1 className="text-5xl">Purchase NFTs Using<span className=" inline-block ml-2 -mb-1 shadow-lg rounded-full shadow-black/50"><Image width={40} height={40} src={guacLogo}></Image></span> $Guac!</h1>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-10 translate-y-20">
-          <MinimartCard stateChangeFunction={setDialogState} />
-          <MinimartCard stateChangeFunction={setDialogState} />
-          <MinimartCard stateChangeFunction={setDialogState} />
-          <MinimartCard stateChangeFunction={setDialogState} />
+          {
+            minimartData.map((minimartCard)=>(
+              <MinimartCard stateChangeFunction={setDialogState} id={minimartCard.id} name={minimartCard.name} img={minimartCard.img} cost={minimartCard.cost} />
+            ))
+          }
         </div>
         <div className="text-black text-center mt-32 pb-32">
           <h1 className="text-5xl">TACO SELECTION:</h1>
