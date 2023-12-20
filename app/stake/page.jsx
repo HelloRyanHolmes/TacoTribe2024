@@ -40,7 +40,7 @@ export default function Stake() {
   }
 
   return (
-    <div className="bg-white overflow-x-hidden">
+    <div className="overflow-x-hidden">
 
       {/* <div className="absolute top-0 left-0 w-screen h-screen z-0 ">
         <div className="relative w-full px-20 mt-20">
