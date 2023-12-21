@@ -9,8 +9,8 @@ import Swal from 'sweetalert2'
 
 import { useGlobalContext } from "../../../../context/MainContext"
 
-const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+UP.png"
-const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+DOWN.png"
+const claimUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/Mint_Button_UP.png"
+const claimDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/Mint_Button_DOWN.png"
 
 const error = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/ui/error.png"
 
