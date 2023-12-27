@@ -5,6 +5,9 @@ import Image from "next/image";
 import { useAccount } from 'wagmi'
 import { useEffect, useState } from "react";
 
+import contruction from "../../assets/projectImages/contructiontaco.png"
+
+
 const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleBg.png";
 const bgConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleLive.png";
 const bgMobile = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleBgMobile.png";
@@ -37,7 +40,7 @@ export default function Raffle() {
         </div>
       </div>
 
-      {isConnected && isClient && <main className="flex flex-col items-center overflow-x-hidden gap-20 w-screen max-[1240px]:bg-[#d1ffc3] max-[1240px]:h-fit relative">
+      {/* {isConnected && isClient && <main className="flex flex-col items-center overflow-x-hidden gap-20 w-screen max-[1240px]:bg-[#d1ffc3] max-[1240px]:h-fit relative">
         <div className="relative w-[50%] max-md:w-[90%] pt-10 mt-10 ">
           <Image width={1920} height={1080} src={banner} className="h-full" />
         </div>
@@ -54,7 +57,12 @@ export default function Raffle() {
             ))
           }
         </div>
-      </main>}
+      </main>} */}
+
+<div className="relative z-10 text-center top-[10rem]">
+        <Image width={1920} height={1080} src={contruction} className="w-[20rem] mx-auto"/>
+        <h1 className="text-black text-[2rem]">Under Construction!</h1>
+      </div>
 
     </>
   );

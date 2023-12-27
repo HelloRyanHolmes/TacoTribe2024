@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 
+import contruction from "../../assets/projectImages/contructiontaco.png"
+
 import { useAccount } from 'wagmi'
 import { useEffect, useState } from "react";
 
@@ -53,7 +55,7 @@ export default function Minimart() {
         </div>
       </div>
 
-      {isConnected && isClient && <main className=" flex flex-col items-center overflow-x-hidden gap-10 w-screen h-screen relative">
+      {/* {isConnected && isClient && <main className=" flex flex-col items-center overflow-x-hidden gap-10 w-screen h-screen relative">
         <div className="relative w-[50%] max-md:w-[90%] pt-10 mt-16">
           <Image width={1920} height={1080} src={banner} className="object-cover h-full" />
         </div>
@@ -87,7 +89,11 @@ export default function Minimart() {
           </div>
         }
       </main>
-      }
+      } */}
+      <div className="relative z-10 text-center top-[10rem]">
+        <Image width={1920} height={1080} src={contruction} className="w-[20rem] mx-auto"/>
+        <h1 className="text-black text-[2rem]">Under Construction!</h1>
+      </div>
     </>
   );
 }
