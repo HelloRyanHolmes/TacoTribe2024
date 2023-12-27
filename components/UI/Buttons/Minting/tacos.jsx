@@ -6,7 +6,7 @@ import { useState } from "react"
 import { contractAdds } from "../../../../utils/contractAdds"
 import abi from "../../../../utils/newAbis/tacotribeabi"
 
-import arrowright from "../../../../assets/projectImages/arrowright.png"
+const arrowright = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/arrowright.png"
 
 
 import { useGlobalContext } from "../../../../context/MainContext"
