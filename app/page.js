@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco_collection/taco-truck-night.png";
-import bgConnected from "../assets/projectImages/taco_collection/tacoOpen.png";
+const bgConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco_collection/tacoOpen.png";
 const bgMobile = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco_collection/taco-truck-night-mobile.png";
 const bgMobileConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco_collection/tacoOpenMobile.png";
 
