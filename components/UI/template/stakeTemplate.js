@@ -11,6 +11,11 @@ import abi from "../../../utils/newAbis/stakingabi"
 import { contractAdds } from "../../../utils/contractAdds"
 import { useGlobalContext } from "../../../context/MainContext"
 
+import SoftStake from "../Buttons/StakingButtons/SoftStake"
+import HardStake from "../Buttons/StakingButtons/HardStake"
+import Claim from "../Buttons/StakingButtons/Claim"
+import Unstake from "../Buttons/StakingButtons/Unstake"
+
 
 const guacos = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/guacos.png"
 const doodle = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/doodle.png"
@@ -683,6 +688,10 @@ export default function StakeTemplate({ tacoType }) {
     handleContract(tacoType)
   }, [tacoType])
 
+  const [nftType, setNftType] = useState(0);
+  // 1 - Not Staked
+  // 2 - Soft Staked
+  // 3 - Hard Staked
 
 
   return (
@@ -712,6 +721,12 @@ export default function StakeTemplate({ tacoType }) {
         
       </div>
 
+      <div className="grid grid-cols-3 border-2 border-black gap-20 max-md:gap-5 max-md:text-sm w-fit mx-auto text-lg px-10 py-2 bg-yellow-400 rounded-full">
+        <button onClick={()=>{setNftType(0)}} className=" text-black hover:scale-105 transition-all duration-300 ease-out">Not Staked</button>
+        <button onClick={()=>{setNftType(1)}} className=" text-black hover:scale-105 transition-all duration-300 ease-out">Soft Staked</button>
+        <button onClick={()=>{setNftType(2)}} className=" text-black hover:scale-105 transition-all duration-300 ease-out">Hard Staked</button>
+      </div>
+
       <div className="border-2 border-white bg-white mx-auto w-screen py-5 flex gap-5 px-5 items-center justify-center text-center">
         <div className="flex flex-wrap gap-4 items-center justify-center">
           {userNFTs?.map((item) => (<>
@@ -720,10 +735,16 @@ export default function StakeTemplate({ tacoType }) {
               <Image src={item.img} className="mx-auto rounded-lg border-2 border-black" width={200} height={200} alt={"HEjhdsvcw"} />
               <h1 className="text-black text-[1.2rem]">$GUAC: {item.unclaimedAmount}</h1>
 
-              <button onClick={() => { claim(item.tokenId, item.tacoType) }} className="group relative mt-4">
+            <div className="grid grid-cols-2 gap-1.5 items-center justify-center">
+              {(nftType==0) && <SoftStake/>}
+              {(nftType==0 || nftType==1) && <HardStake/>}
+              {(nftType==1 || nftType==2) &&<Claim/>}
+              {(nftType==2) && <Unstake/>}
+              {/* <button onClick={() => { claim(item.tokenId, item.tacoType) }} className="group relative mt-4">
                 <Image width={200} height={80} src={claimNFTUp} alt="home" className={"w-40 group-hover:hidden"} />
                 <Image width={200} height={80} src={claimNFTDown} alt="home" className={"w-40 hidden group-hover:block"} />
-              </button>
+              </button> */}
+            </div>
 
             </div>
           </>
