@@ -6,19 +6,15 @@ import { ethers } from "ethers"
 import Swal from 'sweetalert2';
 import { useGlobalContext } from "../../../../context/MainContext"
 
-import tacotribeabi from '../../../../utils/newAbis/tacotribeabi';
-import doodletacosabi from '../../../../utils/newAbis/doodletacosabi';
-import pixelTacosabi from '../../../../utils/newAbis/pixelTacosabi';
-import pixelDoodleabi from '../../../../utils/newAbis/pixelDoodleabi';
-import babyTacosabi from "../../../../utils/newAbis/babyTacosabi";
-import guacoTribeabi from "../../../../utils/newAbis/guacotribeabi"
-import guacSourabi from "../../../../utils/newAbis/guacSourabi";
+import setApprovalForAll from "../StakingButtons/setApproval"
+import {useAccount} from "wagmi"
 
 
 const error = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/ui/error.png"
 
 
 const NotStaked = ({holding, tacoType}) => {
+  const { address, isConnected } = useAccount();
 
   const { setLoader, refreshGuac } = useGlobalContext();
 
@@ -64,46 +60,30 @@ const NotStaked = ({holding, tacoType}) => {
   async function softStake(tokenId){
     try{
       const contract = await stakingSetup();
-      contract?.softStake(tacoType, tokenId);
+      await contract?.softStake(tacoType, tokenId);
     }
     catch(err){
       console.log(err);
     }
   }
 
-  async function setApproval(){
-    try{
-      const contractArr = [contractAdds.tacoTribe, contractAdds.doodleTacos, "", contractAdds.pixelTacos, contractAdds.pixelDoodle, contractAdds.babyTacos, contractAdds.guacoTribe, contractAdds.guacSour];
-      const abiArr = [tacotribeabi, doodletacosabi, "", pixelTacosabi, pixelDoodleabi, babyTacosabi, guacoTribeabi, guacSourabi];
-
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-
-      const contract = new ethers.Contract(contractArr[tacoType], abiArr[tacoType], signer);
-      
-      contract.setApprovalForAll(contractAdds.staking, true);
-
-    }
-    catch(err){
-      console.log(err);
-    }
-  }
 
   async function hardStake(tokenId){
     try{
+      await setApprovalForAll(tacoType, address);
       const contract = await stakingSetup();
-      contract?.stake(tacoType, tokenId);
+      await contract?.stake(tacoType, tokenId);
     }
     catch(err){
       console.log(err);
       Swal.fire({
         title: 'Error!',
-        text: 'NFTs not approved yet!',
+        text: 'User rejected Transaction',
         imageUrl: error,
         imageWidth: 200,
         imageHeight: 200,
         imageAlt: "Taco OOPS!",
-        confirmButtonText: 'Approve Now!',
+        confirmButtonText: 'Try again!',
         confirmButtonColor: "#facc14",
         customClass: {
           container: "border-8 border-black",
@@ -111,14 +91,19 @@ const NotStaked = ({holding, tacoType}) => {
           image: "-mb-5",
           confirmButton: "w-40 text-black"
         }
-      }).then(()=>{setApproval()});
+      });
     }
   }
 
   async function softStakeAll(){
     try{
       const contract = await stakingSetup();
-      contract?.softStakeAll(tacoType, displayNFT);
+      const tokenIds = []
+      displayNFT.map((item)=>{
+        const tokenId = item.tokenId;
+        tokenIds.push(tokenId);
+      })
+      await contract?.softStakeAll(tacoType, tokenIds);
     }
     catch(err){
       console.log(err);
@@ -127,11 +112,33 @@ const NotStaked = ({holding, tacoType}) => {
 
   async function hardStakeAll(){
     try{
+      await setApprovalForAll(tacoType, address);
       const contract = await stakingSetup();
-      contract?.stakeAll(tacoType, displayNFT);
+      const tokenIds = []
+      displayNFT.map((item)=>{
+        const tokenId = item.tokenId;
+        tokenIds.push(tokenId);
+      })
+      await contract?.stakeAll(tacoType, tokenIds);
     }
     catch(err){
       console.log(err);
+      Swal.fire({
+        title: 'Error!',
+        text: 'User Rejected Transaction',
+        imageUrl: error,
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: "Taco OOPS!",
+        confirmButtonText: 'Try Again!',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      });
     }
   }
 

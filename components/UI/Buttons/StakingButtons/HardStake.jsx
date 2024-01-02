@@ -22,7 +22,7 @@ const HardStake = ({tacoType}) => {
 
   const { address } = useAccount();
 
-  async function stakingContractSetup(){
+  async function stakingSetup(){
     setLoader(true);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
@@ -50,6 +50,74 @@ const HardStake = ({tacoType}) => {
         }
       })
     }
+  }
+
+  async function claim(tokenId){
+    setLoader(true);
+    try{
+      const contract = await stakingSetup();
+      await contract?.claim(tacoType, tokenId);
+    }
+    catch(err){
+      setLoader(false);
+      console.log(err);
+    }
+    setLoader(false);
+  }
+
+  async function claimAll(){
+    setLoader(true);
+    try{
+      const contract = await stakingSetup();
+      const tokenIds = []
+
+      displayNFT.map((item)=>{
+        const tokenId = item.tokenId;
+        tokenIds.push(tokenId);
+      })
+
+      await contract?.claimAll(tacoType, tokenIds);
+    }
+    catch(err){
+      setLoader(false);
+      console.log(err);
+    }
+    setLoader(false);
+  }
+
+  async function unStake(tokenId){
+    setLoader(true);
+    try{
+      const contract = await stakingSetup();
+      await contract?.unStake(tacoType, tokenId);
+    }
+    catch(err){
+      console.log(err);
+      setLoader(false);
+    }
+    setLoader(false);
+  }
+
+  async function unstakeAll(){
+    setLoader(true);
+    try{
+      const contract = await stakingSetup();
+      const tokenIds = []
+
+      displayNFT.map((item)=>{
+        const tokenId = item.tokenId;
+        tokenIds.push(tokenId);
+      })
+
+      await contract?.unstakeAll(tacoType, tokenIds);
+    }
+    catch(err){
+    setLoader(false);
+
+      console.log(err);
+    }
+    setLoader(false);
+
   }
 
   async function consolidationContractSetup(){
@@ -84,7 +152,7 @@ const HardStake = ({tacoType}) => {
 
   async function getAllNFTs(){
     const consolidationContract = await consolidationContractSetup();
-    const stakingContract = await stakingContractSetup();
+    const stakingContract = await stakingSetup();
     const dispArr = []
     const consolidationDataArray = [consolidationContract.balanceTaco(), consolidationContract.balanceDoodle(), "", consolidationContract.balancePT(), consolidationContract.balanceDP(), consolidationContract.balanceBT(), consolidationContract.balanceGT(), consolidationContract.balanceGS()]
 
@@ -115,16 +183,18 @@ const HardStake = ({tacoType}) => {
   return (
     
     <>
+    {displayNFT.length > 0 && <button onClick={unstakeAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Unstake All</button>}
+    {displayNFT.length > 0 && <button onClick={claimAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Claim All</button>}
     {
       displayNFT?.map((item)=>(
         <div className='bg-green-400 border-4 rounded-2xl border-black p-4'>
         <Image alt='taco' width={1080} height={1080} className='w-60 mx-auto rounded-2xl' src={item.img} />
           <h2 className='text-black text-[1.7rem] mt-4'>{item.name}</h2>
           <h2 className='text-black text-lg'>{item.unclaimedAmount} $GUAC</h2>
-          <button onClick={() => { claim(item.tokenId, item.tacoType) }} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">
+          <button onClick={() => { claim(item.tokenId) }} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">
               Claim
           </button>
-          <button onClick={() => { claim(item.tokenId, item.tacoType) }} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">
+          <button onClick={() => { unStake(item.tokenId) }} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">
               Unstake
           </button>
         </div>

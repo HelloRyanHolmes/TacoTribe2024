@@ -26,37 +26,7 @@ export default [
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct TacoStaking.data[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "balanceDP",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "unclaimed",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "stakeType",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct TacoStaking.data[]",
+				"internalType": "struct TacoInfo.data[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -86,7 +56,37 @@ export default [
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct TacoStaking.data[]",
+				"internalType": "struct TacoInfo.data[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "balanceDP",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "unclaimed",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "stakeType",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct TacoInfo.data[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -116,7 +116,7 @@ export default [
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct TacoStaking.data[]",
+				"internalType": "struct TacoInfo.data[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -146,7 +146,7 @@ export default [
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct TacoStaking.data[]",
+				"internalType": "struct TacoInfo.data[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -176,7 +176,7 @@ export default [
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct TacoStaking.data[]",
+				"internalType": "struct TacoInfo.data[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -206,7 +206,7 @@ export default [
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct TacoStaking.data[]",
+				"internalType": "struct TacoInfo.data[]",
 				"name": "",
 				"type": "tuple[]"
 			}
