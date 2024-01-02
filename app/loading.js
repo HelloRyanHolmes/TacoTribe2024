@@ -1,5 +1,5 @@
 import Image from 'next/image'
-const loaderGif = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/ui/loader.gif"
+const loaderGif = "https://d19rxn9gjbwl25.cloudfront.net/ui/loader.gif"
 
 export default function Loading() {
     // Or a custom loading skeleton component

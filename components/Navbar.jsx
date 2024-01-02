@@ -32,13 +32,12 @@ const minimartBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/marketDow
 const backBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/backSmallUp.png'
 const backBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/backSmallDown.png'
 
-const tacoBtnUp = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/Taco+Tribe+Up.png'
-const tacoBtnDown = 'https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/Taco+Tribe+DOWN.png'
+const tacoBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/Taco+Tribe+Up.png'
+const tacoBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/Taco+Tribe+DOWN.png'
 
-import dynamic from 'next/dynamic'
 
 //Button Layout
-import { useState, useEffect} from 'react'
+import { useEffect, useState } from 'react'
 import NavButton from './UI/Buttons/navButton'
 import { WalletConnectButton } from "./UI/Buttons/walletConnectButton"
 import GuacBalance from "./UI/Labels/guacBalance"

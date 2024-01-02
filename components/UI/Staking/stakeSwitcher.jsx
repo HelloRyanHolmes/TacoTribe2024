@@ -1,22 +1,21 @@
 "use client"
 
-import Image from 'next/image'
 
 //Stake Buttons
-const babyTacoButtonUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/Staking+Buttons/BabyUP.png"
-const babyTacoButtonDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/Staking+Buttons/BabyDOWN.png"
-const doodledButtonUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/Staking+Buttons/DoodUP.png"
-const doodledButtonDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/Staking+Buttons/DoodDOWN.png"
-const guacoUP = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/Staking+Buttons/GuacoUP.png"
-const guacoDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/Staking+Buttons/GuacoDOWN.png"
-const GVSCUP = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/Staking+Buttons/gvscUP.png"
-const GVSCDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/Staking+Buttons/gvscDOWN.png"
-const pixelDoodledButton = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/Staking+Buttons/PixelDoodUP.png"
-const pixelDoodledButtonDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/Staking+Buttons/PixelDoodDOWN.png"
-const pixelTacoButtonUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/Staking+Buttons/PixelTacoUP.png"
-const pixelTacoButtonDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/Staking+Buttons/PixelDOWN.png"
-const tacoTribeButtonUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/Staking+Buttons/TacoUP.png"
-const tacoTribeButtonDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/Staking+Buttons/TacoDOWN.png"
+const babyTacoButtonUp = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/BabyUP.png"
+const babyTacoButtonDown = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/BabyDOWN.png"
+const doodledButtonUp = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/DoodUP.png"
+const doodledButtonDown = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/DoodDOWN.png"
+const guacoUP = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/GuacoUP.png"
+const guacoDown = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/GuacoDOWN.png"
+const GVSCUP = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/gvscUP.png"
+const GVSCDown = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/gvscDOWN.png"
+const pixelDoodledButton = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/PixelDoodUP.png"
+const pixelDoodledButtonDown = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/PixelDoodDOWN.png"
+const pixelTacoButtonUp = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/PixelTacoUP.png"
+const pixelTacoButtonDown = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/PixelDOWN.png"
+const tacoTribeButtonUp = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/TacoUP.png"
+const tacoTribeButtonDown = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/TacoDOWN.png"
 
 //StakingButtonTemplate
 import StakingButton from '../Buttons/stakingButton'

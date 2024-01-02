@@ -2,9 +2,9 @@ import { ethers } from "ethers";
 import { contractAdds } from "../../../../utils/contractAdds";
 import abi from "../../../../utils/newAbis/guacSourabi";
 
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
-const error = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/ui/error.png"
+const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 
 
 export async function guacSourSetup(address) {

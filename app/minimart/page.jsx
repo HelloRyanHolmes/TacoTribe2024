@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 
-import contruction from "../../assets/projectImages/contructiontaco.png"
+import contruction from "../../assets/projectImages/contructiontaco.png";
 
-import { useAccount } from 'wagmi'
 import { useEffect, useState } from "react";
+import { useAccount } from 'wagmi';
 
 // const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/marketBg.gif";
 import bg from "../../assets/projectImages/taco-raffles/marketBg.gif";
@@ -16,12 +16,10 @@ const bgMobile = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffl
 const banner = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/marketHeader-edited2.png";
 const guacLogo = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Guac logo small.png";
 
-const buyUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/buyUp.png"
-const buyDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/buyDown.png"
+const buyUp = "https://d19rxn9gjbwl25.cloudfront.net/buttons/buyUp.png"
+const buyDown = "https://d19rxn9gjbwl25.cloudfront.net/buttons/buyDown.png"
 
-import MinimartCard from "../../components/UI/Minimart/minimartCard"
 
-import {minimartData} from "../../EDITABLES/minimartData"
 
 export default function Minimart() {
   const { isConnected, address } = useAccount()

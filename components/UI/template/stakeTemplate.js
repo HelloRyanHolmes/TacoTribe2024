@@ -1,18 +1,18 @@
-import Image from "next/image"
+import Image from "next/image";
 
 import Swal from 'sweetalert2';
 
-import { ethers } from "ethers"
-import { useEffect, useState } from "react"
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
 
 
-import { contractAdds } from "../../../utils/contractAdds"
-import { useGlobalContext } from "../../../context/MainContext"
+import { useGlobalContext } from "../../../context/MainContext";
+import { contractAdds } from "../../../utils/contractAdds";
 
-import SoftStake from "../Buttons/StakingButtons/SoftStake"
-import HardStake from "../Buttons/StakingButtons/HardStake"
+import HardStake from "../Buttons/StakingButtons/HardStake";
+import SoftStake from "../Buttons/StakingButtons/SoftStake";
 
-import abinew from "../../../utils/newAbis/consolidationabi"
+import abinew from "../../../utils/newAbis/consolidationabi";
 import NotStaked from "../Buttons/StakingButtons/NotStaked";
 
 
@@ -30,7 +30,7 @@ const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/T
 const claimNFTUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Red Button UP.png"
 const claimNFTDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Red Button dOWN.png"
 
-const error = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/ui/error.png"
+const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 
 
 export default function StakeTemplate({ tacoType }) {
