@@ -25,6 +25,21 @@ export default async function setApprovalForAll(tacoType, address){
 
         if(!status){
             await contract.setApprovalForAll(contractAdds.staking, true);
+
+            Swal.fire({
+              title: 'Approved!',
+              text: 'User NFTs were approved',
+              icon: success,
+              imageAlt: "Taco!",
+              confirmButtonText: 'LFG!',
+              confirmButtonColor: "#facc14",
+              customClass: {
+                container: "border-8 border-black",
+                popup: "bg-white rounded-2xl border-8 border-black",
+                image: "-mb-5",
+                confirmButton: "w-40 text-black"
+              }
+            });
         }
   
       }

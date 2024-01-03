@@ -58,17 +58,21 @@ const NotStaked = ({ holding, tacoType }) => {
   }
 
   async function softStake(tokenId) {
+    setLoader(true);
     try {
       const contract = await stakingSetup();
       await contract?.softStake(tacoType, tokenId);
     }
     catch (err) {
+    setLoader(false);
       console.log(err);
     }
+    setLoader(false);
   }
 
 
   async function hardStake(tokenId) {
+    setLoader(true);
     try {
       await setApprovalForAll(tacoType, address);
       const contract = await stakingSetup();
@@ -76,26 +80,31 @@ const NotStaked = ({ holding, tacoType }) => {
     }
     catch (err) {
       console.log(err);
-      Swal.fire({
-        title: 'Error!',
-        text: 'User rejected Transaction',
-        imageUrl: error,
-        imageWidth: 200,
-        imageHeight: 200,
-        imageAlt: "Taco OOPS!",
-        confirmButtonText: 'Try again!',
-        confirmButtonColor: "#facc14",
-        customClass: {
-          container: "border-8 border-black",
-          popup: "bg-white rounded-2xl border-8 border-black",
-          image: "-mb-5",
-          confirmButton: "w-40 text-black"
-        }
-      });
+    setLoader(false);
+
+      // Swal.fire({
+      //   title: 'Error!',
+      //   text: 'User rejected Transaction',
+      //   imageUrl: error,
+      //   imageWidth: 200,
+      //   imageHeight: 200,
+      //   imageAlt: "Taco OOPS!",
+      //   confirmButtonText: 'Try again!',
+      //   confirmButtonColor: "#facc14",
+      //   customClass: {
+      //     container: "border-8 border-black",
+      //     popup: "bg-white rounded-2xl border-8 border-black",
+      //     image: "-mb-5",
+      //     confirmButton: "w-40 text-black"
+      //   }
+      // });
     }
+    setLoader(false);
+
   }
 
   async function softStakeAll() {
+    setLoader(true);
     try {
       const contract = await stakingSetup();
       const tokenIds = []
@@ -106,11 +115,14 @@ const NotStaked = ({ holding, tacoType }) => {
       await contract?.softStakeAll(tacoType, tokenIds);
     }
     catch (err) {
+    setLoader(false);
       console.log(err);
     }
+    setLoader(false);
   }
 
   async function hardStakeAll() {
+    setLoader(true);
     try {
       await setApprovalForAll(tacoType, address);
       const contract = await stakingSetup();
@@ -122,143 +134,138 @@ const NotStaked = ({ holding, tacoType }) => {
       await contract?.stakeAll(tacoType, tokenIds);
     }
     catch (err) {
+    setLoader(false);
       console.log(err);
-      Swal.fire({
-        title: 'Error!',
-        text: 'User Rejected Transaction',
-        imageUrl: error,
-        imageWidth: 200,
-        imageHeight: 200,
-        imageAlt: "Taco OOPS!",
-        confirmButtonText: 'Try Again!',
-        confirmButtonColor: "#facc14",
-        customClass: {
-          container: "border-8 border-black",
-          popup: "bg-white rounded-2xl border-8 border-black",
-          image: "-mb-5",
-          confirmButton: "w-40 text-black"
-        }
-      });
+      
     }
+    setLoader(false);
   }
 
 
 
   async function fetchNFTs() {
-    const dispArr = [];
-    console.log(holding, tacoType);
-    switch (tacoType) {
-      case 0:
-        for (let i = 0; i < holding.length; i++) {
-          const stakeType = holding[i].stakeType;
-
-          if (stakeType == 0) {
-
-            const name = "Taco #" + holding[i].tokenId;
-            const img = "https://ipfs.io/ipfs/bafybeicrkpi7ejh2dabsndjnlrm2xgg65dj2qa4e3jh5bdbvfarmaqdkv4/" + holding[i].tokenId + ".png";
-            const tokenId = holding[i].tokenId;
-            dispArr.push({ name, tokenId, img, tacoType })
+    setLoader(true);
+    try{
+      
+      const dispArr = [];
+      console.log(holding, tacoType);
+      switch (tacoType) {
+        case 0:
+          for (let i = 0; i < holding.length; i++) {
+            const stakeType = holding[i].stakeType;
+  
+            if (stakeType == 0) {
+  
+              const name = "Taco #" + holding[i].tokenId;
+              const img = "https://ipfs.io/ipfs/bafybeicrkpi7ejh2dabsndjnlrm2xgg65dj2qa4e3jh5bdbvfarmaqdkv4/" + holding[i].tokenId + ".png";
+              const tokenId = holding[i].tokenId;
+              dispArr.push({ name, tokenId, img, tacoType })
+            }
           }
-        }
-        setDisplayNFT(dispArr);
-        break;
-
-      case 1:
-        for (let i = 0; i < holding.length; i++) {
-          const stakeType = holding[i].stakeType;
-
-          if (stakeType == 0) {
-            const name = "Doodled Tacos #" + holding[i].tokenId;
-            const img = "https://ipfs.io/ipfs/bafybeife2zu3n76ktqtn7myxpm2pfd3uhsxpxbg2gkaen2bssdh3rr47ly/" + holding[i].tokenId + ".png";
-            const tokenId = holding[i].tokenId.tokenId;
-            dispArr.push({ name, tokenId, img, tacoType })
+          setDisplayNFT(dispArr);
+          break;
+  
+        case 1:
+          for (let i = 0; i < holding.length; i++) {
+            const stakeType = holding[i].stakeType;
+  
+            if (stakeType == 0) {
+              const name = "Doodled Tacos #" + holding[i].tokenId;
+              const img = "https://ipfs.io/ipfs/bafybeife2zu3n76ktqtn7myxpm2pfd3uhsxpxbg2gkaen2bssdh3rr47ly/" + holding[i].tokenId + ".png";
+              const tokenId = holding[i].tokenId.tokenId;
+              dispArr.push({ name, tokenId, img, tacoType })
+            }
           }
-        }
-        setDisplayNFT(dispArr);
-        break;
-
-      case 3:
-        for (let i = 0; i < holding.length; i++) {
-          const stakeType = holding[i].stakeType;
-
-          if (stakeType == 0) {
-            const name = "Pixel Taco #" + holding[i].tokenId;
-            const img = "https://ipfs.io/ipfs/bafybeib2rme47vsbkaroqwuqidhswujjztevjhrc3ac6tg5ywwshhmfiya/" + holding[i].tokenId + ".png";
-            const tokenId = holding[i].tokenId;
-            dispArr.push({ name, tokenId, img, tacoType })
+          setDisplayNFT(dispArr);
+          break;
+  
+        case 3:
+          for (let i = 0; i < holding.length; i++) {
+            const stakeType = holding[i].stakeType;
+  
+            if (stakeType == 0) {
+              const name = "Pixel Taco #" + holding[i].tokenId;
+              const img = "https://ipfs.io/ipfs/bafybeib2rme47vsbkaroqwuqidhswujjztevjhrc3ac6tg5ywwshhmfiya/" + holding[i].tokenId + ".png";
+              const tokenId = holding[i].tokenId;
+              dispArr.push({ name, tokenId, img, tacoType })
+            }
           }
-        }
-        setDisplayNFT(dispArr);
-        break;
-
-      case 5:
-        for (let i = 0; i < holding.length; i++) {
-          const stakeType = holding[i].stakeType;
-
-          if (stakeType == 0) {
-
-            const name = "Baby Taco #" + holding[i].tokenId;
-            const img = "https://ipfs.io/ipfs/bafybeiangojvxwyo7rcxtofmcetd2rj2jlchyscbyaqcciiwcazc5qrlwm/" + holding[i].tokenId + ".png";
-            const tokenId = holding[i].tokenId;
-            dispArr.push({ name, tokenId, img, tacoType })
+          setDisplayNFT(dispArr);
+          break;
+  
+        case 5:
+          for (let i = 0; i < holding.length; i++) {
+            const stakeType = holding[i].stakeType;
+  
+            if (stakeType == 0) {
+  
+              const name = "Baby Taco #" + holding[i].tokenId;
+              const img = "https://ipfs.io/ipfs/bafybeiangojvxwyo7rcxtofmcetd2rj2jlchyscbyaqcciiwcazc5qrlwm/" + holding[i].tokenId + ".png";
+              const tokenId = holding[i].tokenId;
+              dispArr.push({ name, tokenId, img, tacoType })
+            }
           }
-        }
-        setDisplayNFT(dispArr);
-        break;
-
-      case 4:
-        for (let i = 0; i < holding.length; i++) {
-          const stakeType = holding[i].stakeType;
-
-          if (stakeType == 0) {
-
-            const name = "Pixel Doodle Tacos #" + holding[i].tokenId;
-            const img = "https://ipfs.io/ipfs/bafybeifgtr33q3k6t5b45gyp3hxloselihxqqj3qo4pamhyzpen54qizni/" + holding[i].tokenId + ".png";
-            const tokenId = holding[i].tokenId;
-            dispArr.push({ name, tokenId, img, tacoType })
+          setDisplayNFT(dispArr);
+          break;
+  
+        case 4:
+          for (let i = 0; i < holding.length; i++) {
+            const stakeType = holding[i].stakeType;
+  
+            if (stakeType == 0) {
+  
+              const name = "Pixel Doodle Tacos #" + holding[i].tokenId;
+              const img = "https://ipfs.io/ipfs/bafybeifgtr33q3k6t5b45gyp3hxloselihxqqj3qo4pamhyzpen54qizni/" + holding[i].tokenId + ".png";
+              const tokenId = holding[i].tokenId;
+              dispArr.push({ name, tokenId, img, tacoType })
+            }
           }
-        }
-        setDisplayNFT(dispArr);
-        break;
-
-      case 6:
-        for (let i = 0; i < holding.length; i++) {
-          const stakeType = holding[i].stakeType;
-
-          if (stakeType == 0) {
-
-            const name = "Guaco Tribe #" + holding[i].tokenId;
-            const img = "https://ipfs.io/ipfs/bafybeig5rzdjulqlq3j2ei2cg6edm5jrs36blz6hxyqr6ugfhz7x2yv4ve/" + holding[i].tokenId + ".png";
-            const tokenId = holding[i].tokenId;
-            dispArr.push({ name, tokenId, img, tacoType })
+          setDisplayNFT(dispArr);
+          break;
+  
+        case 6:
+          for (let i = 0; i < holding.length; i++) {
+            const stakeType = holding[i].stakeType;
+  
+            if (stakeType == 0) {
+  
+              const name = "Guaco Tribe #" + holding[i].tokenId;
+              const img = "https://ipfs.io/ipfs/bafybeig5rzdjulqlq3j2ei2cg6edm5jrs36blz6hxyqr6ugfhz7x2yv4ve/" + holding[i].tokenId + ".png";
+              const tokenId = holding[i].tokenId;
+              dispArr.push({ name, tokenId, img, tacoType })
+            }
           }
-        }
-        setDisplayNFT(dispArr);
-        break;
-
-      case 7:
-        for (let i = 0; i < holding.length; i++) {
-          const stakeType = holding[i].stakeType;
-
-          if (stakeType == 0) {
-
-            const name = "GUAC vs SOUR CREAM #" + holding[i].tokenId;
-            const img = "https://ipfs.io/ipfs/bafybeiaglnj726cekyeqp3lf3rkj5pltcymo2irlcgvpa7p75lqg5zxhe4/" + holding[i].tokenId + ".png";
-            const tokenId = holding[i].tokenId;
-
-            dispArr.push({ name, tokenId, img, tacoType })
+          setDisplayNFT(dispArr);
+          break;
+  
+        case 7:
+          for (let i = 0; i < holding.length; i++) {
+            const stakeType = holding[i].stakeType;
+  
+            if (stakeType == 0) {
+  
+              const name = "GUAC vs SOUR CREAM #" + holding[i].tokenId;
+              const img = "https://ipfs.io/ipfs/bafybeiaglnj726cekyeqp3lf3rkj5pltcymo2irlcgvpa7p75lqg5zxhe4/" + holding[i].tokenId + ".png";
+              const tokenId = holding[i].tokenId;
+  
+              dispArr.push({ name, tokenId, img, tacoType })
+            }
           }
-        }
-        setDisplayNFT(dispArr);
-        break;
-
-      default:
-        console.log("Not found");
-        break;
-
+          setDisplayNFT(dispArr);
+          break;
+  
+        default:
+          console.log("Not found");
+          break;
+  
+      }
     }
 
-
+    catch(err){
+      console.log(err);
+    setLoader(false);
+    }
+    setLoader(false);
   }
 
   useEffect(() => {

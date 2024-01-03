@@ -156,46 +156,163 @@ const HardStake = ({ tacoType }) => {
     const dispArr = []
     const consolidationDataArray = [consolidationContract.balanceTaco(), consolidationContract.balanceDoodle(), "", consolidationContract.balancePT(), consolidationContract.balanceDP(), consolidationContract.balanceBT(), consolidationContract.balanceGT(), consolidationContract.balanceGS()]
 
-    const result = await consolidationDataArray[tacoType];
-    // console.log(result);
 
-    // for(let item of result) {
-    //   const tokenId = Number(item.tokenId);
-    //   console.log("Token ID", tokenId)
-    //   const owner = await stakingContract.tokenOwnerOf(tacoType, tokenId);
-    //   console.log("HIII")
-    //   const isOwner = owner.toLowerCase() === address.toLowerCase();
-    //   console.log(isOwner)
+    switch(tacoType){
+      case 0:
+        const result0 = await consolidationDataArray[tacoType];
 
-    //   if (isOwner) {
-    //     const name = "Taco #" + tokenId;
-    //     const img = "https://ipfs.io/ipfs/bafybeicrkpi7ejh2dabsndjnlrm2xgg65dj2qa4e3jh5bdbvfarmaqdkv4/" + tokenId + ".png";
-    //     const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
-    //     console.log("HELLO BROOO", name, img, unclaimedAmount);
-    //     dispArr.push({ tokenId, img, name, unclaimedAmount });
-    //   }
-    // }
+        await Promise.all(result0.map( async (item) => {
+          // console.log("Lalala", dispArr)
+          const tokenId = Number(item.tokenId);
+          const owner = await stakingContract.tokenOwnerOf(tacoType, tokenId);
+          const isOwner = owner.toLowerCase() === address.toLowerCase();
+          console.log(isOwner)
+    
+          if (isOwner) {
+            const name = "Taco #" + tokenId;
+            const img = "https://ipfs.io/ipfs/bafybeicrkpi7ejh2dabsndjnlrm2xgg65dj2qa4e3jh5bdbvfarmaqdkv4/" + tokenId + ".png";
+            const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
 
-    await Promise.all(result.map( async (item) => {
-      // console.log("Lalala", dispArr)
-      const tokenId = Number(item.tokenId);
-      const owner = await stakingContract.tokenOwnerOf(tacoType, tokenId);
-      const isOwner = owner.toLowerCase() === address.toLowerCase();
-      console.log(isOwner)
+            dispArr.push({ tokenId, img, name, unclaimedAmount })
+          }
+        }))
+    
+        setDisplayNFT(dispArr);
+        break;
 
-      if (isOwner) {
-        const name = "Taco #" + tokenId;
-        const img = "https://ipfs.io/ipfs/bafybeicrkpi7ejh2dabsndjnlrm2xgg65dj2qa4e3jh5bdbvfarmaqdkv4/" + tokenId + ".png";
-        const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
-        console.log("HELLO BROOO", name, img, unclaimedAmount);
-        dispArr.push({ tokenId, img, name, unclaimedAmount })
+      case 3:
+        const result3 = await consolidationDataArray[tacoType];
+
+      await Promise.all(result3.map( async (item) => {
+        // console.log("Lalala", dispArr)
+        const tokenId = Number(item.tokenId);
+        const owner = await stakingContract.tokenOwnerOf(tacoType, tokenId);
+        const isOwner = owner.toLowerCase() === address.toLowerCase();
+        console.log(isOwner)
+
+        if (isOwner) {
+          const name = "Pixel Taco #" + tokenId;
+          const img = "https://ipfs.io/ipfs/bafybeib2rme47vsbkaroqwuqidhswujjztevjhrc3ac6tg5ywwshhmfiya/" + tokenId + ".png";
+          const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
+
+          dispArr.push({ tokenId, img, name, unclaimedAmount })
+        }
+      }))
+
+      setDisplayNFT(dispArr);
+      break;
+
+      case 1:
+        const result1 = await consolidationDataArray[tacoType];
+
+      await Promise.all(result1.map( async (item) => {
+        // console.log("Lalala", dispArr)
+        const tokenId = Number(item.tokenId);
+        const owner = await stakingContract.tokenOwnerOf(tacoType, tokenId);
+        const isOwner = owner.toLowerCase() === address.toLowerCase();
+        console.log(isOwner)
+
+        if (isOwner) {
+          const name = "Doodled Tacos #" + tokenId;
+          const img = "https://ipfs.io/ipfs/bafybeife2zu3n76ktqtn7myxpm2pfd3uhsxpxbg2gkaen2bssdh3rr47ly/" + tokenId + ".png";
+          const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
+
+          dispArr.push({ tokenId, img, name, unclaimedAmount })
+        }
+      }))
+
+      setDisplayNFT(dispArr);
+      break;
+
+      case 4:
+        const result4 = await consolidationDataArray[tacoType];
+
+      await Promise.all(result4.map( async (item) => {
+        // console.log("Lalala", dispArr)
+        const tokenId = Number(item.tokenId);
+        const owner = await stakingContract.tokenOwnerOf(tacoType, tokenId);
+        const isOwner = owner.toLowerCase() === address.toLowerCase();
+        console.log(isOwner)
+
+        if (isOwner) {
+          const name = "Pixel Doodle Tacos #" + tokenId;
+          const img = "https://ipfs.io/ipfs/bafybeifgtr33q3k6t5b45gyp3hxloselihxqqj3qo4pamhyzpen54qizni/" + tokenId + ".png";
+          const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
+
+          dispArr.push({ tokenId, img, name, unclaimedAmount })
+        }
+      }))
+
+      setDisplayNFT(dispArr);
+      break;
+
+      case 5:
+        const result5 = await consolidationDataArray[tacoType];
+
+      await Promise.all(result5.map( async (item) => {
+        // console.log("Lalala", dispArr)
+        const tokenId = Number(item.tokenId);
+        const owner = await stakingContract.tokenOwnerOf(tacoType, tokenId);
+        const isOwner = owner.toLowerCase() === address.toLowerCase();
+        console.log(isOwner)
+
+        if (isOwner) {
+          const name = "Baby Taco #" + tokenId;
+          const img = "https://ipfs.io/ipfs/bafybeiangojvxwyo7rcxtofmcetd2rj2jlchyscbyaqcciiwcazc5qrlwm/" + tokenId + ".png";
+          const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
+
+          dispArr.push({ tokenId, img, name, unclaimedAmount })
+        }
+      }))
+
+      setDisplayNFT(dispArr);
+      break;
+
+      case 6:
+        const result6 = await consolidationDataArray[tacoType];
+
+      await Promise.all(result6.map( async (item) => {
+        // console.log("Lalala", dispArr)
+        const tokenId = Number(item.tokenId);
+        const owner = await stakingContract.tokenOwnerOf(tacoType, tokenId);
+        const isOwner = owner.toLowerCase() === address.toLowerCase();
+        console.log(isOwner)
+
+        if (isOwner) {
+          const name = "Guaco Tribe #" + tokenId;
+          const img = "https://ipfs.io/ipfs/bafybeig5rzdjulqlq3j2ei2cg6edm5jrs36blz6hxyqr6ugfhz7x2yv4ve/" + tokenId + ".png";
+          const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
+
+          dispArr.push({ tokenId, img, name, unclaimedAmount })
+        }
+      }))
+
+      setDisplayNFT(dispArr);
+      break;
+
+      case 7:
+        const result7 = await consolidationDataArray[tacoType];
+
+      await Promise.all(result7.map( async (item) => {
+        // console.log("Lalala", dispArr)
+        const tokenId = Number(item.tokenId);
+        const owner = await stakingContract.tokenOwnerOf(tacoType, tokenId);
+        const isOwner = owner.toLowerCase() === address.toLowerCase();
+        console.log(isOwner)
+
+        if (isOwner) {
+          const name = "GUAC VS SOUR CREAM #" + tokenId;
+          const img = "https://ipfs.io/ipfs/bafybeiaglnj726cekyeqp3lf3rkj5pltcymo2irlcgvpa7p75lqg5zxhe4/" + tokenId + ".png";
+          const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
+
+          dispArr.push({ tokenId, img, name, unclaimedAmount })
+        }
+      }))
+
+      default:
+        console.log("Not here");
       }
-    }))
-
-    console.log("Sonaiii", dispArr)
-    // console.log("giii", dispArr)
-
-    setDisplayNFT(dispArr);
+    
   }
 
   useEffect(() => {
