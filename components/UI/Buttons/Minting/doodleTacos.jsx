@@ -3,19 +3,19 @@
 import { ethers } from "ethers"
 import Image from 'next/image'
 import { useState } from "react"
+import Swal from 'sweetalert2'
 import { contractAdds } from "../../../../utils/contractAdds"
 import abi from "../../../../utils/newAbis/doodletacosabi"
-import Swal from 'sweetalert2'
 
 import { useGlobalContext } from "../../../../context/MainContext"
 
 import arrowright from "../../../../assets/projectImages/arrowright.png"
 
 
-const claimUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/Mint_Button_UP.png"
-const claimDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/Mint_Button_DOWN.png"
+const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/buttons/Mint_Button_UP.png"
+const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/buttons/Mint_Button_DOWN.png"
 
-const error = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/ui/error.png"
+const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 
 import { useAccount } from 'wagmi'
 

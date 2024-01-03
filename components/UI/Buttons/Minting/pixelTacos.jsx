@@ -3,9 +3,9 @@
 import Image from 'next/image'
 
 import { ethers } from "ethers"
+import Swal from 'sweetalert2'
 import { contractAdds } from "../../../../utils/contractAdds"
 import pixelTacosabi from "../../../../utils/newAbis/pixelTacosabi"
-import Swal from 'sweetalert2'
 
 import { useGlobalContext } from "../../../../context/MainContext"
 
@@ -14,7 +14,7 @@ import { useAccount } from 'wagmi'
 const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+UP.png"
 const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+DOWN.png"
 
-const error = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/ui/error.png"
+const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 
 export async function pixelMintSetup(address) {
 

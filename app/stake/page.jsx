@@ -1,13 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { useAccount } from 'wagmi'
+import { useEffect, useState } from "react";
+import { useAccount } from 'wagmi';
 
 import Image from "next/image";
-import StakeTemplate from "../../components/UI/template/stakeTemplate"
+import StakeTemplate from "../../components/UI/template/stakeTemplate";
 
-import StakeSwitcher from "../../components/UI/Staking/stakeSwitcher"
-import { useGlobalContext } from "../../context/MainContext";
+import StakeSwitcher from "../../components/UI/Staking/stakeSwitcher";
 
 
 const banner = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/banner.png";
@@ -20,7 +19,7 @@ const stakeDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/B
 const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+UP.png"
 const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+DOWN.png"
 
-const error = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/ui/error.png"
+const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 
 // const switchUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/gREEN_bUTTON.png"
 // const switchDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/gREEN_Button_DOWN.png"

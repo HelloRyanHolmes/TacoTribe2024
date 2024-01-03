@@ -1,16 +1,16 @@
 "use client"
 
-import { useEffect, useState } from "react";
-import { contractAdds } from "../../../utils/contractAdds"
-import guacTokenabi from "../../../utils/newAbis/guacTokenabi";
-import { useAccount } from 'wagmi'
+import { useEffect } from "react";
+import Swal from 'sweetalert2';
+import { useAccount } from 'wagmi';
 import { useGlobalContext } from "../../../context/MainContext";
-import Swal from 'sweetalert2'
+import { contractAdds } from "../../../utils/contractAdds";
+import guacTokenabi from "../../../utils/newAbis/guacTokenabi";
 
-import {ethers} from "ethers"
+import { ethers } from "ethers";
 
 
-const error = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/ui/error.png"
+const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 
 async function guacSetup(address){
     const guacAdd = contractAdds.guacToken;

@@ -1,13 +1,12 @@
 'use client'
 
-import Image from "next/image"
+import Image from "next/image";
 
-import { useState } from "react";
 
 const guacLogo = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Guac logo small.png";
 
-const buyUp = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/buyUp.png"
-const buyDown = "https://tacotribe.s3.ap-south-1.amazonaws.com/assets/buttons/buyDown.png"
+const buyUp = "https://d19rxn9gjbwl25.cloudfront.net/buttons/buyUp.png"
+const buyDown = "https://d19rxn9gjbwl25.cloudfront.net/buttons/buyDown.png"
 
 export default function MinimartCard({ id, name, img, cost, stateChangeFunction }) {
 
