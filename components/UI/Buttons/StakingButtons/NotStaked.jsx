@@ -271,7 +271,7 @@ const NotStaked = ({ holding, tacoType }) => {
         {displayNFT.length > 0 && <button onClick={hardStakeAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full" >Hard Stake All</button>}
         {displayNFT.length > 0 && <button onClick={softStakeAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full" >Soft Stake All</button>}
       </div>
-      <div>
+      <div className="flex flex-wrap items-center justify-center w-full gap-10">
         {
           displayNFT.map((item) => (
             <div className='bg-red-500 border-4 rounded-2xl border-black p-4'>

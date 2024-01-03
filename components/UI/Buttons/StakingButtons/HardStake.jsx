@@ -157,9 +157,27 @@ const HardStake = ({ tacoType }) => {
     const consolidationDataArray = [consolidationContract.balanceTaco(), consolidationContract.balanceDoodle(), "", consolidationContract.balancePT(), consolidationContract.balanceDP(), consolidationContract.balanceBT(), consolidationContract.balanceGT(), consolidationContract.balanceGS()]
 
     const result = await consolidationDataArray[tacoType];
-    console.log(result);
+    // console.log(result);
 
-    await result.map(async (item) => {
+    // for(let item of result) {
+    //   const tokenId = Number(item.tokenId);
+    //   console.log("Token ID", tokenId)
+    //   const owner = await stakingContract.tokenOwnerOf(tacoType, tokenId);
+    //   console.log("HIII")
+    //   const isOwner = owner.toLowerCase() === address.toLowerCase();
+    //   console.log(isOwner)
+
+    //   if (isOwner) {
+    //     const name = "Taco #" + tokenId;
+    //     const img = "https://ipfs.io/ipfs/bafybeicrkpi7ejh2dabsndjnlrm2xgg65dj2qa4e3jh5bdbvfarmaqdkv4/" + tokenId + ".png";
+    //     const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
+    //     console.log("HELLO BROOO", name, img, unclaimedAmount);
+    //     dispArr.push({ tokenId, img, name, unclaimedAmount });
+    //   }
+    // }
+
+    await Promise.all(result.map( async (item) => {
+      // console.log("Lalala", dispArr)
       const tokenId = Number(item.tokenId);
       const owner = await stakingContract.tokenOwnerOf(tacoType, tokenId);
       const isOwner = owner.toLowerCase() === address.toLowerCase();
@@ -170,9 +188,13 @@ const HardStake = ({ tacoType }) => {
         const img = "https://ipfs.io/ipfs/bafybeicrkpi7ejh2dabsndjnlrm2xgg65dj2qa4e3jh5bdbvfarmaqdkv4/" + tokenId + ".png";
         const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
         console.log("HELLO BROOO", name, img, unclaimedAmount);
-        dispArr.push({ tokenId, img, name, unclaimedAmount });
+        dispArr.push({ tokenId, img, name, unclaimedAmount })
       }
-    })
+    }))
+
+    console.log("Sonaiii", dispArr)
+    // console.log("giii", dispArr)
+
     setDisplayNFT(dispArr);
   }
 
@@ -183,10 +205,10 @@ const HardStake = ({ tacoType }) => {
   return (
     <div className="flex flex-col items-center justify-center w-full gap-10">
       <div>
-        {displayNFT.length > 0 && <button onClick={unstakeAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Unstake All</button>}
-        {displayNFT.length > 0 && <button onClick={claimAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Claim All</button>}
+        {displayNFT?.length > 0 && <button onClick={unstakeAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Unstake All</button>}
+        {displayNFT?.length > 0 && <button onClick={claimAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Claim All</button>}
       </div>
-      {console.log("Sayak Gay", displayNFT)}
+      {/* {console.log("Sayak Gay", displayNFT)} */}
       <div>
         {
           displayNFT?.map((item) => (

@@ -23,6 +23,7 @@
     "wagmi": "^1.4.10"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.1",
     "@types/node": "20.10.4",
     "@types/react": "18.2.42",
     "autoprefixer": "^10.0.1",
