@@ -322,6 +322,10 @@ const HardStake = ({ tacoType }) => {
   return (
     <div className="flex flex-col items-center justify-center w-full gap-10">
       <div>
+      {displayNFT.length == 0 &&<div>
+           <h1 className="text-black text-[1.8rem]">Feels so empty in here!</h1>
+           <h1 className="text-black text-[1.5rem]">Hard Stake a Taco to start earning <span className="text-lime-600">$GUAC</span></h1>
+           </div>}
         {displayNFT?.length > 0 && <button onClick={unstakeAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Unstake All</button>}
         {displayNFT?.length > 0 && <button onClick={claimAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Claim All</button>}
       </div>

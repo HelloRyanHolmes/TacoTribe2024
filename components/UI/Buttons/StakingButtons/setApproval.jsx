@@ -7,10 +7,14 @@ import guacoTribeabi from "../../../../utils/newAbis/guacotribeabi"
 import guacSourabi from "../../../../utils/newAbis/guacSourabi";
 import { contractAdds } from '../../../../utils/contractAdds';
 import { ethers } from "ethers"
+// import { useGlobalContext } from "../../../../context/MainContext";
+
 
 
 export default async function setApprovalForAll(tacoType, address){
+  // const { setLoader, refreshGuac } = useGlobalContext();
     
+  // setLoader(true)
     try{
 
         const contractArr = [contractAdds.tacoTribe, contractAdds.doodleTacos, "", contractAdds.pixelTacos, contractAdds.pixelDoodle, contractAdds.babyTacos, contractAdds.guacoTribe, contractAdds.guacSour];
@@ -31,7 +35,7 @@ export default async function setApprovalForAll(tacoType, address){
               text: 'User NFTs were approved',
               icon: success,
               imageAlt: "Taco!",
-              confirmButtonText: 'LFG!',
+              confirmButtonText: 'Stake NOW!',
               confirmButtonColor: "#facc14",
               customClass: {
                 container: "border-8 border-black",
@@ -45,5 +49,7 @@ export default async function setApprovalForAll(tacoType, address){
       }
       catch(err){
         console.log(err);
+        setLoader(false);
       }
+      setLoader(false);
 }

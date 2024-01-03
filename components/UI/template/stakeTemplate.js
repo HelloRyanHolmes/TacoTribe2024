@@ -98,7 +98,8 @@ export default function StakeTemplate({ tacoType }) {
       const guac = Number(ethers.utils.formatEther(String(item.unclaimed)));
       arr.push({tokenId, stakeType, guac});
     })
-
+    
+    setBalance(arr.length)
     setHoldingValue(arr);
     
   }
@@ -129,10 +130,10 @@ export default function StakeTemplate({ tacoType }) {
         
       </div>
 
-      <div className="grid grid-cols-3 border-2 border-black gap-20 max-md:gap-5 max-md:text-sm w-fit mx-auto text-lg px-10 py-2 bg-yellow-400 rounded-full">
-        <button onClick={()=>{setNftType(0)}} className=" text-black hover:scale-105 transition-all duration-300 ease-out">Not Staked</button>
-        <button onClick={()=>{setNftType(1)}} className=" text-black hover:scale-105 transition-all duration-300 ease-out">Soft Staked</button>
-        <button onClick={()=>{setNftType(2)}} className=" text-black hover:scale-105 transition-all duration-300 ease-out">Hard Staked</button>
+      <div className="grid grid-cols-3 gap-5 max-md:gap-5 max-md:text-sm w-fit mx-auto text-lg bg-yellow-200 rounded-full">
+        <button onClick={()=>{setNftType(0)}} className={`rounded-full py-2 ${nftType == 0 && "bg-yellow-400 border-2 border-black"} px-10 text-black hover:scale-105 transition-all duration-300 ease-out`}>Not Staked</button>
+        <button onClick={()=>{setNftType(1)}} className={`rounded-full py-2 ${nftType == 1 && "bg-yellow-400 border-2 border-black"} px-10 text-black hover:scale-105 transition-all duration-300 ease-out`}>Soft Staked</button>
+        <button onClick={()=>{setNftType(2)}} className={`rounded-full py-2 ${nftType == 2 && "bg-yellow-400 border-2 border-black"} px-10 text-black hover:scale-105 transition-all duration-300 ease-out`}>Hard Staked</button>
       </div>
 
       <div className="border-2 border-white bg-white mx-auto w-screen py-5 flex gap-5 px-5 items-center justify-center text-center">

@@ -7,13 +7,13 @@ import { contractAdds } from '../../../../utils/contractAdds';
 import stakingabi from '../../../../utils/newAbis/stakingabi';
 
 import { useAccount } from "wagmi";
-import setApprovalForAll from "../StakingButtons/setApproval";
+import setApprovalForAll from "./setApproval";
 
 
 const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 
 
-const NotStaked = ({ holding, tacoType }) => {
+export default function NotStaked({ holding, tacoType }) {
   const { address, isConnected } = useAccount();
 
   const { setLoader, refreshGuac } = useGlobalContext();
@@ -275,6 +275,10 @@ const NotStaked = ({ holding, tacoType }) => {
   return (
     <div className="flex flex-col items-center justify-center w-full gap-10">
       <div>
+      {displayNFT.length == 0 &&<div>
+           <h1 className="text-black text-[1.8rem]">Seems like you are out of Tacos!</h1>
+           <h1 className="text-black text-[1.5rem]">Get some now to claim more Daily <span className="text-lime-600">$GUAC</span></h1>
+           </div>}
         {displayNFT.length > 0 && <button onClick={hardStakeAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full" >Hard Stake All</button>}
         {displayNFT.length > 0 && <button onClick={softStakeAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full" >Soft Stake All</button>}
       </div>
@@ -301,4 +305,3 @@ const NotStaked = ({ holding, tacoType }) => {
   )
 }
 
-export default NotStaked
