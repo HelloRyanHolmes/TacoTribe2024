@@ -124,7 +124,7 @@ const HardStake = ({ tacoType }) => {
     setLoader(true);
     try {
       const contract = await stakingSetup();
-      const res = await contract?.unStake(tacoType, tokenId);
+      const res = await contract?.unstake(tacoType, tokenId);
       await res.wait();
 
       setLoader(false);
