@@ -377,7 +377,9 @@ const HardStake = ({ tacoType }) => {
 
           dispArr.push({ tokenId, img, name, unclaimedAmount })
         }
-      }))
+      }));
+      setDisplayNFT(dispArr);
+      break;
 
       default:
         console.log("Not here");
