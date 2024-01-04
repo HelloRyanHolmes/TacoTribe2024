@@ -404,11 +404,11 @@ const HardStake = ({ tacoType }) => {
         {displayNFT?.length > 0 && <button onClick={claimAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Claim All</button>}
       </div>
       {/* {console.log("Sayak Gay", displayNFT)} */}
-      <div className="flex flex-row gap-5 flex-wrap justify-center w-full gap-10">
+      <div className="flex flex-row flex-wrap justify-center w-full gap-10">
         {
           displayNFT?.map((item) => (
             <div className='bg-green-400 border-4 rounded-2xl border-black p-4'>
-              <Image alt='taco' width={1080} height={1080} className='w-60 mx-auto rounded-2xl' src={item.img} />
+              <Image alt='taco' width={1080} height={1080} className='w-60 mx-auto rounded-2xl border-2 border-black' src={item.img} />
               <h2 className='text-black text-[1.7rem] mt-4'>{item.name}</h2>
               <h2 className='text-black text-lg'>{item.unclaimedAmount} $GUAC</h2>
               <button onClick={() => { claim(item.tokenId) }} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">

@@ -130,6 +130,12 @@ export default function StakeTemplate({ tacoType }) {
         
       </div>
 
+      <div className="text-black text-center text-lg">
+        <ol>
+          <li>Not Staked: This section shows</li>
+        </ol>
+      </div>
+
       <div className="grid grid-cols-3 gap-5 max-md:gap-5 max-md:text-sm w-fit mx-auto text-lg bg-yellow-200 rounded-full">
         <button onClick={()=>{setNftType(0)}} className={`rounded-full py-2 ${nftType == 0 && "bg-yellow-400 border-2 border-black"} px-10 text-black hover:scale-105 transition-all duration-300 ease-out`}>Not Staked</button>
         <button onClick={()=>{setNftType(1)}} className={`rounded-full py-2 ${nftType == 1 && "bg-yellow-400 border-2 border-black"} px-10 text-black hover:scale-105 transition-all duration-300 ease-out`}>Soft Staked</button>
