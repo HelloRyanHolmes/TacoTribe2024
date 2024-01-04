@@ -61,7 +61,22 @@ export default function NotStaked({ holding, tacoType }) {
     setLoader(true);
     try {
       const contract = await stakingSetup();
-      await contract?.softStake(tacoType, tokenId);
+      const res = await contract?.softStake(tacoType, tokenId);
+      await res.wait();
+      Swal.fire({
+        title: 'Soft Staked!',
+        text: 'NFT was Soft Staked!',
+        icon: 'success',
+        imageAlt: "Taco!",
+        confirmButtonText: 'LFG!',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      }).then((res)=>{window.location.reload()});
     }
     catch (err) {
     setLoader(false);
@@ -76,30 +91,30 @@ export default function NotStaked({ holding, tacoType }) {
     try {
       await setApprovalForAll(tacoType, address);
       const contract = await stakingSetup();
-      await contract?.stake(tacoType, tokenId);
+      const res = await contract?.stake(tacoType, tokenId);
+      await res.wait();
+      setLoader(false);
+      Swal.fire({
+        title: 'Hard Staked!',
+        text: 'NFT was Hard Staked!',
+        icon: 'success',
+        imageAlt: "Taco!",
+        confirmButtonText: 'LFG!',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      }).then((res)=>{window.location.reload()});
     }
     catch (err) {
       console.log(err);
     setLoader(false);
 
-      // Swal.fire({
-      //   title: 'Error!',
-      //   text: 'User rejected Transaction',
-      //   imageUrl: error,
-      //   imageWidth: 200,
-      //   imageHeight: 200,
-      //   imageAlt: "Taco OOPS!",
-      //   confirmButtonText: 'Try again!',
-      //   confirmButtonColor: "#facc14",
-      //   customClass: {
-      //     container: "border-8 border-black",
-      //     popup: "bg-white rounded-2xl border-8 border-black",
-      //     image: "-mb-5",
-      //     confirmButton: "w-40 text-black"
-      //   }
-      // });
     }
-    setLoader(false);
+    // setLoader(false);
 
   }
 
@@ -112,7 +127,22 @@ export default function NotStaked({ holding, tacoType }) {
         const tokenId = item.tokenId;
         tokenIds.push(tokenId);
       })
-      await contract?.softStakeAll(tacoType, tokenIds);
+      const res = await contract?.softStakeAll(tacoType, tokenIds);
+      await res.wait();
+      Swal.fire({
+        title: 'Soft Staked!',
+        text: 'NFTs were Soft Staked',
+        icon: 'success',
+        imageAlt: "Taco!",
+        confirmButtonText: 'LFG!',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      }).then((res)=>{window.location.reload()});
     }
     catch (err) {
     setLoader(false);
@@ -131,7 +161,23 @@ export default function NotStaked({ holding, tacoType }) {
         const tokenId = item.tokenId;
         tokenIds.push(tokenId);
       })
-      await contract?.stakeAll(tacoType, tokenIds);
+      const res = await contract?.stakeAll(tacoType, tokenIds);
+      await res.wait();
+      setLoader(false);
+      Swal.fire({
+        title: 'Hard Staked!',
+        text: 'NFTs were Hard Staked!',
+        icon: 'success',
+        imageAlt: "Taco!",
+        confirmButtonText: 'LFG!',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      }).then((res)=>{window.location.reload()});
     }
     catch (err) {
     setLoader(false);
@@ -144,6 +190,7 @@ export default function NotStaked({ holding, tacoType }) {
 
 
   async function fetchNFTs() {
+    setDisplayNFT([]);
     setLoader(true);
     try{
       
