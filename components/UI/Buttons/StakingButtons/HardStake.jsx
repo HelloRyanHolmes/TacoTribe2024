@@ -383,6 +383,7 @@ const HardStake = ({ tacoType }) => {
 
       default:
         console.log("Not here");
+        break;
       }
     
   }
