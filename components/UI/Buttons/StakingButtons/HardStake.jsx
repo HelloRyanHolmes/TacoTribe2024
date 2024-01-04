@@ -56,13 +56,31 @@ const HardStake = ({ tacoType }) => {
     setLoader(true);
     try {
       const contract = await stakingSetup();
-      await contract?.claim(tacoType, tokenId);
+      const res = await contract?.claim(tacoType, tokenId);
+
+      await res.wait();
+
+      setLoader(false);
+      Swal.fire({
+        title: 'GUAC Claimed!',
+        text: 'GUAC was Claimed!',
+        icon: 'success',
+        imageAlt: "Taco!",
+        confirmButtonText: 'LFG!',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      }).then((res)=>{window.location.reload()});
     }
     catch (err) {
       setLoader(false);
       console.log(err);
     }
-    setLoader(false);
+
   }
 
   async function claimAll() {
@@ -76,26 +94,60 @@ const HardStake = ({ tacoType }) => {
         tokenIds.push(tokenId);
       })
 
-      await contract?.claimAll(tacoType, tokenIds);
+      const res = await contract?.claimAll(tacoType, tokenIds);
+      await res.wait();
+
+      setLoader(false);
+      Swal.fire({
+        title: 'GUAC Claimed!',
+        text: 'GUAC was Claimed!',
+        icon: 'success',
+        imageAlt: "Taco!",
+        confirmButtonText: 'LFG!',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      }).then((res)=>{window.location.reload()});
     }
     catch (err) {
       setLoader(false);
       console.log(err);
     }
-    setLoader(false);
+
   }
 
   async function unStake(tokenId) {
     setLoader(true);
     try {
       const contract = await stakingSetup();
-      await contract?.unStake(tacoType, tokenId);
+      const res = await contract?.unStake(tacoType, tokenId);
+      await res.wait();
+
+      setLoader(false);
+      Swal.fire({
+        title: 'NFT Unstaked!',
+        text: 'NFT was unstaked',
+        icon: 'success',
+        imageAlt: "Taco!",
+        confirmButtonText: 'LFG!',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      }).then((res)=>{window.location.reload()});
     }
     catch (err) {
       console.log(err);
       setLoader(false);
     }
-    setLoader(false);
+
   }
 
   async function unstakeAll() {
@@ -109,7 +161,24 @@ const HardStake = ({ tacoType }) => {
         tokenIds.push(tokenId);
       })
 
-      await contract?.unstakeAll(tacoType, tokenIds);
+      const res = await contract?.unstakeAll(tacoType, tokenIds);
+      await res.wait();
+
+      setLoader(false);
+      Swal.fire({
+        title: 'NFTs Unstaked!',
+        text: 'All NFTs were unstaked',
+        icon: 'success',
+        imageAlt: "Taco!",
+        confirmButtonText: 'LFG!',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      }).then((res)=>{window.location.reload()});
     }
     catch (err) {
       setLoader(false);
@@ -151,6 +220,7 @@ const HardStake = ({ tacoType }) => {
   }
 
   async function getAllNFTs() {
+    setDisplayNFT([]);
     const consolidationContract = await consolidationContractSetup();
     const stakingContract = await stakingSetup();
     const dispArr = []
@@ -316,6 +386,7 @@ const HardStake = ({ tacoType }) => {
   }
 
   useEffect(() => {
+    // setDisplayNFT([]);
     getAllNFTs();
   }, [tacoType])
 
@@ -330,7 +401,7 @@ const HardStake = ({ tacoType }) => {
         {displayNFT?.length > 0 && <button onClick={claimAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Claim All</button>}
       </div>
       {/* {console.log("Sayak Gay", displayNFT)} */}
-      <div>
+      <div className="flex flex-row gap-5 flex-wrap justify-center w-full gap-10">
         {
           displayNFT?.map((item) => (
             <div className='bg-green-400 border-4 rounded-2xl border-black p-4'>

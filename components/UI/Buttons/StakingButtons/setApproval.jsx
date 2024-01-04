@@ -7,6 +7,8 @@ import guacoTribeabi from "../../../../utils/newAbis/guacotribeabi"
 import guacSourabi from "../../../../utils/newAbis/guacSourabi";
 import { contractAdds } from '../../../../utils/contractAdds';
 import { ethers } from "ethers"
+import Swal from 'sweetalert2';
+
 // import { useGlobalContext } from "../../../../context/MainContext";
 
 
@@ -49,7 +51,7 @@ export default async function setApprovalForAll(tacoType, address){
       }
       catch(err){
         console.log(err);
-        setLoader(false);
+        // setLoader(false);
       }
-      setLoader(false);
+      // setLoader(false);
 }

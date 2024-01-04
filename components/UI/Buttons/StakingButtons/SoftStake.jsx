@@ -59,13 +59,30 @@ const SoftStake = ({ holding, tacoType }) => {
     setLoader(true);
     try {
       const contract = await stakingSetup();
-      await contract?.claim(tacoType, tokenId);
+      const res = await contract?.claim(tacoType, tokenId);
+      await res.wait();
+
+      setLoader(false);
+      Swal.fire({
+        title: 'GUAC Claimed!',
+        text: 'GUAC was claimed!',
+        icon: 'success',
+        imageAlt: "Taco!",
+        confirmButtonText: 'LFG!',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      }).then((res)=>{window.location.reload()});
     }
     catch (err) {
       setLoader(false);
       console.log(err);
     }
-    setLoader(false);
+
   }
 
   async function claimAll() {
@@ -79,46 +96,16 @@ const SoftStake = ({ holding, tacoType }) => {
         tokenIds.push(tokenId);
       })
 
-      await contract?.claimAll(tacoType, tokenIds);
-    }
-    catch (err) {
+      const res = await contract?.claimAll(tacoType, tokenIds);
+      await res.wait();
+
       setLoader(false);
-      console.log(err);
-    }
-    setLoader(false);
-  }
-
-  async function setApproval() {
-    setLoader(true);
-
-    try {
-      await setApprovalForAll(tacoType, address);
-    }
-    catch (err) {
-      setLoader(false);
-      console.log(err);
-    }
-    setLoader(false);
-  }
-
-  async function hardStake(tokenId) {
-    try {
-      await setApproval().then(async (res) => {
-
-        const contract = await stakingSetup();
-        await contract?.stake(tacoType, tokenId);
-      });
-    }
-    catch (err) {
-      console.log(err);
       Swal.fire({
-        title: 'Error!',
-        text: 'User Denied Transaction',
-        imageUrl: error,
-        imageWidth: 200,
-        imageHeight: 200,
-        imageAlt: "Taco OOPS!",
-        confirmButtonText: 'Try again!',
+        title: 'GUAC Claimed!',
+        text: 'GUAC was claimed!',
+        icon: 'success',
+        imageAlt: "Taco!",
+        confirmButtonText: 'LFG!',
         confirmButtonColor: "#facc14",
         customClass: {
           container: "border-8 border-black",
@@ -126,33 +113,69 @@ const SoftStake = ({ holding, tacoType }) => {
           image: "-mb-5",
           confirmButton: "w-40 text-black"
         }
-      })
+      }).then((res)=>{window.location.reload()});
     }
+    catch (err) {
+      setLoader(false);
+      console.log(err);
+    }
+    setLoader(false);
+  }
+
+
+  async function hardStake(tokenId) {
+    try {
+     
+        await setApprovalForAll(tacoType, address);
+        const contract = await stakingSetup();
+        const res = await contract?.stake(tacoType, tokenId);
+        await res.wait();
+
+      setLoader(false);
+      Swal.fire({
+        title: 'Hard Staked!',
+        text: 'NFT was Hard Staked!',
+        icon: 'success',
+        imageAlt: "Taco!",
+        confirmButtonText: 'LFG!',
+        confirmButtonColor: "#facc14",
+        customClass: {
+          container: "border-8 border-black",
+          popup: "bg-white rounded-2xl border-8 border-black",
+          image: "-mb-5",
+          confirmButton: "w-40 text-black"
+        }
+      }).then((res)=>{window.location.reload()});
+
+    }
+    catch (err) {
+      console.log(err);
+        }
+      
+    
   }
 
   async function hardStakeAll() {
     try {
-      await setApproval().then(async (res) => {
-
+      
+      await setApprovalForAll(tacoType, address);
         const contract = await stakingSetup();
         const tokenIds = []
         displayNFT.map((item) => {
           const tokenId = item.tokenId;
           tokenIds.push(tokenId);
         })
-        await contract?.stakeAll(tacoType, tokenIds);
-      });
-    }
-    catch (err) {
-      console.log(err);
+        const res = await contract?.stakeAll(tacoType, tokenIds);
+
+        await res.wait();
+
+      setLoader(false);
       Swal.fire({
-        title: 'Error!',
-        text: 'User denied transaction!',
-        imageUrl: error,
-        imageWidth: 200,
-        imageHeight: 200,
-        imageAlt: "Taco OOPS!",
-        confirmButtonText: 'Try Again',
+        title: 'Hard Stakedd!',
+        text: 'NFT was Hard Staked!',
+        icon: 'success',
+        imageAlt: "Taco!",
+        confirmButtonText: 'LFG!',
         confirmButtonColor: "#facc14",
         customClass: {
           container: "border-8 border-black",
@@ -160,11 +183,16 @@ const SoftStake = ({ holding, tacoType }) => {
           image: "-mb-5",
           confirmButton: "w-40 text-black"
         }
-      })
+      }).then((res)=>{window.location.reload()});
+
+    }
+    catch (err) {
+      console.log(err);
     }
   }
 
   async function fetchNFTs() {
+    setDisplayNFT([])
     const dispArr = [];
     console.log(holding, tacoType);
     switch (tacoType) {
@@ -291,6 +319,19 @@ const SoftStake = ({ holding, tacoType }) => {
   useEffect(() => {
     fetchNFTs();
   }, [holding, tacoType])
+
+
+  useEffect(()=>{
+    if(!setLoader)
+    fetchNFTs();
+  },[setLoader])
+  // useEffect(()=>{
+  //   setDisplayNFT([]);
+  // },[tacoType])
+
+
+
+
   return (
     <div className="flex flex-col items-center justify-center w-full gap-10">
       <div>
@@ -301,7 +342,7 @@ const SoftStake = ({ holding, tacoType }) => {
         {displayNFT.length > 0 && <button onClick={claimAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Claim All</button>}
         {displayNFT.length > 0 && <button onClick={hardStakeAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Hard Stake All</button>}
       </div>
-      <div>
+      <div className="flex flex-row gap-5 flex-wrap justify-center w-full gap-10">
         {
           displayNFT.map((item) => (
             <div className='bg-yellow-400 border-4 rounded-2xl border-black p-4'>
