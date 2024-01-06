@@ -36,7 +36,7 @@ const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 export default function StakeTemplate({ tacoType }) {
   const [img, setImg] = useState("")
   const [balance, setBalance] = useState(0);
-
+  const [reward, setReward] = useState(0)
   const[holdingValue, setHoldingValue] = useState([]);
 
 
@@ -46,10 +46,11 @@ export default function StakeTemplate({ tacoType }) {
 
   const imgArr = [tacoTribe, doodle, "", pixelTaco, pixelDoodledTaco, babyTaco, guacos, gvsc];
   const nameArr = ["Taco Tribe", "Doodle Tacos", "", "Pixel Tacos", "Pixel Doodle Tacos", "Baby Tacos", "Guaco Tribe", "Guac vs Sour Cream"]
+  const rewardAmount = [10, 10, 0, 3, 3, 5, 5, 5];
 
   async function contractSetup(){
 
-
+    setReward(rewardAmount[tacoType]);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     const signer = provider.getSigner();
@@ -124,7 +125,7 @@ export default function StakeTemplate({ tacoType }) {
         <div className="flex flex-col max-md:text-center max-md:items-center gap-2 h-fit w-[80%] mx-auto my-auto">
           <div className="bg-white rounded-full w-full px-4 py-2 shadow shadow-black/20 text-black text-xl"><h2 >{nameArr[tacoType]}</h2></div>
           <div className="bg-white rounded-full w-full px-4 py-2 shadow shadow-black/20 text-black text-xl"><h2 >Available Tacos: {Number(balance)}</h2></div>
-          <div className="w-fit py-1 text-[#73851C] text-3xl"><h2 >Stake your Tacos and earn $GUAC</h2></div>
+          <div className="w-fit py-1 text-[#73851C] text-3xl"><h2 >Stake your Tacos and earn {reward} $GUAC per Taco</h2></div>
           <div className="bg-white rounded-full w-fit px-4 py-1 shadow shadow-black/20 text-black cursor-pointer hover:bg-white/80"><h2 >Learn More</h2></div>
         </div>
         
