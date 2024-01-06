@@ -9,7 +9,7 @@ import abi from "../../../../utils/newAbis/doodletacosabi"
 
 import { useGlobalContext } from "../../../../context/MainContext"
 
-import arrowright from "../../../../assets/projectImages/arrowright.png"
+const arrowright = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/arrowright.png"
 
 
 const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/buttons/Mint_Button_UP.png"

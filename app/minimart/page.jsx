@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 
-import contruction from "../../assets/projectImages/contructiontaco.png";
+const contruction = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/contructiontaco.png";
 
 import { useEffect, useState } from "react";
 import { useAccount } from 'wagmi';
 
 // const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/marketBg.gif";
-import bg from "../../assets/projectImages/taco-raffles/marketBg.gif";
+import bg from "../../assets/marketBg.gif";
 const bgConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/marketLive.png";
 const bgMobile = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/marketBgMobile.png";
 // const bgMobileConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/marketLiveMobile.png";

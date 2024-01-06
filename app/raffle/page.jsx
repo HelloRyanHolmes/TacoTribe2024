@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useAccount } from 'wagmi'
 import { useEffect, useState } from "react";
 
-import contruction from "../../assets/projectImages/contructiontaco.png"
+const contruction = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/contructiontaco.png"
 
 
 const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleBg.png";
