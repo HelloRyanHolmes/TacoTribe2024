@@ -117,8 +117,8 @@ export default function StakeTemplate({ tacoType }) {
   return (
     <div>
       <div className="w-[95%] md:w-[700px] mx-auto bg-yellow-400 mb-10 overflow-hidden items-center justify-center grid grid-cols-2 max-md:grid-flow-row max-md:grid-cols-1 gap-x-5 p-5 rounded-[32px]">
-        <div className="h-80 my-auto flex flex-col items-center justify-center">
-          <Image alt="taco" width={500} height={500} src={img} className=" object-cover object-center w-[90%]" />
+        <div className="h-64 my-auto flex flex-col items-center justify-center">
+          <Image alt="taco" width={500} height={500} src={img} className={`object-cover object-center ${tacoType !== 0 && tacoType !== 3 && tacoType !== 4 ? "w-[70%]": "w-[90%]"}`} />
 
         </div>
         <div className="flex flex-col max-md:text-center max-md:items-center gap-2 h-fit w-[80%] mx-auto my-auto">
