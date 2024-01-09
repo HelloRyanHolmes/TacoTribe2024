@@ -137,10 +137,10 @@ export default function StakeTemplate({ tacoType }) {
         </ol>
       </div> */}
 
-      <div className="grid grid-cols-3 gap-5 max-md:gap-5 max-md:text-sm w-fit mx-auto text-lg bg-yellow-200 rounded-full">
+      <div className="grid grid-cols-2 gap-5 max-md:gap-5 max-md:text-sm w-fit mx-auto text-lg bg-yellow-200 rounded-full">
         <button onClick={()=>{setNftType(0)}} className={`rounded-full py-2 ${nftType == 0 && "bg-yellow-400 border-2 border-black"} px-10 text-black hover:scale-105 transition-all duration-300 ease-out`}>Not Staked</button>
         <button onClick={()=>{setNftType(1)}} className={`rounded-full py-2 ${nftType == 1 && "bg-yellow-400 border-2 border-black"} px-10 text-black hover:scale-105 transition-all duration-300 ease-out`}>Soft Staked</button>
-        <button onClick={()=>{setNftType(2)}} className={`rounded-full py-2 ${nftType == 2 && "bg-yellow-400 border-2 border-black"} px-10 text-black hover:scale-105 transition-all duration-300 ease-out`}>Hard Staked</button>
+        {/* <button onClick={()=>{setNftType(2)}} className={`rounded-full py-2 ${nftType == 2 && "bg-yellow-400 border-2 border-black"} px-10 text-black hover:scale-105 transition-all duration-300 ease-out`}>Hard Staked</button> */}
       </div>
 
       <div className="border-2 border-white bg-white mx-auto w-screen py-5 flex gap-5 px-5 items-center justify-center text-center">
@@ -148,7 +148,7 @@ export default function StakeTemplate({ tacoType }) {
 
               {(nftType==0) &&<NotStaked holding = {holdingValue} tacoType = {tacoType}/>}
               {(nftType==1) && <SoftStake holding = {holdingValue} tacoType = {tacoType}/>}
-              {(nftType==2)&& <HardStake tacoType = {tacoType}/>}
+              {/* {(nftType==2)&& <HardStake tacoType = {tacoType}/>} */}
 
         </div>
       </div>
