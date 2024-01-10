@@ -46,7 +46,7 @@ export default function StakeTemplate({ tacoType }) {
 
   const imgArr = [tacoTribe, doodle, "", pixelTaco, pixelDoodledTaco, babyTaco, guacos, gvsc];
   const nameArr = ["Taco Tribe", "Doodle Tacos", "", "Pixel Tacos", "Pixel Doodle Tacos", "Baby Tacos", "Guaco Tribe", "Guac vs Sour Cream"]
-  const rewardAmount = [10, 10, 0, 1, 1, 5, 5, 5];
+  const rewardAmount = [10, 10, 0, 3, 3, 5, 5, 5];
 
   async function contractSetup(){
 
