@@ -203,7 +203,8 @@ const SoftStake = ({ holding, tacoType }) => {
           if (stakeType == 1) {
 
             const name = "Taco #" + holding[i].tokenId;
-            const img = "https://ipfs.io/ipfs/ipfs/bafybeifitlan5k3ynacu7cqgtq32l6je5n5ydw2xblhrshduch6rxgstq4/" + holding[i].tokenId + ".png";
+            const img = "https://ipfs.io/ipfs/bafybeifitlan5k3ynacu7cqgtq32l6je5n5ydw2xblhrshduch6rxgstq4/" + holding[i].tokenId + ".png";
+            console.log(img);
             const tokenId = holding[i].tokenId;
             console.log(tokenId);
             const unclaimedAmount = holding[i].guac;
