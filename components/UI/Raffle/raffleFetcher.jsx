@@ -168,7 +168,7 @@ export default function RaffleFetcher({number}){
                 }} className="text-3xl bg-orange-500 text-white px-5 py-3 mt-6 rounded-xl border-2 border-black ">Buy Tickets</button>
             </div> : 
             <div className="bg-yellow-400 h-[37rem] rounded-2xl border-2 border-black w-full p-5 mx-auto">
-                <h1>Fuck you</h1>
+                <h1>Nothing here</h1>
                 </div>}
 
                 {ticketModal && <div className="bg-yellow-400 z-20 border-2 border-black rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
