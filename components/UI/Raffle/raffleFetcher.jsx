@@ -1,6 +1,7 @@
 import { contractAdds } from "../../../utils/contractAdds"
 import raffleabi from "../../../utils/newAbis/raffleabi"
 import erc721abi from "../../../utils/newAbis/erc721abi"
+import erc20abi from "../../../utils/newAbis/erc20abi"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import {useAccount} from "wagmi"
@@ -19,6 +20,8 @@ export default function RaffleFetcher({number}){
     const [limitPerWallet, setLimitPerWallet] = useState(0);
     const [limit, setLimit] = useState(0);
     const [holding, setHolding] = useState(0);
+
+    const [price, setPrice] = useState("");
 
     const arrowright = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/arrowright.png"
 
@@ -66,6 +69,21 @@ export default function RaffleFetcher({number}){
           }
     }
 
+    async function setERC20(){
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+        const signer = provider.getSigner();
+
+        try {
+        const contract = new ethers.Contract(contractAdds.guacToken, erc20abi, signer);
+
+        return contract;
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
     async function changeAmount(val){
         if(amount>=1)
         setAmount(amount+val);
@@ -85,6 +103,7 @@ export default function RaffleFetcher({number}){
 
             
             if(limit > 0){
+                setPrice(String(await contract?.raffleEntryCost(number)));
                 setLimit(limit);
                 setLimitPerWallet(limitperWallet);
                 setHolding(Number(await contract?.walletHolding(number, address)));
@@ -115,6 +134,10 @@ export default function RaffleFetcher({number}){
 
     async function buytickets(){
         try{
+            const erc721contract = await setERC20();
+            console.log(erc721contract, amount*(price));
+            const txn = await erc721contract?.approve(contractAdds.raffle, ethers.utils.parseEther(String(amount*price)));
+            txn?.wait();
             const contract = await setRaffle();
             console.log(number, amount);
             contract?.enterRaffle(number, amount);
@@ -131,7 +154,7 @@ export default function RaffleFetcher({number}){
     },[])
     return(
         <div>
-            {itemExists ? <div className="bg-yellow-400 h-[35rem] rounded-2xl border-2 border-black w-full p-2 mx-auto">
+            {itemExists ? <div className="bg-yellow-400 h-[37rem] rounded-2xl border-2 border-black w-full p-2 mx-auto">
                 <Image width={1920} height={1080} className="w-full mx-auto rounded-2xl border-2 border-black" src={image}/>
                 <h2 className="text-2xl">{name}</h2>
                 <div className="flex gap-3 my-4">
@@ -139,11 +162,12 @@ export default function RaffleFetcher({number}){
                     <h2 className="bg-green-400 text-white rounded-xl p-2">Tickets Sold: {ticketsSold}/{limit}</h2>
                 </div>
                 <h2 className="bg-red-400 text-white rounded-xl py-2">Your Tickets: {holding}/{limitPerWallet}</h2>
+                <h2 className="bg-red-400 text-white rounded-xl py-2 mt-2">Price: {ethers.utils.formatEther(String(price))} $GUAC</h2>
                 <button onClick={()=>{
                     setTicketModal(true);
                 }} className="text-3xl bg-orange-500 text-white px-5 py-3 mt-6 rounded-xl border-2 border-black ">Buy Tickets</button>
             </div> : 
-            <div className="bg-yellow-400 h-[35rem] rounded-2xl border-2 border-black w-full p-5 mx-auto">
+            <div className="bg-yellow-400 h-[37rem] rounded-2xl border-2 border-black w-full p-5 mx-auto">
                 <h1>Fuck you</h1>
                 </div>}
 
