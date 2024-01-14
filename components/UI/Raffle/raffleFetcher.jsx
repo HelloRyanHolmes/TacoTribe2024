@@ -21,6 +21,8 @@ export default function RaffleFetcher({number}){
     const [limit, setLimit] = useState(0);
     const [holding, setHolding] = useState(0);
 
+    const [approved, setApproved]  = useState(false);
+
     const [price, setPrice] = useState("");
 
     const arrowright = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/arrowright.png"
@@ -132,12 +134,23 @@ export default function RaffleFetcher({number}){
         }
     }
 
-    async function buytickets(){
+    async function approve(){
         try{
             const erc721contract = await setERC20();
             console.log(erc721contract, amount*(price));
             const txn = await erc721contract?.approve(contractAdds.raffle, ethers.utils.parseEther(String(amount*price)));
-            txn?.wait();
+            txn.wait().then((res)=>{
+                console.log(res);
+                setApproved(true);
+            })
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
+    async function buytickets(){
+        try{
             const contract = await setRaffle();
             console.log(number, amount);
             contract?.enterRaffle(number, amount);
@@ -163,9 +176,12 @@ export default function RaffleFetcher({number}){
                 </div>
                 <h2 className="bg-red-400 text-white rounded-xl py-2">Your Tickets: {holding}/{limitPerWallet}</h2>
                 <h2 className="bg-red-400 text-white rounded-xl py-2 mt-2">Price: {ethers.utils.formatEther(String(price))} $GUAC</h2>
+                {winner.toUpperCase() != "0X0000000000000000000000000000000000000000" ? <h2>Winner: {winner}</h2>:
                 <button onClick={()=>{
                     setTicketModal(true);
                 }} className="text-3xl bg-orange-500 text-white px-5 py-3 mt-6 rounded-xl border-2 border-black ">Buy Tickets</button>
+                }
+                
             </div> : 
             <div className="bg-yellow-400 h-[37rem] rounded-2xl border-2 border-black w-full p-5 mx-auto">
                 <h1>Nothing here</h1>
@@ -185,9 +201,15 @@ export default function RaffleFetcher({number}){
                                 <Image width={1920} height={1080} src={arrowright} className="w-[3rem]"/>
                             </button>
                         </div>
+                        {!approved ?
+                            <button onClick={approve} className='mt-5 group py-4 px-8 text-white rounded-xl border-2 border-black text-3xl bg-blue-400'>
+                           Approve
+                        </button>
+                        :
                         <button onClick={buytickets} className='mt-5 group py-4 px-8 text-white rounded-xl border-2 border-black text-3xl bg-blue-400'>
                            Buy
                         </button>
+                        }
                     </div>
                 </div>}
         </div>
