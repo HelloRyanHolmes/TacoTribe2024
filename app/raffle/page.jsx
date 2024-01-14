@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useAccount } from 'wagmi'
 import { useEffect, useState } from "react";
 import RaffleFetcher from "../../components/UI/Raffle/raffleFetcher"
+import PastWinners from "../../components/UI/Raffle/pastwinners"
+
 const contruction = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/contructiontaco.png"
 
 
@@ -59,11 +61,12 @@ export default function Raffle() {
           <h1 className="text-5xl">PREVIOUS WINNERS:</h1>
         </div>
         <div className="w-[85%] shadow-inner shadow-black/50 px-6 py-10 flex flex-wrap items-center justify-center gap-10 border-4 rounded-[32px] border-black bg-lime-300 mb-10">
-          {
-            raffleData.map((raffleCard)=>(
-              <RaffleCard id={1} name={"Hello"} img={raffleCard.img} link={raffleCard.link} buttonText={raffleCard.buttonText} />
-            ))
-          }
+        <div className="grid grid-flow-col gap-5 grid-cols-4 w-[90%] mx-auto mt-10">
+          <PastWinners number={1}/>
+          <PastWinners number={2}/>
+          <PastWinners number={3}/>
+          <PastWinners number={4}/>
+        </div>
         </div>
       </main>}
 

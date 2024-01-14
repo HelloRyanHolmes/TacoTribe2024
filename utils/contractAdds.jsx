@@ -21,5 +21,5 @@ export const contractAdds = {
 
     consolidation: "0x589da0F0046510DdE24499f617760b43BF25714D",
 
-    raffle: "0xBEB2d52C8367c2223802AF82242Db0f61692650B"
+    raffle: "0xdF95f392628711E304b9d4a1bB8eEe6560b8e626"
 }
