@@ -134,6 +134,7 @@ export default function RaffleFetcher({number}){
         }
     }
 
+
     async function approve(){
         try{
             const erc721contract = await setERC20();
