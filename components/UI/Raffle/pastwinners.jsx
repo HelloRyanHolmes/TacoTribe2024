@@ -56,13 +56,11 @@ export default function PastWinners({number}){
         const contract = await setRaffle();
 
         const lastwinner = await contract?.lastWinners(number);
+        console.log(lastwinner);
 
-        if(lastwinner.toUpperCase() == "0X0000000000000000000000000000000000000000"){
+        if(lastwinner.toUpperCase() != "0X0000000000000000000000000000000000000000"){
 
             setWinnerAddress(lastwinner);
-    
-    
-            
             const lastWonAddress = await contract?.lastNftWonContract(number);
             const erc721contract = await setERC721(lastWonAddress);
     
@@ -76,6 +74,11 @@ export default function PastWinners({number}){
     
             setNftName(name);
             setNftImage(newimage)
+            console.log(name, newimage);
+        }
+
+        else{
+            setWinnerAddress("None")
         }
     }
 
@@ -85,7 +88,7 @@ export default function PastWinners({number}){
 
     return(
         <>
-       <div className="bg-green-400 p-3 text-center rounded-2xl">
+       <div className="bg-green-400 p-3 text-center rounded-2xl text-white">
             {nftImage != "" && <Image width={1920} height={1080} className="mx-auto rounded-2xl border-2 border-black" src={nftImage}/>}
             <h2 className="text-2xl">{nftName}</h2>
             <h2 className="text-sm">{winnerAddress}</h2>
