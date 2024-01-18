@@ -9,6 +9,12 @@ import stakingabi from '../../../../utils/newAbis/stakingabi';
 
 import { useAccount } from "wagmi";
 
+import claimAllUp from "../../../../assets/claimAllUp.png"
+import claimAllDown from "../../../../assets/claimAllDown.png"
+
+import claimUp from "../../../../assets/claimUp.png"
+import claimDown from "../../../../assets/claimDown.png"
+
 
 const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 
@@ -20,7 +26,6 @@ const SoftStake = ({ holding, tacoType }) => {
 
   const add = contractAdds.staking;
   const { setLoader, refreshGuac } = useGlobalContext();
-
 
   async function stakingSetup() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -340,7 +345,12 @@ const SoftStake = ({ holding, tacoType }) => {
            <h1 className="text-black text-[1.8rem]">Feels so empty in here!</h1>
            <h1 className="text-black text-[1.5rem]">Soft Stake a Taco to start earning <span className="text-lime-600">$GUAC</span></h1>
            </div>}
-        {displayNFT.length > 0 && <button onClick={claimAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Claim All</button>}
+        {displayNFT.length > 0 && 
+          <button onClick={claimAll} className='group cursor-pointer'>
+            <Image width={80} height={80} src={claimAllUp} alt="home" className={"w-40 group-hover:hidden"} />
+            <Image width={80} height={80} src={claimAllDown} alt="home" className={"w-40 hidden group-hover:block"} />
+          </button>
+        }
         {/* {displayNFT.length > 0 && <button onClick={hardStakeAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Hard Stake All</button>} */}
       </div>
       <div className="flex flex-row flex-wrap justify-center w-full gap-10">
@@ -350,8 +360,9 @@ const SoftStake = ({ holding, tacoType }) => {
               <Image alt='taco' width={1080} height={1080} className='w-60 mx-auto rounded-2xl border-2 border-black' src={item.img} />
               <h2 className='text-black text-[1.7rem] mt-4'>{item.name}</h2>
               <h2 className='text-black text-lg'>{item.unclaimedAmount} $GUAC</h2>
-              <button onClick={() => { claim(item.tokenId) }} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">
-                Claim
+              <button onClick={()=>{claim(item?.tokenId)}} className=' group cursor-pointer '>
+                <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
+                <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
               </button>
               {/* <button onClick={() => { hardStake(item.tokenId) }} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">
                 Hard Stake
