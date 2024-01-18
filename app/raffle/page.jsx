@@ -49,7 +49,7 @@ export default function Raffle() {
         <div className="text-black text-center">
           <h1 className="text-4xl">Purchase Tickets Using<span className=" inline-block ml-2 -mb-1"><Image className="w-10" width={100} height={100} src={guacLogo}></Image></span> $Guac!</h1>
 
-          <div className="grid grid-flow-col gap-5 grid-cols-4 w-[90%] mx-auto mt-10">
+          <div className="grid gap-5 lg:grid-cols-4 max-lg:grid-cols-2 max-lg:w-[80%] max-md:grid-cols-1 w-[90%] mx-auto mt-10">
             <RaffleFetcher number = {1}/>
             <RaffleFetcher number = {2}/>
             <RaffleFetcher number = {3}/>
