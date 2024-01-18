@@ -360,7 +360,7 @@ const SoftStake = ({ holding, tacoType }) => {
               <Image alt='taco' width={1080} height={1080} className='w-60 mx-auto rounded-2xl border-2 border-black' src={item.img} />
               <h2 className='text-black text-[1.7rem] mt-4'>{item.name}</h2>
               <h2 className='text-black text-lg'>{item.unclaimedAmount} $GUAC</h2>
-              <button onClick={claim(item?.tokenId)} className=' group cursor-pointer '>
+              <button onClick={()=>{claim(item?.tokenId)}} className=' group cursor-pointer '>
                 <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
                 <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
               </button>
