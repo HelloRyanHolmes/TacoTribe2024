@@ -146,7 +146,7 @@ export default function RaffleFetcher({number}){
             const txn = await erc721contract?.approve(contractAdds.raffle, ethers.utils.parseEther(String(amount*price)));
             txn.wait().then((res)=>{
                 console.log(res);
-                setApproved(true);
+                buytickets();
             })
         }
         catch(err){
