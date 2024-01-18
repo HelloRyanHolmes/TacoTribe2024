@@ -6,6 +6,8 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import {useAccount} from "wagmi"
 
+import noraffle from "../../../assets/raffle_comingsoon.png"
+
 import {ethers} from "ethers"
 
 export default function RaffleFetcher({number}){
@@ -120,6 +122,8 @@ export default function RaffleFetcher({number}){
                 const name = json["name"];
                 const image = json["image"];
                 const newimage = `https://ipfs.io/ipfs/${image.substr(7)}`
+
+                console.log(newimage);
     
                 setWinner(await contract.winningAddress(number));
                 setTicketsSold(Number(await contract?.ticketsSold(number)));
@@ -167,25 +171,25 @@ export default function RaffleFetcher({number}){
         fetchRaffle();
     },[])
     return(
-        <div>
-            {itemExists ? <div className="bg-yellow-400 h-[37rem] rounded-2xl border-2 border-black w-full p-2 mx-auto">
-                <Image width={1920} height={1080} className="w-full mx-auto rounded-2xl border-2 border-black" src={image}/>
+        <div className="flex">
+            {itemExists ? <div className="bg-gradient-to-b from-purple-300 to-orange-300 py-5 rounded-2xl border-2 border-black w-full p-2 mx-auto">
+                <Image width={1920} height={1080} className="w-full min-[1500px]:w-[90%] mx-auto rounded-2xl border-2 border-black" src={image}/>
                 <h2 className="text-2xl">{name}</h2>
-                <div className="flex gap-3 my-4">
-                    <h2 className="bg-blue-400 text-white rounded-xl p-2">Participants: {entrants}</h2>
-                    <h2 className="bg-green-400 text-white rounded-xl p-2">Tickets Sold: {ticketsSold}/{limit}</h2>
+                <div className="flex gap-3 my-4 items-center justify-center">
+                    <h2 className="bg-purple-400 text-white rounded-xl p-2">Participants: {entrants}</h2>
+                    <h2 className="bg-purple-400 text-white  rounded-xl p-2">Tickets Sold: {ticketsSold}/{limit}</h2>
                 </div>
-                <h2 className="bg-red-400 text-white rounded-xl py-2">Your Tickets: {holding}/{limitPerWallet}</h2>
-                <h2 className="bg-red-400 text-white rounded-xl py-2 mt-2">Price: {ethers.utils.formatEther(String(price))} $GUAC</h2>
+                <h2 className="bg-red-400 text-white rounded-xl py-2 w-[80%] mx-auto">Your Tickets: {holding}/{limitPerWallet}</h2>
+                <h2 className="text-black rounded-xl py-2 mt-2 w-[90%] mx-auto text-[1.2rem]">Price: {ethers.utils.formatEther(String(price))} $GUAC</h2>
                 {winner.toUpperCase() != "0X0000000000000000000000000000000000000000" ? <h2>Winner: {winner}</h2>:
                 <button onClick={()=>{
                     setTicketModal(true);
-                }} className="text-3xl bg-orange-500 text-white px-5 py-3 mt-6 rounded-xl border-2 border-black ">Buy Tickets</button>
+                }} className="text-3xl bg-red-500 text-white px-5 py-3 mt-6 rounded-xl border-2 border-black ">Buy Tickets</button>
                 }
                 
             </div> : 
-            <div className="bg-yellow-400 h-[37rem] rounded-2xl border-2 border-black w-full p-5 mx-auto">
-                <h1>Nothing here</h1>
+            <div className="bg-gradient-to-b from-purple-300 to-orange-300 h-[40rem] rounded-2xl border-2 border-black w-full p-5 mx-auto flex items-center justify-center">
+                <Image width={1920} height={1080} src={noraffle} className="w-[90%] "/>
                 </div>}
 
                 {ticketModal && <div className="bg-yellow-400 z-20 border-2 border-black rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">

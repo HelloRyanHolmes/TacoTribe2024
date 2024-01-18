@@ -6,7 +6,7 @@ import Image from "next/image"
 
 import {ethers} from "ethers";
 
-export default function PastWinners({number}){
+export default function PastWinners({num}){
 
     const [winnerAddress, setWinnerAddress] = useState("");
     const [nftName, setNftName] = useState("");
@@ -32,20 +32,12 @@ export default function PastWinners({number}){
 
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
-    
-            const contract1 = new ethers.Contract(contractAdds.raffle, raffleabi, signer);
-            const add = await contract1?.raffleContract(number);
-            console.log(add);
-            if(add.toUpperCase() == "0X0000000000000000000000000000000000000000"){
+
+            if(contractAdd.toUpperCase() != "0X0000000000000000000000000000000000000000"){
               const contract = new ethers.Contract(contractAdd, erc721abi, signer);
               return contract
             }
     
-            else{
-              const contract = new ethers.Contract(add, erc721abi, signer)
-              return contract;
-    
-            }
           }
           catch(err){
             console.log(err);
@@ -55,22 +47,25 @@ export default function PastWinners({number}){
     async function fetchPastWinners(){
         const contract = await setRaffle();
 
-        const lastwinner = await contract?.lastWinners(number);
-        console.log(lastwinner);
+        const lastwinner = await contract?.lastWinners(num);
+        console.log("LAST WINNER",lastwinner);
 
         if(lastwinner.toUpperCase() != "0X0000000000000000000000000000000000000000"){
 
             setWinnerAddress(lastwinner);
-            const lastWonAddress = await contract?.lastNftWonContract(number);
+            const lastWonAddress = await contract?.lastNftWonContract(num);
+            console.log("HELLO", lastWonAddress);
             const erc721contract = await setERC721(lastWonAddress);
     
-            const tokenURI = await erc721contract?.tokenURI(Number(await contract?.lastNftWonTokenId(number)));
+            const tokenURI = await erc721contract?.tokenURI(Number(await contract?.lastNftWonTokenId(num)));
             const metadata = `https://ipfs.io/ipfs/${tokenURI.substr(7)}`;
             const meta = await fetch(metadata);
             const json = await meta.json();
             const name = json["name"];
             const image = json["image"];
             const newimage = `https://ipfs.io/ipfs/${image.substr(7)}`
+
+            console.log(newimage);
     
             setNftName(name);
             setNftImage(newimage)
