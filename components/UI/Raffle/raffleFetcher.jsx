@@ -23,7 +23,7 @@ export default function RaffleFetcher({number}){
     const [limit, setLimit] = useState(0);
     const [holding, setHolding] = useState(0);
 
-    const [approved, setApproved]  = useState(false);
+    const [loading, setLoading]  = useState(false);
 
     const [price, setPrice] = useState("");
 
@@ -141,16 +141,17 @@ export default function RaffleFetcher({number}){
 
     async function approve(){
         try{
+            setLoading(true);
             const erc721contract = await setERC20();
             console.log(erc721contract, amount*(price));
             const txn = await erc721contract?.approve(contractAdds.raffle, ethers.utils.parseEther(String(amount*price)));
             txn.wait().then((res)=>{
-                console.log(res);
                 buytickets();
             })
         }
         catch(err){
             console.log(err);
+            setLoading(false);
         }
     }
 
@@ -158,10 +159,15 @@ export default function RaffleFetcher({number}){
         try{
             const contract = await setRaffle();
             console.log(number, amount);
-            contract?.enterRaffle(number, amount);
+            const txn = await contract?.enterRaffle(number, amount);
+            txn.wait().then((res)=>{
+                setLoading(false);
+                window.location.reload();
+            })
         }
         catch(err){
             console.log(err);
+            setLoading(false);
         }
 
 
@@ -207,8 +213,8 @@ export default function RaffleFetcher({number}){
                             </button>
                         </div>
                         
-                        <button onClick={approve} className='mt-5 group py-4 px-8 text-white rounded-xl border-2 border-black text-3xl bg-blue-400'>
-                           Buy
+                        <button onClick={approve} className={`mt-5 ${loading && " animate-spin"} group py-4 px-8 text-white rounded-xl border-2 border-black text-3xl bg-blue-400`}>
+                           {loading ? "-": "Buy"}
                         </button>
                         
                     </div>
