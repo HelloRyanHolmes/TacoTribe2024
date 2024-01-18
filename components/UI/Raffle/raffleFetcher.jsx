@@ -206,15 +206,11 @@ export default function RaffleFetcher({number}){
                                 <Image width={1920} height={1080} src={arrowright} className="w-[3rem]"/>
                             </button>
                         </div>
-                        {!approved ?
-                            <button onClick={approve} className='mt-5 group py-4 px-8 text-white rounded-xl border-2 border-black text-3xl bg-blue-400'>
-                           Approve
-                        </button>
-                        :
-                        <button onClick={buytickets} className='mt-5 group py-4 px-8 text-white rounded-xl border-2 border-black text-3xl bg-blue-400'>
+                        
+                        <button onClick={approve} className='mt-5 group py-4 px-8 text-white rounded-xl border-2 border-black text-3xl bg-blue-400'>
                            Buy
                         </button>
-                        }
+                        
                     </div>
                 </div>}
         </div>
