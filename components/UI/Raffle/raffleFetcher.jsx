@@ -5,7 +5,6 @@ import erc20abi from "../../../utils/newAbis/erc20abi"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import {useAccount} from "wagmi"
-
 import noraffle from "../../../assets/raffle_comingsoon.png"
 
 import {ethers} from "ethers"
@@ -179,7 +178,7 @@ export default function RaffleFetcher({number}){
     return(
         <div className="flex">
             {itemExists ? <div className="bg-gradient-to-b from-purple-500 shadow-xl shadow-black/40 to-lime-400 py-2 px-2 rounded-2xl border-2 border-black w-full p-2 mx-auto">
-                <Image width={1920} height={1080} className="w-full bg-white min-[1500px]:w-[90%] rounded-2xl border-2 border-black" src={image}/>
+                <Image width={1920} height={1080} className="w-full bg-white min-[1500px]:w-[90%] mx-auto rounded-2xl border-2 border-black" src={image}/>
                 <h2 className="text-2xl bg-white w-fit mx-auto px-4 rounded-full my-2 border-2 border-black">{name}</h2>
                 <div className="grid grid-cols-2 gap-2">
                     <h2 className="bg-yellow-400 border-2 border-black text-black rounded-xl p-2">Participants: <br /> {entrants}</h2>
