@@ -36,7 +36,7 @@ const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 export default function StakeTemplate({ tacoType }) {
   const [img, setImg] = useState("")
   const [balance, setBalance] = useState(0);
-
+  const [reward, setReward] = useState(0)
   const[holdingValue, setHoldingValue] = useState([]);
 
 
@@ -46,10 +46,11 @@ export default function StakeTemplate({ tacoType }) {
 
   const imgArr = [tacoTribe, doodle, "", pixelTaco, pixelDoodledTaco, babyTaco, guacos, gvsc];
   const nameArr = ["Taco Tribe", "Doodle Tacos", "", "Pixel Tacos", "Pixel Doodle Tacos", "Baby Tacos", "Guaco Tribe", "Guac vs Sour Cream"]
+  const rewardAmount = [10, 10, 0, 1, 1, 5, 5, 5];
 
   async function contractSetup(){
 
-
+    setReward(rewardAmount[tacoType]);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     const signer = provider.getSigner();
@@ -117,23 +118,29 @@ export default function StakeTemplate({ tacoType }) {
   return (
     <div>
       <div className="w-[95%] md:w-[700px] mx-auto bg-yellow-400 mb-10 overflow-hidden items-center justify-center grid grid-cols-2 max-md:grid-flow-row max-md:grid-cols-1 gap-x-5 p-5 rounded-[32px]">
-        <div className="h-80 my-auto flex flex-col items-center justify-center">
-          <Image alt="taco" width={500} height={500} src={img} className=" object-cover object-center w-[90%]" />
+        <div className="h-64 my-auto flex flex-col items-center justify-center">
+          <Image alt="taco" width={500} height={500} src={img} className={`object-cover object-center ${tacoType !== 0 && tacoType !== 3 && tacoType !== 4 ? "w-[70%]": "w-[90%]"}`} />
 
         </div>
         <div className="flex flex-col max-md:text-center max-md:items-center gap-2 h-fit w-[80%] mx-auto my-auto">
           <div className="bg-white rounded-full w-full px-4 py-2 shadow shadow-black/20 text-black text-xl"><h2 >{nameArr[tacoType]}</h2></div>
           <div className="bg-white rounded-full w-full px-4 py-2 shadow shadow-black/20 text-black text-xl"><h2 >Available Tacos: {Number(balance)}</h2></div>
-          <div className="w-fit py-1 text-[#73851C] text-3xl"><h2 >Stake your Tacos and earn $GUAC</h2></div>
-          <div className="bg-white rounded-full w-fit px-4 py-1 shadow shadow-black/20 text-black cursor-pointer hover:bg-white/80"><h2 >Learn More</h2></div>
+          <div className="w-fit py-1 text-[#73851C] text-3xl"><h2 >Stake your Tacos and earn {reward} $GUAC per Taco</h2></div>
+          <div className="bg-white rounded-full w-fit px-4 py-1 shadow shadow-black/20 text-black cursor-pointer hover:bg-white/80"><a href="https://www.nft.tacotribe.shop/perks/#section2" >Learn More</a></div>
         </div>
         
       </div>
 
-      <div className="grid grid-cols-3 gap-5 max-md:gap-5 max-md:text-sm w-fit mx-auto text-lg bg-yellow-200 rounded-full">
+      {/* <div className="text-black text-center text-lg">
+        <ol>
+          <li>Not Staked: This section shows</li>
+        </ol>
+      </div> */}
+
+      <div className="grid grid-cols-2 gap-5 max-md:gap-5 max-md:text-sm w-fit mx-auto text-lg bg-yellow-200 rounded-full">
         <button onClick={()=>{setNftType(0)}} className={`rounded-full py-2 ${nftType == 0 && "bg-yellow-400 border-2 border-black"} px-10 text-black hover:scale-105 transition-all duration-300 ease-out`}>Not Staked</button>
         <button onClick={()=>{setNftType(1)}} className={`rounded-full py-2 ${nftType == 1 && "bg-yellow-400 border-2 border-black"} px-10 text-black hover:scale-105 transition-all duration-300 ease-out`}>Soft Staked</button>
-        <button onClick={()=>{setNftType(2)}} className={`rounded-full py-2 ${nftType == 2 && "bg-yellow-400 border-2 border-black"} px-10 text-black hover:scale-105 transition-all duration-300 ease-out`}>Hard Staked</button>
+        {/* <button onClick={()=>{setNftType(2)}} className={`rounded-full py-2 ${nftType == 2 && "bg-yellow-400 border-2 border-black"} px-10 text-black hover:scale-105 transition-all duration-300 ease-out`}>Hard Staked</button> */}
       </div>
 
       <div className="border-2 border-white bg-white mx-auto w-screen py-5 flex gap-5 px-5 items-center justify-center text-center">
@@ -141,7 +148,7 @@ export default function StakeTemplate({ tacoType }) {
 
               {(nftType==0) &&<NotStaked holding = {holdingValue} tacoType = {tacoType}/>}
               {(nftType==1) && <SoftStake holding = {holdingValue} tacoType = {tacoType}/>}
-              {(nftType==2)&& <HardStake tacoType = {tacoType}/>}
+              {/* {(nftType==2)&& <HardStake tacoType = {tacoType}/>} */}
 
         </div>
       </div>

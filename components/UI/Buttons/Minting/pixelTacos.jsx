@@ -74,13 +74,13 @@ export default function PixelMint() {
                     (err) => {
                         console.log(err)
                         Swal.fire({
-                            title: 'Error!',
-                            text: 'Couldn\'t mint Pixel Tacos',
+                            title: 'Couldn\'t mint Pixel Tacos',
+                            text: 'Make sure you have enough Tacos to mint more Pixel Tacos',
                             imageUrl: error,
                             imageWidth: 200,
                             imageHeight: 200,
                             imageAlt: "Taco OOPS!",
-                            confirmButtonText: 'Bruh 😭',
+                            confirmButtonText: 'OK!',
                             confirmButtonColor: "#facc14", 
                             customClass: {
                                 container: "border-8 border-black",

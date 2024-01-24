@@ -4,8 +4,10 @@ import Image from "next/image";
 
 import { useAccount } from 'wagmi'
 import { useEffect, useState } from "react";
+import RaffleFetcher from "../../components/UI/Raffle/raffleFetcher"
+import PastWinners from "../../components/UI/Raffle/pastwinners"
 
-import contruction from "../../assets/projectImages/contructiontaco.png"
+const contruction = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/contructiontaco.png"
 
 
 const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleBg.png";
@@ -40,29 +42,38 @@ export default function Raffle() {
         </div>
       </div>
 
-      {/* {isConnected && isClient && <main className="flex flex-col items-center overflow-x-hidden gap-20 w-screen max-[1240px]:bg-[#d1ffc3] max-[1240px]:h-fit relative">
+      {isConnected && isClient && <main className="flex flex-col items-center overflow-x-hidden gap-20 w-screen max-[1240px]:bg-[#d1ffc3] max-[1240px]:h-fit relative">
         <div className="relative w-[50%] max-md:w-[90%] pt-10 mt-10 ">
           <Image width={1920} height={1080} src={banner} className="h-full" />
         </div>
         <div className="text-black text-center">
           <h1 className="text-4xl">Purchase Tickets Using<span className=" inline-block ml-2 -mb-1"><Image className="w-10" width={100} height={100} src={guacLogo}></Image></span> $Guac!</h1>
+
+          <div className="grid gap-5 lg:grid-cols-4 max-lg:grid-cols-2 max-lg:w-[80%] max-md:grid-cols-1 w-[90%] mx-auto mt-10">
+            <RaffleFetcher number = {1}/>
+            <RaffleFetcher number = {2}/>
+            <RaffleFetcher number = {3}/>
+            <RaffleFetcher number = {4}/>
+          </div>
+
         </div>
         <div className=" text-black translate-y-5 text-center">
           <h1 className="text-5xl">PREVIOUS WINNERS:</h1>
         </div>
         <div className="w-[85%] shadow-inner shadow-black/50 px-6 py-10 flex flex-wrap items-center justify-center gap-10 border-4 rounded-[32px] border-black bg-lime-300 mb-10">
-          {
-            raffleData.map((raffleCard)=>(
-              <RaffleCard id={raffleCard.id} name={raffleCard.name} img={raffleCard.img} link={raffleCard.link} buttonText={raffleCard.buttonText} />
-            ))
-          }
+        <div className="grid gap-5 lg:grid-cols-4 max-lg:grid-cols-2 max-lg:w-[80%] max-md:grid-cols-1 w-[90%] mx-auto mt-10">
+          <PastWinners num={1}/>
+          <PastWinners num={2}/>
+          <PastWinners num={3}/>
+          <PastWinners num={4}/>
         </div>
-      </main>} */}
+        </div>
+      </main>}
 
-<div className="relative z-10 text-center top-[10rem]">
+{/* <div className="relative z-10 text-center top-[10rem]">
         <Image width={1920} height={1080} src={contruction} className="w-[20rem] mx-auto"/>
         <h1 className="text-black text-[2rem]">Under Construction!</h1>
-      </div>
+      </div> */}
 
     </>
   );

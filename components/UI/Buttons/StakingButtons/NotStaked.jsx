@@ -86,37 +86,37 @@ export default function NotStaked({ holding, tacoType }) {
   }
 
 
-  async function hardStake(tokenId) {
-    setLoader(true);
-    try {
-      await setApprovalForAll(tacoType, address);
-      const contract = await stakingSetup();
-      const res = await contract?.stake(tacoType, tokenId);
-      await res.wait();
-      setLoader(false);
-      Swal.fire({
-        title: 'Hard Staked!',
-        text: 'NFT was Hard Staked!',
-        icon: 'success',
-        imageAlt: "Taco!",
-        confirmButtonText: 'LFG!',
-        confirmButtonColor: "#facc14",
-        customClass: {
-          container: "border-8 border-black",
-          popup: "bg-white rounded-2xl border-8 border-black",
-          image: "-mb-5",
-          confirmButton: "w-40 text-black"
-        }
-      }).then((res)=>{window.location.reload()});
-    }
-    catch (err) {
-      console.log(err);
-    setLoader(false);
+  // async function hardStake(tokenId) {
+  //   setLoader(true);
+  //   try {
+  //     await setApprovalForAll(tacoType, address);
+  //     const contract = await stakingSetup();
+  //     const res = await contract?.stake(tacoType, tokenId);
+  //     await res.wait();
+  //     setLoader(false);
+  //     Swal.fire({
+  //       title: 'Hard Staked!',
+  //       text: 'NFT was Hard Staked!',
+  //       icon: 'success',
+  //       imageAlt: "Taco!",
+  //       confirmButtonText: 'LFG!',
+  //       confirmButtonColor: "#facc14",
+  //       customClass: {
+  //         container: "border-8 border-black",
+  //         popup: "bg-white rounded-2xl border-8 border-black",
+  //         image: "-mb-5",
+  //         confirmButton: "w-40 text-black"
+  //       }
+  //     }).then((res)=>{window.location.reload()});
+  //   }
+  //   catch (err) {
+  //     console.log(err);
+  //   setLoader(false);
 
-    }
-    // setLoader(false);
+  //   }
+  //   // setLoader(false);
 
-  }
+  // }
 
   async function softStakeAll() {
     setLoader(true);
@@ -151,41 +151,41 @@ export default function NotStaked({ holding, tacoType }) {
     setLoader(false);
   }
 
-  async function hardStakeAll() {
-    setLoader(true);
-    try {
-      await setApprovalForAll(tacoType, address);
-      const contract = await stakingSetup();
-      const tokenIds = []
-      displayNFT.map((item) => {
-        const tokenId = item.tokenId;
-        tokenIds.push(tokenId);
-      })
-      const res = await contract?.stakeAll(tacoType, tokenIds);
-      await res.wait();
-      setLoader(false);
-      Swal.fire({
-        title: 'Hard Staked!',
-        text: 'NFTs were Hard Staked!',
-        icon: 'success',
-        imageAlt: "Taco!",
-        confirmButtonText: 'LFG!',
-        confirmButtonColor: "#facc14",
-        customClass: {
-          container: "border-8 border-black",
-          popup: "bg-white rounded-2xl border-8 border-black",
-          image: "-mb-5",
-          confirmButton: "w-40 text-black"
-        }
-      }).then((res)=>{window.location.reload()});
-    }
-    catch (err) {
-    setLoader(false);
-      console.log(err);
+  // async function hardStakeAll() {
+  //   setLoader(true);
+  //   try {
+  //     await setApprovalForAll(tacoType, address);
+  //     const contract = await stakingSetup();
+  //     const tokenIds = []
+  //     displayNFT.map((item) => {
+  //       const tokenId = item.tokenId;
+  //       tokenIds.push(tokenId);
+  //     })
+  //     const res = await contract?.stakeAll(tacoType, tokenIds);
+  //     await res.wait();
+  //     setLoader(false);
+  //     Swal.fire({
+  //       title: 'Hard Staked!',
+  //       text: 'NFTs were Hard Staked!',
+  //       icon: 'success',
+  //       imageAlt: "Taco!",
+  //       confirmButtonText: 'LFG!',
+  //       confirmButtonColor: "#facc14",
+  //       customClass: {
+  //         container: "border-8 border-black",
+  //         popup: "bg-white rounded-2xl border-8 border-black",
+  //         image: "-mb-5",
+  //         confirmButton: "w-40 text-black"
+  //       }
+  //     }).then((res)=>{window.location.reload()});
+  //   }
+  //   catch (err) {
+  //   setLoader(false);
+  //     console.log(err);
       
-    }
-    setLoader(false);
-  }
+  //   }
+  //   setLoader(false);
+  // }
 
 
 
@@ -204,7 +204,7 @@ export default function NotStaked({ holding, tacoType }) {
             if (stakeType == 0) {
   
               const name = "Taco #" + holding[i].tokenId;
-              const img = "https://ipfs.io/ipfs/bafybeicrkpi7ejh2dabsndjnlrm2xgg65dj2qa4e3jh5bdbvfarmaqdkv4/" + holding[i].tokenId + ".png";
+              const img = "https://ipfs.io/ipfs/ipfs/bafybeifitlan5k3ynacu7cqgtq32l6je5n5ydw2xblhrshduch6rxgstq4/" + holding[i].tokenId + ".png";
               const tokenId = holding[i].tokenId;
               dispArr.push({ name, tokenId, img, tacoType })
             }
@@ -219,7 +219,7 @@ export default function NotStaked({ holding, tacoType }) {
             if (stakeType == 0) {
               const name = "Doodled Tacos #" + holding[i].tokenId;
               const img = "https://ipfs.io/ipfs/bafybeife2zu3n76ktqtn7myxpm2pfd3uhsxpxbg2gkaen2bssdh3rr47ly/" + holding[i].tokenId + ".png";
-              const tokenId = holding[i].tokenId.tokenId;
+              const tokenId = holding[i].tokenId;
               dispArr.push({ name, tokenId, img, tacoType })
             }
           }
@@ -326,21 +326,21 @@ export default function NotStaked({ holding, tacoType }) {
            <h1 className="text-black text-[1.8rem]">Seems like you are out of Tacos!</h1>
            <h1 className="text-black text-[1.5rem]">Get some now to claim more Daily <span className="text-lime-600">$GUAC</span></h1>
            </div>}
-        {displayNFT.length > 0 && <button onClick={hardStakeAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full" >Hard Stake All</button>}
+        {/* {displayNFT.length > 0 && <button onClick={hardStakeAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full" >Hard Stake All</button>} */}
         {displayNFT.length > 0 && <button onClick={softStakeAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full" >Soft Stake All</button>}
       </div>
       <div className="flex flex-wrap items-center justify-center w-full gap-10">
         {
           displayNFT.map((item) => (
             <div className='bg-red-500 border-4 rounded-2xl border-black p-4'>
-              <Image alt='taco' width={1080} height={1080} className='w-60 mx-auto rounded-2xl' src={item.img} />
+              <Image alt='taco' width={1080} height={1080} className='w-60 mx-auto rounded-2xl border-2 border-black' src={item.img} />
               <h2 className='text-black text-[1.7rem] mt-4'>{item.name}</h2>
               <button onClick={() => { softStake(item.tokenId) }} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">
                 Soft Stake
               </button>
-              <button onClick={() => { hardStake(item.tokenId) }} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">
+              {/* <button onClick={() => { hardStake(item.tokenId) }} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">
                 Hard Stake
-              </button>
+              </button> */}
             </div>
           ))
         }

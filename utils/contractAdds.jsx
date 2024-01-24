@@ -21,5 +21,8 @@ export const contractAdds = {
 
     consolidation: "0x589da0F0046510DdE24499f617760b43BF25714D",
 
-    minimart: "0x592D76037251144A91E687EfcF9CEC528C9707F2"
+    minimart: "0x592D76037251144A91E687EfcF9CEC528C9707F2",
+
+    raffle: "0xdF95f392628711E304b9d4a1bB8eEe6560b8e626"
+
 }

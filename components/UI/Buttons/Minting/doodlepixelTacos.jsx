@@ -73,13 +73,13 @@ export default function DoodlePixelMint() {
                 }).catch((err) => {
                     console.log(err)
                     Swal.fire({
-                        title: 'Error!',
-                        text: 'Couldn\'t Mint Doodled Pixel Tacos',
+                        title: 'Could\'nt mint Pixel Doodle Tacos!',
+                        text: 'Make sure you have enough Doodle Tacos to mint more Pixel Doodle Tacos',
                         imageUrl: error,
                         imageWidth: 200,
                         imageHeight: 200,
                         imageAlt: "Taco OOPS!",
-                        confirmButtonText: 'Bruh 😭',
+                        confirmButtonText: 'OK!',
                         confirmButtonColor: "#facc14", 
                         customClass: {
                             container: "border-8 border-black",
