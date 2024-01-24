@@ -20,4 +20,6 @@ export const contractAdds = {
     staking : "0x3Dc1642f53EE8546D2908ecD0D6A31e961f71E3D",
 
     consolidation: "0x589da0F0046510DdE24499f617760b43BF25714D",
+
+    minimart: "0x592D76037251144A91E687EfcF9CEC528C9707F2"
 }

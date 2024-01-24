@@ -7,6 +7,8 @@ import contruction from "../../assets/projectImages/contructiontaco.png";
 import { useEffect, useState } from "react";
 import { useAccount } from 'wagmi';
 
+import MinimartAggregator from "../../components/UI/Minimart/minimartAggregator";
+
 // const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/marketBg.gif";
 import bg from "../../assets/projectImages/taco-raffles/marketBg.gif";
 const bgConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/marketLive.png";
@@ -18,6 +20,7 @@ const guacLogo = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Gu
 
 const buyUp = "https://d19rxn9gjbwl25.cloudfront.net/buttons/buyUp.png"
 const buyDown = "https://d19rxn9gjbwl25.cloudfront.net/buttons/buyDown.png"
+
 
 
 
@@ -45,6 +48,7 @@ export default function Minimart() {
 
       {/* Background */}
       <div className="fixed top-0 left-0 w-screen h-screen z-0 md:block max-sm:bg-[#bad533] overflow-x-hidden">
+        <MinimartAggregator/>
         <div className="relative h-full">
           {!isConnected && isClient && <Image width={1920} height={1080} src={bg} className="object-cover max-sm:hidden h-full" />}
           {isConnected && isClient && <Image width={1920} height={1080} src={bgConnected} className="object-cover max-sm:hidden h-full" />}
