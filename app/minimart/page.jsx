@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-const contruction = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/contructiontaco.png";
+
 
 import { useEffect, useState } from "react";
 import { useAccount } from 'wagmi';
@@ -21,7 +21,7 @@ const guacLogo = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Gu
 const buyUp = "https://d19rxn9gjbwl25.cloudfront.net/buttons/buyUp.png"
 const buyDown = "https://d19rxn9gjbwl25.cloudfront.net/buttons/buyDown.png"
 
-
+const contruction = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/contructiontaco.png";
 
 
 export default function Minimart() {
