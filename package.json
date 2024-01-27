@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@moralisweb3/common-evm-utils": "^2.24.0",
     "@rainbow-me/rainbowkit": "^1.3.0",
     "@rainbow-me/rainbowkit-siwe-next-auth": "^0.3.4",
     "@vercel/analytics": "^1.1.1",
     "@vercel/speed-insights": "^1.0.1",
+    "dotenv": "^16.4.1",
     "ethers": "^5.7.2",
+    "moralis": "^2.24.0",
     "next": "14.0.4",
     "pino-pretty": "^10.2.3",
     "react": "^18",

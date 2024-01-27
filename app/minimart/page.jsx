@@ -48,7 +48,6 @@ export default function Minimart() {
 
       {/* Background */}
       <div className="fixed top-0 left-0 w-screen h-screen z-0 md:block max-sm:bg-[#bad533] overflow-x-hidden">
-        <MinimartAggregator/>
         <div className="relative h-full">
           {!isConnected && isClient && <Image width={1920} height={1080} src={bg} className="object-cover max-sm:hidden h-full" />}
           {isConnected && isClient && <Image width={1920} height={1080} src={bgConnected} className="object-cover max-sm:hidden h-full" />}
@@ -93,8 +92,9 @@ export default function Minimart() {
       </main>
       } */}
       <div className="relative z-10 text-center top-[10rem]">
-        <Image width={1920} height={1080} src={contruction} className="w-[20rem] mx-auto"/>
-        <h1 className="text-black text-[2rem]">Under Construction!</h1>
+      <MinimartAggregator/>
+        {/* <Image width={1920} height={1080} src={contruction} className="w-[20rem] mx-auto"/>
+        <h1 className="text-black text-[2rem]">Under Construction!</h1> */}
       </div>
     </>
   );
