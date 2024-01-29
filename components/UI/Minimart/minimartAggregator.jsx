@@ -18,7 +18,6 @@ export default function MinimartAggregator(){
         const signer = provider.getSigner();
         try {
           const contract = new ethers.Contract(contractAdds.minimart, minimartabi, signer);
-            console.log(contract);
           return contract;
         }
         catch (err) {
@@ -62,18 +61,26 @@ export default function MinimartAggregator(){
     }
 
     async function getCollections(){
+      try{
         const contract = await contractSetup();
+        console.log(contract);
         const arr = [];
         const data = await contract.returnApprovedContracts();
         
         for(let i=0; i<data.length; i++){
           const contract2 = await setERC721(data[i]);
           const name = await contract2.name();
+          console.log(name);
           const contractAdd = data[i];
           arr.push({name, contractAdd})
         }
 
         setContractAddress(arr);
+      }
+      catch(err){
+        console.log(err);
+      }
+       
     }
 
     useEffect(()=>{getCollections()},[]);

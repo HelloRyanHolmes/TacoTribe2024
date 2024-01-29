@@ -7,19 +7,26 @@ import minimartabi from "../../../utils/newAbis/minimartabi";
 import Moralis from "moralis"
 import {EvmChain} from "@moralisweb3/common-evm-utils"
 import Image from "next/image"
+import Swal from 'sweetalert2';
+
+const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
+
 
 export default function MinimartHolding({contractAddress}){
 
   const chain = EvmChain.POLYGON;
     const {isConnected, address} = useAccount();
 
-    const[displayNFT, setDisplayNFT] = useState([])
+    const[displayNFT, setDisplayNFT] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [price, setPrice] = useState(0);
+    const [tokenId, setTokenId] = useState(null);
 
-    async function erc721Setup(){
+    async function setERC721Contract(){
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         try {
-          const contract = new ethers.Contract(contractAddress.contractAddress, erc721abi, signer);
+          const contract = new ethers.Contract(contractAddress, erc721abi, signer);
             console.log(contract);
           return contract;
         }
@@ -81,12 +88,9 @@ export default function MinimartHolding({contractAddress}){
 
       try {
       const contract = await setERC721Contract();
-      const approval = await contract?.approve(contractAddress, tokenId);
+      const approval = await contract?.approve(contractAdds.minimart, tokenId);
 
       approval.wait();
-
-      await setRaffle(number);
-
 
       }
       catch (err) {
@@ -113,8 +117,12 @@ export default function MinimartHolding({contractAddress}){
 
     async function setMinimartItem(tokenId, price){
       try{
-        const contract = await minimartContractSetup();
+        const res = await approval(tokenId);
+        console.log(res);
 
+        price = ethers.utils.parseEther(String(price));
+        console.log(price);
+        const contract = await minimartContractSetup();
         const txn = await contract.setMinimartItem(contractAddress, tokenId, price);
         txn.wait();
       }
@@ -127,6 +135,8 @@ export default function MinimartHolding({contractAddress}){
       await Moralis.start({
         apiKey: process.env.NEXT_PUBLIC_API_KEY
       });
+
+      // console.log( process.env.NEXT_PUBLIC_API_KEY);
     }
 
     async function holdingNFTs(){
@@ -135,6 +145,8 @@ export default function MinimartHolding({contractAddress}){
           address,
           chain,
         });
+
+        console.log(response.toJSON().result);
 
         const arr = [];
 
@@ -149,7 +161,7 @@ export default function MinimartHolding({contractAddress}){
             const image = "https://ipfs.io/ipfs/"+img.substr(7);
             console.log(name, image, contractAddress, tokenId);
 
-            arr.push({name, image});
+            arr.push({name, image, tokenId});
           }
         }
         setDisplayNFT(arr);
@@ -158,9 +170,15 @@ export default function MinimartHolding({contractAddress}){
     }
 
     async function fetchListedNfts(){
-        
+        const contract = await minimartContractSetup();
+
+        console.log(await contract.fetchData(0));
         
     }
+
+    function handlePrice(e){
+      setPrice(e.target.value);
+  }
 
     useEffect(()=>{
       moralisSetup();
@@ -168,19 +186,34 @@ export default function MinimartHolding({contractAddress}){
 
     useEffect(()=>{
         holdingNFTs();
+        fetchListedNfts();
 },[contractAddress])
 
     return(
-        <div className="flex gap-5 flex-wrap justify-center text-black p-4">
+        <div className="flex gap-5 flex-wrap justify-center text-black p-4 relative">
           {displayNFT.map((item)=>(
             <div className="bg-red-300 border-4 w-[45%] border-black rounded-2xl py-3 px-2 shadow-xl shadow-black/60">
               <h1>{item.name}</h1>
               <div className="w-[90%] mx-auto">
                 <Image src={item.image} width={1920} height={1080} className="w-[100%] rounded-2xl border-2 border-black mx-auto"/>
               </div>
-              <button className="bg-blue-400 border-2 border-black text-white rounded-2xl px-3 py-2 mt-3 text-lg">Set</button>
+              <button onClick={()=>{
+                setShowModal(true);
+                setTokenId(item.tokenId);
+              }} className="bg-blue-400 hover:bg-blue-500 border-2 border-black text-white rounded-2xl px-3 py-2 mt-3 text-lg">List</button>
               </div>
           ))}
+
+          {showModal && <div className="bg-yellow-400 absolute top-[50%] left-[20%] p-6 border-4 rounded-2xl border-black">
+            <input placeholder="Set Amount in Ether" onChange={handlePrice} type="number" className="px-3 py-2 rounded-2xl"></input>
+            
+            <button onClick={()=>{setMinimartItem(tokenId, price)}} className="bg-blue-400 ml-2 px-2 py-1 border-2 border-black rounded-2xl hover:bg-blue-500">Set</button>
+            <button onClick={()=>{
+              setShowModal(false);
+              setTokenId(null)
+              setPrice(null);
+            }} className="h-8 ml-2 w-8 bg-red-400 hover:bg-red-500 rounded-full  border-2 border-black">x</button>
+            </div>}
         </div>
     )
 }
