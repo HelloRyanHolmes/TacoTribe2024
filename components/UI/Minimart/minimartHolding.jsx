@@ -84,14 +84,17 @@ export default function MinimartHolding({contractAddress, listed}){
     }
     }
 
-    async function approval(tokenId){
+    async function approval(tokenId, price){
 
       try {
       const contract = await setERC721Contract();
-      const approval = await contract?.approve(contractAdds.minimart, tokenId);
+      const approve = await contract?.approve(contractAdds.minimart, tokenId);
 
-      approval.wait();
+      approve.wait().then((res)=>{
 
+        setMinimartItem(tokenId, price);
+      });
+      
       }
       catch (err) {
       console.log("Error", err)
@@ -117,12 +120,9 @@ export default function MinimartHolding({contractAddress, listed}){
 
     async function setMinimartItem(tokenId, price){
       try{
-        const res = await approval(tokenId);
-
-
+        const contract = await minimartContractSetup();
         price = ethers.utils.parseEther(String(price));
 
-        const contract = await minimartContractSetup();
         const txn = await contract.setMinimartItem(contractAddress, tokenId, price);
         txn.wait();
       }
@@ -183,7 +183,7 @@ export default function MinimartHolding({contractAddress, listed}){
 
     useEffect(()=>{
         holdingNFTs();
-},[contractAddress])
+},[contractAddress, listed])
 
     return(
         <div className="flex gap-5 flex-wrap justify-center text-black p-4 relative">
@@ -203,7 +203,7 @@ export default function MinimartHolding({contractAddress, listed}){
           {showModal && <div className="bg-yellow-400 absolute top-[50%] left-[20%] p-6 border-4 rounded-2xl border-black">
             <input placeholder="Set Amount in Ether" onChange={handlePrice} type="number" className="px-3 py-2 rounded-2xl"></input>
             
-            <button onClick={()=>{setMinimartItem(tokenId, price)}} className="bg-blue-400 ml-2 px-2 py-1 border-2 border-black rounded-2xl hover:bg-blue-500">Set</button>
+            <button onClick={()=>{approval(tokenId, price)}} className="bg-blue-400 ml-2 px-2 py-1 border-2 border-black rounded-2xl hover:bg-blue-500">Set</button>
             <button onClick={()=>{
               setShowModal(false);
               setTokenId(null)
