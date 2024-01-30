@@ -93,27 +93,29 @@ export default function MinimartHolding({contractAddress, listed}){
       approve.wait().then((res)=>{
 
         setMinimartItem(tokenId, price);
+
+        
       });
       
       }
       catch (err) {
       console.log("Error", err)
-      //   Swal.fire({
-      //     title: 'Error!',
-      //     text: 'Couldn\'t get fetching contract',
-      //     imageUrl: error,
-      //     imageWidth: 200,
-      //     imageHeight: 200,
-      //     imageAlt: "Taco OOPS!",
-      //     confirmButtonText: 'Bruh 😭',
-      //     confirmButtonColor: "#facc14",
-      //     customClass: {
-      //       container: "border-8 border-black",
-      //       popup: "bg-white rounded-2xl border-8 border-black",
-      //       image: "-mb-5",
-      //       confirmButton: "w-40 text-black"
-      //     }
-      //   })
+        Swal.fire({
+          title: 'Error!',
+          text: 'Couldn\'t get fetching contract',
+          imageUrl: error,
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: "Taco OOPS!",
+          confirmButtonText: 'Bruh 😭',
+          confirmButtonColor: "#facc14",
+          customClass: {
+            container: "border-8 border-black",
+            popup: "bg-white rounded-2xl border-8 border-black",
+            image: "-mb-5",
+            confirmButton: "w-40 text-black"
+          }
+        })
       }
 
   }
@@ -124,7 +126,16 @@ export default function MinimartHolding({contractAddress, listed}){
         price = ethers.utils.parseEther(String(price));
 
         const txn = await contract.setMinimartItem(contractAddress, tokenId, price);
-        txn.wait();
+        txn.wait().then(()=>{
+
+          Swal.fire({
+            icon: "success",
+            title: "NFT has been listed for"+price+"$GUAC",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        });
+
       }
       catch(err){
         console.log(err);
@@ -140,6 +151,8 @@ export default function MinimartHolding({contractAddress, listed}){
     }
 
     async function holdingNFTs(){
+
+      try{
 
         const response = await Moralis.EvmApi.nft.getWalletNFTs({
           address,
@@ -169,6 +182,18 @@ export default function MinimartHolding({contractAddress, listed}){
           }
         }
         setDisplayNFT(arr);
+      }
+
+      catch(err){
+        console.log(err);
+
+        Swal.fire({
+          icon: "error",
+          title: "Couldn't fetch your balance!",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
 
         // console.log(response.toJSON().result, contractAddress.toLowerCase());
     }
@@ -188,11 +213,11 @@ export default function MinimartHolding({contractAddress, listed}){
     return(
         <div className="flex gap-5 flex-wrap justify-center text-black p-4 relative">
           {displayNFT.map((item)=>(
-            <div className="bg-red-300 border-4 w-[45%] border-black rounded-2xl py-3 px-2 shadow-xl shadow-black/60">
-              <h1>{item.name}</h1>
-              <div className="w-[90%] mx-auto">
+            <div className="bg-red-300 border-4 w-fit border-black rounded-2xl py-3 px-2 shadow-xl shadow-black/60">
+              <div className="w-40 h-40 mx-auto">
                 <Image src={item.image} width={1920} height={1080} className="w-[100%] rounded-2xl border-2 border-black mx-auto"/>
               </div>
+              <h1>{item.name}</h1>
               <button onClick={()=>{
                 setShowModal(true);
                 setTokenId(item.tokenId);

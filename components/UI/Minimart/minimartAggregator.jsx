@@ -130,38 +130,102 @@ export default function MinimartAggregator(){
   }
   }
 
-  async function displayListedNFTs(){
+  async function buy(price, index){
+    try{
+      const contract = await minimartContractSetup();
+      const resp = await contract.buyMinimartItem(price, index);
 
-    const contract = await setERC721Contract();
-    const arr = [];
-
-    const minimartContract = await minimartContractSetup();
-
-    const data = await minimartContract.fetchData();
-
-    for(let i=0; i<data.length; i++){
-      const contractAdd = data[i][0];
-  
-      if(contractAdd.toLowerCase() == selectedAddress.toLowerCase()){
-        const tokenId = String(data[i][1]);
-        const uri = await contract.tokenURI(tokenId);
-        const metadata = "https://ipfs.io/ipfs/"+uri.substr(7);
-        const meta = await fetch(metadata);
-        const json = await meta.json();
-        const name = json["name"];
-        const img = "https://ipfs.io/ipfs/"+json["image"].substr(7);
-        const price = ethers.utils.formatEther(String(data[i][3]));
-        const owner = String(data[i][2]);
-        
-        arr.push({name, tokenId, img, price, owner});
-      }
+      resp.wait().then(()=>{
+        Swal.fire({
+          icon: "success",
+          title: "Item Bought",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      })
     }
-   
-    setDisplayNFT(arr);
+    catch(err){
+      console.log(err);
+      Swal.fire({
+        icon: "error",
+        title: "Couldn't buy Marketplace Item",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+  }
+
+  async function unList(item){
+    try{
+        const contract = await minimartContractSetup();
+        const resp = await contract.unListItem(item);
+
+        resp.wait().then(()=>{console.log(resp)
+          Swal.fire({
+            icon: "success",
+            title: "Item Unlisted",
+            showConfirmButton: false,
+            timer: 1500
+          });});
+    }
+    catch(err){
+        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Couldn't Unlist Marketplace Items",
+          showConfirmButton: false,
+          timer: 1500
+        });
+    }
+}
+
+  async function displayListedNFTs(){
+    try{
+
+      const contract = await setERC721Contract();
+      const arr = [];
+  
+      const minimartContract = await minimartContractSetup();
+  
+      const data = await minimartContract.fetchData();
+  
+      for(let i=0; i<data.length; i++){
+        const contractAdd = data[i][0];
+    
+        if(contractAdd.toLowerCase() == selectedAddress.toLowerCase()){
+          const tokenId = String(data[i][1]);
+          const uri = await contract.tokenURI(tokenId);
+          const metadata = "https://ipfs.io/ipfs/"+uri.substr(7);
+          const meta = await fetch(metadata);
+          const json = await meta.json();
+          const name = json["name"];
+          const img = "https://ipfs.io/ipfs/"+json["image"].substr(7);
+          const price = ethers.utils.formatEther(String(data[i][3]));
+          const owner = String(data[i][2]);
+          
+          arr.push({name, tokenId, img, price, owner, i});
+        }
+      }
+     
+      setDisplayNFT(arr);
+    }
+
+    catch(err){
+      console.log(err);
+      Swal.fire({
+        icon: "error",
+        title: "Couldn't fetch Marketplace Items",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
     
   }
 
   async function fetchListedNfts(){
+
+    try{
+
       const contract = await minimartContractSetup();
 
 
@@ -182,6 +246,17 @@ export default function MinimartAggregator(){
 
         console.log("COMING", arr);
         setListedIds(arr);
+    }
+
+    catch(err){
+      console.log(err);
+      Swal.fire({
+        icon: "error",
+        title: "Couldn't fetch Marketplace Items",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
 
   }
 
@@ -236,7 +311,7 @@ export default function MinimartAggregator(){
                       <Image width={1920} height={1080} src={item.img} className="w-40 rounded-2xl border-2 border-black"/>
                       <h1>{item.name}</h1>
                       <h1 className="bg-yellow-400 border-2 py-2 rounded-2xl border-black">{item.price} $GUAC</h1>
-                      {address.toLowerCase() === item.owner.toLowerCase() ? <button className="bg-red-500 py-2 px-5 my-3 rounded-2xl border-2 border-black hover:bg-red-600">Unlist</button> : <button  className="bg-blue-500 py-2 px-5 my-3 rounded-2xl border-2 border-black hover:bg-blue-600">Buy</button>}
+                      {address.toLowerCase() === item.owner.toLowerCase() ? <button onClick={()=>{unList(item.i)}} className="bg-red-500 py-2 px-5 my-3 rounded-2xl border-2 border-black hover:bg-red-600">Unlist</button> : <button onClick={()=>{buy(item.price)}} className="bg-blue-500 py-2 px-5 my-3 rounded-2xl border-2 border-black hover:bg-blue-600">Buy</button>}
                       </div>
                   ))}
             </div>
