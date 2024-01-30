@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 
 
-export default function MinimartHolding({contractAddress}){
+export default function MinimartHolding({contractAddress, listed}){
 
   const chain = EvmChain.POLYGON;
     const {isConnected, address} = useAccount();
@@ -118,10 +118,10 @@ export default function MinimartHolding({contractAddress}){
     async function setMinimartItem(tokenId, price){
       try{
         const res = await approval(tokenId);
-        console.log(res);
+
 
         price = ethers.utils.parseEther(String(price));
-        console.log(price);
+
         const contract = await minimartContractSetup();
         const txn = await contract.setMinimartItem(contractAddress, tokenId, price);
         txn.wait();
@@ -146,34 +146,31 @@ export default function MinimartHolding({contractAddress}){
           chain,
         });
 
-        console.log(response.toJSON().result);
-
         const arr = [];
 
         for(let i = 0; i<response.toJSON().result.length; i++){
 
           if(response.toJSON().result[i].token_address.toLowerCase() == contractAddress.toLowerCase()){
-            const tokenId = response.toJSON().result[i].token_id
-            const metadata = JSON.parse(response.toJSON().result[i].metadata);
+            const tokenId = Number(response.toJSON().result[i].token_id);
+            console.log("I am listed",listed);
 
-            const name = metadata["name"];
-            const img = metadata["image"];
-            const image = "https://ipfs.io/ipfs/"+img.substr(7);
-            console.log(name, image, contractAddress, tokenId);
 
-            arr.push({name, image, tokenId});
+            if(!listed.includes(tokenId)){
+
+              const metadata = JSON.parse(response.toJSON().result[i].metadata);
+  
+              const name = metadata["name"];
+              const img = metadata["image"];
+              const image = "https://ipfs.io/ipfs/"+img.substr(7);
+  
+  
+              arr.push({name, image, tokenId});
+            }
           }
         }
         setDisplayNFT(arr);
 
         // console.log(response.toJSON().result, contractAddress.toLowerCase());
-    }
-
-    async function fetchListedNfts(){
-        const contract = await minimartContractSetup();
-
-        console.log(await contract.fetchData(0));
-        
     }
 
     function handlePrice(e){
@@ -186,7 +183,6 @@ export default function MinimartHolding({contractAddress}){
 
     useEffect(()=>{
         holdingNFTs();
-        fetchListedNfts();
 },[contractAddress])
 
     return(
