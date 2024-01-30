@@ -181,7 +181,7 @@ export default function MinimartAggregator(){
 
   async function displayListedNFTs(){
     try{
-
+      console.log("helloooooo")
       const contract = await setERC721Contract();
       const arr = [];
   
@@ -230,6 +230,7 @@ export default function MinimartAggregator(){
 
 
       const data = await contract.fetchData();
+      console.log("I AM DATA",data);
       const arr = [];
             
         for(let i=0; i<data.length; i++){
