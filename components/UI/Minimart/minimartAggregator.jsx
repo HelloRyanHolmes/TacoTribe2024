@@ -379,7 +379,7 @@ export default function MinimartAggregator(){
 
             <div className=" col-span-2 w-full mx-auto flex flex-wrap gap-10 shadow-inner shadow-black/80 h-full bg-lime-300 p-4 overflow-y-scroll border-4 border-black rounded-2xl">
                   {displayNFT.map((item)=>(
-                    <div className="bg-green-400 shadow-lg h-fit shadow-black/20 relative border-4 border-black text-black p-6 rounded-2xl">
+                    <div className="mx-auto bg-green-400 shadow-lg h-fit shadow-black/20 relative border-4 border-black text-black p-6 rounded-2xl">
                       <Image width={1920} height={1080} src={item.img} className="w-40 rounded-2xl border-2 border-black"/>
                       <h1>{item.name}</h1>
                       <h1 className="bg-yellow-400 border-2 py-2 rounded-2xl border-black">{item.price} $GUAC</h1>

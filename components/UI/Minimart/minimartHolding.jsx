@@ -231,7 +231,7 @@ export default function MinimartHolding({contractAddress, listed}){
             }} className="h-8 ml-2 w-8 bg-red-400 hover:bg-red-500 rounded-full  border-2 border-black">x</button>
             </div>}
           {displayNFT.map((item)=>(
-            <div className="bg-red-300 border-4 w-fit border-black rounded-2xl py-3 px-2 shadow-xl shadow-black/60">
+            <div className="bg-red-300 border-4 w-fit mx-auto border-black rounded-2xl py-3 px-2 shadow-xl shadow-black/60">
               <div className="w-40 h-40 mx-auto">
                 <Image src={item.image} width={1920} height={1080} className="w-[100%] rounded-2xl border-2 border-black mx-auto"/>
               </div>
