@@ -215,8 +215,11 @@ export default function MinimartHolding({contractAddress, listed}){
         holdingNFTs();
 },[contractAddress, listed])
 
+
+
     return(
         <div className="flex gap-5 flex-wrap justify-center text-black p-4">
+            {displayNFT.length<=0 && <div> <h3 className="font-bold text-black my-2">No Owned NFTs</h3> </div>}
           {showModal && <div className="bg-yellow-400 px-6 py-4 border-4 rounded-2xl border-black">
             <h1>#{tokenId}</h1>
             <input min={0} placeholder="Set Amount in Ether" onChange={handlePrice} type="number" className="mt-2 px-3 py-2 rounded-2xl"></input>
@@ -239,7 +242,6 @@ export default function MinimartHolding({contractAddress, listed}){
               }} className="bg-blue-400 hover:bg-blue-500 border-2 border-black text-white rounded-2xl px-3 py-2 mt-3 text-lg">List</button>
               </div>
           ))}
-
         
         </div>
     )

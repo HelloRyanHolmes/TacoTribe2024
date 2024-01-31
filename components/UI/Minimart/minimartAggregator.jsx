@@ -375,20 +375,20 @@ export default function MinimartAggregator(){
 
           </div>
 
-          <div className="grid grid-flow-col grid-cols-3">
+          <div className="grid grid-cols-3 max-md:grid-cols-1 max-md:gap-y-5 md:gap-10 h-[70vh] w-[90%] mx-auto mt-5">
 
-            <div className=" col-span-2 w-[80%] mx-auto flex flex-wrap gap-10 shadow-inner shadow-black/80 h-[70vh] bg-lime-300 p-4 overflow-y-scroll my-4 border-4 border-black rounded-2xl">
+            <div className=" col-span-2 w-full mx-auto flex flex-wrap gap-10 shadow-inner shadow-black/80 h-full bg-lime-300 p-4 overflow-y-scroll border-4 border-black rounded-2xl">
                   {displayNFT.map((item)=>(
-                    <div className="bg-green-400 shadow-lg h-fit shadow-black/70 relative border-4 border-black text-black p-6 rounded-2xl">
+                    <div className="bg-green-400 shadow-lg h-fit shadow-black/20 relative border-4 border-black text-black p-6 rounded-2xl">
                       <Image width={1920} height={1080} src={item.img} className="w-40 rounded-2xl border-2 border-black"/>
                       <h1>{item.name}</h1>
                       <h1 className="bg-yellow-400 border-2 py-2 rounded-2xl border-black">{item.price} $GUAC</h1>
-                      {address.toLowerCase() === item.owner.toLowerCase() ? <button onClick={()=>{unList(item.i)}} className={`bg-red-500 py-2 ${loading && " animate-spin "} px-5 my-3 rounded-2xl border-2 border-black hover:bg-red-600`}>Unlist</button> : <button onClick={()=>{approve(item.price, item.i)}} className={`bg-blue-500 py-2 px-5 my-3 ${loading && " animate-spin "} rounded-2xl border-2 border-black hover:bg-blue-600`}>Buy</button>}
+                      {address.toLowerCase() === item.owner.toLowerCase() ? <button disabled={loading} onClick={()=>{unList(item.i)}} className={`bg-red-500 py-2 ${loading && " animate-spin "} px-5 my-3 rounded-2xl border-2 border-black hover:bg-red-600`}>Unlist</button> : <button onClick={()=>{approve(item.price, item.i)}} className={`bg-blue-500 py-2 px-5 my-3 ${loading && " animate-spin "} rounded-2xl border-2 border-black hover:bg-blue-600`}>Buy</button>}
                       </div>
                   ))}
             </div>
             {/* {console.log("hahahah", listedIds)} */}
-            <div className="absolute right-10 w-[35%] bg-yellow-200 border-4 h-[70vh] mt-5 overflow-y-scroll border-black rounded-2xl shadow-inner shadow-black/70">
+            <div className=" w-full bg-yellow-200 border-4 h-full overflow-y-scroll border-black rounded-2xl shadow-inner shadow-black/70">
                   <MinimartHolding contractAddress={selectedAddress} listed={listedIds}/>
             </div>
 
