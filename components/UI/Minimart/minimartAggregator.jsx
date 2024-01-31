@@ -3,6 +3,8 @@ import MinimartHolding from "./minimartHolding";
 import {contractAdds} from "../../../utils/contractAdds";
 import minimartabi from "../../../utils/newAbis/minimartabi";
 import erc721abi from "../../../utils/newAbis/erc721abi";
+import erc20abi from "../../../utils/newAbis/erc20abi"
+
 import {useState, useEffect} from "react";
 import Swal from 'sweetalert2';
 import {ethers} from "ethers";
@@ -57,6 +59,40 @@ export default function MinimartAggregator(){
           })
         }
       }
+
+
+      async function setERC20(){
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+        const signer = provider.getSigner();
+
+        try {
+        const contract = new ethers.Contract(contractAdds.guacToken, erc20abi, signer);
+
+        return contract;
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
+    async function approve(price, index){
+      try{
+        setLoading(true)
+        const contract = await setERC20();
+        const resp = await contract.approve(contractAdds.minimart, ethers.utils.parseEther(String(price)));
+  
+        resp.wait().then((res)=>{
+          buy(price, index);
+        })
+      }
+
+      catch(err){
+        console.log(err);
+        setLoading(false);
+      }
+
+    }
 
       async function setERC721(contractAdd){
         try{
@@ -138,7 +174,7 @@ export default function MinimartAggregator(){
   async function buy(price, index){
     try{
       const contract = await minimartContractSetup();
-      const resp = await contract.buyMinimartItem(price, index);
+      const resp = await contract.buyMinimartItem(ethers.utils.parseEther(String(price)), index);
 
       resp.wait().then(()=>{
         Swal.fire({
@@ -146,10 +182,16 @@ export default function MinimartAggregator(){
           title: "Item Bought",
           showConfirmButton: false,
           timer: 1500
+        }).then((res)=>{
+          setLoading(false);
+          window.location.reload();
         });
+        
+        
       })
     }
     catch(err){
+      setLoading(false);
       console.log(err);
       Swal.fire({
         icon: "error",
@@ -319,7 +361,7 @@ export default function MinimartAggregator(){
                   setExpand(true);
                 }
               }}>{collectionName} v</button>
-              <div className="absolute bg-yellow-400 text-black text-center mx-auto rounded-2xl border-2 border-black">
+              <div className="absolute bg-yellow-400 max-h-60 overflow-y-scroll z-[100] shadow-xl shadow-black/50 text-black text-center mx-auto rounded-2xl">
 
                 {expand && contractAddress.map((item, i)=>(
                     <button onClick={()=>{
@@ -341,7 +383,7 @@ export default function MinimartAggregator(){
                       <Image width={1920} height={1080} src={item.img} className="w-40 rounded-2xl border-2 border-black"/>
                       <h1>{item.name}</h1>
                       <h1 className="bg-yellow-400 border-2 py-2 rounded-2xl border-black">{item.price} $GUAC</h1>
-                      {address.toLowerCase() === item.owner.toLowerCase() ? <button onClick={()=>{unList(item.i)}} className={`bg-red-500 py-2 ${loading && " animate-spin "} px-5 my-3 rounded-2xl border-2 border-black hover:bg-red-600`}>Unlist</button> : <button onClick={()=>{buy(item.price)}} className={`bg-blue-500 py-2 px-5 my-3 ${loading && " animate-spin "} rounded-2xl border-2 border-black hover:bg-blue-600`}>Buy</button>}
+                      {address.toLowerCase() === item.owner.toLowerCase() ? <button onClick={()=>{unList(item.i)}} className={`bg-red-500 py-2 ${loading && " animate-spin "} px-5 my-3 rounded-2xl border-2 border-black hover:bg-red-600`}>Unlist</button> : <button onClick={()=>{approve(item.price, item.i)}} className={`bg-blue-500 py-2 px-5 my-3 ${loading && " animate-spin "} rounded-2xl border-2 border-black hover:bg-blue-600`}>Buy</button>}
                       </div>
                   ))}
             </div>
