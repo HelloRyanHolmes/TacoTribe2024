@@ -28,16 +28,16 @@ export default function Minimart() {
   const { isConnected, address } = useAccount()
   const [isClient, setIsClient] = useState(false)
 
-  const [amount, setAmount] = useState(0);
-  const [showBuyDialog, setShowBuyDialog] = useState(false)
+  // const [amount, setAmount] = useState(0);
+  // const [showBuyDialog, setShowBuyDialog] = useState(false)
 
   const handleamountChange = async (e) => {
     setAmount(e.target.value);
   };
 
-  const setDialogState = (value) => {
-    setShowBuyDialog(value)
-  }
+  // const setDialogState = (value) => {
+  //   setShowBuyDialog(value)
+  // }
 
   useEffect(() => {
     setIsClient(true)
@@ -92,7 +92,7 @@ export default function Minimart() {
       </main>
       } */}
       <div className="relative z-10 text-center top-[10rem]">
-      <MinimartAggregator/>
+      {isConnected && <MinimartAggregator/>}
         {/* <Image width={1920} height={1080} src={contruction} className="w-[20rem] mx-auto"/>
         <h1 className="text-black text-[2rem]">Under Construction!</h1> */}
       </div>
