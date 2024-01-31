@@ -22,6 +22,8 @@ export default function MinimartHolding({contractAddress, listed}){
     const [price, setPrice] = useState(0);
     const [tokenId, setTokenId] = useState(null);
 
+    const [loading, setLoading] = useState(false);
+
     async function setERC721Contract(){
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -87,6 +89,7 @@ export default function MinimartHolding({contractAddress, listed}){
     async function approval(tokenId, price){
 
       try {
+        setLoading(true);
       const contract = await setERC721Contract();
       const approve = await contract?.approve(contractAdds.minimart, tokenId);
 
@@ -99,10 +102,11 @@ export default function MinimartHolding({contractAddress, listed}){
       
       }
       catch (err) {
+        setLoading(false);
       console.log("Error", err)
         Swal.fire({
           title: 'Error!',
-          text: 'Couldn\'t get fetching contract',
+          text: 'Faced an Error!',
           imageUrl: error,
           imageWidth: 200,
           imageHeight: 200,
@@ -127,17 +131,18 @@ export default function MinimartHolding({contractAddress, listed}){
 
         const txn = await contract.setMinimartItem(contractAddress, tokenId, price);
         txn.wait().then(()=>{
-
+          setLoading(false);
           Swal.fire({
             icon: "success",
-            title: "NFT has been listed for"+price+"$GUAC",
+            title: "NFT has been listed for "+ethers.utils.formatEther(String(price))+" $GUAC",
             showConfirmButton: false,
             timer: 1500
-          });
+          }).then((res)=>{window.location.reload()});
         });
 
       }
       catch(err){
+        setLoading(false);
         console.log(err);
       }
     }
@@ -211,7 +216,17 @@ export default function MinimartHolding({contractAddress, listed}){
 },[contractAddress, listed])
 
     return(
-        <div className="flex gap-5 flex-wrap justify-center text-black p-4 relative">
+        <div className="flex gap-5 flex-wrap justify-center text-black p-4">
+          {showModal && <div className="bg-yellow-400 px-6 py-4 border-4 rounded-2xl border-black">
+            <h1>#{tokenId}</h1>
+            <input min={0} placeholder="Set Amount in Ether" onChange={handlePrice} type="number" className="mt-2 px-3 py-2 rounded-2xl"></input>
+            <button onClick={()=>{approval(tokenId, price)}} className={`bg-blue-400 ml-2 px-2 py-1 border-2 ${loading && "animate-spin"} border-black rounded-2xl text-white hover:bg-blue-500`}>Set</button>
+            <button onClick={()=>{
+              setShowModal(false);
+              setTokenId(null)
+              setPrice(null);
+            }} className="h-8 ml-2 w-8 bg-red-400 hover:bg-red-500 rounded-full  border-2 border-black">x</button>
+            </div>}
           {displayNFT.map((item)=>(
             <div className="bg-red-300 border-4 w-fit border-black rounded-2xl py-3 px-2 shadow-xl shadow-black/60">
               <div className="w-40 h-40 mx-auto">
@@ -225,16 +240,7 @@ export default function MinimartHolding({contractAddress, listed}){
               </div>
           ))}
 
-          {showModal && <div className="bg-yellow-400 absolute top-[50%] left-[20%] p-6 border-4 rounded-2xl border-black">
-            <input placeholder="Set Amount in Ether" onChange={handlePrice} type="number" className="px-3 py-2 rounded-2xl"></input>
-            
-            <button onClick={()=>{approval(tokenId, price)}} className="bg-blue-400 ml-2 px-2 py-1 border-2 border-black rounded-2xl hover:bg-blue-500">Set</button>
-            <button onClick={()=>{
-              setShowModal(false);
-              setTokenId(null)
-              setPrice(null);
-            }} className="h-8 ml-2 w-8 bg-red-400 hover:bg-red-500 rounded-full  border-2 border-black">x</button>
-            </div>}
+        
         </div>
     )
 }

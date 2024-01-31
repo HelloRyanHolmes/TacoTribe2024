@@ -17,11 +17,16 @@ export default function MinimartAggregator(){
   const{address} = useAccount();
 
     const[contractAddress, setContractAddress] = useState([]);
-    const[selectedAddress, setSelectedAddress] = useState("")
+    const[selectedAddress, setSelectedAddress] = useState("0x47faE0155F418F7355b1ca8e46589811C272a7a8")
 
     const[listedIds, setListedIds] = useState([])
+    const[expand, setExpand] = useState(false);
+
+    const[loading, setLoading] = useState(false);
 
     const [displayNFT, setDisplayNFT] = useState([]);
+
+    const[collectionName, setCollectionName] = useState("Taco Tribe");
 
     async function contractSetup(){
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -157,6 +162,7 @@ export default function MinimartAggregator(){
 
   async function unList(item){
     try{
+      setLoading(true);
         const contract = await minimartContractSetup();
         const resp = await contract.unListItem(item);
 
@@ -166,9 +172,10 @@ export default function MinimartAggregator(){
             title: "Item Unlisted",
             showConfirmButton: false,
             timer: 1500
-          });});
+          }).then((res)=>{window.location.reload()}); setLoading(false);});
     }
     catch(err){
+      setLoading(false);
         console.log(err);
         Swal.fire({
           icon: "error",
@@ -214,7 +221,7 @@ export default function MinimartAggregator(){
       console.log(err);
       Swal.fire({
         icon: "error",
-        title: "Couldn't fetch Marketplace Items",
+        title: "Couldn't display Marketplace Items",
         showConfirmButton: false,
         timer: 1500
       });
@@ -227,7 +234,7 @@ export default function MinimartAggregator(){
     try{
 
       const contract = await minimartContractSetup();
-
+      console.log("I AM CONTRACTTTT", contract);
 
       const data = await contract.fetchData();
       console.log("I AM DATA",data);
@@ -235,9 +242,11 @@ export default function MinimartAggregator(){
             
         for(let i=0; i<data.length; i++){
           const contractAdd = data[i][0];
+
+          console.log("BROOOO", selectedAddress, contractAdd);
           
           if(contractAdd.toLowerCase() == selectedAddress.toLowerCase()){
-            console.log(contractAdd.toLowerCase())
+            console.log("hvfghdrgfgch",contractAdd.toLowerCase(), selectedAddress)
             const tokenId = Number(data[i][1]);
             console.log("hello",tokenId);
             arr[i] = tokenId;
@@ -262,6 +271,7 @@ export default function MinimartAggregator(){
   }
 
   useEffect(()=>{
+
     displayListedNFTs();
   },[listedIds])
 
@@ -275,8 +285,10 @@ export default function MinimartAggregator(){
 
         const arr = [];
         const data = await contract.returnApprovedContracts();
+
+        console.log(data);
         
-        for(let i=0; i<data.length; i++){
+        for(let i=0; i<data.length-1; i++){
           const contract2 = await setERC721(data[i]);
           const name = await contract2.name();
 
@@ -295,13 +307,30 @@ export default function MinimartAggregator(){
     useEffect(()=>{getCollections()},[]);
 
     return (
-        <div className="">
-          <div className="flex justify-center gap-10">
-            {contractAddress.map((item)=>(
-                <button onClick={()=>{
-                  setSelectedAddress(item.contractAdd)
-                }} className="text-black bg-yellow-400 px-4 py-2 rounded-2xl border-2 border-black hover:bg-yellow-600 duration-200">{item.name}</button>
-                ))}
+        <div className="relative ">
+          <div className="flex justify-center gap-10 mx-auto">
+
+            <div>
+              <button className="text-black bg-yellow-400 px-4 py-2 rounded-2xl border-2 border-black hover:bg-yellow-600 duration-200" onClick={()=>{
+                if(expand){
+                  setExpand(false);
+                }
+                else{
+                  setExpand(true);
+                }
+              }}>{collectionName} v</button>
+              <div className="absolute bg-yellow-400 text-black text-center mx-auto rounded-2xl border-2 border-black">
+
+                {expand && contractAddress.map((item, i)=>(
+                    <button onClick={()=>{
+                      setExpand(false)
+                      setCollectionName(item.name)
+                      setSelectedAddress(item.contractAdd)
+                    }} className="block py-2 px-3 w-full rounded-2xl hover:bg-yellow-600">{item.name}</button>
+                    ))}
+              </div>
+            </div>
+
           </div>
 
           <div className="grid grid-flow-col grid-cols-3">
@@ -312,7 +341,7 @@ export default function MinimartAggregator(){
                       <Image width={1920} height={1080} src={item.img} className="w-40 rounded-2xl border-2 border-black"/>
                       <h1>{item.name}</h1>
                       <h1 className="bg-yellow-400 border-2 py-2 rounded-2xl border-black">{item.price} $GUAC</h1>
-                      {address.toLowerCase() === item.owner.toLowerCase() ? <button onClick={()=>{unList(item.i)}} className="bg-red-500 py-2 px-5 my-3 rounded-2xl border-2 border-black hover:bg-red-600">Unlist</button> : <button onClick={()=>{buy(item.price)}} className="bg-blue-500 py-2 px-5 my-3 rounded-2xl border-2 border-black hover:bg-blue-600">Buy</button>}
+                      {address.toLowerCase() === item.owner.toLowerCase() ? <button onClick={()=>{unList(item.i)}} className={`bg-red-500 py-2 ${loading && " animate-spin "} px-5 my-3 rounded-2xl border-2 border-black hover:bg-red-600`}>Unlist</button> : <button onClick={()=>{buy(item.price)}} className={`bg-blue-500 py-2 px-5 my-3 ${loading && " animate-spin "} rounded-2xl border-2 border-black hover:bg-blue-600`}>Buy</button>}
                       </div>
                   ))}
             </div>
