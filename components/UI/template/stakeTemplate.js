@@ -109,7 +109,7 @@ export default function StakeTemplate({ tacoType }) {
     handleContract(tacoType)
   }, [tacoType])
 
-  const [nftType, setNftType] = useState(0);
+  const [nftType, setNftType] = useState(1);
   // 1 - Not Staked
   // 2 - Soft Staked
   // 3 - Hard Staked

@@ -96,11 +96,11 @@ export default function GuacBalance(){
     }
 
     useEffect(()=>{
-        console.log("connection: ", isConnected);
+
         if(isConnected){
             fetchBalance();
         }
-        console.log("hiiii", typeof(guac))
+
     },[])
 
 

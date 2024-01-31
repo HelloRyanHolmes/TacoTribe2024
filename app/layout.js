@@ -4,7 +4,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import candybeans from "next/font/local"
 const inter = Inter({ subsets: ['latin'] })
-const font = candybeans({src:"../assets/fonts/candy-beans.otf"})
+const font = candybeans({ src: "../assets/fonts/candy-beans.otf" })
 
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from '@vercel/analytics/react';
@@ -69,13 +69,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={font.className + " select-non bg-white"}>
-      <Providers>
-        <Loader/>
-        <Navbar/>
-        {children}
-        <SpeedInsights />
-        <Analytics />
-      </Providers>
+        <Providers>
+          <Loader />
+          <Navbar />
+          {children}
+          <SpeedInsights />
+          <Analytics />
+        </Providers>
       </body>
     </html>
   )

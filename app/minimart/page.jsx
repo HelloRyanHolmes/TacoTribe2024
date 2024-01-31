@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 
-const contruction = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/contructiontaco.png";
+
 
 import { useEffect, useState } from "react";
 import { useAccount } from 'wagmi';
+
+import MinimartAggregator from "../../components/UI/Minimart/minimartAggregator";
 
 // const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/marketBg.gif";
 import bg from "../../assets/marketBg.gif";
@@ -19,22 +21,23 @@ const guacLogo = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Gu
 const buyUp = "https://d19rxn9gjbwl25.cloudfront.net/buttons/buyUp.png"
 const buyDown = "https://d19rxn9gjbwl25.cloudfront.net/buttons/buyDown.png"
 
+const contruction = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/contructiontaco.png";
 
 
 export default function Minimart() {
   const { isConnected, address } = useAccount()
   const [isClient, setIsClient] = useState(false)
 
-  const [amount, setAmount] = useState(0);
-  const [showBuyDialog, setShowBuyDialog] = useState(false)
+  // const [amount, setAmount] = useState(0);
+  // const [showBuyDialog, setShowBuyDialog] = useState(false)
 
   const handleamountChange = async (e) => {
     setAmount(e.target.value);
   };
 
-  const setDialogState = (value) => {
-    setShowBuyDialog(value)
-  }
+  // const setDialogState = (value) => {
+  //   setShowBuyDialog(value)
+  // }
 
   useEffect(() => {
     setIsClient(true)
@@ -88,9 +91,13 @@ export default function Minimart() {
         }
       </main>
       } */}
-      <div className="relative z-10 text-center top-[10rem]">
-        <Image width={1920} height={1080} src={contruction} className="w-[20rem] mx-auto"/>
-        <h1 className="text-black text-[2rem]">Under Construction!</h1>
+      <div className="relative z-10 text-center top-[8rem]">
+      <div className="relative w-[50%] max-md:w-[90%] mx-auto">
+          <Image width={1920} height={1080} src={banner} className="object-cover h-full" />
+        </div>
+      {isConnected && isClient && <MinimartAggregator/>}
+        {/* <Image width={1920} height={1080} src={contruction} className="w-[20rem] mx-auto"/>
+        <h1 className="text-black text-[2rem]">Under Construction!</h1> */}
       </div>
     </>
   );
