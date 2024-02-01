@@ -141,9 +141,9 @@ export default function RaffleFetcher({number}){
     async function approve(){
         try{
             setLoading(true);
-            console.log(price);
+            console.log(ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price)))));
             const erc20contract = await setERC20();
-            console.log(erc20contract,ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price)))));
+            console.log(erc20contract, ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price)))));
             const txn = await erc20contract?.approve(contractAdds.raffle, ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price)))));
             txn.wait().then((res)=>{
                 buytickets();
@@ -158,8 +158,8 @@ export default function RaffleFetcher({number}){
     async function buytickets(){
         try{
             const contract = await setRaffle();
-            console.log(number, amount);
-            const txn = await contract?.enterRaffle(number, ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price)))));
+            console.log(number, String(ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price))))));
+            const txn = await contract?.enterRaffle(number, amount);
             txn.wait().then((res)=>{
                 setLoading(false);
                 window.location.reload();
