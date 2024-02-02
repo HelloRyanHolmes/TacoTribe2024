@@ -80,11 +80,21 @@ export default function MinimartAggregator(){
       try{
         setLoading(true)
         const contract = await setERC20();
-        const resp = await contract.approve(contractAdds.minimart, ethers.utils.parseEther(String(price)));
+
+        const allowance = await contract.allowance(address, contractAdds.raffle);
+
+        if(allowance >= ethers.utils.parseEther(String(price))){
+
+          const resp = await contract.approve(contractAdds.minimart, ethers.utils.parseEther(String(price)));
+          resp.wait().then((res)=>{
+            buy(price, index);
+          })
+        }
+
+        else{
+          buy(price, index)
+        }
   
-        resp.wait().then((res)=>{
-          buy(price, index);
-        })
       }
 
       catch(err){
