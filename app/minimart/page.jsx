@@ -92,10 +92,10 @@ export default function Minimart() {
       </main>
       } */}
       <div className="relative z-10 text-center top-[8rem]">
-      <div className="relative w-[50%] max-md:w-[90%] mx-auto">
+        <div className="relative w-[50%] max-md:w-[90%] mx-auto">
           <Image width={1920} height={1080} src={banner} className="object-cover h-full" />
         </div>
-      {isConnected && isClient && <MinimartAggregator/>}
+        {isConnected && isClient && <MinimartAggregator />}
         {/* <Image width={1920} height={1080} src={contruction} className="w-[20rem] mx-auto"/>
         <h1 className="text-black text-[2rem]">Under Construction!</h1> */}
       </div>
