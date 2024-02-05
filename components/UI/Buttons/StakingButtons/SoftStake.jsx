@@ -9,11 +9,11 @@ import stakingabi from '../../../../utils/newAbis/stakingabi';
 
 import { useAccount } from "wagmi";
 
-import claimAllUp from "../../../../assets/claimAllUp.png"
-import claimAllDown from "../../../../assets/claimAllDown.png"
+const claimAllUp = "https://d19rxn9gjbwl25.cloudfront.net/claimAllUp.png"
+const claimAllDown = "https://d19rxn9gjbwl25.cloudfront.net/claimAllDown.png"
 
-import claimUp from "../../../../assets/claimUp.png"
-import claimDown from "../../../../assets/claimDown.png"
+const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/claimUp.png"
+const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/claimDown.png"
 
 
 const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
