@@ -301,19 +301,19 @@ export default function MinimartAggregator() {
 
   return (
     <div className="relative w-[90%] mx-auto z-[-2]">
-      <h1 className="text-black text-4xl mb-10">Listed NFTs</h1>
+      <h1 className="text-black text-xl mb-10 px-4 py-2 bg-white border-2 border-black rounded-full">Listed NFTs</h1>
       <div className=" w-fit mt-5">
 
-        <div className="flex gap-5 flex-wrap">
+        <div className="flex gap-x-5 flex-wrap">
           {displayNFT.map((item) => (
             <div className="mx-auto">
-              <Image width={1920} height={1080} src={item.img} className="shadow-xl shadow-black/30 w-52 h-52 mx-auto rounded-2xl relative z-[2] border-2 border-black" />
-              <div className="bg-red-400 w-60 px-5 -translate-y-24 shadow-2xl shadow-black/60 pt-28 border-4 border-black rounded-2xl">
-                <h1 className="text-black text-xl">{item.name}</h1>
-                <h1 className="text-black bg-yellow-400 border-2 py-2 rounded-2xl border-black">{item.price} $GUAC</h1>
-                {address.toLowerCase() === item.owner.toLowerCase() ? <button disabled={loading} onClick={() => { unList(item.i) }} className={`bg-red-500 py-2 text-2xl ${loading && " animate-spin "} px-5 my-3 rounded-2xl border-2 border-black hover:bg-red-600`}>Unlist</button> : <button onClick={() => { approve(item.price, item.i) }} className={`bg-blue-500 relative text-2xl py-2 px-5 my-3 ${loading && " animate-spin "} rounded-2xl border-2 border-black hover:bg-blue-600`}>Buy</button>}
+              <Image width={1920} height={1080} src={item.img} className="shadow-xl bg-white shadow-black/30 w-52 h-52 mx-auto rounded-2xl relative z-[2] border-2 border-black" />
+              <div className="bg-[#88B60A] w-60 px-5 -translate-y-24 shadow-2xl shadow-black/60 pt-28 border-2 border-black rounded-2xl">
+                <h1 className="text-black text-xl rounded-t-xl bg-white w-fit px-3 mx-auto border-2 border-black border-b-0">{item.name}</h1>
+                <h1 className="text-black bg-yellow-400 border-[2px] py-2 rounded-2xl border-black">{item.price} $GUAC</h1>
+                {address.toLowerCase() === item.owner.toLowerCase() ? <button disabled={loading} onClick={() => { unList(item.i) }} className={`bg-red-500 py-2 text-2xl ${loading && " animate-spin "} px-5 my-3 rounded-2xl border-2 border-black hover:bg-red-600`}>Unlist</button> : <button onClick={() => { approve(item.price, item.i) }} className={`bg-lime-800 relative text-2xl py-2 px-5 my-3 ${loading && " animate-spin "} text-white rounded-2xl border-2 border-black hover:bg-lime-900`}>Buy</button>}
               </div>
-                </div>
+            </div>
           ))}
         </div>
 
