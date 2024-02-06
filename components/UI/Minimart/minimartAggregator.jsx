@@ -4,6 +4,7 @@ import { contractAdds } from "../../../utils/contractAdds";
 import erc20abi from "../../../utils/newAbis/erc20abi";
 import erc721abi from "../../../utils/newAbis/erc721abi";
 import minimartabi from "../../../utils/newAbis/minimartabi";
+import { LineWave } from "react-loader-spinner";
 
 import { ethers } from "ethers";
 import Image from "next/image";
@@ -311,7 +312,34 @@ export default function MinimartAggregator() {
               <div className="bg-gradient-to-b from-[#fa9292] to-[#f6c461] w-60 px-5 -translate-y-24 shadow-2xl shadow-black/60 pt-28 border-2 border-black rounded-2xl">
                 <h1 className="text-black text-xl rounded-t-xl bg-white w-fit px-3 mx-auto border-2 border-black border-b-0">{item.name}</h1>
                 <h1 className="text-black bg-yellow-400 border-[2px] py-2 rounded-2xl border-black">{item.price} $GUAC</h1>
-                {address.toLowerCase() === item.owner.toLowerCase() ? <button disabled={loading} onClick={() => { unList(item.i) }} className={`bg-red-500 py-2 text-2xl ${loading && " animate-spin "} px-5 my-3 duration-300 rounded-2xl border-2 border-black hover:bg-red-600`}>Unlist</button> : <button onClick={() => { approve(item.price, item.i) }} className={`bg-blue-400 duration-300 relative text-2xl py-2 px-5 my-3 ${loading && " animate-spin "} text-white rounded-2xl border-2 border-black hover:bg-blue-500`}>Buy</button>}
+                {address.toLowerCase() === item.owner.toLowerCase() ? <button disabled={loading} onClick={() => { unList(item.i) }} className={`bg-red-500 py-2 text-2xl px-5 my-3 duration-300 rounded-2xl border-2 border-black hover:bg-red-600`}>{!loading? "Unlist": 
+                  <LineWave
+                    visible={true}
+                    height="100"
+                    width="100"
+                    color="#fff"
+                    ariaLabel="line-wave-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    firstLineColor=""
+                    middleLineColor=""
+                    lastLineColor=""
+                  />
+                }</button>
+                : <button onClick={() => { approve(item.price, item.i) }} className={`bg-blue-400 duration-300 relative text-2xl py-2 px-5 my-3 text-white rounded-2xl border-2 border-black hover:bg-blue-500`}>{!loading ? "Buy": 
+                  <LineWave
+                    visible={true}
+                    height="100"
+                    width="100"
+                    color="#fff"
+                    ariaLabel="line-wave-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    firstLineColor=""
+                    middleLineColor=""
+                    lastLineColor=""
+                    />
+                }</button>}
               </div>
             </div>
           ))}
