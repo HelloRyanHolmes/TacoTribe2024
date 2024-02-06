@@ -8,6 +8,7 @@ import {useAccount} from "wagmi"
 import noraffle from "../../../assets/raffle_comingsoon.png"
 
 import {ethers} from "ethers"
+import { LineWave, MutatingDots } from "react-loader-spinner"
 
 export default function RaffleFetcher({number}){
 
@@ -222,9 +223,22 @@ export default function RaffleFetcher({number}){
                             </button>
                         </div>
                         
-                        <button onClick={approve} className={`mt-5 ${loading && " animate-spin"} group py-4 px-8 text-white rounded-xl border-2 border-black text-3xl bg-blue-400`}>
-                           {loading ? "-": "Buy"}
-                        </button>
+                        {!loading ? <button onClick={approve} className={` group py-4 px-8 text-white rounded-xl border-2 border-black text-3xl bg-blue-400`}>
+                        Buy
+                        </button>:
+                         
+                        <MutatingDots
+                        visible={true}
+                        height="100"
+                        width="100"
+                        color="#a855f7"
+                        secondaryColor="#fff"
+                        radius="12.5"
+                        ariaLabel="mutating-dots-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        />
+                        }
                         
                     </div>
                 </div>}
