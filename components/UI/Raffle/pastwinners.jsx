@@ -83,10 +83,15 @@ export default function PastWinners({num}){
 
     return(
         <>
-            <div className="bg-green-400 p-3 text-center rounded-2xl text-white border-2 border-black">
-                {nftImage != "" && <Image width={1920} height={1080} className="mx-auto rounded-2xl border-2 border-black" src={nftImage}/>}
-                <h2 className="text-2xl mt-2">{nftName}</h2>
-                <h2 className="text-sm text-black truncate overflow-ellipsis w-full px-5">{winnerAddress}</h2>
+            <div className="bg-green-400 p-3 text-center grid grid-cols-1 rounded-2xl text-white border-2 border-black">
+            <div className="bg-white w-full row-span-3 h-48 border-2 border-black rounded-lg overflow-hidden">
+                {nftImage != "" && <Image width={1920} height={1080} className="mx-auto h-full col-span-2 bg-white w-full border-2 object-cover" src={nftImage}/>}
+            </div>
+                
+                <div className="col-span-1">
+                    <h2 className="text-2xl mt-2">{nftName}</h2>
+                    <h2 className="text-sm text-black truncate overflow-ellipsis w-full px-5">{winnerAddress}</h2>
+                </div>
             </div>
         </>
     )
