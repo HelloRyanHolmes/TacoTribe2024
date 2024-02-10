@@ -307,7 +307,7 @@ export default function MinimartAggregator() {
         <h1 className="text-black text-3xl mb-10 px-4 py-1 bg-yellow-300 w-fit mx-auto border-2 border-black rounded-full">Listed NFTs</h1>
         <h3 className="text-black text-xl mb-10 grow px-4 py-1 bg-yellow-300 w-fit mx-auto border-2 border-black rounded-full"></h3>
       </div>
-      <div className="w-fit mt-5">
+      <div className="mt-5 w-full">
 
         <div className="flex gap-x-5 flex-wrap">
           {displayNFT.map((item) => (
@@ -345,6 +345,10 @@ export default function MinimartAggregator() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="w-full">
+          {(displayNFT.length<=0) && <h2 className="text-black text-3xl mx-auto text-center w-full">No NFTs Listed! <br /> Come Back Later</h2>}
         </div>
 
       </div>

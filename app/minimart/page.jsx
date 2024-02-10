@@ -15,7 +15,7 @@ const bgConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-ra
 const bgMobile = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/marketBgMobile.png";
 // const bgMobileConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/marketLiveMobile.png";
 
-const banner = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/marketHeader-edited2.png";
+const banner = "https://d19rxn9gjbwl25.cloudfront.net/ui/minimart_logo.png";
 const guacLogo = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Guac logo small.png";
 
 const buyUp = "https://d19rxn9gjbwl25.cloudfront.net/buttons/buyUp.png"
@@ -91,9 +91,9 @@ export default function Minimart() {
         }
       </main>
       } */}
-      <div className="relative z-10 text-center top-[8rem]">
+      <div className="relative z-10 text-center top-[6rem]">
         <div className="relative w-[50%] max-md:w-[90%] mx-auto">
-          <Image width={1920} height={1080} src={banner} className="object-cover h-full" />
+          <Image width={1920} height={1080} src={banner} className="object-cover h-full mb-5" />
         </div>
         {isConnected && isClient && <MinimartAggregator />}
         {/* <Image width={1920} height={1080} src={contruction} className="w-[20rem] mx-auto"/>

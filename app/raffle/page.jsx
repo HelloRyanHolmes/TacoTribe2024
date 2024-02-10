@@ -15,8 +15,8 @@ const bgConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-ra
 const bgMobile = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleBgMobile.png";
 // const bgMobileConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleLiveMobile.png";
 
-const banner = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleHeader-edited2.png";
-const guacLogo = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Guac logo small.png";
+const banner = "https://d19rxn9gjbwl25.cloudfront.net/ui/taco_raffle_banner.png";
+const guacLogo = "https://d19rxn9gjbwl25.cloudfront.net/ui/guac_coin.png";
 
 import RaffleCard from "../../components/UI/Raffle/raffleCard"
 
@@ -42,12 +42,12 @@ export default function Raffle() {
         </div>
       </div>
 
-      {isConnected && isClient && <main className="flex flex-col items-center overflow-x-hidden gap-20 w-screen max-[1240px]:bg-[#d1ffc3] max-[1240px]:h-fit relative">
-        <div className="relative w-[50%] max-md:w-[90%] pt-10 mt-10 ">
+      {isConnected && isClient && <main className="flex flex-col items-center overflow-x-hidden gap-10 w-screen max-[1240px]:bg-[#d1ffc3] max-[1240px]:h-fit relative">
+        <div className="relative w-[50%] max-md:w-[90%] pt-16 mt-10 ">
           <Image width={1920} height={1080} src={banner} className="h-full" />
         </div>
         <div className="text-black text-center">
-          <h1 className="text-4xl">Purchase Tickets Using<span className=" inline-block ml-2 -mb-1"><Image className="w-10" width={100} height={100} src={guacLogo}></Image></span> $Guac!</h1>
+          <h1 className="text-4xl max-sm:px-10 max-sm:text-3xl">Purchase Tickets Using<span className=" inline-block ml-2 "><Image className="w-10" width={100} height={100} src={guacLogo}></Image></span> $Guac!</h1>
 
           <div className="grid gap-5 lg:grid-cols-4 max-lg:grid-cols-2 max-lg:w-[80%] max-md:grid-cols-1 w-[90%] mx-auto mt-10">
             <RaffleFetcher number = {1}/>

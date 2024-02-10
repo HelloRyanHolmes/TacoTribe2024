@@ -347,8 +347,8 @@ const SoftStake = ({ holding, tacoType }) => {
            </div>}
         {displayNFT.length > 0 && 
           <button onClick={claimAll} className='group cursor-pointer'>
-            <Image width={80} height={80} src={claimAllUp} alt="home" className={"w-40 group-hover:hidden"} />
-            <Image width={80} height={80} src={claimAllDown} alt="home" className={"w-40 hidden group-hover:block"} />
+            <Image width={800} height={800} src={claimAllUp} alt="home" className={"w-40 group-hover:hidden"} />
+            <Image width={800} height={800} src={claimAllDown} alt="home" className={"w-40 hidden group-hover:block"} />
           </button>
         }
         {/* {displayNFT.length > 0 && <button onClick={hardStakeAll} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">Hard Stake All</button>} */}
@@ -361,8 +361,8 @@ const SoftStake = ({ holding, tacoType }) => {
               <h2 className='text-black text-[1.7rem] mt-4'>{item.name}</h2>
               <h2 className='text-black text-lg'>{item.unclaimedAmount} $GUAC</h2>
               <button onClick={()=>{claim(item?.tokenId)}} className=' group cursor-pointer '>
-                <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
-                <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
+                <Image width={800} height={800} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
+                <Image width={800} height={800} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
               </button>
               {/* <button onClick={() => { hardStake(item.tokenId) }} className="py-2 mx-2 px-4 border-2 border-black text-black mt-4 bg-white rounded-full">
                 Hard Stake
