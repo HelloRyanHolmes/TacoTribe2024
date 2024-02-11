@@ -116,20 +116,46 @@ export default function RaffleFetcher({number}){
     
                 const tokenURI = await contract721.tokenURI(tokenId);
                 console.log(tokenURI);
-                const metadata = `https://ipfs.io/ipfs/${tokenURI.substr(7)}`;
-                const meta = await fetch(metadata);
-                const json = await meta.json();
-                const name = json["name"];
-                const image = json["image"];
-                const newimage = `https://ipfs.io/ipfs/${image.substr(7)}`
 
-                console.log(newimage);
+                if(tokenURI[0] == "h"){
+
+                    const metadata = tokenURI;
+
+                    const meta = await fetch(metadata);
+                    const json = await meta.json();
+                    const name = json["name"];
+                    const image = json["image"];
+                    const newimage = `https://ipfs.io/ipfs/${image.substr(7)}`
     
-                setWinner(await contract.winningAddress(number));
-                setTicketsSold(Number(await contract?.ticketsSold(number)));
-                setEntrants(Number(await contract?.totalEntrants(number)));
-                setName(name);
-                setImage(newimage);
+                    console.log(newimage);
+        
+                    setWinner(await contract.winningAddress(number));
+                    setTicketsSold(Number(await contract?.ticketsSold(number)));
+                    setEntrants(Number(await contract?.totalEntrants(number)));
+                    setName(name);
+                    setImage(newimage);
+
+                }
+
+                else{
+                    const metadata = `https://ipfs.io/ipfs/${tokenURI.substr(7)}`;
+                    
+                    const meta = await fetch(metadata);
+                    const json = await meta.json();
+                    const name = json["name"];
+                    const image = json["image"];
+                    const newimage = `https://ipfs.io/ipfs/${image.substr(7)}`
+    
+                    console.log(newimage);
+        
+                    setWinner(await contract.winningAddress(number));
+                    setTicketsSold(Number(await contract?.ticketsSold(number)));
+                    setEntrants(Number(await contract?.totalEntrants(number)));
+                    setName(name);
+                    setImage(newimage);
+                }
+                    
+
             }
         }
 
