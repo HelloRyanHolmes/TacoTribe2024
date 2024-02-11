@@ -173,7 +173,7 @@ export default function RaffleFetcher({number}){
 
             const allowance = await erc20contract.allowance(address, contractAdds.raffle);
 
-            if(allowance >= ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price)))) ){
+            if(allowance < ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price)))) ){
                 console.log(erc20contract, ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price)))));
                 const txn = await erc20contract?.approve(contractAdds.raffle, ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price)))));
                 txn.wait().then((res)=>{
