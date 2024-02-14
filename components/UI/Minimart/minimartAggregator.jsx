@@ -211,11 +211,13 @@ export default function MinimartAggregator() {
   async function displayListedNFTs() {
     try {
       // const contract = await setERC721Contract();
-      const arr = [];
+
       
       const minimartContract = await minimartContractSetup();
       
       const data = await minimartContract.fetchData();
+
+
       
       for (let i = 0; i < data.length; i++) {
         
@@ -235,11 +237,10 @@ export default function MinimartAggregator() {
           const price = ethers.utils.formatEther(String(data[i][3]));
           const owner = String(data[i][2]);
 
-          arr.push({ name, tokenId, img, price, owner, i });
+          setDisplayNFT(oldArray =>[...oldArray, { name, tokenId, img, price, owner, i }]);
         }
       }
 
-      setDisplayNFT(arr);
     }
 
     catch (err) {
