@@ -237,7 +237,10 @@ export default function MinimartAggregator() {
           try{
 
             // console.log(setTimeout(await fetch(metadata),3000));
-            const meta = await fetch(metadata);
+            const meta = await fetch(metadata, {
+              signal: AbortSignal.timeout(2000)
+            });
+            
             console.log(meta);
             const json = await meta.json();
             console.log(json);
