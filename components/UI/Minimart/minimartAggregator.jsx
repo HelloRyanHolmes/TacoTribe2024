@@ -217,7 +217,7 @@ export default function MinimartAggregator() {
       
       const data = await minimartContract.fetchData();
 
-
+      console.log(data);
       
       for (let i = 0; i < data.length; i++) {
         
@@ -228,16 +228,29 @@ export default function MinimartAggregator() {
         if (contractAdd.toUpperCase() != "0X0000000000000000000000000000000000000000") {
           console.log("helloooooo", contractAdd);
           const tokenId = String(data[i][1]);
+          console.log(tokenId);
+
           const uri = await contract.tokenURI(tokenId);
           const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
-          const meta = await fetch(metadata);
-          const json = await meta.json();
-          const name = json["name"];
-          const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
-          const price = ethers.utils.formatEther(String(data[i][3]));
-          const owner = String(data[i][2]);
+          
+          try{
+            const meta = await fetch(metadata);
+            console.log(meta);
+            const json = await meta.json();
+            console.log(json);
+            const name = json["name"];
+            const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
+            const price = ethers.utils.formatEther(String(data[i][3]));
+            const owner = String(data[i][2]);
 
-          setDisplayNFT(oldArray =>[...oldArray, { name, tokenId, img, price, owner, i }]);
+            console.log({ name, tokenId, img, price, owner, i });
+
+            setDisplayNFT(oldArray =>[...oldArray, { name, tokenId, img, price, owner, i }]);
+          }
+          catch(err){
+            console.log(err);
+          }
+          
         }
       }
 
