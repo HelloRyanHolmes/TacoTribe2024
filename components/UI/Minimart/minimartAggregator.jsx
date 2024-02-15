@@ -19,7 +19,7 @@ export default function MinimartAggregator() {
 
   const { address } = useAccount();
 
-  const [listedIds, setListedIds] = useState(null)
+  const [loadingNFTs, setLoadingNFTs] = useState(false)
 
   const [loading, setLoading] = useState(false);
 
@@ -210,6 +210,7 @@ export default function MinimartAggregator() {
 
   async function displayListedNFTs() {
     try {
+      setLoadingNFTs(true);
       // const contract = await setERC721Contract();
 
       
@@ -217,7 +218,7 @@ export default function MinimartAggregator() {
       
       const data = await minimartContract.fetchData();
 
-
+      console.log(data);
       
       for (let i = 0; i < data.length; i++) {
         
@@ -228,23 +229,39 @@ export default function MinimartAggregator() {
         if (contractAdd.toUpperCase() != "0X0000000000000000000000000000000000000000") {
           console.log("helloooooo", contractAdd);
           const tokenId = String(data[i][1]);
+          console.log(tokenId);
+
           const uri = await contract.tokenURI(tokenId);
           const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
-          const meta = await fetch(metadata);
-          const json = await meta.json();
-          const name = json["name"];
-          const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
-          const price = ethers.utils.formatEther(String(data[i][3]));
-          const owner = String(data[i][2]);
 
-          setDisplayNFT(oldArray =>[...oldArray, { name, tokenId, img, price, owner, i }]);
+          try{
+
+            // console.log(setTimeout(await fetch(metadata),3000));
+            const meta = await fetch(metadata);
+            console.log(meta);
+            const json = await meta.json();
+            console.log(json);
+            const name = json["name"];
+            const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
+            const price = ethers.utils.formatEther(String(data[i][3]));
+            const owner = String(data[i][2]);
+
+            console.log({ name, tokenId, img, price, owner, i });
+
+            setDisplayNFT(oldArray =>[...oldArray, { name, tokenId, img, price, owner, i }]);
+          }
+          catch(err){
+            console.log(err);
+          }
+          
         }
       }
-
+      setLoadingNFTs(false);
     }
 
     catch (err) {
       console.log(err);
+      setLoadingNFTs(false);
       Swal.fire({
         icon: "error",
         title: "Couldn't display Marketplace Items",
@@ -309,8 +326,8 @@ export default function MinimartAggregator() {
         <h3 className="text-black text-xl mb-10 grow px-4 py-1 bg-yellow-300 w-fit mx-auto border-2 border-black rounded-full"></h3>
       </div>
       <div className="mt-5 w-full">
-
-        <div className="flex gap-x-5 flex-wrap">
+    
+        <div className="flex gap-x-5 items-center flex-wrap">
           {displayNFT.map((item) => (
             <div className="mx-auto">
               <div className="p-1.5 w-fit mx-auto rounded-3xl shadow-xl shadow-black/30 bg-white relative z-[1]"><Image width={1920} height={1080} src={item.img} className="shadow-md bg-white shadow-black/30 w-52 h-52 mx-auto rounded-2xl relative z-[2] border-2 border-black" /></div>
@@ -346,13 +363,28 @@ export default function MinimartAggregator() {
               </div>
             </div>
           ))}
+
         </div>
+
 
         <div className="w-full">
           {(displayNFT.length<=0) && <h2 className="text-black text-3xl mx-auto text-center w-full">No NFTs Listed! <br /> Come Back Later</h2>}
         </div>
 
       </div>
+        {loadingNFTs &&<div className="w-full flex items-center justify-center mx-auto"> <MutatingDots
+                  visible={true}
+                  height="100"
+                  width="100"
+                  color="#ffd000"
+                  secondaryColor="#fff"
+                  radius="12.5"
+                  ariaLabel="mutating-dots-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  />
+                  <h1 className="animate-pulse text-black">Loading All Items...</h1>
+                  </div>}
 
 
     </div>
