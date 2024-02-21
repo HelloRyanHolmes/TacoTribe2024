@@ -222,7 +222,7 @@ export default function RaffleFetcher({number}){
                     <h2 className="bg-yellow-400 border-2 border-black text-black rounded-xl p-2">Tickets Sold: <br /> {ticketsSold}/{limit}</h2>
                     <h2 className="bg-purple-400 col-span-2 text-white border-2 border-black rounded-xl py-2 w-full mx-auto">Your Tickets: {holding}/{limitPerWallet}</h2>
                 </div>
-                <h2 className="text-black bg-white w-fit rounded-t-none rounded-xl py-2 px-4 mx-auto text-[1.2rem] border-x-2 border-black border-b-2">Price: {ethers.utils.formatEther(String(price))} $GUAC</h2>
+                <h2 className="text-black bg-white w-fit rounded-t-none rounded-xl py-2 px-4 mx-auto text-[1.2rem] border-x-2 truncate border-black border-b-2">Price: {ethers.utils.formatEther(String(price))} $GUAC</h2>
                 {winner.toUpperCase() != "0X0000000000000000000000000000000000000000" ? <h2>Winner: {winner}</h2>:
                 <button onClick={()=>{
                     setTicketModal(true);
