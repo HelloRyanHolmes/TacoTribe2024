@@ -45,35 +45,64 @@ export default function PastWinners({num}){
     }
 
     async function fetchPastWinners(){
-        const contract = await setRaffle();
 
-        const lastwinner = await contract?.lastWinners(num);
-        console.log("LAST WINNER",lastwinner);
+        try{
 
-        if(lastwinner.toUpperCase() != "0X0000000000000000000000000000000000000000"){
-
-            setWinnerAddress(lastwinner);
-            const lastWonAddress = await contract?.lastNftWonContract(num);
-            console.log("HELLO", lastWonAddress);
-            const erc721contract = await setERC721(lastWonAddress);
+            const contract = await setRaffle();
     
-            const tokenURI = await erc721contract?.tokenURI(Number(await contract?.lastNftWonTokenId(num)));
-            const metadata = `https://ipfs.io/ipfs/${tokenURI.substr(7)}`;
-            const meta = await fetch(metadata);
-            const json = await meta.json();
-            const name = json["name"];
-            const image = json["image"];
-            const newimage = `https://ipfs.io/ipfs/${image.substr(7)}`
-
-            console.log(newimage);
+            const lastwinner = await contract?.lastWinners(num);
+            console.log("LAST WINNER",lastwinner);
     
-            setNftName(name);
-            setNftImage(newimage)
-            console.log(name, newimage);
+            if(lastwinner.toUpperCase() != "0X0000000000000000000000000000000000000000"){
+    
+                setWinnerAddress(lastwinner);
+                const lastWonAddress = await contract?.lastNftWonContract(num);
+                console.log("HELLO", lastWonAddress);
+                const erc721contract = await setERC721(lastWonAddress);
+        
+                const tokenURI = await erc721contract?.tokenURI(Number(await contract?.lastNftWonTokenId(num)));
+    
+                if(tokenURI[0] != "h"){
+                    const metadata = `https://ipfs.io/ipfs/${tokenURI.substr(7)}`;
+                    const meta = await fetch(metadata);
+                    const json = await meta.json();
+                    const name = json["name"];
+                    const image = json["image"];
+                    const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
+    
+                    console.log(newimage);
+            
+                    setNftName(name);
+                    setNftImage(newimage)
+                    console.log(name, newimage);
+                }
+    
+                else{
+                    const metadata = tokenURI;
+    
+                    const meta = await fetch(metadata);
+                    const json = await meta.json();
+                    const name = json["name"];
+                    const image = json["image"];
+                    const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
+    
+                    console.log(newimage);
+            
+                    setNftName(name);
+                    setNftImage(newimage)
+                    console.log(name, newimage);
+    
+                }
+            }
+    
+            else{
+                setWinnerAddress("None")
+            }
         }
 
-        else{
-            setWinnerAddress("None")
+        catch(err){
+            console.log(err);
+            setTimeout(fetchPastWinners, 1000);
         }
     }
 
