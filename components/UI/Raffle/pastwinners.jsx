@@ -68,7 +68,7 @@ export default function PastWinners({num}){
                     const json = await meta.json();
                     const name = json["name"];
                     const image = json["image"];
-                    const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
+                    const newimage = `https://cloudflare-ipfs.com/ipfs/${image.substr(7)}`
     
                     console.log(newimage);
             
@@ -84,7 +84,7 @@ export default function PastWinners({num}){
                     const json = await meta.json();
                     const name = json["name"];
                     const image = json["image"];
-                    const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
+                    const newimage = `https://cloudflare-ipfs.com/ipfs/${image.substr(7)}`
     
                     console.log(newimage);
             
