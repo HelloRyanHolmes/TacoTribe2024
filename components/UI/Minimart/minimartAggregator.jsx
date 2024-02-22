@@ -245,15 +245,29 @@ export default function MinimartAggregator() {
             const json = await meta.json();
             console.log(json);
             const name = json["name"];
-            const img = "https://ipfs.io/ipfs/" + json["image"].substr(7);
-            const price = ethers.utils.formatEther(String(data[i][3]));
-            const owner = String(data[i][2]);
 
-            console.log({ name, tokenId, img, price, owner, i });
+            if(json["image"][0] == "h"){
+              const img = json["image"];
+              const price = ethers.utils.formatEther(String(data[i][3]));
+              const owner = String(data[i][2]);
+  
+              console.log({ name, tokenId, img, price, owner, i });
+  
+              setDisplayNFT(oldArray =>[...oldArray, { name, tokenId, img, price, owner, i }]);
+            }
 
-            setDisplayNFT(oldArray =>[...oldArray, { name, tokenId, img, price, owner, i }]);
+            else{
+              const img = "https://cf-ipfs.com/ipfs/" + json["image"].substr(7);
+              const price = ethers.utils.formatEther(String(data[i][3]));
+              const owner = String(data[i][2]);
+  
+              console.log({ name, tokenId, img, price, owner, i });
+  
+              setDisplayNFT(oldArray =>[...oldArray, { name, tokenId, img, price, owner, i }]);
+            }
           }
           catch(err){
+            i--;
             console.log(err);
           }
           
@@ -264,7 +278,7 @@ export default function MinimartAggregator() {
 
     catch (err) {
       console.log(err);
-      setLoadingNFTs(false);
+      setTimeout(displayListedNFTs, 1000);
       Swal.fire({
         icon: "error",
         title: "Couldn't display Marketplace Items",
