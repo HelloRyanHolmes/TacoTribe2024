@@ -208,7 +208,7 @@ const SoftStake = ({ holding, tacoType }) => {
           if (stakeType == 1) {
 
             const name = "Taco #" + holding[i].tokenId;
-            const img = "https://cloudflare-ipfs.com/ipfs/bafybeiafvaegd2ze6ncgvg27rm44h5dyn7jq6zyzy2aypqkmizyxul7te4/" + holding[i].tokenId + ".png";
+            const img = "https://cf-ipfs.com/ipfs/bafybeiafvaegd2ze6ncgvg27rm44h5dyn7jq6zyzy2aypqkmizyxul7te4/" + holding[i].tokenId + ".png";
             console.log(img);
             const tokenId = holding[i].tokenId;
             console.log(tokenId);
@@ -225,7 +225,7 @@ const SoftStake = ({ holding, tacoType }) => {
 
           if (stakeType == 1) {
             const name = "Doodled Tacos #" + holding[i].tokenId;
-            const img = "https://cloudflare-ipfs.com/ipfs/bafybeife2zu3n76ktqtn7myxpm2pfd3uhsxpxbg2gkaen2bssdh3rr47ly/" + holding[i].tokenId + ".png";
+            const img = "https://cf-ipfs.com/ipfs/bafybeife2zu3n76ktqtn7myxpm2pfd3uhsxpxbg2gkaen2bssdh3rr47ly/" + holding[i].tokenId + ".png";
             const tokenId = holding[i].tokenId;
             const unclaimedAmount = holding[i].guac;
             dispArr.push({ name, tokenId, img, unclaimedAmount, tacoType })
@@ -240,7 +240,7 @@ const SoftStake = ({ holding, tacoType }) => {
 
           if (stakeType == 1) {
             const name = "Pixel Taco #" + holding[i].tokenId;
-            const img = "https://cloudflare-ipfs.com/ipfs/bafybeib2rme47vsbkaroqwuqidhswujjztevjhrc3ac6tg5ywwshhmfiya/" + holding[i].tokenId + ".png";
+            const img = "https://cf-ipfs.com/ipfs/bafybeib2rme47vsbkaroqwuqidhswujjztevjhrc3ac6tg5ywwshhmfiya/" + holding[i].tokenId + ".png";
             const tokenId = holding[i].tokenId;
             const unclaimedAmount = holding[i].guac;
             dispArr.push({ name, tokenId, img, unclaimedAmount, tacoType })
@@ -256,7 +256,7 @@ const SoftStake = ({ holding, tacoType }) => {
           if (stakeType == 1) {
 
             const name = "Baby Taco #" + holding[i].tokenId;
-            const img = "https://cloudflare-ipfs.com/ipfs/bafybeiangojvxwyo7rcxtofmcetd2rj2jlchyscbyaqcciiwcazc5qrlwm/" + holding[i].tokenId + ".png";
+            const img = "https://cf-ipfs.com/ipfs/bafybeiangojvxwyo7rcxtofmcetd2rj2jlchyscbyaqcciiwcazc5qrlwm/" + holding[i].tokenId + ".png";
             const tokenId = holding[i].tokenId;
             const unclaimedAmount = holding[i].guac;
             dispArr.push({ name, tokenId, img, unclaimedAmount, tacoType })
@@ -272,7 +272,7 @@ const SoftStake = ({ holding, tacoType }) => {
           if (stakeType == 1) {
 
             const name = "Pixel Doodle Tacos #" + holding[i].tokenId;
-            const img = "https://cloudflare-ipfs.com/ipfs/bafybeifgtr33q3k6t5b45gyp3hxloselihxqqj3qo4pamhyzpen54qizni/" + holding[i].tokenId + ".png";
+            const img = "https://cf-ipfs.com/ipfs/bafybeifgtr33q3k6t5b45gyp3hxloselihxqqj3qo4pamhyzpen54qizni/" + holding[i].tokenId + ".png";
             const tokenId = holding[i].tokenId;
             const unclaimedAmount = holding[i].guac;
             dispArr.push({ name, tokenId, img, unclaimedAmount, tacoType })
@@ -288,7 +288,7 @@ const SoftStake = ({ holding, tacoType }) => {
           if (stakeType == 1) {
 
             const name = "Guaco Tribe #" + holding[i].tokenId;
-            const img = "https://cloudflare-ipfs.com/ipfs/bafybeig5rzdjulqlq3j2ei2cg6edm5jrs36blz6hxyqr6ugfhz7x2yv4ve/" + holding[i].tokenId + ".png";
+            const img = "https://cf-ipfs.com/ipfs/bafybeig5rzdjulqlq3j2ei2cg6edm5jrs36blz6hxyqr6ugfhz7x2yv4ve/" + holding[i].tokenId + ".png";
             const tokenId = holding[i].tokenId;
             const unclaimedAmount = holding[i].guac;
             dispArr.push({ name, tokenId, img, unclaimedAmount, tacoType })
@@ -304,7 +304,7 @@ const SoftStake = ({ holding, tacoType }) => {
           if (stakeType == 1) {
 
             const name = "GUAC vs SOUR CREAM #" + holding[i].tokenId;
-            const img = "https://cloudflare-ipfs.com/ipfs/bafybeiaglnj726cekyeqp3lf3rkj5pltcymo2irlcgvpa7p75lqg5zxhe4/" + holding[i].tokenId + ".png";
+            const img = "https://cf-ipfs.com/ipfs/bafybeiaglnj726cekyeqp3lf3rkj5pltcymo2irlcgvpa7p75lqg5zxhe4/" + holding[i].tokenId + ".png";
             const tokenId = holding[i].tokenId;
             const unclaimedAmount = holding[i].guac;
             dispArr.push({ name, tokenId, img, unclaimedAmount, tacoType })
