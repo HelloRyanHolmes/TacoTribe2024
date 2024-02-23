@@ -8,7 +8,7 @@ import {useAccount} from "wagmi"
 import noraffle from "../../../assets/raffle_comingsoon.png"
 import axios from "axios";
 import {ethers} from "ethers"
-import { LineWave, MutatingDots } from "react-loader-spinner"
+import { InfinitySpin, MutatingDots } from "react-loader-spinner"
 
 export default function RaffleFetcher({number}){
 
@@ -22,6 +22,8 @@ export default function RaffleFetcher({number}){
     const [limitPerWallet, setLimitPerWallet] = useState(0);
     const [limit, setLimit] = useState(0);
     const [holding, setHolding] = useState(0);
+
+    const [loadingNFTs, setLoadingNFTs] = useState(false);
 
     const [loading, setLoading]  = useState(false);
 
@@ -97,6 +99,7 @@ export default function RaffleFetcher({number}){
     
     async function fetchRaffle(){
         try{
+            setLoadingNFTs(true);
             console.log("WALLET", address);
             const contract = await setRaffle();
             const add = await contract?.raffleContract(number);
@@ -125,7 +128,7 @@ export default function RaffleFetcher({number}){
                     const json = await meta.json();
                     const name = json["name"];
                     const image = json["image"];
-                    const newimage = `https://cloudflare-ipfs.com/ipfs/${image.substr(7)}`
+                    const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
     
                     console.log(newimage);
         
@@ -150,7 +153,7 @@ export default function RaffleFetcher({number}){
                     }
                     else{
 
-                        const newimage = `https://cloudflare-ipfs.com/ipfs/${image.substr(7)}`
+                        const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
                         setImage(newimage);
                     }
     
@@ -165,6 +168,8 @@ export default function RaffleFetcher({number}){
                     
 
             }
+            setLoadingNFTs(false);
+
         }
 
         catch(err){
@@ -224,6 +229,7 @@ export default function RaffleFetcher({number}){
     return(
         <div className="flex">
             {itemExists ? <div className="bg-gradient-to-b from-purple-500 shadow-xl shadow-black/40 to-lime-400 py-2 px-2 rounded-2xl border-2 border-black w-full p-2 mx-auto">
+            {loadingNFTs && <div className="mx-auto flex items-center justify-center"> <InfinitySpin className="translate-x-10" visible={true} width="200" color="#ffffff" ariaLabel="infinity-spin-loading" /><h1>Fetching data...</h1></div>}
                 {console.log("IMAGE IS HEREEEEE", name,  image)}
                 <Image width={1920} height={1080} className="w-full bg-white min-[1500px]:w-[90%] mx-auto rounded-2xl border-2 border-black" src={image}/>
                 <h2 className="text-2xl bg-white w-fit mx-auto px-4 rounded-full my-2 border-2 border-black">{name}</h2>
