@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import {useAccount} from "wagmi"
 import noraffle from "../../../assets/raffle_comingsoon.png"
+import raffleLinksabi from "../../../utils/newAbis/raffleLinksabi"
 import axios from "axios";
 import {ethers} from "ethers"
 import { InfinitySpin, MutatingDots } from "react-loader-spinner"
@@ -22,6 +23,7 @@ export default function RaffleFetcher({number}){
     const [limitPerWallet, setLimitPerWallet] = useState(0);
     const [limit, setLimit] = useState(0);
     const [holding, setHolding] = useState(0);
+    const [link, setLink] = useState("");
 
     const [loadingNFTs, setLoadingNFTs] = useState(false);
 
@@ -75,6 +77,21 @@ export default function RaffleFetcher({number}){
           }
     }
 
+    async function setLinkContract(){
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+        const signer = provider.getSigner();
+  
+        try {
+        const contract = new ethers.Contract(contractAdds.raffleLinks, raffleLinksabi, signer);
+        console.log("raffle", raffleAdd);
+        return contract;
+        }
+        catch(err){
+          console.log(err);
+        }
+    }
+
     async function setERC20(){
         const provider = new ethers.providers.Web3Provider(window.ethereum);
 
@@ -104,6 +121,7 @@ export default function RaffleFetcher({number}){
             const contract = await setRaffle();
             const add = await contract?.raffleContract(number);
             const tokenId = Number(await contract?.raffleTokenId(number));
+            const contract2 = await setLinkContract();
 
             const limitperWallet = Number(await contract?.ticketLimitPerWallet(number))
             const limit = Number(await contract?.ticketLimit(number));
@@ -115,6 +133,8 @@ export default function RaffleFetcher({number}){
                 setLimitPerWallet(limitperWallet);
                 setHolding(Number(await contract?.walletHolding(number, address)));
                 setItemExists(true);
+                setLink(await contract2.assignedLinks(number));
+
                 const contract721 = await setERC721(add);
     
                 const tokenURI = await contract721.tokenURI(tokenId);
@@ -233,6 +253,8 @@ export default function RaffleFetcher({number}){
                 {console.log("IMAGE IS HEREEEEE", name,  image)}
                 <Image width={1920} height={1080} className="w-full bg-white min-[1500px]:w-[90%] mx-auto rounded-2xl border-2 border-black" src={image}/>
                 <h2 className="text-2xl bg-white w-fit mx-auto px-4 rounded-full my-2 border-2 border-black">{name}</h2>
+                <a className="text-blue-500 underline" href={link}>Check Collection</a>
+
                 <div className="grid grid-cols-2 gap-2">
                     <h2 className="bg-yellow-400 border-2 border-black text-black rounded-xl p-2">Participants: <br /> {entrants}</h2>
                     <h2 className="bg-yellow-400 border-2 border-black text-black rounded-xl p-2">Tickets Sold: <br /> {ticketsSold}/{limit}</h2>
