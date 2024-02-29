@@ -125,15 +125,18 @@ export default function TacoMint() {
                     clearInterval(countdown);
                 }
 
-                const secs = Math.ceil(diff%60);
-                const hours = Math.round(diff/3600)
-                const mins = Math.ceil(diff/60) - hours*60;
+                const secs = diff;
+                const mins = Math.ceil(secs/60);
+                const hours = Math.ceil(mins/60);
+
+                const finalMins = mins - (hours-1)*60;
+                const finalSecs = secs%60
 
                 setHours(hours);
-                setMins(mins);
-                setSecs(secs);
+                setMins(finalMins);
+                setSecs(finalSecs);
 
-                console.log(hours, mins, secs);
+                console.log(hours, finalMins, finalSecs);
 
                 
             },1000)
@@ -187,7 +190,7 @@ export default function TacoMint() {
 
             <div className="bg-yellow-400 w-[20rem] text-center translate-y-56 px-4 py-2 rounded-xl border-2 text-black border-yellow-600 mx-auto">
                 <h2 className="text-md">Minting Resumes in: </h2>
-                <h2 className="text-6xl font-bold my-4 px-5">{hours} : {mins} : {secs}</h2>
+                <h2 className="text-[3.2rem] font-bold my-4 px-5">{hours} : {mins} : {secs}</h2>
             </div>
             
             { mins == 0 && secs==0 && amountBoxShow &&
