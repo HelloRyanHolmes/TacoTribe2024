@@ -9,18 +9,12 @@ import PastWinners from "../../components/UI/Raffle/pastwinners"
 
 const contruction = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/contructiontaco.png"
 
-
 const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleBg.png";
 const bgConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleLive.png";
 const bgMobile = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleBgMobile.png";
-// const bgMobileConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco-raffles/raffleLiveMobile.png";
 
 const banner = "https://d19rxn9gjbwl25.cloudfront.net/ui/taco_raffle_banner.png";
 const guacLogo = "https://d19rxn9gjbwl25.cloudfront.net/ui/guac_coin.png";
-
-import RaffleCard from "../../components/UI/Raffle/raffleCard"
-
-import {raffleData} from "../../EDITABLES/raffleData"
 
 export default function Raffle() {
   const { isConnected, address } = useAccount()

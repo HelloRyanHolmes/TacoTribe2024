@@ -2,7 +2,7 @@
 
 import { ethers } from "ethers"
 import Image from 'next/image'
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { contractAdds } from "../../../../utils/contractAdds"
 import abi from "../../../../utils/newAbis/tacotribeabi"
 
@@ -20,7 +20,7 @@ const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/buttons/Mint_Button_DOW
 
 const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 
-export async function tacoMintSetup(address) {
+export async function tacoMintSetup() {
 
     const add = contractAdds.tacoTribe;
 
@@ -56,6 +56,11 @@ export async function tacoMintSetup(address) {
 }
 
 export default function TacoMint() {
+    const[supply, setSupply] = useState(0);
+
+    const[hours,setHours] = useState(0);
+    const[mins,setMins] = useState(0);
+    const[secs,setSecs] = useState(0);
 
     const [amount, setAmount] = useState(1);
     const [amountBoxShow, setAmountBoxShow] = useState(false);
@@ -102,6 +107,54 @@ export default function TacoMint() {
 
     }
 
+    async function timeLeft(){
+        try{
+            const countdown = setInterval(()=>{
+
+                
+
+                const date = Math.round(Date.now()/1000);
+                const mint = 1709271000;
+    
+                const diff = mint - date;
+
+                if(diff < 0){
+                    setHours(0);
+                    setMins(0);
+                    setSecs(0);
+                    clearInterval(countdown);
+                }
+
+                const secs = Math.ceil(diff%60);
+                const hours = Math.round(diff/3600)
+                const mins = Math.ceil(diff/60) - hours*60;
+
+                setHours(hours);
+                setMins(mins);
+                setSecs(secs);
+
+                console.log(hours, mins, secs);
+
+                
+            },1000)
+        }
+        catch(err){
+
+        }
+    }
+
+    async function fetchSupply(){
+        try{
+            const contract = await tacoMintSetup();
+
+            setSupply(Number(await contract.totalSupply()));
+        }
+        catch(err){
+            setTimeout(fetchSupply, 1000);
+            console.log(err);
+        }
+    }
+
     async function changeAmount(val){
         if(amount>=1)
         setAmount(amount+val);
@@ -109,17 +162,35 @@ export default function TacoMint() {
         setAmount(1);
     }
 
+    useEffect(()=>{
+        fetchSupply();
+        timeLeft();
+    },[])
+
 
     return (
         <>
-            <button onClick={() => { isConnected && setAmountBoxShow(true) }} className=" absolute bg-transparent z-10 max-[950px]:hidden w-screen h-screen"></button>
+            <button onClick={() => { isConnected && setAmountBoxShow(true) }} className=" absolute bg-transparent z-10 w-screen h-screen"></button>
 
-            <button onClick={() => { isConnected && setAmountBoxShow(true) }} className={` md:hidden max-[950px]:block group cursor-pointer absolute z-20 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2`}>
+            {/* <button onClick={() => { isConnected && setAmountBoxShow(true) }} className={` md:hidden max-[950px]:block group cursor-pointer absolute z-20 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2`}>
                 <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
                 <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
-            </button>
+            </button> */}
+
+            {mins != 0 && secs!=0 && <div className="bg-yellow-400 text-center translate-y-32 px-4 py-2 text-xl rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
+                Minted: {supply}/8226
+            </div>}
+
+            <div className="bg-yellow-400 text-center translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
+                Price: 25 $MATIC
+            </div>
+
+            <div className="bg-yellow-400 w-[20rem] text-center translate-y-56 px-4 py-2 rounded-xl border-2 text-black border-yellow-600 mx-auto">
+                <h2 className="text-md">Minting Resumes in: </h2>
+                <h2 className="text-6xl font-bold my-4 px-5">{hours} : {mins} : {secs}</h2>
+            </div>
             
-            {amountBoxShow &&
+            { mins == 0 && secs==0 && amountBoxShow &&
                 <div className="bg-yellow-400 z-20 border-2 border-black rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
                     <div className="relative flex flex-col items-center justify-center w-full h-full p-5 pt-10">
                         <h2 onClick={() => { setAmountBoxShow(false) }} className="absolute top-0 right-0 cursor-pointer m-2 mx-4 text-black hover:text-red-600 transform hover:scale-125 transition-all duration-200 ease-in-out">x</h2>
