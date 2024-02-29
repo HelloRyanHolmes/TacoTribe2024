@@ -110,10 +110,20 @@ export default function TacoMint() {
     async function timeLeft(){
         try{
             const countdown = setInterval(()=>{
+
+                
+
                 const date = Math.round(Date.now()/1000);
                 const mint = 1709271000;
     
                 const diff = mint - date;
+
+                if(diff < 0){
+                    setHours(0);
+                    setMins(0);
+                    setSecs(0);
+                    clearInterval(countdown);
+                }
 
                 const secs = Math.ceil(diff%60);
                 const hours = Math.round(diff/3600)
@@ -125,9 +135,7 @@ export default function TacoMint() {
 
                 console.log(hours, mins, secs);
 
-                if(diff < 0){
-                    clearInterval(countdown);
-                }
+                
             },1000)
         }
         catch(err){
@@ -182,7 +190,7 @@ export default function TacoMint() {
                 <h2 className="text-6xl font-bold my-4 px-5">{hours} : {mins} : {secs}</h2>
             </div>
             
-            {amountBoxShow &&
+            { mins == 0 && secs==0 && amountBoxShow &&
                 <div className="bg-yellow-400 z-20 border-2 border-black rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
                     <div className="relative flex flex-col items-center justify-center w-full h-full p-5 pt-10">
                         <h2 onClick={() => { setAmountBoxShow(false) }} className="absolute top-0 right-0 cursor-pointer m-2 mx-4 text-black hover:text-red-600 transform hover:scale-125 transition-all duration-200 ease-in-out">x</h2>
