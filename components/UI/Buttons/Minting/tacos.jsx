@@ -177,10 +177,10 @@ export default function TacoMint() {
                 Price: 25 $MATIC
             </div>
 
-            <div className="bg-yellow-400 text-center translate-y-56 px-4 py-2 rounded-xl border-2 text-black border-yellow-600 w-fit mx-auto">
+            { hours > 0 || mins > 0 || secs > 0 && <div className="bg-yellow-400 text-center translate-y-56 px-4 py-2 rounded-xl border-2 text-black border-yellow-600 w-fit mx-auto">
                 <h2 className="text-md">Minting Resumes in: </h2>
                 <h2 className="text-5xl font-bold my-4 px-5">{hours}:{mins}:{secs}</h2>
-            </div>
+            </div>}
             
             {amountBoxShow &&
                 <div className="bg-yellow-400 z-20 border-2 border-black rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
