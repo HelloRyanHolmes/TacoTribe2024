@@ -72,7 +72,7 @@ export default function TacoMint() {
         setLoader(true)
         const contract = await tacoMintSetup(address);
         console.log("inside mint", contract);
-        await contract.mint(amount, {value: ethers.utils.parseEther(String(15 * amount)) }).then(
+        await contract.mint(amount, {value: ethers.utils.parseEther(String(25 * amount)) }).then(
             (res) => {
                 setLoader(false)
                 console.log(res);
@@ -180,18 +180,18 @@ export default function TacoMint() {
                 <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
             </button> */}
 
-            {mins != 0 && secs!=0 && <div className="bg-yellow-400 text-center translate-y-32 px-4 py-2 text-xl rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
+            <div className="bg-yellow-400 text-center translate-y-32 px-4 py-2 text-xl rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
                 Minted: {supply}/8226
-            </div>}
+            </div>
 
             <div className="bg-yellow-400 text-center translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
                 Price: 25 $MATIC
             </div>
 
-            <div className="bg-yellow-400 w-[20rem] text-center translate-y-56 px-4 py-2 rounded-xl border-2 text-black border-yellow-600 mx-auto">
+            {mins != 0 && secs!=0 && <div className="bg-yellow-400 w-[20rem] text-center translate-y-56 px-4 py-2 rounded-xl border-2 text-black border-yellow-600 mx-auto">
                 <h2 className="text-md">Minting Resumes in: </h2>
                 <h2 className="text-[3.2rem] font-bold my-4 px-5">{hours} : {mins} : {secs}</h2>
-            </div>
+            </div> }
             
             { mins == 0 && secs==0 && amountBoxShow &&
                 <div className="bg-yellow-400 z-20 border-2 border-black rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
