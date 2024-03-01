@@ -204,7 +204,7 @@ export default function NotStaked({ holding, tacoType }) {
             if (stakeType == 0) {
   
               const name = "Taco #" + holding[i].tokenId;
-              const img = "https://cf-ipfs.com/ipfs/ipfs/bafybeifitlan5k3ynacu7cqgtq32l6je5n5ydw2xblhrshduch6rxgstq4/" + holding[i].tokenId + ".png";
+              const img = "https://cf-ipfs.com/ipfs/ipfs/bafybeiduqtzpwdc6hwwwjg3rt35twynjwsq367wo5phobkb3iogmhincge/" + holding[i].tokenId + ".png";
               const tokenId = holding[i].tokenId;
               dispArr.push({ name, tokenId, img, tacoType })
             }

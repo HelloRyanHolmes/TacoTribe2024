@@ -208,7 +208,7 @@ const SoftStake = ({ holding, tacoType }) => {
           if (stakeType == 1) {
 
             const name = "Taco #" + holding[i].tokenId;
-            const img = "https://cf-ipfs.com/ipfs/bafybeiafvaegd2ze6ncgvg27rm44h5dyn7jq6zyzy2aypqkmizyxul7te4/" + holding[i].tokenId + ".png";
+            const img = "https://cf-ipfs.com/ipfs/bafybeiduqtzpwdc6hwwwjg3rt35twynjwsq367wo5phobkb3iogmhincge/" + holding[i].tokenId + ".png";
             console.log(img);
             const tokenId = holding[i].tokenId;
             console.log(tokenId);
