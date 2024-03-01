@@ -84,7 +84,7 @@ export default function RaffleFetcher({number}){
   
         try {
         const contract = new ethers.Contract(contractAdds.raffleLinks, raffleLinksabi, signer);
-        console.log("raffle", raffleAdd);
+
         return contract;
         }
         catch(err){
@@ -133,6 +133,7 @@ export default function RaffleFetcher({number}){
                 setLimitPerWallet(limitperWallet);
                 setHolding(Number(await contract?.walletHolding(number, address)));
                 setItemExists(true);
+                console.log("Hello", await contract2.assignedLinks(number))
                 setLink(await contract2.assignedLinks(number));
 
                 const contract721 = await setERC721(add);
