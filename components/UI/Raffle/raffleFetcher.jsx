@@ -194,8 +194,8 @@ export default function RaffleFetcher({number}){
         }
 
         catch(err){
-            setTimeout(fetchRaffle, 1000);
             console.log(err);
+            setTimeout(fetchRaffle, 1000);
         }
     }
 
