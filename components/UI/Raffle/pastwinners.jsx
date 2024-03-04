@@ -101,6 +101,7 @@ export default function PastWinners({num}){
         }
 
         catch(err){
+            setTimeout(fetchPastWinners, 1000);
             console.log(err);
         }
     }
