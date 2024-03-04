@@ -194,8 +194,8 @@ export default function RaffleFetcher({number}){
         }
 
         catch(err){
-            setTimeout(fetchRaffle, 1000);
             console.log(err);
+            setTimeout(fetchRaffle, 1000);
         }
     }
 
@@ -254,7 +254,7 @@ export default function RaffleFetcher({number}){
                 {console.log("IMAGE IS HEREEEEE", name,  image)}
                 <Image width={1920} height={1080} className="w-full bg-white min-[1500px]:w-[90%] mx-auto rounded-2xl border-2 border-black" src={image}/>
                 <h2 className="text-2xl bg-white w-fit mx-auto px-4 rounded-full my-2 border-2 border-black">{name}</h2>
-                <a className="text-blue-500 underline" href={link}>Check Collection</a>
+                <a target="_blank" className="text-blue-500 underline" href={link}>Check Collection</a>
 
                 <div className="grid grid-cols-2 gap-2">
                     <h2 className="bg-yellow-400 border-2 border-black text-black rounded-xl p-2">Participants: <br /> {entrants}</h2>
