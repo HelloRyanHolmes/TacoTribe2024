@@ -149,7 +149,15 @@ export default function RaffleFetcher({number}){
                     const json = await meta.json();
                     const name = json["name"];
                     const image = json["image"];
-                    const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
+
+                    if(image[0] == "h"){
+                        const newimage = image;
+                        setImage(newimage);
+                    }
+                    else{
+
+                        setImage(image);
+                    }
     
                     console.log(newimage);
         
@@ -157,7 +165,6 @@ export default function RaffleFetcher({number}){
                     setTicketsSold(Number(await contract?.ticketsSold(number)));
                     setEntrants(Number(await contract?.totalEntrants(number)));
                     setName(name);
-                    setImage(newimage);
 
                 }
 
