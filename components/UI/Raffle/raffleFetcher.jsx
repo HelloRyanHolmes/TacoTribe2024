@@ -158,7 +158,6 @@ export default function RaffleFetcher({number}){
                         setImage(newimage);
                     }
     
-                    console.log(newimage);
         
                     setWinner(await contract.winningAddress(number));
                     setTicketsSold(Number(await contract?.ticketsSold(number)));
@@ -179,7 +178,6 @@ export default function RaffleFetcher({number}){
                         setImage(image);
                     }
                     else{
-
                         const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
                         setImage(newimage);
                     }
