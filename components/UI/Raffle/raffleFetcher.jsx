@@ -151,12 +151,11 @@ export default function RaffleFetcher({number}){
                     const image = json["image"];
 
                     if(image[0] == "h"){
-                        const newimage = image;
-                        setImage(newimage);
+                        setImage(image);
                     }
                     else{
-
-                        setImage(image);
+                        const newimage = `https://cf-ipfs.com/ipfs/${image.substr(7)}`
+                        setImage(newimage);
                     }
     
                     console.log(newimage);
