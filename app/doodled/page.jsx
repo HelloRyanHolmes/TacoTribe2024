@@ -3,6 +3,7 @@
 import Image from "next/image";
 import DoodleMint from "../../components/UI/Buttons/Minting/doodleTacos";
 
+
 import { useAccount } from 'wagmi'
 import { useEffect, useState } from "react";
 import DoodlePixelMint from "../../components/UI/Buttons/Minting/doodlepixelTacos";

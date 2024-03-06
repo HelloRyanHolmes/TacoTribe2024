@@ -6,6 +6,7 @@ import { ethers } from "ethers"
 import Swal from 'sweetalert2'
 import { contractAdds } from "../../../../utils/contractAdds"
 import pixelTacosabi from "../../../../utils/newAbis/pixelTacosabi"
+import { useState, useEffect } from 'react'
 
 import { useGlobalContext } from "../../../../context/MainContext"
 
@@ -16,7 +17,7 @@ const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/T
 
 const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 
-export async function pixelMintSetup(address) {
+export async function pixelMintSetup() {
 
     const pixelAdd = contractAdds.pixelTacos;
     // console.log("Address", pixelAdd);
@@ -55,6 +56,7 @@ export default function PixelMint() {
 
     const { setLoader } = useGlobalContext();
     const { isConnected, address } = useAccount()
+    const [supply, setSupply] = useState(0)
 
     async function mint() {
         setLoader(true);
@@ -97,6 +99,23 @@ export default function PixelMint() {
         setLoader(false);
     }
 
+    async function fetchSupply(){
+        try{
+            const contract = await pixelMintSetup();
+
+            setSupply(Number(await contract.totalSupply()));
+        }
+        catch(err){
+            setTimeout(fetchSupply, 1000);
+            console.log(err);
+        }
+    }
+
+    useEffect(()=>{
+        fetchSupply();
+
+    },[])
+
     return (
         <>
             <button onClick={mint} className=" hidden md:block absolute cursor-pointer w-full h-full "></button>
@@ -105,6 +124,10 @@ export default function PixelMint() {
                 <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
                 <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
             </button>
+
+            <div className="bg-yellow-400 text-center translate-y-32 px-4 py-2 text-xl rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
+                Minted: {supply}/8226
+            </div>
         </>
     )
 }

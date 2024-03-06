@@ -6,6 +6,9 @@ import Swal from 'sweetalert2'
 import { contractAdds } from "../../../../utils/contractAdds"
 import abi from "../../../../utils/newAbis/pixelDoodleabi"
 
+import { useState, useEffect } from 'react'
+
+
 import { useGlobalContext } from "../../../../context/MainContext"
 
 const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/Tan+Button+UP.png"
@@ -54,6 +57,19 @@ export default function DoodlePixelMint() {
 
     const { address, isConnected } = useAccount()
     const { setLoader } = useGlobalContext();
+    const [supply, setSupply] = useState(0)
+
+    async function fetchSupply(){
+        try{
+            const contract = await doodledPixelTacoMintSetup();
+
+            setSupply(Number(await contract.totalSupply()));
+        }
+        catch(err){
+            setTimeout(fetchSupply, 1000);
+            console.log(err);
+        }
+    }
 
     async function mint() {
         setLoader(true);
@@ -97,6 +113,11 @@ export default function DoodlePixelMint() {
         setLoader(false);
     }
 
+    useEffect(()=>{
+        fetchSupply();
+
+    },[])
+
     return (
         <>
             <button onClick={mint} className="hidden md:block absolute cursor-pointer rounded-3xl w-full h-full"></button>
@@ -105,6 +126,10 @@ export default function DoodlePixelMint() {
                 <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
                 <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
             </button>
+
+            <div className="bg-yellow-400 text-center translate-y-32 px-4 py-2 text-xl rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
+                Minted: {supply}/8226
+            </div>
         </>
     )
 }

@@ -2,7 +2,7 @@
 
 import { ethers } from "ethers"
 import Image from 'next/image'
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Swal from 'sweetalert2'
 import { contractAdds } from "../../../../utils/contractAdds"
 import abi from "../../../../utils/newAbis/doodletacosabi"
@@ -19,7 +19,7 @@ const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 
 import { useAccount } from 'wagmi'
 
-export async function doodledTacoMintSetup(address) {
+export async function doodledTacoMintSetup() {
 
     const add = contractAdds.doodleTacos;
 
@@ -59,7 +59,7 @@ export default function DoodleMint() {
     const [amount, setAmount] = useState(1);
     const [amountBoxShow, setAmountBoxShow] = useState(false);
     const { isConnected, address } = useAccount()
-
+    const [supply, setSupply] = useState(0)
     const { setLoader } = useGlobalContext();
 
 
@@ -106,6 +106,18 @@ export default function DoodleMint() {
         setLoader(false)
     }
 
+    async function fetchSupply(){
+        try{
+            const contract = await doodledTacoMintSetup();
+
+            setSupply(Number(await contract.totalSupply()));
+        }
+        catch(err){
+            setTimeout(fetchSupply, 1000);
+            console.log(err);
+        }
+    }
+
     async function changeAmount(val){
         if(amount>=1)
         setAmount(amount+val);
@@ -113,18 +125,25 @@ export default function DoodleMint() {
         setAmount(1);
     }
 
+    useEffect(()=>{
+        fetchSupply();
+
+    },[])
+
     return (
         <>
             {/* <div className=" absolute top-1/2 left-1/2 flex items-center justify-center h-full">
                 <button onClick={()=>{setAmountBoxShow(true)}} className="bg-red-400">Click me pls</button>
             </div> */}
-
-            <button onClick={() => { isConnected && setAmountBoxShow(true) }} className=" hidden md:block absolute cursor-pointer w-full h-full"></button>
+ <div className="bg-yellow-400 text-center translate-y-32 px-4 py-2 text-xl rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
+                Minted: {supply}/8226
+            </div>
+            {/* <button onClick={() => { isConnected && setAmountBoxShow(true) }} className=" hidden md:block absolute cursor-pointer w-full h-full"></button>
 
             <button onClick={() => { isConnected && setAmountBoxShow(true) }} className='md:hidden group cursor-pointer absolute z-10 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2'>
                 <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
                 <Image width={80} height={80} src={claimDown} alt="home" className={"w-40 hidden group-hover:block"} />
-            </button>
+            </button> */}
 
             {amountBoxShow &&
                 <div className="bg-yellow-400 z-10 border-2 border-black rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
