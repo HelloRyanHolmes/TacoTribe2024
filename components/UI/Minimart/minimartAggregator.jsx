@@ -232,18 +232,16 @@ export default function MinimartAggregator() {
           console.log(tokenId);
 
           const uri = await contract.tokenURI(tokenId);
-          const metadata = "https://ipfs.io/ipfs/" + uri.substr(7);
+          const metadata = "https://cf-ipfs.com/ipfs/" + uri.substr(7);
 
           try{
 
-            // console.log(setTimeout(await fetch(metadata),3000));
-            const meta = await fetch(metadata, {
-              signal: AbortSignal.timeout(2000)
-            });
+            console.log(metadata);
+            const meta = await fetch(metadata);
             
             console.log(meta);
             const json = await meta.json();
-            console.log(json);
+            console.log(json["image"]);
             const name = json["name"];
 
             if(json["image"][0] == "h"){
@@ -257,7 +255,7 @@ export default function MinimartAggregator() {
             }
 
             else{
-              const img = "https://cloudflare-ipfs.com/ipfs/" + json["image"].substr(7);
+              const img = "https://cf-ipfs.com/ipfs/" + json["image"].substr(7);
               const price = ethers.utils.formatEther(String(data[i][3]));
               const owner = String(data[i][2]);
   
@@ -267,7 +265,7 @@ export default function MinimartAggregator() {
             }
           }
           catch(err){
-            i--;
+            // i--;
             console.log(err);
           }
           
@@ -278,13 +276,13 @@ export default function MinimartAggregator() {
 
     catch (err) {
       console.log(err);
-      setTimeout(displayListedNFTs, 1000);
-      Swal.fire({
-        icon: "error",
-        title: "Couldn't display Marketplace Items",
-        showConfirmButton: false,
-        timer: 1500
-      });
+      setTimeout(displayListedNFTs, 400);
+      // Swal.fire({
+      //   icon: "error",
+      //   title: "Couldn't display Marketplace Items",
+      //   showConfirmButton: false,
+      //   timer: 1500
+      // });
     }
 
   }
