@@ -25,6 +25,8 @@ export const contractAdds = {
 
     raffle: "0xdF95f392628711E304b9d4a1bB8eEe6560b8e626",
 
-    raffleLinks: "0x76C91D0D5ef5C438Cd16Dd40DbA86595D8c8A50B"
+    raffleLinks: "0x76C91D0D5ef5C438Cd16Dd40DbA86595D8c8A50B",
+
+    sauce: "0x257963e33fdA191C648704F19c9d23AEFE706855"
 
 }
