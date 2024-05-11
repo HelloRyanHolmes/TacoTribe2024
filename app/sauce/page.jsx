@@ -1,8 +1,9 @@
 "use client"
 import Image from "next/image";
+// import {bgConnected} from "../../assets/taco_sauce_bg.png"
 
-const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco_collection/taco-truck-night.png";
-const bgConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco_collection/tacoOpen.png";
+const bg = "https://media.discordapp.net/attachments/1225423312906354788/1238568066707620000/MINTING_DAPP_BG_LOGGED_OUT.png?ex=663fc1e6&is=663e7066&hm=08d68b6f994270c4d8d756d83c0e00b289ad09f988ac4f35546857f9507fdac1&=&format=webp&quality=lossless&width=2078&height=1168";
+const bgConnected = "https://media.discordapp.net/attachments/1225423312906354788/1238568066279805058/MINTING_DAPP_BG_LOGGED_IN.png?ex=663fc1e6&is=663e7066&hm=67b989a0dc29acc05bf587825d55b9607025675eaf86591d620be3e31d8e3ec5&=&format=webp&quality=lossless&width=2078&height=1168";
 const bgMobile = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco_collection/taco-truck-night-mobile.png";
 const bgMobileConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/taco_collection/tacoOpenMobile.png";
 
