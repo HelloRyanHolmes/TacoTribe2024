@@ -198,7 +198,8 @@ export default [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
+		"type": "function", 
+		"gas": 3000000000
 	},
 	{
 		"inputs": [
@@ -217,7 +218,8 @@ export default [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
+		"type": "function",
+		"gas": 3000000000
 	},
 	{
 		"inputs": [
@@ -236,7 +238,8 @@ export default [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
+		"type": "function",
+		"gas": 3000000000
 	},
 	{
 		"inputs": [],
@@ -281,7 +284,8 @@ export default [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
+		"type": "function",
+		"gas": 3000000000
 	},
 	{
 		"inputs": [
@@ -300,7 +304,8 @@ export default [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
+		"type": "function",
+		"gas": 3000000000
 	},
 	{
 		"inputs": [
@@ -319,7 +324,8 @@ export default [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
+		"type": "function",
+		"gas": 3000000000
 	},
 	{
 		"inputs": [
@@ -338,7 +344,8 @@ export default [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
+		"type": "function",
+		"gas": 3000000000
 	},
 	{
 		"inputs": [
@@ -357,7 +364,8 @@ export default [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
+		"type": "function",
+		"gas": 3000000000
 	},
 	{
 		"inputs": [
@@ -376,7 +384,8 @@ export default [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
+		"type": "function",
+		"gas": 3000000000
 	},
 	{
 		"inputs": [
@@ -395,7 +404,8 @@ export default [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
+		"type": "function",
+		"gas": 3000000000
 	},
 	{
 		"inputs": [
@@ -419,7 +429,8 @@ export default [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
+		"type": "function",
+		"gas": 3000000000
 	},
 	{
 		"inputs": [
@@ -438,6 +449,7 @@ export default [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
+		"type": "function",
+		"gas": 3000000000
 	}
 ];
