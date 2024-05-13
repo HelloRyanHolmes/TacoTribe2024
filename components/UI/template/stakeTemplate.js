@@ -58,7 +58,7 @@ export default function StakeTemplate({ tacoType }) {
     try {
       const contract = new ethers.Contract(addnew, abinew, signer);
       setLoader(false);
-
+      console.log("I am contract", contract)
       return contract;
     }
     catch (err) {
@@ -94,6 +94,7 @@ export default function StakeTemplate({ tacoType }) {
     const data = await dataArr[tacoType];
 
     await data.map((item)=>{
+      console.log
       const tokenId = Number(item.tokenId);
       const stakeType = Number(item.stakeType);
       const guac = Number(ethers.utils.formatEther(String(item.unclaimed)));
