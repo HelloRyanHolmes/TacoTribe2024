@@ -123,6 +123,9 @@ export default function SauceMint() {
             setAmount(amount + val);
         if (amount == 0 && val == 1)
             setAmount(1);
+        if(val == -1 && amount != 0){
+            setAmount(amount);
+        }
     }
 
     useEffect(() => {
