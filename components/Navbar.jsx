@@ -10,8 +10,11 @@ import { usePathname } from 'next/navigation'
 import { useAccount } from 'wagmi'
 
 //Images
-const sauceUp = "https://media.discordapp.net/attachments/1225423312906354788/1238567026570821632/Sauce_Button.png?ex=663fc0ee&is=663e6f6e&hm=850ffd5bf8846685286c1eb52883ce2ffb7a9ed87a191e8de4f7111a5101823d&=&format=webp&quality=lossless&width=2160&height=978";
-const sauceDown = "https://cdn.discordapp.com/attachments/1225423312906354788/1238567027174543472/Sauce_Button_DOWN.png?ex=663fc0ee&is=663e6f6e&hm=d58649298cbb9f1692ce8b7e64ecb3955ca9ddeb5f73ca0577bf729e2da758d4&"
+// const sauceUp = "https://media.discordapp.net/attachments/1225423312906354788/1238567026570821632/Sauce_Button.png?ex=663fc0ee&is=663e6f6e&hm=850ffd5bf8846685286c1eb52883ce2ffb7a9ed87a191e8de4f7111a5101823d&=&format=webp&quality=lossless&width=2160&height=978";
+// const sauceDown = "https://cdn.discordapp.com/attachments/1225423312906354788/1238567027174543472/Sauce_Button_DOWN.png?ex=663fc0ee&is=663e6f6e&hm=d58649298cbb9f1692ce8b7e64ecb3955ca9ddeb5f73ca0577bf729e2da758d4&"
+
+import sauceUp from '../assets/sauce_up.png'
+import sauceDown from '../assets/sauce_down.png'
 
 const homeBtnUp = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/homeUpLg.png'
 const homeBtnDown = 'https://d19rxn9gjbwl25.cloudfront.net/buttons/homeDownLg.png'
