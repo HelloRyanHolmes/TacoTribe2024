@@ -119,7 +119,7 @@ export default function SauceMint() {
     }
 
     async function changeAmount(val) {
-        if (amount >= 1 && balance + val <= 3)
+        if (amount >= 1 && balance + amount < 3)
             setAmount(amount + val);
         if (amount == 0 && val == 1)
             setAmount(1);
