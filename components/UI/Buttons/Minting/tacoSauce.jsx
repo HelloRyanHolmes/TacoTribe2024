@@ -100,8 +100,6 @@ export default function SauceMint() {
 
     }
 
-    
-
     async function fetchSupply(){
         try{
             const contract = await sauceMintSetup();
@@ -127,7 +125,6 @@ export default function SauceMint() {
         fetchSupply();
 
     },[])
-
 
     return (
         <>
