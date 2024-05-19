@@ -136,7 +136,7 @@ export default function SauceMint() {
             </button> */}
 
             <div className="bg-yellow-400 text-center translate-y-32 px-4 py-2 text-xl rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
-                Minted: {supply}/8226
+                Minted: {supply}/200
             </div>
 
             <div className="bg-yellow-400 text-center translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
