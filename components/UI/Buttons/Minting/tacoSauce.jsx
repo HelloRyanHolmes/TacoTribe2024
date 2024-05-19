@@ -40,7 +40,7 @@ async function sauceMintSetup() {
             imageHeight: 200,
             imageAlt: "Taco OOPS!",
             confirmButtonText: 'Bruh 😭',
-            confirmButtonColor: "#facc14", 
+            confirmButtonColor: "#facc14",
             customClass: {
                 container: "border-8 border-black",
                 popup: "bg-white rounded-2xl border-8 border-black",
@@ -53,7 +53,7 @@ async function sauceMintSetup() {
 }
 
 export default function SauceMint() {
-    const[supply, setSupply] = useState(0);
+    const [supply, setSupply] = useState(0);
     const [paused, setPaused] = useState(false);
     const [amount, setAmount] = useState(1);
     const [amountBoxShow, setAmountBoxShow] = useState(false);
@@ -61,11 +61,13 @@ export default function SauceMint() {
 
     const { setLoader } = useGlobalContext();
 
+    const [balance, setBalance] = useState(0);
+
     async function mint() {
         setLoader(true)
         const contract = await sauceMintSetup();
         console.log("inside mint", contract);
-        await contract.mint(amount, {value: ethers.utils.parseEther(String(25 * amount)) }).then(
+        await contract.mint(amount, { value: ethers.utils.parseEther(String(25 * amount)) }).then(
             (res) => {
                 setLoader(false)
                 console.log(res);
@@ -76,55 +78,56 @@ export default function SauceMint() {
                     confirmButtonText: 'LFG 🌮'
                 })
             }
-        ).catch((err)=>{
+        ).catch((err) => {
             setLoader(false)
-                        console.log(err)
-                        Swal.fire({
-                            title: 'Error!',
-                            text: 'Couldn\'t Mint Taco tribe',
-                            imageUrl: error,
-                            imageWidth: 200,
-                            imageHeight: 200,
-                            imageAlt: "Taco OOPS!",
-                            confirmButtonText: 'Bruh 😭',
-                            confirmButtonColor: "#facc14", 
-                            customClass: {
-                                container: "border-8 border-black",
-                                popup: "bg-white rounded-2xl border-8 border-black",
-                                image: "-mb-5",
-                                confirmButton: "w-40 text-black"
-                            }
-                        })
+            console.log(err)
+            Swal.fire({
+                title: 'Error!',
+                text: 'Couldn\'t Mint Taco tribe',
+                imageUrl: error,
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: "Taco OOPS!",
+                confirmButtonText: 'Bruh 😭',
+                confirmButtonColor: "#facc14",
+                customClass: {
+                    container: "border-8 border-black",
+                    popup: "bg-white rounded-2xl border-8 border-black",
+                    image: "-mb-5",
+                    confirmButton: "w-40 text-black"
+                }
+            })
         }
         )
 
     }
 
-    async function fetchSupply(){
-        try{
+    async function fetchSupply() {
+        try {
             const contract = await sauceMintSetup();
             const boolean = await contract.paused();
+            setBalance(Number(await contract.balanceOf(address)));
+
             console.log(boolean);
             setPaused(boolean);
             setSupply(Number(await contract.totalSupply()));
         }
-        catch(err){
+        catch (err) {
             setTimeout(fetchSupply, 1000);
             console.log(err);
         }
     }
 
-    async function changeAmount(val){
-        if(amount>=1)
-        setAmount(amount+val);
-        if(amount == 0 && val == 1)
-        setAmount(1);
+    async function changeAmount(val) {
+        if (amount >= 1 && balance + val <= 3)
+            setAmount(amount + val);
+        if (amount == 0 && val == 1)
+            setAmount(1);
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchSupply();
-
-    },[])
+    }, [])
 
     return (
         <>
@@ -142,7 +145,11 @@ export default function SauceMint() {
             <div className="bg-yellow-400 text-center translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
                 Price: 4000 $GUAC
             </div>
-            
+
+            <div className="bg-red-400 text-center translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-red-600 w-fit flex mx-auto">
+                Balance: {balance}/3
+            </div>
+
             {amountBoxShow &&
                 <div className="bg-yellow-400 z-20 border-2 border-black rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
                     <div className="relative flex flex-col items-center justify-center w-full h-full p-5 pt-10">
@@ -150,12 +157,12 @@ export default function SauceMint() {
                         {/* <input placeholder="0" type="number" onKeyDown={(e) => { e.preventDefault() }} step={1} min={0} onChange={handleamountChange} value={amount} className="text-black border-2 border-black p-5 py-4 text-center text-3xl block h-fit w-full rounded-xl">
                         </input> */}
                         <div className="grid grid-flow-col grid-cols-3 items-center gap-5">
-                            <button onClick={()=>{changeAmount(-1)}} className="p-3">
-                                <Image width={1920} height={1080} src={arrowright} className="w-[3rem] rotate-180"/>
+                            <button onClick={() => { changeAmount(-1) }} className="p-3">
+                                <Image width={1920} height={1080} src={arrowright} className="w-[3rem] rotate-180" />
                             </button>
                             <div className="text-[2.5rem] text-center text-black">{amount}</div>
-                            <button onClick={()=>{changeAmount(1)}} className="p-3">
-                                <Image width={1920} height={1080} src={arrowright} className="w-[3rem]"/>
+                            <button onClick={() => { changeAmount(1) }} className="p-3">
+                                <Image width={1920} height={1080} src={arrowright} className="w-[3rem]" />
                             </button>
                         </div>
                         <button onClick={mint} className='mt-5 group'>
