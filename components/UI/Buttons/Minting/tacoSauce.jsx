@@ -149,7 +149,7 @@ export default function SauceMint() {
                 Price: 4000 $GUAC
             </div>
 
-            <div className="bg-red-400 text-center translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-red-600 w-fit flex mx-auto">
+            <div className="bg-red-400 text-center translate-y-36 mt-4 px-4 py-2 text-lg rounded-xl border-2 text-black border-red-600 w-fit flex mx-auto">
                 Balance: {balance}/3
             </div>
 
