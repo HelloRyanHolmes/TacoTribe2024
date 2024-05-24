@@ -179,7 +179,7 @@ export default function MinimartHolding({ contractAddress, listed }) {
 
             const name = metadata["name"];
             const img = metadata["image"];
-            const image = "https://gateway.pinata.cloud/ipfs/" + img.substr(7);
+            const image = "https://cloudflare-ipfs.com/ipfs/" + img.substr(7);
 
 
             arr.push({ name, image, tokenId });
