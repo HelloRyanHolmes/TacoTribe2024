@@ -300,6 +300,22 @@ export default function NotStaked({ holding, tacoType }) {
           }
           setDisplayNFT(dispArr);
           break;
+
+          case 8:
+          for (let i = 0; i < holding.length; i++) {
+            const stakeType = holding[i].stakeType;
+  
+            if (stakeType == 0) {
+  
+              const name = "Taco Sauce #" + holding[i].tokenId;
+              const img = "https://cloudflare-ipfs.com/ipfs/bafybeia5y4zjnprhj4y65kf6cncncatbq57hyxr27ssn2ya7h3ykmcozqq/" + holding[i].tokenId + ".png";
+              const tokenId = holding[i].tokenId;
+  
+              dispArr.push({ name, tokenId, img, tacoType })
+            }
+          }
+          setDisplayNFT(dispArr);
+          break;
   
         default:
           console.log("Not found");

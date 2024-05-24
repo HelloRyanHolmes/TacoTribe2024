@@ -105,6 +105,7 @@ export default function StakeTemplate({ tacoType }) {
     if(tacoType < 8){
       const dataArr = [contract?.balanceTaco(), contract?.balanceDoodle(), "", contract?.balancePT(), contract?.balanceDP(), contract?.balanceBT(), contract?.balanceGT(), contract?.balanceGS()]
       const data = await dataArr[tacoType];
+      console.log("HOLDING NFTS",data);
       await data.map((item)=>{
         console.log
         const tokenId = Number(item.tokenId);
