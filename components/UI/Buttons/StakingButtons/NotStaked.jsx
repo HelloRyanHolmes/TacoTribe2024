@@ -308,7 +308,7 @@ export default function NotStaked({ holding, tacoType }) {
             if (stakeType == 0) {
   
               const name = "Taco Sauce #" + holding[i].tokenId;
-              const img = "https://cloudflare-ipfs.com/ipfs/bafybeiaglnj726cekyeqp3lf3rkj5pltcymo2irlcgvpa7p75lqg5zxhe4/" + holding[i].tokenId + ".png";
+              const img = "https://cloudflare-ipfs.com/ipfs/bafybeia5y4zjnprhj4y65kf6cncncatbq57hyxr27ssn2ya7h3ykmcozqq/" + holding[i].tokenId + ".png";
               const tokenId = holding[i].tokenId;
   
               dispArr.push({ name, tokenId, img, tacoType })

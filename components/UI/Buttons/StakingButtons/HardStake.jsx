@@ -240,7 +240,7 @@ const HardStake = ({ tacoType }) => {
     
           if (isOwner) {
             const name = "Taco #" + tokenId;
-            const img = "https://ipfs.io/ipfs/bafybeicrkpi7ejh2dabsndjnlrm2xgg65dj2qa4e3jh5bdbvfarmaqdkv4/" + tokenId + ".png";
+            const img = "https://cloudflare-ipfs.com/ipfs/bafybeicrkpi7ejh2dabsndjnlrm2xgg65dj2qa4e3jh5bdbvfarmaqdkv4/" + tokenId + ".png";
             const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
 
             dispArr.push({ tokenId, img, name, unclaimedAmount })
@@ -262,7 +262,7 @@ const HardStake = ({ tacoType }) => {
 
         if (isOwner) {
           const name = "Pixel Taco #" + tokenId;
-          const img = "https://ipfs.io/ipfs/bafybeib2rme47vsbkaroqwuqidhswujjztevjhrc3ac6tg5ywwshhmfiya/" + tokenId + ".png";
+          const img = "https://cloudflare-ipfs.com/ipfs/bafybeib2rme47vsbkaroqwuqidhswujjztevjhrc3ac6tg5ywwshhmfiya/" + tokenId + ".png";
           const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
 
           dispArr.push({ tokenId, img, name, unclaimedAmount })
@@ -284,7 +284,7 @@ const HardStake = ({ tacoType }) => {
 
         if (isOwner) {
           const name = "Doodled Tacos #" + tokenId;
-          const img = "https://ipfs.io/ipfs/bafybeife2zu3n76ktqtn7myxpm2pfd3uhsxpxbg2gkaen2bssdh3rr47ly/" + tokenId + ".png";
+          const img = "https://cloudflare-ipfs.com/ipfs/bafybeife2zu3n76ktqtn7myxpm2pfd3uhsxpxbg2gkaen2bssdh3rr47ly/" + tokenId + ".png";
           const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
 
           dispArr.push({ tokenId, img, name, unclaimedAmount })
@@ -306,7 +306,7 @@ const HardStake = ({ tacoType }) => {
 
         if (isOwner) {
           const name = "Pixel Doodle Tacos #" + tokenId;
-          const img = "https://ipfs.io/ipfs/bafybeifgtr33q3k6t5b45gyp3hxloselihxqqj3qo4pamhyzpen54qizni/" + tokenId + ".png";
+          const img = "https://cloudflare-ipfs.com/ipfs/bafybeifgtr33q3k6t5b45gyp3hxloselihxqqj3qo4pamhyzpen54qizni/" + tokenId + ".png";
           const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
 
           dispArr.push({ tokenId, img, name, unclaimedAmount })
@@ -328,7 +328,7 @@ const HardStake = ({ tacoType }) => {
 
         if (isOwner) {
           const name = "Baby Taco #" + tokenId;
-          const img = "https://ipfs.io/ipfs/bafybeiangojvxwyo7rcxtofmcetd2rj2jlchyscbyaqcciiwcazc5qrlwm/" + tokenId + ".png";
+          const img = "https://cloudflare-ipfs.com/ipfs/bafybeiangojvxwyo7rcxtofmcetd2rj2jlchyscbyaqcciiwcazc5qrlwm/" + tokenId + ".png";
           const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
 
           dispArr.push({ tokenId, img, name, unclaimedAmount })
@@ -350,7 +350,7 @@ const HardStake = ({ tacoType }) => {
 
         if (isOwner) {
           const name = "Guaco Tribe #" + tokenId;
-          const img = "https://ipfs.io/ipfs/bafybeig5rzdjulqlq3j2ei2cg6edm5jrs36blz6hxyqr6ugfhz7x2yv4ve/" + tokenId + ".png";
+          const img = "https://cloudflare-ipfs.com/ipfs/bafybeig5rzdjulqlq3j2ei2cg6edm5jrs36blz6hxyqr6ugfhz7x2yv4ve/" + tokenId + ".png";
           const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
 
           dispArr.push({ tokenId, img, name, unclaimedAmount })
@@ -372,7 +372,7 @@ const HardStake = ({ tacoType }) => {
 
         if (isOwner) {
           const name = "GUAC VS SOUR CREAM #" + tokenId;
-          const img = "https://ipfs.io/ipfs/bafybeiaglnj726cekyeqp3lf3rkj5pltcymo2irlcgvpa7p75lqg5zxhe4/" + tokenId + ".png";
+          const img = "https://cloudflare-ipfs.com/ipfs/bafybeiaglnj726cekyeqp3lf3rkj5pltcymo2irlcgvpa7p75lqg5zxhe4/" + tokenId + ".png";
           const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
 
           dispArr.push({ tokenId, img, name, unclaimedAmount })

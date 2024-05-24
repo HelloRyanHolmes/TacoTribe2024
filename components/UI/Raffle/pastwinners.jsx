@@ -63,7 +63,7 @@ export default function PastWinners({num}){
                 const tokenURI = await erc721contract?.tokenURI(Number(await contract?.lastNftWonTokenId(num)));
     
                 if(tokenURI[0] != "h"){
-                    const metadata = `https://ipfs.io/ipfs/${tokenURI.substr(7)}`;
+                    const metadata = `https://cloudflare-ipfs.com/ipfs/${tokenURI.substr(7)}`;
                     const meta = await fetch(metadata);
                     const json = await meta.json();
                     const name = json["name"];

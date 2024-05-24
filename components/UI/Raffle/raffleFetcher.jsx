@@ -167,7 +167,7 @@ export default function RaffleFetcher({number}){
                 }
 
                 else{
-                    const metadata = `https://ipfs.io/ipfs/${tokenURI.substr(7)}`;
+                    const metadata = `https://cloudflare-ipfs.com/ipfs/${tokenURI.substr(7)}`;
                     
                     const meta = await fetch(metadata);
                     const json = await meta.json();
