@@ -30,6 +30,9 @@ const StakingButton = ({ upImage, downImage, selected, changeButton, type }) => 
             case 7:
                 setName("Guac vs Sour");
                 break;
+            case 8:
+                setName("Taco Sauce");
+                break;
             default:
                 console.log("ERROR LMAO");      
         }   
