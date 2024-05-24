@@ -8,10 +8,10 @@ import { useEffect, useState } from "react";
 
 import { useGlobalContext } from "../../../context/MainContext";
 import { contractAdds } from "../../../utils/contractAdds";
-
+import sauceInfoabi from "../../../utils/newAbis/sauceInfoabi"
 import HardStake from "../Buttons/StakingButtons/HardStake";
 import SoftStake from "../Buttons/StakingButtons/SoftStake";
-
+import sauce from "../../../assets/sauceStake.png"
 import abinew from "../../../utils/newAbis/consolidationabi";
 import NotStaked from "../Buttons/StakingButtons/NotStaked";
 
@@ -41,12 +41,13 @@ export default function StakeTemplate({ tacoType }) {
 
 
   const addnew = contractAdds.consolidation;
+  const sauceInfoAdd = contractAdds.sauceInfo;
 
   const { setLoader, refreshGuac } = useGlobalContext();
 
-  const imgArr = [tacoTribe, doodle, "", pixelTaco, pixelDoodledTaco, babyTaco, guacos, gvsc];
-  const nameArr = ["Taco Tribe", "Doodle Tacos", "", "Pixel Tacos", "Pixel Doodle Tacos", "Baby Tacos", "Guaco Tribe", "Guac vs Sour Cream"]
-  const rewardAmount = [10, 10, 0, 1, 1, 5, 5, 5];
+  const imgArr = [tacoTribe, doodle, "", pixelTaco, pixelDoodledTaco, babyTaco, guacos, gvsc, sauce];
+  const nameArr = ["Taco Tribe", "Doodle Tacos", "", "Pixel Tacos", "Pixel Doodle Tacos", "Baby Tacos", "Guaco Tribe", "Guac vs Sour Cream", "Taco Sauce"]
+  const rewardAmount = [10, 10, 0, 1, 1, 5, 5, 5, 1];
 
   async function contractSetup(){
 
@@ -56,10 +57,18 @@ export default function StakeTemplate({ tacoType }) {
     const signer = provider.getSigner();
 
     try {
-      const contract = new ethers.Contract(addnew, abinew, signer);
-      setLoader(false);
-      console.log("I am contract", contract)
-      return contract;
+      if(tacoType < 8){
+        const contract = new ethers.Contract(addnew, abinew, signer);
+        setLoader(false);
+        console.log("I am contract", contract)
+        return contract;
+      }
+      else{
+        const contract = new ethers.Contract(sauceInfoAdd, sauceInfoabi, signer);
+        setLoader(false);
+        console.log("hello brother", contract)
+        return contract;
+      }
     }
     catch (err) {
 
@@ -87,19 +96,33 @@ export default function StakeTemplate({ tacoType }) {
   const handleContract = async (tacoType) => {
 
     setImg(imgArr[tacoType]);
+
+
     const contract = await contractSetup();
     const arr = [];
-    const dataArr = [contract?.balanceTaco(), contract?.balanceDoodle(), "", contract?.balancePT(), contract?.balanceDP(), contract?.balanceBT(), contract?.balanceGT(), contract?.balanceGS()]
-
-    const data = await dataArr[tacoType];
-
-    await data.map((item)=>{
-      console.log
-      const tokenId = Number(item.tokenId);
-      const stakeType = Number(item.stakeType);
-      const guac = Number(ethers.utils.formatEther(String(item.unclaimed)));
-      arr.push({tokenId, stakeType, guac});
-    })
+    
+    
+    if(tacoType < 8){
+      const dataArr = [contract?.balanceTaco(), contract?.balanceDoodle(), "", contract?.balancePT(), contract?.balanceDP(), contract?.balanceBT(), contract?.balanceGT(), contract?.balanceGS()]
+      const data = await dataArr[tacoType];
+      await data.map((item)=>{
+        console.log
+        const tokenId = Number(item.tokenId);
+        const stakeType = Number(item.stakeType);
+        const guac = Number(ethers.utils.formatEther(String(item.unclaimed)));
+        arr.push({tokenId, stakeType, guac});
+      })
+    }
+    else{
+      const data = await contract?.tokenOfOwner();
+      await data.map((item)=>{
+        console.log
+        const tokenId = Number(item.tokenId);
+        const stakeType = Number(item.stakeType);
+        const guac = Number(ethers.utils.formatEther(String(item.unclaimed)));
+        arr.push({tokenId, stakeType, guac});
+      })
+    }
     
     setBalance(arr.length)
     setHoldingValue(arr);
@@ -111,9 +134,6 @@ export default function StakeTemplate({ tacoType }) {
   }, [tacoType])
 
   const [nftType, setNftType] = useState(1);
-  // 1 - Not Staked
-  // 2 - Soft Staked
-  // 3 - Hard Staked
 
 
   return (

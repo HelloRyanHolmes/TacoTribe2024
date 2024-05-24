@@ -1,5 +1,6 @@
 "use client"
-
+import sauceUp from "../../../assets/stakeSauceUp.png"
+import sauceDown from "../../../assets/stakeSauceDown.png"
 
 //Stake Buttons
 const babyTacoButtonUp = "https://d19rxn9gjbwl25.cloudfront.net/Staking+Buttons/BabyUP.png"
@@ -34,6 +35,7 @@ export default function StakeSwitcher({ changeButton, button }) {
                 <StakingButton upImage={babyTacoButtonUp} downImage={babyTacoButtonDown} selected={button === 5 ? true : false} changeButton={changeButton} type={5} />
                 <StakingButton upImage={guacoUP} downImage={guacoDown} selected={button === 6 ? true : false} changeButton={changeButton} type={6} />
                 <StakingButton upImage={GVSCUP} downImage={GVSCDown} selected={button === 7 ? true : false} changeButton={changeButton} type={7} />
+                <StakingButton upImage={sauceUp} downImage={sauceDown} selected={button === 8 ? true : false} changeButton={changeButton} type={8} />
             </div>
         </>
     )
