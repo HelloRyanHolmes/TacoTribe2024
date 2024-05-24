@@ -232,7 +232,7 @@ export default function MinimartAggregator() {
           console.log(tokenId);
 
           const uri = await contract.tokenURI(tokenId);
-          const metadata = "https://cf-ipfs.com/ipfs/" + uri.substr(7);
+          const metadata = "https://cloudflare-ipfs.com/ipfs/" + uri.substr(7);
 
           try{
 
@@ -255,7 +255,7 @@ export default function MinimartAggregator() {
             }
 
             else{
-              const img = "https://cf-ipfs.com/ipfs/" + json["image"].substr(7);
+              const img = "https://cloudflare-ipfs.com/ipfs/" + json["image"].substr(7);
               const price = ethers.utils.formatEther(String(data[i][3]));
               const owner = String(data[i][2]);
   
