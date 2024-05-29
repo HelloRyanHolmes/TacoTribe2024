@@ -14,11 +14,12 @@ const { chains, publicClient } = configureChains(
   [publicProvider()]
 );
 
-const { connectors } = getDefaultWallets({
+const { wallets } = getDefaultWallets({
   appName: "My RainbowKit App",
   projectId: "5d10af3027c340310f3a3da64cbcedac",
   chains,
 });
+
 
 // const connector = new WalletConnectConnector({
 //   options: {
@@ -27,19 +28,16 @@ const { connectors } = getDefaultWallets({
 // })
 
 
-// const connectors = connectorsForWallets(
-  
-//     [{
-//       groupName: 'NICE LMAO',
-//       wallets: [
-//         metaMaskWallet({chains, options: {
-//           projectId: '5d10af3027c340310f3a3da64cbcedac',
-//         }})
-//       ],
-//     }],
-  
-//   // { appName: 'RainbowKit App', projectId: '5d10af3027c340310f3a3da64cbcedac' }
-// );
+const connectors = connectorsForWallets(
+  [
+    ...wallets,
+    {
+      groupName: 'Phantom',
+      wallets: [phantomWallet({ chains })],
+    }],
+
+  // { appName: 'RainbowKit App', projectId: '5d10af3027c340310f3a3da64cbcedac' }
+);
 
 const wagmiConfig = createConfig({
   autoConnect: true,
@@ -48,15 +46,15 @@ const wagmiConfig = createConfig({
 });
 
 
-const Rainbow = ({children}) => {
+const Rainbow = ({ children }) => {
   return (
     <WagmiConfig config={wagmiConfig}>
       {/* Provide the wallet ID through context */}
-      
-        <RainbowKitProvider coolMode chains={chains}>
-          {children}
-        </RainbowKitProvider>
-     
+
+      <RainbowKitProvider coolMode chains={chains}>
+        {children}
+      </RainbowKitProvider>
+
     </WagmiConfig>
   );
 };
