@@ -68,7 +68,7 @@ export default function TacoMint() {
         setLoader(true)
         const contract = await tacoMintSetup(address);
         console.log("inside mint", contract);
-        await contract.mint(amount, {value: ethers.utils.parseEther(String(25 * amount)) }).then(
+        await contract.mint(amount, {value: ethers.utils.parseEther(String(15 * amount)) }).then(
             (res) => {
                 setLoader(false)
                 console.log(res);
@@ -144,7 +144,7 @@ export default function TacoMint() {
             </div>
 
             <div className="bg-yellow-400 text-center translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
-                Price: 25 $MATIC
+                Price: 15 $MATIC
             </div>
             
             {amountBoxShow &&
