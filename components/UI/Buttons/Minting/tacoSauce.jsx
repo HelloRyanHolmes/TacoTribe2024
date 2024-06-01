@@ -67,7 +67,7 @@ export default function SauceMint() {
         setLoader(true)
         const contract = await sauceMintSetup();
         console.log("inside mint", contract);
-        await contract.mint(amount, { value: ethers.utils.parseEther(String(25 * amount)) }).then(
+        await contract.safeMint(amount).then(
             (res) => {
                 setLoader(false)
                 console.log(res);
@@ -125,7 +125,7 @@ export default function SauceMint() {
         if (amount == 0 && val == 1)
             setAmount(1);
         if(val == -1 && amount != 0){
-            setAmount(amount);
+            setAmount(amount+val);
         }
     }
 
