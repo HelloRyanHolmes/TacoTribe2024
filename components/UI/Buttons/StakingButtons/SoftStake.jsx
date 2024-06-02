@@ -320,7 +320,7 @@ const SoftStake = ({ holding, tacoType }) => {
           if (stakeType == 1) {
 
             const name = "Taco Sauce #" + holding[i].tokenId;
-            const img = "https://cloudflare-ipfs.com/ipfs/bafybeia5y4zjnprhj4y65kf6cncncatbq57hyxr27ssn2ya7h3ykmcozqq/" + holding[i].tokenId + ".png";
+            const img = "https://cloudflare-ipfs.com/ipfs/bafybeidepgvooeovmjb55al5bxahnrafwqvqnprg63oi3sgtbzonifr2l4/" + holding[i].tokenId + ".png";
             const tokenId = holding[i].tokenId;
             const unclaimedAmount = holding[i].guac;
             dispArr.push({ name, tokenId, img, unclaimedAmount, tacoType })
