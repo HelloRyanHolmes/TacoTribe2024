@@ -106,7 +106,9 @@ export default function SauceMint() {
         try {
             const contract = await sauceMintSetup();
             const boolean = await contract.paused();
-            setBalance(Number(await contract.balanceOf(address)));
+            const balance = Number(await contract.balanceOf(address))
+            console.log(balance, address);
+            setBalance(balance);
 
             console.log(boolean);
             setPaused(boolean);
