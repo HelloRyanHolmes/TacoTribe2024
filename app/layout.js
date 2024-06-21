@@ -8,6 +8,7 @@ const font = candybeans({ src: "../assets/fonts/candy-beans.otf" })
 
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from '@vercel/analytics/react';
+import Watermark from '../components/UI/watermark'
 
 
 
@@ -76,6 +77,7 @@ export default function RootLayout({ children }) {
           <SpeedInsights />
           <Analytics />
         </Providers>
+        <Watermark/>
       </body>
     </html>
   )
