@@ -5,15 +5,14 @@ import erc20abi from "../../../utils/newAbis/erc20abi"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import {useAccount} from "wagmi"
-import noraffle from "../../../assets/raffle_comingsoon.png"
-import raffleLinksabi from "../../../utils/newAbis/raffleLinksabi"
-import axios from "axios";
 import {ethers} from "ethers"
 import { InfinitySpin, MutatingDots } from "react-loader-spinner"
 
-export default function RaffleFetcher({number}){
+export default function RaffleFetcher({data, number}){
 
     const [name, setName] = useState("");
+    const[contractAdd, setContractAdd] = useState("");
+    const[tokenId, setTokenId] = useState(null);
     const [amount, setAmount] = useState(1);
     const [image, setImage] = useState("");
     const [ticketsSold, setTicketsSold] = useState(0);
@@ -24,6 +23,23 @@ export default function RaffleFetcher({number}){
     const [limit, setLimit] = useState(0);
     const [holding, setHolding] = useState(0);
     const [link, setLink] = useState("");
+
+    useEffect(()=>{
+        setContractAdd(data[0]);
+        setERC721(data[0])
+        setTokenId(Number(data[1]));
+        setEntrants(Number(data[2]));
+        setTicketsSold(Number(data[3]));
+        setLimit(Number(data[4]));
+        setHolding(Number(data[5]));
+        setLimitPerWallet(Number(data[6]));
+        setPrice(String(ethers.utils.formatEther(String(data[7]))))
+        setLink(data[8])
+        setImage(data[10]);
+    
+        // setId(data[11]);
+        // setImage(data[9])
+      },[])
 
     const [loadingNFTs, setLoadingNFTs] = useState(false);
 
@@ -58,38 +74,12 @@ export default function RaffleFetcher({number}){
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
     
-            const contract1 = new ethers.Contract(contractAdds.raffle, raffleabi, signer);
-            const add = await contract1?.raffleContract(number);
-            console.log(add);
-            if(add.toUpperCase() == "0X0000000000000000000000000000000000000000"){
-              const contract = new ethers.Contract(contractAdd, erc721abi, signer);
-              return contract
-            }
-    
-            else{
-              const contract = new ethers.Contract(add, erc721abi, signer)
-              return contract;
-    
-            }
+            const contract1 = new ethers.Contract(contractAdd, erc721abi, signer);
+            setName(await contract1.name());
           }
           catch(err){
             console.log(err);
           }
-    }
-
-    async function setLinkContract(){
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-        const signer = provider.getSigner();
-  
-        try {
-        const contract = new ethers.Contract(contractAdds.raffleLinks, raffleLinksabi, signer);
-
-        return contract;
-        }
-        catch(err){
-          console.log(err);
-        }
     }
 
     async function setERC20(){
@@ -113,108 +103,18 @@ export default function RaffleFetcher({number}){
         if(amount == 0 && val == 1)
         setAmount(1);
     }
-    
-    async function fetchRaffle(){
-        try{
-            setLoadingNFTs(true);
-            console.log("WALLET", address);
-            const contract = await setRaffle();
-            const add = await contract?.raffleContract(number);
-            const tokenId = Number(await contract?.raffleTokenId(number));
-            const contract2 = await setLinkContract();
-
-            const limitperWallet = Number(await contract?.ticketLimitPerWallet(number))
-            const limit = Number(await contract?.ticketLimit(number));
-
-            
-            if(limit > 0){
-                setPrice(String(await contract?.raffleEntryCost(number)));
-                setLimit(limit);
-                setLimitPerWallet(limitperWallet);
-                setHolding(Number(await contract?.walletHolding(number, address)));
-                setItemExists(true);
-                console.log("Hello", await contract2.assignedLinks(number))
-                setLink(await contract2.assignedLinks(number));
-
-                const contract721 = await setERC721(add);
-    
-                const tokenURI = await contract721.tokenURI(tokenId);
-                console.log(tokenURI);
-
-                if(tokenURI[0] == "h"){
-
-                    const metadata = tokenURI;
-
-                    const meta = await fetch(metadata);
-                    const json = await meta.json();
-                    const name = json["name"];
-                    const image = json["image"];
-
-                    if(image[0] == "h"){
-                        setImage(image);
-                    }
-                    else{
-                        const newimage = `https://cloudflare-ipfs.com/ipfs/${image.substr(7)}`
-                        setImage(newimage);
-                    }
-    
-        
-                    setWinner(await contract.winningAddress(number));
-                    setTicketsSold(Number(await contract?.ticketsSold(number)));
-                    setEntrants(Number(await contract?.totalEntrants(number)));
-                    setName(name);
-
-                }
-
-                else{
-                    const metadata = `https://cloudflare-ipfs.com/ipfs/${tokenURI.substr(7)}`;
-                    
-                    const meta = await fetch(metadata);
-                    const json = await meta.json();
-                    const name = json["name"];
-                    const image = json["image"];
-
-                    if(image[0] == "h"){
-                        setImage(image);
-                    }
-                    else{
-                        const newimage = `https://cloudflare-ipfs.com/ipfs/${image.substr(7)}`
-                        setImage(newimage);
-                    }
-    
-                    // console.log(newimage);
-        
-                    setWinner(await contract.winningAddress(number));
-                    setTicketsSold(Number(await contract?.ticketsSold(number)));
-                    setEntrants(Number(await contract?.totalEntrants(number)));
-                    setName(name);
-
-                }
-                    
-
-            }
-            setLoadingNFTs(false);
-
-        }
-
-        catch(err){
-            console.log(err);
-            setTimeout(fetchRaffle, 1000);
-        }
-    }
-
 
     async function approve(){
         try{
             setLoading(true);
-            console.log(ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price)))));
+            
             const erc20contract = await setERC20();
 
             const allowance = await erc20contract.allowance(address, contractAdds.raffle);
-
-            if(allowance < ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price)))) ){
-                console.log(erc20contract, ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price)))));
-                const txn = await erc20contract?.approve(contractAdds.raffle, ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price)))));
+            console.log(Number(allowance));
+            if(Number(ethers.utils.formatEther(String(allowance))) < amount*price){
+                console.log("HELLLLO")
+                const txn = await erc20contract?.approve(contractAdds.raffle, ethers.utils.parseEther(String(amount*price)));
                 txn.wait().then((res)=>{
                     buytickets();
                 })
@@ -233,8 +133,8 @@ export default function RaffleFetcher({number}){
     async function buytickets(){
         try{
             const contract = await setRaffle();
-            console.log(number, String(ethers.utils.parseEther(String(amount*Number(ethers.utils.formatEther(price))))));
-            const txn = await contract?.enterRaffle(number, amount);
+            
+            const txn = await contract?.enterGuacRaffle(number, amount);
             txn.wait().then((res)=>{
                 setLoading(false);
                 window.location.reload();
@@ -248,34 +148,29 @@ export default function RaffleFetcher({number}){
 
     }
 
-    useEffect(()=>{
-        fetchRaffle();
-    },[])
     return(
         <div className="flex">
-            {itemExists ? <div className="bg-gradient-to-b from-purple-500 shadow-xl shadow-black/40 to-lime-400 py-2 px-2 rounded-2xl border-2 border-black w-full p-2 mx-auto">
+            <div className="bg-gradient-to-b from-purple-500 shadow-xl shadow-black/40 to-lime-400 py-2 px-2 rounded-2xl border-2 border-black w-full p-2 mx-auto">
             {loadingNFTs && <div className="mx-auto flex items-center justify-center"> <InfinitySpin className="translate-x-10" visible={true} width="200" color="#ffffff" ariaLabel="infinity-spin-loading" /><h1>Fetching data...</h1></div>}
                 {console.log("IMAGE IS HEREEEEE", name,  image)}
-                <Image width={1920} height={1080} className="w-full bg-white min-[1500px]:w-[90%] mx-auto rounded-2xl border-2 border-black" src={image}/>
-                <h2 className="text-2xl bg-white w-fit mx-auto px-4 rounded-full my-2 border-2 border-black">{name}</h2>
-                <a target="_blank" className="text-blue-500 underline" href={link}>Check Collection</a>
+                <Image width={1920} height={1080} className="w-80 bg-white  mx-auto rounded-2xl border-2 border-black" src={image}/>
+                <h2 className="text-2xl bg-white w-fit mx-auto px-4 rounded-full my-2 border-2 border-black">{name} #{tokenId}</h2>
+                <a target="_blank" className="text-blue-500 underline" href={link}>Check Item</a>
 
                 <div className="grid grid-cols-2 gap-2">
                     <h2 className="bg-yellow-400 border-2 border-black text-black rounded-xl p-2">Participants: <br /> {entrants}</h2>
                     <h2 className="bg-yellow-400 border-2 border-black text-black rounded-xl p-2">Tickets Sold: <br /> {ticketsSold}/{limit}</h2>
                     <h2 className="bg-purple-400 col-span-2 text-white border-2 border-black rounded-xl py-2 w-full mx-auto">Your Tickets: {holding}/{limitPerWallet}</h2>
                 </div>
-                <h2 className="text-black bg-white w-fit rounded-t-none rounded-xl py-2 px-4 mx-auto text-[1.2rem] border-x-2 truncate border-black border-b-2">Price: {ethers.utils.formatEther(String(price))} $GUAC</h2>
-                {winner.toUpperCase() != "0X0000000000000000000000000000000000000000" ? <h2>Winner: {winner}</h2>:
+                <h2 className="text-black bg-white w-fit rounded-t-none rounded-xl py-2 px-4 mx-auto text-[1.2rem] border-x-2 truncate border-black border-b-2">Price: {price} $GUAC</h2>
+                
                 <button onClick={()=>{
                     setTicketModal(true);
-                }} className="text-3xl bg-red-500 hover:bg-red-600 text-white px-5 py-3 mt-4 rounded-xl border-2 border-black ">Buy Tickets</button>
-                }
+                }} className="text-3xl bg-red-500 hover:bg-red-600 duration-200 text-white px-5 py-3 mt-4 rounded-xl border-2 border-black ">Buy Tickets</button>
                 
-            </div> : 
-            <div className="bg-gradient-to-b from-purple-500 to-lime-400 shadow-xl shadow-black/40 h-fit rounded-2xl border-2 border-black w-full p-5 mx-auto flex items-center justify-center">
-                <Image width={1920} height={1080} src={noraffle} className="w-full border-2 border-black bg-white rounded-lg"/>
-                </div>}
+                
+            </div> 
+            
 
                 {ticketModal && <div className="bg-yellow-400 z-20 border-2 border-black rounded-2xl w-[300px] px-0 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
                     <div className="relative flex flex-col items-center justify-center w-full h-full p-5 pt-10">
