@@ -229,40 +229,19 @@ export default function MinimartAggregator() {
         if (contractAdd.toUpperCase() != "0X0000000000000000000000000000000000000000") {
           console.log("helloooooo", contractAdd);
           const tokenId = String(data[i][1]);
-          console.log(tokenId);
+          const nameFirst = await contract.name();
 
-          const uri = await contract.tokenURI(tokenId);
-          const metadata = "https://cloudflare-ipfs.com/ipfs/" + uri.substr(7);
 
           try{
 
-            console.log(metadata);
-            const meta = await fetch(metadata);
+            const name = nameFirst+ " #"+tokenId;
+
+            const img = "https://tacotribe.s3.ap-south-1.amazonaws.com/raffles/"+contractAdd.toLowerCase()+tokenId;;
+            const price = ethers.utils.formatEther(String(data[i][3]));
+            const owner = String(data[i][2]);
+
+            setDisplayNFT(oldArray =>[...oldArray, { name, tokenId, img, price, owner, i }]);
             
-            console.log(meta);
-            const json = await meta.json();
-            console.log(json["image"]);
-            const name = json["name"];
-
-            if(json["image"][0] == "h"){
-              const img = json["image"];
-              const price = ethers.utils.formatEther(String(data[i][3]));
-              const owner = String(data[i][2]);
-  
-              console.log({ name, tokenId, img, price, owner, i });
-  
-              setDisplayNFT(oldArray =>[...oldArray, { name, tokenId, img, price, owner, i }]);
-            }
-
-            else{
-              const img = "https://cloudflare-ipfs.com/ipfs/" + json["image"].substr(7);
-              const price = ethers.utils.formatEther(String(data[i][3]));
-              const owner = String(data[i][2]);
-  
-              console.log({ name, tokenId, img, price, owner, i });
-  
-              setDisplayNFT(oldArray =>[...oldArray, { name, tokenId, img, price, owner, i }]);
-            }
           }
           catch(err){
             // i--;
