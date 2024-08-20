@@ -27,10 +27,10 @@ export default function MinimartAggregator() {
 
 
   async function contractSetup() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
+    const provider = new ethers.getDefaultProvider("https://polygon-mainnet.infura.io/v3/572a699984034c5bb63ebdc9dafa15d1");
+
     try {
-      const contract = new ethers.Contract(contractAdds.minimart, minimartabi, signer);
+      const contract = new ethers.Contract(contractAdds.minimart, minimartabi, provider);
       return contract;
     }
     catch (err) {
