@@ -52,6 +52,7 @@ export default function Raffle() {
 
   async function fetchRaffles(){
     try{
+      setRaffles([])
       const contract = await raffleContract();
       const response = await contract.fetchActiveRaffles();
 
@@ -76,6 +77,7 @@ export default function Raffle() {
 
   async function fetchEndedRaffles(){
     try{
+      setEndedRaffles([])
       const contract = await raffleContract();
       const response = await contract.fetchEndedRaffles();
 
