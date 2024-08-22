@@ -15,13 +15,13 @@ const error = "https://d19rxn9gjbwl25.cloudfront.net/ui/error.png"
 async function guacSetup(address){
     const guacAdd = contractAdds.guacToken;
 
-    const provider = new ethers.getDefaultProvider("https://polygon-mainnet.infura.io/v3/572a699984034c5bb63ebdc9dafa15d1");
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    // const signer = provider.getSigner();
+    const signer = provider.getSigner();
     // console.log(signer)
 
     try{
-    const contract = new ethers.Contract( guacAdd , guacTokenabi , provider );
+    const contract = new ethers.Contract( guacAdd , guacTokenabi , signer );
     return contract;
 }
     catch(err){
