@@ -72,7 +72,6 @@ export default function StakeTemplate({ tacoType }) {
     }
     catch (err) {
 
-
       console.log("Error", err)
       Swal.fire({
         title: 'Error!',
@@ -95,39 +94,41 @@ export default function StakeTemplate({ tacoType }) {
   
   const handleContract = async (tacoType) => {
 
-    setImg(imgArr[tacoType]);
+    try{
 
-
-    const contract = await contractSetup();
-    const arr = [];
-    
-    
-    if(tacoType < 8){
-      const dataArr = [contract?.balanceTaco(), contract?.balanceDoodle(), "", contract?.balancePT(), contract?.balanceDP(), contract?.balanceBT(), contract?.balanceGT(), contract?.balanceGS()]
-      const data = await dataArr[tacoType];
-      console.log("HOLDING NFTS",data);
-      await data.map((item)=>{
-        console.log
-        const tokenId = Number(item.tokenId);
-        const stakeType = Number(item.stakeType);
-        const guac = Number(ethers.utils.formatEther(String(item.unclaimed)));
-        arr.push({tokenId, stakeType, guac});
-      })
+      setImg(imgArr[tacoType]);
+      const contract = await contractSetup();
+      const arr = [];
+      
+      if(tacoType < 8){
+        const dataArr = [contract?.balanceTaco(), contract?.balanceDoodle(), "", contract?.balancePT(), contract?.balanceDP(), contract?.balanceBT(), contract?.balanceGT(), contract?.balanceGS()]
+        const data = await dataArr[tacoType];
+        console.log("HOLDING NFTS",data);
+        await data.map((item)=>{
+          console.log
+          const tokenId = Number(item.tokenId);
+          const stakeType = Number(item.stakeType);
+          const guac = Number(ethers.utils.formatEther(String(item.unclaimed)));
+          arr.push({tokenId, stakeType, guac});
+        })
+      }
+      else{
+        const data = await contract?.tokenOfOwner();
+        await data.map((item)=>{
+          console.log
+          const tokenId = Number(item.tokenId);
+          const stakeType = Number(item.stakeType);
+          const guac = Number(ethers.utils.formatEther(String(item.unclaimed)));
+          arr.push({tokenId, stakeType, guac});
+        })
+      }
+      
+      setBalance(arr.length)
+      setHoldingValue(arr);
     }
-    else{
-      const data = await contract?.tokenOfOwner();
-      await data.map((item)=>{
-        console.log
-        const tokenId = Number(item.tokenId);
-        const stakeType = Number(item.stakeType);
-        const guac = Number(ethers.utils.formatEther(String(item.unclaimed)));
-        arr.push({tokenId, stakeType, guac});
-      })
+    catch(err){
+      setTimeout(()=>{handleContract(tacoType)}, 500)
     }
-    
-    setBalance(arr.length)
-    setHoldingValue(arr);
-    
   }
 
   useEffect(() => {
