@@ -91,18 +91,17 @@ export default function StakeTemplate({ tacoType }) {
       })
     }
   }
-
   
   const handleContract = async (tacoType) => {
-    
+
     try{
-      
+
       setImg(imgArr[tacoType]);
       const contract = await contractSetup();
-      const dataArr = [contract?.balanceTaco(), contract?.balanceDoodle(), "", contract?.balancePT(), contract?.balanceDP(), contract?.balanceBT(), contract?.balanceGT(), contract?.balanceGS()]
       const arr = [];
       
       if(tacoType < 8){
+        const dataArr = [contract?.balanceTaco({gasLimit:50000000}), contract?.balanceDoodle({gasLimit:50000000}), "", contract?.balancePT({gasLimit:50000000}), contract?.balanceDP({gasLimit:50000000}), contract?.balanceBT({gasLimit:50000000}), contract?.balanceGT({gasLimit:50000000}), contract?.balanceGS({gasLimit:50000000})]
         const data = await dataArr[tacoType];
         console.log("HOLDING NFTS",data);
         await data.map((item)=>{
