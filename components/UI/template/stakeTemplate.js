@@ -101,8 +101,10 @@ export default function StakeTemplate({ tacoType }) {
       const arr = [];
       
       if(tacoType < 8){
-        const dataArr = [contract?.balanceTaco({gasLimit:50000000}), contract?.balanceDoodle({gasLimit:50000000}), "", contract?.balancePT({gasLimit:50000000}), contract?.balanceDP({gasLimit:50000000}), contract?.balanceBT({gasLimit:50000000}), contract?.balanceGT({gasLimit:50000000}), contract?.balanceGS({gasLimit:50000000})]
+        const dataArr = [contract?.balanceTaco({gasLimit: 10000000}), contract?.balanceDoodle({gasLimit: 10000000}), "", contract?.balancePT({gasLimit: 10000000}), contract?.balanceDP({gasLimit: 10000000}), contract?.balanceBT({gasLimit: 10000000}), contract?.balanceGT({gasLimit: 10000000}), contract?.balanceGS({gasLimit: 10000000})]
+
         const data = await dataArr[tacoType];
+
         console.log("HOLDING NFTS",data);
         await data.map((item)=>{
           const tokenId = Number(item.tokenId);

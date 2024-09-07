@@ -209,9 +209,9 @@ const SoftStake = ({ holding, tacoType }) => {
 
             const name = "Taco #" + holding[i].tokenId;
             const img = "https://cloudflare-ipfs.com/ipfs/bafybeiduqtzpwdc6hwwwjg3rt35twynjwsq367wo5phobkb3iogmhincge/" + holding[i].tokenId + ".png";
-            console.log(img);
+            // console.log(img);
             const tokenId = holding[i].tokenId;
-            console.log(tokenId);
+            // console.log(tokenId);
             const unclaimedAmount = holding[i].guac;
             dispArr.push({ name, tokenId, img, unclaimedAmount, tacoType })
           }
