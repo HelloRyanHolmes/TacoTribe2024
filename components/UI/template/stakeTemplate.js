@@ -91,21 +91,21 @@ export default function StakeTemplate({ tacoType }) {
       })
     }
   }
+
   
   const handleContract = async (tacoType) => {
-
+    
     try{
-
+      
       setImg(imgArr[tacoType]);
       const contract = await contractSetup();
+      const dataArr = [contract?.balanceTaco(), contract?.balanceDoodle(), "", contract?.balancePT(), contract?.balanceDP(), contract?.balanceBT(), contract?.balanceGT(), contract?.balanceGS()]
       const arr = [];
       
       if(tacoType < 8){
-        const dataArr = [contract?.balanceTaco(), contract?.balanceDoodle(), "", contract?.balancePT(), contract?.balanceDP(), contract?.balanceBT(), contract?.balanceGT(), contract?.balanceGS()]
         const data = await dataArr[tacoType];
         console.log("HOLDING NFTS",data);
         await data.map((item)=>{
-          console.log
           const tokenId = Number(item.tokenId);
           const stakeType = Number(item.stakeType);
           const guac = Number(ethers.utils.formatEther(String(item.unclaimed)));
@@ -115,7 +115,6 @@ export default function StakeTemplate({ tacoType }) {
       else{
         const data = await contract?.tokenOfOwner();
         await data.map((item)=>{
-          console.log
           const tokenId = Number(item.tokenId);
           const stakeType = Number(item.stakeType);
           const guac = Number(ethers.utils.formatEther(String(item.unclaimed)));
@@ -127,7 +126,7 @@ export default function StakeTemplate({ tacoType }) {
       setHoldingValue(arr);
     }
     catch(err){
-      setTimeout(()=>{handleContract(tacoType)}, 500)
+      console.log(err);
     }
   }
 
