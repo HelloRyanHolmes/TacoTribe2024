@@ -339,7 +339,9 @@ const SoftStake = ({ holding, tacoType }) => {
   }
 
   useEffect(() => {
+    setDisplayNFT([])
     fetchNFTs();
+
   }, [holding, tacoType])
 
 
