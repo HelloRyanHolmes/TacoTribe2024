@@ -9,9 +9,9 @@ import { useEffect, useState } from "react";
 import DoodlePixelMint from "../../components/UI/Buttons/Minting/doodlepixelTacos";
 
 const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/doodle_collection/doodle-night.png";
-const bgConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/doodle_collection/doodle-day.png";
+const bgConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/doodle_collection/doodle-day.png?v=3";
 const bgMobile = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/doodle_collection/doodle-night-mobile.png";
-const bgMobileConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/doodle_collection/doodle-day-mobile.png";
+const bgMobileConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/doodle_collection/doodle-day-mobile.png?v=3";
 
 export default function Doodled() {
   const { isConnected, address } = useAccount()
