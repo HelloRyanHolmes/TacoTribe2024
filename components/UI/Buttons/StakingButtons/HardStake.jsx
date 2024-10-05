@@ -328,7 +328,7 @@ const HardStake = ({ tacoType }) => {
 
         if (isOwner) {
           const name = "Baby Taco #" + tokenId;
-          const img = "https://cloudflare-ipfs.com/ipfs/bafybeiangojvxwyo7rcxtofmcetd2rj2jlchyscbyaqcciiwcazc5qrlwm/" + tokenId + ".png";
+          const img = "https://cloudflare-ipfs.com/ipfs/bafybeifwjny44u7xizu7xkuuqfhbchlj427nctrvhrzgmwkvicyg34czym/" + tokenId + ".png";
           const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
 
           dispArr.push({ tokenId, img, name, unclaimedAmount })
@@ -372,7 +372,7 @@ const HardStake = ({ tacoType }) => {
 
         if (isOwner) {
           const name = "GUAC VS SOUR CREAM #" + tokenId;
-          const img = "https://cloudflare-ipfs.com/ipfs/bafybeiaglnj726cekyeqp3lf3rkj5pltcymo2irlcgvpa7p75lqg5zxhe4/" + tokenId + ".png";
+          const img = "https://cloudflare-ipfs.com/ipfs/bafybeiabezqfvn3tpfilcpcfogpnmee27zchafallgdgx2gvbw3dtzagfy/" + tokenId + ".png";
           const unclaimedAmount = Number(ethers.utils.formatEther(String(await stakingContract.hardStakingRewards(tacoType, tokenId))));
 
           dispArr.push({ tokenId, img, name, unclaimedAmount })

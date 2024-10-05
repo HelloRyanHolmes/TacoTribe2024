@@ -204,7 +204,7 @@ export default function NotStaked({ holding, tacoType }) {
             if (stakeType == 0) {
   
               const name = "Taco #" + holding[i].tokenId;
-              const img = "https://ipfs.io/ipfs/bafybeibot6y7hqg2idexwt7dnsnrzy3vcr4j4st3eo3wbfk6ju7jrbmpd4/" + holding[i].tokenId + ".png";
+              const img = "https://ipfs.io/ipfs/bafybeicevvfu6rlnbelaraoq2aqatqv3ckvbn7voyct3kpzwvh6vk2uuna/" + holding[i].tokenId + ".png";
               const tokenId = holding[i].tokenId;
               dispArr.push({ name, tokenId, img, tacoType })
             }
@@ -218,7 +218,7 @@ export default function NotStaked({ holding, tacoType }) {
   
             if (stakeType == 0) {
               const name = "Doodled Tacos #" + holding[i].tokenId;
-              const img = "https://ipfs.io/ipfs/bafybeibj4o2h52fgb3rkffo4imhmgeisfqsuuhtsfql7u6lcu2hokd7nei/" + holding[i].tokenId + ".png";
+              const img = "https://ipfs.io/ipfs/bafybeiff7usz2tof4jja6z4relcrqvnz3kp4sfs44nwkj3qxzfy4ci5cou/" + holding[i].tokenId + ".png";
               const tokenId = holding[i].tokenId;
               dispArr.push({ name, tokenId, img, tacoType })
             }
@@ -247,7 +247,7 @@ export default function NotStaked({ holding, tacoType }) {
             if (stakeType == 0) {
   
               const name = "Baby Taco #" + holding[i].tokenId;
-              const img = "https://ipfs.io/ipfs/bafybeiangojvxwyo7rcxtofmcetd2rj2jlchyscbyaqcciiwcazc5qrlwm/" + holding[i].tokenId + ".png";
+              const img = "https://ipfs.io/ipfs/bafybeifwjny44u7xizu7xkuuqfhbchlj427nctrvhrzgmwkvicyg34czym/" + holding[i].tokenId + ".png";
               const tokenId = holding[i].tokenId;
               dispArr.push({ name, tokenId, img, tacoType })
             }
@@ -277,7 +277,7 @@ export default function NotStaked({ holding, tacoType }) {
             if (stakeType == 0) {
   
               const name = "Guaco Tribe #" + holding[i].tokenId;
-              const img = "https://ipfs.io/ipfs/bafybeig5rzdjulqlq3j2ei2cg6edm5jrs36blz6hxyqr6ugfhz7x2yv4ve/" + holding[i].tokenId + ".png";
+              const img = "https://ipfs.io/ipfs/bafybeihbcsohuhng2wk6l6ur3wcucl4437b5osssgl43ittlwwpje4mire/" + holding[i].tokenId + ".png";
               const tokenId = holding[i].tokenId;
               dispArr.push({ name, tokenId, img, tacoType })
             }
@@ -292,7 +292,7 @@ export default function NotStaked({ holding, tacoType }) {
             if (stakeType == 0) {
   
               const name = "GUAC vs SOUR CREAM #" + holding[i].tokenId;
-              const img = "https://ipfs.io/ipfs/bafybeiaglnj726cekyeqp3lf3rkj5pltcymo2irlcgvpa7p75lqg5zxhe4/" + holding[i].tokenId + ".png";
+              const img = "https://ipfs.io/ipfs/bafybeiabezqfvn3tpfilcpcfogpnmee27zchafallgdgx2gvbw3dtzagfy/" + holding[i].tokenId + ".png";
               const tokenId = holding[i].tokenId;
   
               dispArr.push({ name, tokenId, img, tacoType })
@@ -308,7 +308,7 @@ export default function NotStaked({ holding, tacoType }) {
             if (stakeType == 0) {
   
               const name = "Taco Sauce #" + holding[i].tokenId;
-              const img = "https://ipfs.io/ipfs/bafybeidepgvooeovmjb55al5bxahnrafwqvqnprg63oi3sgtbzonifr2l4/" + holding[i].tokenId + ".png";
+              const img = "https://ipfs.io/ipfs/bafybeieqanzbnawjkis6ehnhlwbsrkntgtcfkx257gfbmyt7mjrwiilqz4/" + holding[i].tokenId + ".png";
               const tokenId = holding[i].tokenId;
   
               dispArr.push({ name, tokenId, img, tacoType })
