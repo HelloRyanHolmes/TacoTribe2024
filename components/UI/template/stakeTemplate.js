@@ -96,7 +96,7 @@ export default function StakeTemplate({ tacoType }) {
   const handleContract = async (tacoType) => {
 
     try{
-
+      setHoldingValue([]);
       setImg(imgArr[tacoType]);
       const contract = await contractSetup();
       const arr = [];
