@@ -6,6 +6,25 @@ export default [
 	},
 	{
 		"inputs": [],
+		"name": "baby",
+		"outputs": [
+			{
+				"internalType": "contract IBaby",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
 		"name": "balanceBT",
 		"outputs": [
 			{
@@ -17,26 +36,31 @@ export default [
 					},
 					{
 						"internalType": "uint256",
-						"name": "unclaimed",
+						"name": "stakeType",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "stakeType",
+						"name": "unclaimed",
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct TacoInfo.data[]",
+				"internalType": "struct returnType[]",
 				"name": "",
 				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
-		"type": "function",
-		"gas": 3000000000
+		"type": "function"
 	},
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
 		"name": "balanceDoodle",
 		"outputs": [
 			{
@@ -48,26 +72,31 @@ export default [
 					},
 					{
 						"internalType": "uint256",
-						"name": "unclaimed",
+						"name": "stakeType",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "stakeType",
+						"name": "unclaimed",
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct TacoInfo.data[]",
+				"internalType": "struct returnType[]",
 				"name": "",
 				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
-		"type": "function",
-		"gas": 3000000000
+		"type": "function"
 	},
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
 		"name": "balanceDP",
 		"outputs": [
 			{
@@ -79,26 +108,31 @@ export default [
 					},
 					{
 						"internalType": "uint256",
-						"name": "unclaimed",
+						"name": "stakeType",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "stakeType",
+						"name": "unclaimed",
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct TacoInfo.data[]",
+				"internalType": "struct returnType[]",
 				"name": "",
 				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
-		"type": "function",
-		"gas": 3000000000
+		"type": "function"
 	},
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
 		"name": "balanceGS",
 		"outputs": [
 			{
@@ -110,26 +144,31 @@ export default [
 					},
 					{
 						"internalType": "uint256",
-						"name": "unclaimed",
+						"name": "stakeType",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "stakeType",
+						"name": "unclaimed",
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct TacoInfo.data[]",
+				"internalType": "struct returnType[]",
 				"name": "",
 				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
-		"type": "function",
-		"gas": 3000000000
+		"type": "function"
 	},
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
 		"name": "balanceGT",
 		"outputs": [
 			{
@@ -141,26 +180,31 @@ export default [
 					},
 					{
 						"internalType": "uint256",
-						"name": "unclaimed",
+						"name": "stakeType",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "stakeType",
+						"name": "unclaimed",
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct TacoInfo.data[]",
+				"internalType": "struct returnType[]",
 				"name": "",
 				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
-		"type": "function",
-		"gas": 3000000000
+		"type": "function"
 	},
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
 		"name": "balancePT",
 		"outputs": [
 			{
@@ -172,26 +216,31 @@ export default [
 					},
 					{
 						"internalType": "uint256",
-						"name": "unclaimed",
+						"name": "stakeType",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "stakeType",
+						"name": "unclaimed",
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct TacoInfo.data[]",
+				"internalType": "struct returnType[]",
 				"name": "",
 				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
-		"type": "function",
-		"gas": 3000000000
+		"type": "function"
 	},
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
 		"name": "balanceTaco",
 		"outputs": [
 			{
@@ -203,32 +252,18 @@ export default [
 					},
 					{
 						"internalType": "uint256",
-						"name": "unclaimed",
+						"name": "stakeType",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "stakeType",
+						"name": "unclaimed",
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct TacoInfo.data[]",
+				"internalType": "struct returnType[]",
 				"name": "",
 				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function",
-		"gas": 3000000000
-	},
-	{
-		"inputs": [],
-		"name": "bt",
-		"outputs": [
-			{
-				"internalType": "contract IBabyTaco",
-				"name": "",
-				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -249,10 +284,10 @@ export default [
 	},
 	{
 		"inputs": [],
-		"name": "dp",
+		"name": "guacoTribe",
 		"outputs": [
 			{
-				"internalType": "contract IDPTaco",
+				"internalType": "contract IGuacoTribe",
 				"name": "",
 				"type": "address"
 			}
@@ -262,10 +297,10 @@ export default [
 	},
 	{
 		"inputs": [],
-		"name": "gs",
+		"name": "guacVsSour",
 		"outputs": [
 			{
-				"internalType": "contract IGuacSour",
+				"internalType": "contract IGuacVSSour",
 				"name": "",
 				"type": "address"
 			}
@@ -275,10 +310,10 @@ export default [
 	},
 	{
 		"inputs": [],
-		"name": "gt",
+		"name": "pixel",
 		"outputs": [
 			{
-				"internalType": "contract IGuaco",
+				"internalType": "contract IPixel",
 				"name": "",
 				"type": "address"
 			}
@@ -288,10 +323,10 @@ export default [
 	},
 	{
 		"inputs": [],
-		"name": "pt",
+		"name": "pixelDoodle",
 		"outputs": [
 			{
-				"internalType": "contract IPixelTaco",
+				"internalType": "contract IPixelDoodle",
 				"name": "",
 				"type": "address"
 			}
@@ -325,4 +360,4 @@ export default [
 		"stateMutability": "view",
 		"type": "function"
 	}
-];
+]

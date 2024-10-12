@@ -14,6 +14,7 @@ import SoftStake from "../Buttons/StakingButtons/SoftStake";
 import sauce from "../../../assets/sauceStake.png"
 import abinew from "../../../utils/newAbis/consolidationabi";
 import NotStaked from "../Buttons/StakingButtons/NotStaked";
+import { useAccount } from "wagmi";
 
 
 const guacos = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/guacos.png"
@@ -49,22 +50,22 @@ export default function StakeTemplate({ tacoType }) {
   const nameArr = ["Taco Tribe", "Doodle Tacos", "", "Pixel Tacos", "Pixel Doodle Tacos", "Baby Tacos", "Guaco Tribe", "Guac vs Sour Cream", "Taco Sauce"]
   const rewardAmount = [10, 10, 0, 3, 3, 5, 5, 5, 3];
 
+  const{address} = useAccount()
+
   async function contractSetup(){
 
     setReward(rewardAmount[tacoType]);
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-    const signer = provider.getSigner();
+    const provider = new ethers.getDefaultProvider("https://polygon-mainnet.infura.io/v3/572a699984034c5bb63ebdc9dafa15d1");
 
     try {
       if(tacoType < 8){
-        const contract = new ethers.Contract(addnew, abinew, signer);
+        const contract = new ethers.Contract(addnew, abinew, provider);
         setLoader(false);
         console.log("I am contract", contract)
         return contract;
       }
       else{
-        const contract = new ethers.Contract(sauceInfoAdd, sauceInfoabi, signer);
+        const contract = new ethers.Contract(sauceInfoAdd, sauceInfoabi, provider);
         setLoader(false);
         console.log("hello brother", contract)
         return contract;
@@ -101,7 +102,7 @@ export default function StakeTemplate({ tacoType }) {
       const arr = [];
       
       if(tacoType < 8){
-        const dataArr = [contract?.balanceTaco({gasLimit: 10000000}), contract?.balanceDoodle({gasLimit: 10000000}), "", contract?.balancePT({gasLimit: 10000000}), contract?.balanceDP({gasLimit: 10000000}), contract?.balanceBT({gasLimit: 10000000}), contract?.balanceGT({gasLimit: 10000000}), contract?.balanceGS({gasLimit: 10000000})]
+        const dataArr = [contract?.balanceTaco(address), contract?.balanceDoodle(address), "", contract?.balancePT(address), contract?.balanceDP(address), contract?.balanceBT(address), contract?.balanceGT(address), contract?.balanceGS(address)]
 
         const data = await dataArr[tacoType];
 
