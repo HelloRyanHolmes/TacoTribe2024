@@ -1,6 +1,17 @@
 export default [
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "sauceAdd",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "stakingAdd",
+				"type": "address"
+			}
+		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
@@ -31,7 +42,13 @@ export default [
 		"type": "function"
 	},
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "holder",
+				"type": "address"
+			}
+		],
 		"name": "tokenOfOwner",
 		"outputs": [
 			{
