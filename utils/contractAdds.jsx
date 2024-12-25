@@ -29,6 +29,6 @@ export const contractAdds = {
 
     sauce: "0x257963e33fdA191C648704F19c9d23AEFE706855",
 
-    sauceInfo: "0x8AccF16ab0C400ee0f0175219B716de1AC15A1b0"
+    sauceInfo: "0x1F493cB31D7C366551E9d2E1c9627b19963483AC"
 
 }

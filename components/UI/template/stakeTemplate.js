@@ -15,6 +15,7 @@ import sauce from "../../../assets/sauceStake.png"
 import abinew from "../../../utils/newAbis/consolidationabi";
 import NotStaked from "../Buttons/StakingButtons/NotStaked";
 import { useAccount } from "wagmi";
+import { RiLoader5Fill } from "react-icons/ri";
 
 
 const guacos = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/staking/guacos.png"
@@ -50,6 +51,8 @@ export default function StakeTemplate({ tacoType }) {
   const nameArr = ["Taco Tribe", "Doodle Tacos", "", "Pixel Tacos", "Pixel Doodle Tacos", "Baby Tacos", "Guaco Tribe", "Guac vs Sour Cream", "Taco Sauce"]
   const rewardAmount = [10, 10, 0, 3, 3, 5, 5, 5, 3];
 
+  const [loading, setLoading] = useState(false);
+
   const{address} = useAccount()
 
   async function contractSetup(){
@@ -67,7 +70,6 @@ export default function StakeTemplate({ tacoType }) {
       else{
         const contract = new ethers.Contract(sauceInfoAdd, sauceInfoabi, provider);
         setLoader(false);
-        console.log("hello brother", contract)
         return contract;
       }
     }
@@ -94,9 +96,8 @@ export default function StakeTemplate({ tacoType }) {
   }
   
   const handleContract = async (tacoType) => {
-
+    setLoading(true);
     try{
-      setHoldingValue([]);
       setImg(imgArr[tacoType]);
       const contract = await contractSetup();
       const arr = [];
@@ -105,8 +106,6 @@ export default function StakeTemplate({ tacoType }) {
         const dataArr = [contract?.balanceTaco(address), contract?.balanceDoodle(address), "", contract?.balancePT(address), contract?.balanceDP(address), contract?.balanceBT(address), contract?.balanceGT(address), contract?.balanceGS(address)]
 
         const data = await dataArr[tacoType];
-
-        console.log("HOLDING NFTS",data);
         await data.map((item)=>{
           const tokenId = Number(item.tokenId);
           const stakeType = Number(item.stakeType);
@@ -115,7 +114,7 @@ export default function StakeTemplate({ tacoType }) {
         })
       }
       else{
-        const data = await contract?.tokenOfOwner();
+        const data = await contract?.tokenOfOwner(address);
         await data.map((item)=>{
           const tokenId = Number(item.tokenId);
           const stakeType = Number(item.stakeType);
@@ -130,9 +129,14 @@ export default function StakeTemplate({ tacoType }) {
     catch(err){
       console.log(err);
     }
+    finally{
+      setLoading(false);
+    };
   }
 
   useEffect(() => {
+    setBalance(0);
+    setHoldingValue([]);
     handleContract(tacoType)
   }, [tacoType])
 
@@ -170,9 +174,13 @@ export default function StakeTemplate({ tacoType }) {
       <div className="border-2 border-white bg-white mx-auto w-screen py-5 flex gap-5 px-5 items-center justify-center text-center">
         <div className="flex flex-row flex-wrap gap-4 items-center justify-center">
 
+            {!loading ? <>
               {(nftType==0) &&<NotStaked holding = {holdingValue} tacoType = {tacoType}/>}
               {(nftType==1) && <SoftStake holding = {holdingValue} tacoType = {tacoType}/>}
               {/* {(nftType==2)&& <HardStake tacoType = {tacoType}/>} */}
+            </> : 
+            <RiLoader5Fill className="animate-spin text-5xl text-black"/>
+            }
 
         </div>
       </div>
