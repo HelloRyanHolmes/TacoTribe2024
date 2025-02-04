@@ -69,7 +69,7 @@ export default function DoodleMint() {
             const contract = await doodledTacoMintSetup(address);
             console.log("inside mint", contract);
 
-            await contract.mint(amount, {value: ethers.utils.parseEther(String(15 * amount)) }).then(
+            await contract.mint(amount, {value: ethers.utils.parseEther(String(10 * amount)) }).then(
                 (res) => {
                     console.log(res);
                     Swal.fire({
