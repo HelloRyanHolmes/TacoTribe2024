@@ -13,6 +13,7 @@ import { useGlobalContext } from "../../../../context/MainContext"
 
 import { useAccount } from 'wagmi'
 import Swal from 'sweetalert2'
+import { RiClockwise2Fill, RiTimeFill } from "react-icons/ri"
 
 const claimUp = "https://d19rxn9gjbwl25.cloudfront.net/buttons/Mint_Button_UP.png"
 const claimDown = "https://d19rxn9gjbwl25.cloudfront.net/buttons/Mint_Button_DOWN.png"
@@ -64,11 +65,31 @@ export default function TacoMint() {
 
     const { setLoader } = useGlobalContext();
 
+    const price = Date.now() < 1748923200000 ? 12 : 25;
+
+    //make a countdown timer till 1748923200000
+    const countdown = () => {
+        const now = new Date().getTime();
+        const distance = 1748923200000 - now;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        return { days, hours, minutes, seconds };
+    }
+    const [time, setTime] = useState(countdown());
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTime(countdown());
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
+
     async function mint() {
         setLoader(true)
         const contract = await tacoMintSetup(address);
-        console.log("inside mint", contract);
-        await contract.mint(amount, {value: ethers.utils.parseEther(String(12 * amount)) }).then(
+
+        await contract.mint(amount, {value: ethers.utils.parseEther(String(price * amount)) }).then(
             (res) => {
                 setLoader(false)
                 console.log(res);
@@ -143,10 +164,18 @@ export default function TacoMint() {
                 Minted: {supply}/8226
             </div>
 
-            <div className="bg-yellow-400 text-center relative translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
+            {Date.now() < 1748923200000 ? <div className="bg-yellow-400 text-center flex-col relative translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
+                <span className="block">
                 Price: <span className=" line-through mx-1"> 25 </span>12 $POL
                 <span className="bg-red-600 rounded-md px-4 border-[2px] border-red-800 text-white text-sm absolute -top-4 -right-6 shadow-md py-[2px] shadow-black/40 rotate-12">SALE!</span>
-            </div>
+                </span>
+                <span className="text-xs">
+                <span className="flex gap-2 items-center justify-center"> <RiTimeFill/> Sale ends in {time.days > 0 ? time.days + " Days" : time.hours > 0 ? time.hours+ " Hours" : time.minutes > 0 ? time.minutes + " Minutes" : time.seconds + " Seconds"} </span>
+                </span>
+
+            </div> : <div className="bg-yellow-400 text-center relative translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
+            Price: 25 $POL
+                </div>}
             
             {amountBoxShow &&
                 <div className="bg-yellow-400 z-20 border-2 border-black rounded-2xl w-[300px] px-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl shadow-black">
