@@ -143,8 +143,9 @@ export default function TacoMint() {
                 Minted: {supply}/8226
             </div>
 
-            <div className="bg-yellow-400 text-center translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
-                Price: 12 $POL
+            <div className="bg-yellow-400 text-center relative translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
+                Price: <span className=" line-through mx-1"> 25 </span>12 $POL
+                <span className="bg-red-600 rounded-md px-4 border-[2px] border-red-800 text-white text-sm absolute -top-4 -right-6 shadow-md py-[2px] shadow-black/40 rotate-12">SALE!</span>
             </div>
             
             {amountBoxShow &&
