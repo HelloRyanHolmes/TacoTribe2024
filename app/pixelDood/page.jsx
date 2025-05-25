@@ -5,6 +5,7 @@ import DoodlePixelMint from "../../components/UI/Buttons/Minting/doodlepixelTaco
 
 import { useAccount } from 'wagmi'
 import { useEffect, useState } from "react";
+import { SiOpensea } from "react-icons/si";
 
 const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/pixel_doodle/taco-truck-night.jpeg";
 const bgConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/pixel_doodle/taco-truck-day-inside.png";
@@ -31,10 +32,13 @@ export default function pixelDood() {
         </div>
       </div>
 
-      <main className=" w-screen h-screen relative">
-        <DoodlePixelMint/>
-      </main>
-      
+      <a href="https://opensea.io/collection/pixeldoodledtacos" target="_blank" className="text-white text-2xl z-[2000] absolute bottom-4 left-4">
+        <SiOpensea className="text-white text-3xl hover:scale-[1.10] duration-200 " />
+      </a>
+
+      <DoodlePixelMint />
+
+
     </>
   );
 }
