@@ -35,8 +35,8 @@ export default function Home() {
 
       </div>
 
-      <a href="https://opensea.io/collection/tacotribenfts" target="_blank" className="text-white text-2xl z-[2000] absolute bottom-4 left-4">
-        <SiOpensea className="text-white text-3xl hover:scale-[1.10] duration-200 " />
+      <a href="https://opensea.io/collection/tacotribenfts" target="_blank" className="text-2xl z-[2000] absolute bottom-4 left-4 md:hidden rounded-full bg-white p-[1px]">
+        <SiOpensea className="text-blue-500 text-3xl hover:scale-[1.10] duration-200 " />
       </a>
     
         <TacoMint/>

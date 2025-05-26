@@ -35,8 +35,8 @@ export default function Doodled() {
                 {isConnected && isClient && <Image width={1920} height={1080} src={bgMobileConnected} className="object-cover sm:hidden h-full" />}
               </div>
             </div>
-              <a href="https://opensea.io/collection/doodledtacos" target="_blank" className="text-white text-2xl z-[2000] absolute bottom-4 left-4">
-                <SiOpensea className="text-white text-3xl hover:scale-[1.10] duration-200 "/>
+              <a href="https://opensea.io/collection/doodledtacos" target="_blank" className="text-2xl z-[2000] absolute bottom-4 left-4 md:hidden rounded-full bg-white p-[1px]">
+                <SiOpensea className="text-blue-500 text-3xl hover:scale-[1.10] duration-200 "/>
               </a>
 
         <DoodleMint/>

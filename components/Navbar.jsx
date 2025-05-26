@@ -50,6 +50,7 @@ import { useEffect, useState } from 'react'
 import NavButton from './UI/Buttons/navButton'
 import { WalletConnectButton } from "./UI/Buttons/walletConnectButton"
 import GuacBalance from "./UI/Labels/guacBalance"
+import { SiOpensea } from 'react-icons/si'
 // const GuacBalance = dynamic(() => import("./UI/Labels/guacBalance"), { ssr: false });
 
 export default function Navbar() {
@@ -65,6 +66,26 @@ export default function Navbar() {
     useEffect(() => {
         setIsClient(true)
       }, [])
+
+      const link = [
+        
+        {
+            path: '/',
+            link: 'https://opensea.io/collection/tacotribenfts'
+        },
+        {
+            path: '/pixelTaco',
+            link: 'https://opensea.io/collection/pixeltacotribe'
+        },
+        {
+            path: '/doodled',
+            link: 'https://opensea.io/collection/doodledtacos'
+        }, 
+        {
+            path: '/pixelDood',
+            link: 'https://opensea.io/collection/pixeldoodledtacos'
+        }
+      ]
 
     return (<>
         {openNav && <div className='fixed top-0 left-0 z-50 w-screen h-screen bg-yellow-400 flex flex-col gap-1 items-center justify-center'>
@@ -100,7 +121,10 @@ export default function Navbar() {
                 <NavButton upImage={raffleBtnUp} downImage={raffleBtnDown} selected={params == "/raffle" ? true : false} link={"/raffle"} />
                 <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} />
             </div>
-            <div suppressHydrationWarning={true} className='flex flex-row gap-2'>
+            <div suppressHydrationWarning={true} className='flex flex-row gap-2 items-center'>
+                <a href={(link.find((item)=>item.path == params))?.link} target="_blank" className="bg-white rounded-full p-[1px] max-md:hidden text-2xl">
+                        <SiOpensea className="text-blue-400 text-3xl hover:scale-[1.10] duration-200 " />
+                      </a>
                 <WalletConnectButton />
                 {isClient && isConnected ? <GuacBalance /> : <></>}
             </div>
