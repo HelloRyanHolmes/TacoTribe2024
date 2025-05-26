@@ -9,6 +9,7 @@ const bgMobileConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/t
 import TacoMint from "../components/UI/Buttons/Minting/tacos"
 import { useEffect, useState } from "react";
 import { useAccount } from 'wagmi'
+import { SiOpensea } from "react-icons/si";
 
 export default function Home() {
 
@@ -34,9 +35,12 @@ export default function Home() {
 
       </div>
 
-      <main className=" w-screen h-screen relative">
+      <a href="https://opensea.io/collection/tacotribenfts" target="_blank" className="text-white text-2xl z-[2000] absolute bottom-4 left-4">
+        <SiOpensea className="text-white text-3xl hover:scale-[1.10] duration-200 " />
+      </a>
+    
         <TacoMint/>
-      </main>
+
 
     </>
   );

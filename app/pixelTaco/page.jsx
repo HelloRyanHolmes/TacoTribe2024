@@ -5,6 +5,7 @@ import PixelMint from "../../components/UI/Buttons/Minting/pixelTacos";
 
 import { useAccount } from 'wagmi'
 import { useEffect, useState } from "react";
+import { SiOpensea } from "react-icons/si";
 
 const bg = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/pixel_collection/taco-truck-night.jpeg";
 const bgConnected = "https://d19rxn9gjbwl25.cloudfront.net/projectImages/pixel_collection/taco-truck-day-inside-edited.jpeg";
@@ -31,6 +32,10 @@ export default function PixelTaco() {
           {isConnected && isClient && <Image width={1920} height={1080} src={bgMobileConnected} className="object-cover sm:hidden h-full" />}
         </div>
       </div>
+
+      <a href="https://opensea.io/collection/pixeltacotribe" target="_blank" className="text-white text-2xl z-[2000] absolute bottom-4 left-4">
+                      <SiOpensea className="text-white text-3xl hover:scale-[1.10] duration-200 "/>
+                    </a>
 
       <PixelMint />
       
