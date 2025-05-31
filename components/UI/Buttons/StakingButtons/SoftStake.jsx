@@ -272,7 +272,7 @@ const SoftStake = ({ holding, tacoType }) => {
           if (stakeType == 1) {
 
             const name = "Pixel Doodle Tacos #" + holding[i].tokenId;
-            const img = "https://gateway.lighthouse.storage/ipfs/bafybeifgtr33q3k6t5b45gyp3hxloselihxqqj3qo4pamhyzpen54qizni/" + holding[i].tokenId + ".png";
+            const img = "https://gateway.lighthouse.storage/ipfs/bafybeih7qjqxglnrzg6yyhkitpzvulahi3ia7jpzo3ecfoesslgngexpcy/" + holding[i].tokenId + ".png";
             const tokenId = holding[i].tokenId;
             const unclaimedAmount = holding[i].guac;
             dispArr.push({ name, tokenId, img, unclaimedAmount, tacoType })

@@ -122,9 +122,9 @@ export default function Navbar() {
                 <NavButton upImage={minimartBtnUp} downImage={minimartBtnDown} selected={params == "/minimart" ? true : false} link={"/minimart"} />
             </div>
             <div suppressHydrationWarning={true} className='flex flex-row gap-2 items-center'>
-                <a href={(link.find((item)=>item.path == params))?.link} target="_blank" className="bg-white rounded-full p-[1px] max-md:hidden text-2xl">
+                {params !== "/raffle" && params !== "/sauce" && params !== "/minimart" && <a href={(link.find((item)=>item.path == params))?.link} target="_blank" className="bg-white rounded-full p-[1px] max-md:hidden text-2xl">
                         <SiOpensea className="text-blue-400 text-3xl hover:scale-[1.10] duration-200 " />
-                      </a>
+                      </a>}
                 <WalletConnectButton />
                 {isClient && isConnected ? <GuacBalance /> : <></>}
             </div>
