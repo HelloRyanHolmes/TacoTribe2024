@@ -132,7 +132,7 @@ export default function Raffle() {
           <h1 className="text-5xl">PREVIOUS WINNERS:</h1>
           
           <div className="flex flex-wrap gap-4 items-center justify-center relative h-full mx-auto mt-10">
-            {endedRaffles.slice(0,4).map((item, i)=>(
+            {endedRaffles.slice(endedRaffles.length-4, endedRaffles.length-1).map((item, i)=>(
               <PastWinners data={item}/>
             ))}
             {endedRaffles.length == 0 && <h2>NOTHING TO LOOK AT</h2>}
