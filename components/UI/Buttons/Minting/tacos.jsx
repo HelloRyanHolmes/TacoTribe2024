@@ -65,7 +65,7 @@ export default function TacoMint() {
 
     const { setLoader } = useGlobalContext();
 
-    const price = Date.now() < 1748923200000 ? 12 : 17;
+    const price =20;
 
     //make a countdown timer till 1748923200000
     const countdown = () => {
