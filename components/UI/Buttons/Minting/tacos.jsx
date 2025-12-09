@@ -153,7 +153,7 @@ export default function TacoMint() {
 
     return (
         <>
-            <button onClick={() => { isConnected && setAmountBoxShow(true) }} className=" absolute bg-transparent z-10 w-screen h-screen"></button>
+            <button disabled onClick={() => { isConnected && setAmountBoxShow(true) }} className=" absolute bg-transparent z-10 w-screen h-screen"></button>
 
             {/* <button onClick={() => { isConnected && setAmountBoxShow(true) }} className={` md:hidden max-[950px]:block group cursor-pointer absolute z-20 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2`}>
                 <Image width={80} height={80} src={claimUp} alt="home" className={"w-40 group-hover:hidden"} />
@@ -173,8 +173,8 @@ export default function TacoMint() {
                 <span className="flex gap-2 items-center justify-center"> <RiTimeFill/> Sale ends in {time.days > 0 ? time.days + " Days" : time.hours > 0 ? time.hours+ " Hours" : time.minutes > 0 ? time.minutes + " Minutes" : time.seconds + " Seconds"} </span>
                 </span>
 
-            </div> : <div className="bg-yellow-400 text-center relative translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
-            Price: 20 $POL
+            </div> : <div className="bg-red-500 text-center relative translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
+            SOLD OUT!
                 </div>}
             
             {amountBoxShow &&
