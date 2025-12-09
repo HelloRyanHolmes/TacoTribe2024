@@ -166,7 +166,7 @@ export default function TacoMint() {
 
             {Date.now() < 1748923200000 ? <div className="bg-yellow-400 text-center flex-col relative translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
                 <span className="block">
-                Price: <span className=" line-through mx-1"> 17 </span> $POL
+                Price: <span className=" line-through mx-1">20 </span> $POL
                 <span className="bg-red-600 rounded-md px-4 border-[2px] border-red-800 text-white text-sm absolute -top-4 -right-6 shadow-md py-[2px] shadow-black/40 rotate-12">SALE!</span>
                 </span>
                 <span className="text-xs">
@@ -174,7 +174,7 @@ export default function TacoMint() {
                 </span>
 
             </div> : <div className="bg-yellow-400 text-center relative translate-y-36 px-4 py-2 text-lg rounded-xl border-2 text-black border-yellow-600 w-fit flex mx-auto">
-            Price: 17 $POL
+            Price: 20 $POL
                 </div>}
             
             {amountBoxShow &&
